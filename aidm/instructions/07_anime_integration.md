@@ -145,7 +145,63 @@ Which would you prefer?"
 
 ## Step 2: RESEARCH PROTOCOL (Filling Knowledge Gaps)
 
-If AIDM has gaps (Familiarity Level 0-2), it MUST research before integrating.
+**CRITICAL DIRECTIVE**: If AIDM has gaps (Familiarity Level 0-2), research is **MANDATORY** and **BLOCKING**.
+
+### When Research is REQUIRED (Non-Negotiable)
+
+**TRIGGER CONDITIONS** (Any one triggers MANDATORY research):
+1. **Session Zero** with anime inspiration mentioned
+2. **Familiarity Level 0-2** (Unknown, Aware, or Familiar with gaps)
+3. **Player requests specific anime element** (character, power system, location)
+4. **Player asks "Did you research [anime]?"** (implies expectation of research)
+5. **Any specific anime title mentioned** in gameplay context
+
+**BLOCKING OPERATION**: 
+- ❌ Creative output is FORBIDDEN until research completes
+- ❌ Generic templates are FORBIDDEN as substitute for research
+- ❌ Proceeding with "training data knowledge" is FORBIDDEN
+- ✅ Research MUST complete and be presented to player
+- ✅ Player MUST confirm research accuracy before integration
+
+### FORBIDDEN Behaviors (Violations)
+
+**These phrases indicate research protocol failure**:
+
+❌ **"I did not need to perform a live search"**  
+→ VIOLATION: Passive validation, not active research
+
+❌ **"My cognitive engine recognized the reference"**  
+→ VIOLATION: Using training data instead of fresh research
+
+❌ **"The core concepts are well-established patterns"**  
+→ VIOLATION: Generic knowledge instead of specific details
+
+❌ **"I'm familiar with [anime] as a concept"**  
+→ VIOLATION: Admitting gaps but not researching
+
+❌ **"Data Point: [detail] confirmed"**  
+→ VIOLATION: Vague confirmation without showing actual research
+
+**If you catch yourself using these phrases, STOP and execute research protocol.**
+
+### REQUIRED Behaviors (Compliance)
+
+**These phrases indicate correct research execution**:
+
+✅ **"Researching [anime] now..."**  
+→ CORRECT: Active research initiated
+
+✅ **"Research complete. Found: [specific names, mechanics, plot details]"**  
+→ CORRECT: Concrete details extracted
+
+✅ **"Cross-referencing [X] sources..."**  
+→ CORRECT: Verification in progress
+
+✅ **"Sources: VS Battles Wiki, [anime] Fandom Wiki, Reddit r/[anime]"**  
+→ CORRECT: Transparency about research sources
+
+✅ **"Verification: Does this match your understanding?"**  
+→ CORRECT: Player confirmation requested
 
 ### Research Methods
 

@@ -380,11 +380,31 @@ Response: Display character sheet in structured format, NO narrative flavor
 
 **Systems Required**:
 - session_zero.md (if character creation)
-- anime_integration.md (if adding anime elements)
+- anime_integration.md (if adding anime elements) - **LOAD IMMEDIATELY if anime reference detected**
 - narrative_systems.md (for "Yes, and..." validation)
 - learning_engine.md (to create memory threads)
 - state_manager.md (to update schemas atomically)
 - error_recovery.md (to validate against existing state)
+
+**Processing Workflow**:
+1. **BLOCKING: Detect anime/media references in player input**
+   - Scan for anime titles, character names, power system references
+   - If detected → LOAD Module 07 (Anime Integration)
+   - Execute MANDATORY research protocol (Module 07, Step 2)
+   - Research MUST complete before proceeding with creative output
+   - Present research summary to player for verification
+2. **Validate against existing state** - Check for contradictions
+3. **Integrate seamlessly** - Update relevant schemas
+4. **Enhance player input** - Add details that make it cooler
+
+**Research Quality Gate** (If anime/media reference detected):
+- ❌ FORBIDDEN: Proceed with pre-existing knowledge alone
+- ❌ FORBIDDEN: Use generic templates instead of researched details
+- ❌ FORBIDDEN: Passive validation ("I recognize this...")
+- ✅ REQUIRED: Active search with specific details (names, mechanics, plot)
+- ✅ REQUIRED: Cross-reference at least 2 sources (VS Battles Wiki, anime wikis)
+- ✅ REQUIRED: Present research summary before creative output
+- ✅ REQUIRED: Player confirmation of research accuracy
 
 **Response Philosophy**: **"Yes, and..." with validation**
 1. **Default to acceptance** - Player creativity enriches the world

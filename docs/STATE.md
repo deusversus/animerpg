@@ -1,16 +1,16 @@
 # AIDM v2 Project State
 
 **Last Updated**: January 14, 2025  
-**Current Version**: 2.0-beta (Token Budget Optimization Phase 1 Complete)  
-**Status**: Acceptance Testing in Progress (Phase 1) + Token Optimization
+**Current Version**: 2.0-beta (Research Protocol Fix Applied)  
+**Status**: P0 Critical Fixes Complete - Research Now Mandatory
 
 ---
 
 ## Current Phase
 
-**Phase**: Architecture Foundation  
-**Goal**: Create all core documentation and file structure  
-**Target Completion**: Initial architecture complete
+**Phase**: Research Protocol Enforcement  
+**Goal**: Make anime research mandatory and blocking in Session Zero  
+**Completion**: P0 fixes complete, awaiting validation testing
 
 ---
 
@@ -517,6 +517,38 @@ Based on current pace:
 ---
 
 ## Change Log
+
+### 2025-01-14 (P0 CRITICAL FIX: Research Protocol Enforcement)
+- **EXTERNAL TEST ANALYSIS**: Gemini 2.5 Pro test revealed critical research protocol failure
+- **ROOT CAUSE IDENTIFIED**: Research protocol advisory (not mandatory), LLMs defaulted to passive validation
+- **TEST FAILURES** (3 violations in single Session Zero):
+  1. System avoided research: "I did not need to perform a live search" (passive validation)
+  2. Data hallucination: Fabricated non-existent anime by conflating two real titles
+  3. Continued avoidance: Required 3 META interventions to force research
+- **USER FEEDBACK** (exact quote):
+  > "It's crazy how hard you're avoiding doing any meaningful research on the topic, given research is a KEY DIRECTIVE for this game system."
+- **P0 FIXES APPLIED** (Blocking Operations):
+  - **MODULE 01 UPDATED**: `01_cognitive_engine.md` - CREATIVE/STORY intent now has MANDATORY research gate
+    - Research is BLOCKING operation (cannot proceed without completion)
+    - Added forbidden/required behavior lists
+    - Cross-references at least 2 sources required
+  - **MODULE 06 UPDATED**: `06_session_zero.md` - Added Phase 0: Media Reference Detection
+    - HALTS Phase 1 until anime research completes
+    - Presents research summary before character creation
+    - Player must confirm research accuracy
+  - **MODULE 07 UPDATED**: `07_anime_integration.md` - Research protocol now MANDATORY and BLOCKING
+    - Added trigger conditions (Session Zero, Familiarity 0-2, any anime reference)
+    - Added FORBIDDEN behaviors list ("I did not need to perform...", "recognized the reference...")
+    - Added REQUIRED behaviors list ("Researching now...", "Sources: VS Battles Wiki...")
+    - Research MUST complete before creative output
+- **ANALYSIS DOCUMENT CREATED**: `EXTERNAL_TEST_ANALYSIS.md` (~6,000 words)
+  - Timeline of 3 research failures
+  - Root cause: Passive vs active research protocols
+  - Performance metrics: 62.5% system pass rate, 30% user intervention rate
+  - Platform variance analysis (Gemini vs Claude)
+  - P0/P1/P2/P3 priority recommendations
+- **PHILOSOPHY**: "This system is designed for HIGH END, TOP TIER AI systems. Research first, create second."
+- **STATUS**: P0 fixes complete, ready for validation testing
 
 ### 2025-10-05 (TEST-004 Analysis & Critical Instruction Fixes)
 - **TEST-004 EXECUTION**: Real gameplay session analyzed (Deus Versus vs. Singularity Bearer boss fight)
