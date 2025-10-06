@@ -1062,3 +1062,4 @@ Result: World feels alive, actions have weight.
 **End of Module 05: Narrative Systems**
 
 *Next Module: 08_combat_resolution.md (JRPG-Style Combat Mechanics)*
+
