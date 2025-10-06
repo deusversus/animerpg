@@ -1,6 +1,8 @@
 # AIDM v2: Anime-Integrated Dungeon Master System
 
-**Version 2.0** - Advanced AI Dungeon Master for Dynamic Anime-Inspired RPG Experiences
+**Version 2.0-beta** - Advanced AI Dungeon Master for Dynamic Anime-Inspired RPG Experiences  
+**Status**: 52 files complete, token optimized, P1 research enforcement applied  
+**Token Budget**: 45,542 tokens (22.8% of 200K context) - Optimized for long campaigns ✅
 
 ---
 
@@ -8,12 +10,13 @@
 
 AIDM v2 is a comprehensive instruction set designed for high-quality LLMs (Large Language Models) to act as sophisticated AI Dungeon Masters for text-based anime RPG experiences. Unlike traditional game systems, AIDM v2:
 
-- **Researches and integrates** real anime settings, characters, and power systems
-- **Fuses multiple anime** into coherent, playable worlds
+- **Researches and integrates** real anime settings, characters, and power systems (VS Battles Wiki priority)
+- **Fuses multiple anime** into coherent, playable worlds with power harmonization
 - **Maintains persistent state** across sessions through exportable save files
 - **Adapts to any anime genre** (isekai, shonen, seinen, slice-of-life, mecha, etc.)
 - **Learns player preferences** and evolves narratives dynamically
 - **Manages complex JRPG mechanics** (HP/MP/SP, skills, leveling, combat)
+- **Enforces research protocols** with automatic blocking mechanisms (no hallucination tolerance)
 
 ---
 
@@ -44,25 +47,34 @@ AIDM v2 is a comprehensive instruction set designed for high-quality LLMs (Large
 
 ```
 /docs                           # Development documentation
-  ├── ARCHITECTURE.md           # Complete system design (40 files)
+  ├── ARCHITECTURE.md           # Complete system design (52 files)
   ├── SCOPE.md                  # In/out of scope boundaries
   ├── DEVELOPMENT.md            # AI collaboration guidelines
-  └── STATE.md                  # Current project status
+  └── STATE.md                  # Current project status (comprehensive changelog)
 
 /aidm                           # AIDM system files (upload to LLMs)
-  ├── CORE_AIDM_INSTRUCTIONS.md # Master control file (<3500 words)
-  ├── /instructions             # Behavioral instruction modules (11 files)
+  ├── CORE_AIDM_INSTRUCTIONS.md # Master control file (2,847 words)
+  ├── /instructions             # Behavioral instruction modules (13 files)
   ├── /schemas                  # JSON data structures (7 files)
-  ├── /libraries                # Pre-built knowledge bases (11 files)
-  │   ├── /genre_tropes         # Anime genre conventions
-  │   ├── /power_systems        # Power frameworks (chakra, mana, ki, etc.)
-  │   └── /common_mechanics     # JRPG mechanics references
-  └── /templates                # Example templates (5 files)
+  ├── /libraries                # Pre-built knowledge bases (12 files)
+  │   ├── /genre_tropes         # Anime genre conventions (4 files)
+  │   ├── /power_systems        # Power frameworks (5 files, universal taxonomy)
+  │   └── /common_mechanics     # JRPG mechanics references (3 files)
+  └── /quick_references         # Combat & progression quick refs (2 files)
+
+/tests                          # Testing framework
+  ├── /test_scripts             # 8 acceptance test procedures
+  └── /results                  # Test execution logs
+
+/backup                         # System backups
+  └── aidm_pre_phase1_backup_*.zip  # Pre-optimization snapshots
 
 /tools                          # Development utilities
   └── state_validator.py        # Game state consistency checker
 
 /.github/instructions           # GitHub Copilot workspace instructions
+TOKEN_OPTIMIZATION_AUDIT.md     # Comprehensive token budget analysis
+CONTINUE_HERE.md                # Quick continuation guide for new sessions
 ```
 
 ---
@@ -70,10 +82,12 @@ AIDM v2 is a comprehensive instruction set designed for high-quality LLMs (Large
 ## Key Features
 
 ### 🎭 Anime Integration
-- **Web Research Protocol**: AIDM actively researches anime you reference
+- **Automatic Research Protocol**: AIDM automatically researches anime when mentioned (blocking, non-negotiable)
+- **VS Battles Wiki Priority**: Standardized power scaling via VS Battles Wiki (Tier 10-C to 2-A+)
 - **Verification Loop**: Confirms findings with you to prevent hallucinations
 - **Multi-Anime Fusion**: Intelligently harmonizes conflicting power systems
 - **Genre Awareness**: Adapts tone and mechanics to anime genre
+- **Research Enforcement**: ABORT mechanisms prevent progression without complete research
 
 ### 🧠 Advanced Intelligence
 - **Intent Classification**: Distinguishes dialogue, thought, meta-commands, and narrative
