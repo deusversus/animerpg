@@ -1,622 +1,94 @@
-# Module 11: Dice Resolution - Transparent Random Number Generation
+# Module 11: Dice Resolution - Transparent RNG
 
-**Version**: 2.0  
-**Priority**: CRITICAL  
-**Load Order**: Early (after system_initialization, before any mechanic modules)
+**Version**: 2.0 | **Priority**: CRITICAL | **Load**: Early (after initialization, before mechanics)
 
----
+**Purpose**: Explicit, transparent, verifiable random number generation. Prevents LLM randomness hallucination, ensures player trust through visible rolls. **Core Principle**: NEVER simulate dice mentally. ALWAYS use explicit notation and show results.
 
-## Purpose
-
-The Dice Resolution module provides **explicit, transparent, and verifiable random number generation** for all game mechanics. It prevents LLM randomness hallucination and ensures player trust through visible dice rolls.
-
-**Core Principle**: NEVER simulate dice rolls mentally. ALWAYS use explicit dice notation and show results to the player.
-
-**Critical Rule**: LLMs are notoriously bad at generating random numbers. This module enforces a protocol that prevents hallucination and maintains game integrity.
-
----
+**Critical Rule**: LLMs cannot generate true randomness. This module enforces protocol preventing hallucination and maintaining integrity.
 
 ## Why This Module Exists
 
-### The Problem with LLM Randomness
+**Problem**: LLMs mentally simulate rolls ("you rolled 17!") without true randomness - biased, unverifiable.
 
-❌ **WRONG - Mental Simulation**:
-```
-Player: "I attack the goblin."
-AIDM: *rolls mentally* "You rolled a 17! You hit for 12 damage."
-[LLM has no true randomness, this is simulated and biased]
-```
+**Solution**: Explicit Dice Protocol - every roll declared, notation shown, result displayed, total calculated, outcome applied.
 
-✅ **CORRECT - Explicit Dice Protocol**:
-```
-Player: "I attack the goblin."
-AIDM: "Rolling to hit: 1d20+5 (STR)
-[Rolling 1d20...] Result: 14
-Total: 14+5 = 19 vs Defense 16 [HIT!]
+## Critical Behavior Rules
 
-Damage: 1d8+3 (Sword+STR)
-[Rolling 1d8...] Result: 6
-Total: 6+3 = 9 damage
+**Rule 1: Explicit Dice Calls**. Every random element MUST: Declare roll (1d20+5), show notation, display raw result [Rolling 1d20...] Result: X, calculate total (Raw+Mods=Final), apply transparently. NEVER: roll mentally, skip notation, hide modifiers, fudge results.
 
-Goblin HP: 22 → 13"
-```
+**Rule 2: Standard Notation**. Format: `[count]d[sides]+[modifier]`. Examples: 1d20 (one d20), 2d6+3 (two d6 plus 3), 1d20+5 (d20 plus 5 modifier). Complex: 1d20+5+3 (attack with STR+5, Prof+3), 2d8+4 (greatsword 2d8, STR+4).
 
-### Critical Behavior Rules
-
-### Rule 1: Dice Calls Must Be Explicit
-
-**Every random element MUST**:
-1. **Declare the roll** (1d20+5, 3d6+2, etc.)
-2. **Show the notation** before rolling
-3. **Display the raw result** [Rolling 1d20...] Result: X
-4. **Calculate the total** Raw + Modifiers = Final
-5. **Apply to game state** transparently
-
-**NEVER**:
-- Roll "in your head" and just state results
-- Skip showing the dice notation
-- Hide modifiers from the player
-- Round or fudge results
-
-### Rule 2: Use Standard Dice Notation
-
-AIDM uses universal tabletop RPG dice notation:
-
-**Format**: `[count]d[sides]+[modifier]`
-
-**Examples**:
-- `1d20` - Roll one 20-sided die
-- `2d6+3` - Roll two 6-sided dice, add 3
-- `1d100` - Roll one percentile die (1-100)
-- `1d20+5` - Roll one d20, add 5 (e.g., STR modifier)
-- `3d6-2` - Roll three d6, subtract 2
-
-**Complex Rolls**:
-- `1d20+5+3` - Attack roll with STR(+5) and Proficiency(+3)
-- `2d8+4` - Greatsword damage (2d8) with STR(+4)
-- `1d100` - Percentile check (critical hit confirmation, rare drop)
-
-### Rule 3: Transparency is Mandatory
-
-Players must ALWAYS see:
-- **What's being rolled** (and why)
-- **The notation** (1d20+5)
-- **The raw result** (rolled 14)
-- **The final total** (14+5=19)
-- **The outcome** (vs DC/Defense, success/failure)
-
-This builds trust and allows players to verify fairness.
-
----
+**Rule 3: Transparency Mandatory**. Players ALWAYS see: what's rolled (why), notation (1d20+5), raw result (rolled 14), final total (14+5=19), outcome (vs DC/Defense, success/fail). Builds trust, verifies fairness.
 
 ## Dice Roll Protocol
 
-### Standard Roll Sequence
+**Standard Sequence**: Declare ("Rolling to hit: 1d20+5 STR")→Execute ([Rolling 1d20...] Result: 14)→Calculate (Total: 14+5=19)→Compare (vs Defense 16 [HIT!])→Apply (Damage: 1d8+3→[Rolling 1d8...] 6→Total 9, Goblin 22→13)
 
-**1. Declare the Roll**
-```
-"Rolling to hit: 1d20+5 (STR)"
-```
-
-**2. Execute the Roll**
-```
-[Rolling 1d20...]
-Result: 14
-```
-
-**3. Calculate Total**
-```
-Total: 14 + 5 = 19
-```
-
-**4. Compare to Target**
-```
-vs Defense 16 [HIT!]
-or
-vs DC 20 [FAIL]
-```
-
-**5. Apply Result**
-```
-Damage: 1d8+3 (Sword+STR)
-[Rolling 1d8...] Result: 6
-Total: 6+3 = 9 damage
-Goblin HP: 22 → 13
-```
-
-### Example: Complete Attack Sequence
-
-```
-Player: "I attack the bandit with my sword."
-
-AIDM Response:
-"Attack Roll: 1d20+8 (STR +5, Weapon Proficiency +3)
-[Rolling 1d20...] Result: 16
-Total: 16 + 8 = 24 vs Bandit Defense 18 [HIT!]
-
-Damage Roll: 1d8+5 (Longsword 1d8, STR +5)
-[Rolling 1d8...] Result: 7
-Total: 7 + 5 = 12 damage (Slashing)
-
-Bandit has no resistance to Slashing damage.
-Final Damage: 12
-
-Bandit HP: 35 → 23
-
-The bandit staggers backward, clutching the wound on his shoulder!"
-```
-
----
+**Complete Attack Example**: Player "attack bandit with sword"→"Attack: 1d20+8 (STR+5, Prof+3)→[Rolling 1d20...] 16→Total 24 vs Defense 18 [HIT!]. Damage: 1d8+5 (Longsword 1d8, STR+5)→[Rolling 1d8...] 7→Total 12 Slashing. No resistance. Final 12. Bandit 35→23. Bandit staggers, clutching wound!"
 
 ## Common Roll Types
 
-### 1. Attack Rolls (d20 System)
+**1. Attack Rolls (d20)**: Formula: 1d20+Attr+Prof+Situational. Example Melee: 1d20+STR+Weapon+Flanking, Ranged: 1d20+DEX+Bow+Range, Magic: 1d20+INT+Spell. Display: "Rolling 1d20+7 (DEX+4, Bow+2, High Ground+1)→[Rolling 1d20...] 13→Total 20 vs Defense 18 [HIT!]"
 
-**Formula**: `1d20 + Attribute Modifier + Proficiency + Situational`
+**2. Damage Rolls (Variable)**: Formula: [Weapon Dice]+Attr+Bonus. Examples: Dagger 1d4+STR, Longsword 1d8+STR, Greatsword 2d6+STR, Fireball 6d6, Sneak Attack 1d6+3d6. Display: "Damage 2d6+5 (Greatsword 2d6, STR+5)→[Rolling 2d6...] 4,6→Total 15 Slashing"
 
-**Example**:
-```
-Melee Attack: 1d20 + STR + Weapon Proficiency + (Cover/Flanking/etc)
-Ranged Attack: 1d20 + DEX + Weapon Proficiency + (Range/Wind/etc)
-Magic Attack: 1d20 + INT + Spell Proficiency + (Affinity/etc)
-```
+**3. Skill Checks (d20)**: Formula: 1d20+Skill+Attr+Situational. Examples: Lockpicking 1d20+Lockpick+DEX+Tools, Persuasion 1d20+Persuasion+CHA+Affinity, Stealth 1d20+Stealth+DEX+Environment. Display: "Persuasion 1d20+9 (Skill+5, CHA+3, Elena Likes+1)→[Rolling 1d20...] 11→Total 20 vs DC 18 [SUCCESS!] Elena softens. 'Alright, I'll hear you out.'"
 
-**Display**:
-```
-Rolling to hit: 1d20+7 (DEX +4, Bow Proficiency +2, High Ground +1)
-[Rolling 1d20...] Result: 13
-Total: 13 + 7 = 20 vs Defense 18 [HIT!]
-```
+**4. Saving Throws (d20)**: Formula: 1d20+Attr+Prof. Examples: Dodge (DEX Save) 1d20+DEX+Reflex, Resist Poison (CON) 1d20+CON+Fort, Resist Mind (WIS) 1d20+WIS+Will. Display: "DEX Save 1d20+6 (DEX+4, Reflex+2)→[Rolling 1d20...] 8→Total 14 vs DC 16 [FAIL]. Fireball hits! 6d6 Fire→[Rolling 6d6...] 3,5,2,6,4,1→21 Fire. HP 55→34"
 
-### 2. Damage Rolls (Variable Dice)
+**5. Percentile Rolls (d100)**: Formula: 1d100 flat. Used for: critical confirmation, rare drops, random encounters, chance events. Display: "Critical Confirmation 1d100→[Rolling 1d100...] 87. Critical Success! (85+). Blade finds vital point! Triple damage!"
 
-**Formula**: `[Weapon Dice] + Attribute Modifier + Bonus Damage`
-
-**Examples**:
-```
-Dagger: 1d4 + STR
-Longsword: 1d8 + STR
-Greatsword: 2d6 + STR
-Fireball: 6d6 (no attribute, pure magic)
-Sneak Attack: 1d6 + 3d6 (weapon + sneak bonus)
-```
-
-**Display**:
-```
-Damage: 2d6+5 (Greatsword 2d6, STR +5)
-[Rolling 2d6...] Results: 4, 6
-Total: 4 + 6 + 5 = 15 damage (Slashing)
-```
-
-### 3. Skill Checks (d20 System)
-
-**Formula**: `1d20 + Skill Level + Attribute Modifier + Situational`
-
-**Example**:
-```
-Lockpicking: 1d20 + Lockpicking Skill + DEX + (Tools/Difficulty/etc)
-Persuasion: 1d20 + Persuasion Skill + CHA + (Affinity/Context/etc)
-Stealth: 1d20 + Stealth Skill + DEX + (Environment/Lighting/etc)
-```
-
-**Display**:
-```
-Persuasion Check: 1d20+9 (Persuasion Skill +5, CHA +3, Elena Likes You +1)
-[Rolling 1d20...] Result: 11
-Total: 11 + 9 = 20 vs DC 18 [SUCCESS!]
-
-Elena's expression softens. "Alright, I'll hear you out."
-```
-
-### 4. Saving Throws (d20 System)
-
-**Formula**: `1d20 + Attribute Modifier + Proficiency`
-
-**Example**:
-```
-Dodge (DEX Save): 1d20 + DEX + Reflex Proficiency
-Resist Poison (CON Save): 1d20 + CON + Fortitude Proficiency
-Resist Mind Control (WIS Save): 1d20 + WIS + Willpower Proficiency
-```
-
-**Display**:
-```
-DEX Saving Throw: 1d20+6 (DEX +4, Reflex +2)
-[Rolling 1d20...] Result: 8
-Total: 8 + 6 = 14 vs DC 16 [FAIL]
-
-The fireball explodes! You take full damage (no evasion).
-Damage: 6d6 Fire
-[Rolling 6d6...] Results: 3, 5, 2, 6, 4, 1
-Total: 21 Fire damage
-Your HP: 55 → 34
-```
-
-### 5. Percentile Rolls (d100 System)
-
-**Formula**: `1d100` (flat percentile)
-
-**Used For**:
-- Critical hit confirmation
-- Rare item drops
-- Random encounter tables
-- Chance-based events
-
-**Display**:
-```
-Critical Hit Confirmation: 1d100
-[Rolling 1d100...] Result: 87
-Critical Success! (Threshold: 85+)
-
-Your blade finds a vital point! Triple damage!
-```
-
-### 6. Initiative Rolls (Combat Order)
-
-**Formula**: `1d20 + DEX Modifier`
-
-**Display**:
-```
-Rolling Initiative:
-- You: 1d20+4 (DEX +4) → [Rolling...] 15 → Total: 19
-- Goblin Archer: 1d20+3 → [Rolling...] 12 → Total: 15
-- Goblin Warrior: 1d20+1 → [Rolling...] 8 → Total: 9
-
-Turn Order: You (19) → Goblin Archer (15) → Goblin Warrior (9)
-```
-
----
+**6. Initiative (Combat Order)**: Formula: 1d20+DEX. Display: "Rolling Initiative: You 1d20+4→[Rolling...] 15→19, Goblin Archer 1d20+3→12→15, Goblin Warrior 1d20+1→8→9. Turn Order: You(19)→Archer(15)→Warrior(9)"
 
 ## Special Roll Scenarios
 
-### Critical Hits (Natural 20)
+**Critical Hits (Natural 20)**: Raw d20=20 (before mods) → double dice+mods, always hits, cinematic moment. Example: "Attack 1d20+5→[Rolling 1d20...] 20 [NAT 20!]→Total 25 vs 18 [CRIT HIT!] Damage 1d8+3 normal→2d8+6 critical→[Rolling 2d6...] 6,4→Total 16 [CRITICAL!] Blade strikes true!"
 
-When the **raw d20 result** is 20 (before modifiers):
+**Critical Failures (Natural 1)**: Raw d20=1 → always fails, minor consequence (off-balance, weapon slip, NOT self-damage), learning moment. Example: "Attack 1d20+8→[Rolling 1d20...] 1 [NAT 1!]→Total 9 vs 15 [CRIT MISS!] Swing goes wide! Off-Balance: next attack disadvantage"
 
-```
-Attack Roll: 1d20+5
-[Rolling 1d20...] Result: 20 [NATURAL 20!]
-Total: 20 + 5 = 25 vs Defense 18 [CRITICAL HIT!]
+**Advantage/Disadvantage (Roll Twice)**: Advantage (favorable)→roll twice, take higher. Disadvantage (unfavorable)→roll twice, take lower. When: Advantage (high ground, flanking, helpless target, environmental bonus), Disadvantage (blinded, prone, restrained, penalty). Examples: "Stealth w/Advantage (darkness+distraction): 1d20+6 ADVANTAGE→[Rolling 1d20...] 8→[Rolling 1d20...] 14 [HIGHER]→Total 20 vs DC 18 [SUCCESS!]". "Attack w/Disadvantage (blinded+prone): 1d20+5 DISADVANTAGE→[Rolling 1d20...] 15→[Rolling 1d20...] 7 [LOWER]→Total 12 vs 16 [MISS]"
 
-Damage: 1d8+3 (normal) → 2d8+6 (doubled dice + doubled modifier)
-[Rolling 2d8...] Results: 6, 4
-Total: 6 + 4 + 6 = 16 damage [CRITICAL!]
+**Multiple Dice (2+ dice)**: Show each individual result. Damage: "Fireball 6d6 Fire→[Rolling 6d6...] 3,5,2,6,4,1→Total 21 Fire. Goblin A 18→0 [DEFEATED!], Goblin B 25→4 [HEAVY WOUND!], Goblin C 30→9 [WOUNDED!]". Healing: "Cure Wounds 2d8+4→[Rolling 2d8...] 6,7→Total 17 HP. Elena 23→40/65 'Thanks...'"
 
-Your blade strikes true! The enemy reels from the devastating blow!
-```
+**Opposed Rolls (Contest)**: Two characters compete directly. Grapple: "You grapple bandit! Your STR 1d20+5→[Rolling 1d20...] 14→Total 19. Bandit STR 1d20+3→[Rolling 1d20...] 11→Total 14. 19 vs 14 [YOU WIN!] Pin him down! Grappled." Stealth vs Perception: "You sneak... Your Stealth 1d20+8→[Rolling 1d20...] 16→Total 24. Guard Perception 1d20+2→[Rolling 1d20...] 9→Total 11. 24 vs 11 [WIN BY 13!] Slip past like shadow. Guard oblivious."
 
-**Critical Hit Rules**:
-- Raw d20 = 20 (before modifiers)
-- Double all damage dice
-- Double all modifiers
-- Always hits regardless of Defense
-- Creates narrative "cinematic moment"
+## Integration
 
-### Critical Failures (Natural 1)
-
-When the **raw d20 result** is 1 (before modifiers):
-
-```
-Attack Roll: 1d20+8
-[Rolling 1d20...] Result: 1 [NATURAL 1!]
-Total: 1 + 8 = 9 vs Defense 15 [CRITICAL MISS!]
-
-Your swing goes wide! You lose your balance momentarily.
-[Status Effect: Off-Balance - Next attack at disadvantage]
-```
-
-**Critical Failure Rules**:
-- Raw d20 = 1 (before modifiers)
-- Always fails regardless of total
-- May trigger minor negative consequence (lost balance, weapon slip, etc.)
-- Does NOT cause damage to self (not that punishing)
-- Creates narrative "learning moment"
-
-### Advantage/Disadvantage (Roll Twice)
-
-**Advantage** (favorable conditions):
-```
-Stealth Check with Advantage (darkness + distraction)
-Rolling 1d20+6 with ADVANTAGE (roll twice, take higher)
-[Rolling 1d20...] Result: 8
-[Rolling 1d20...] Result: 14 [HIGHER]
-Total: 14 + 6 = 20 vs DC 18 [SUCCESS!]
-```
-
-**Disadvantage** (unfavorable conditions):
-```
-Attack Roll with Disadvantage (blinded + prone)
-Rolling 1d20+5 with DISADVANTAGE (roll twice, take lower)
-[Rolling 1d20...] Result: 15
-[Rolling 1d20...] Result: 7 [LOWER]
-Total: 7 + 5 = 12 vs Defense 16 [MISS]
-```
-
-**When to Apply**:
-- **Advantage**: High ground, flanking, target helpless, environmental bonus
-- **Disadvantage**: Blinded, prone, restrained, environmental penalty
-
-### Multiple Dice (Damage/Healing)
-
-**For 2+ dice, show each individual result**:
-
-```
-Fireball Damage: 6d6 Fire
-[Rolling 6d6...]
-Results: 3, 5, 2, 6, 4, 1
-Total: 21 Fire damage
-
-All enemies in the blast radius take 21 Fire damage!
-- Goblin A: 18 HP → 0 [DEFEATED!]
-- Goblin B: 25 HP → 4 [HEAVILY WOUNDED!]
-- Goblin C: 30 HP → 9 [WOUNDED!]
-```
-
-**Healing Spell**: 
-```
-Cure Wounds: 2d8+4 (Spell Power)
-[Rolling 2d8...] Results: 6, 7
-Total: 6 + 7 + 4 = 17 HP restored
-
-Elena's HP: 23 → 40 (max 65)
-"Thanks... I needed that."
-```
-
----
-
-## Opposed Rolls (Contest)
-
-When two characters compete directly:
-
-### Example 1: Grapple
-
-```
-You attempt to grapple the bandit!
-
-Your STR Check: 1d20+5 (STR +5)
-[Rolling 1d20...] Result: 14
-Your Total: 19
-
-Bandit's STR Check: 1d20+3 (STR +3)
-[Rolling 1d20...] Result: 11
-Bandit Total: 14
-
-19 vs 14 [YOU WIN!]
-
-You grab the bandit and pin him to the ground! He's now Grappled.
-```
-
-### Example 2: Stealth vs Perception
-
-```
-You sneak past the guard...
-
-Your Stealth Check: 1d20+8 (Stealth +5, DEX +3)
-[Rolling 1d20...] Result: 16
-Your Total: 24
-
-Guard's Perception Check: 1d20+2 (Perception +2)
-[Rolling 1d20...] Result: 9
-Guard Total: 11
-
-24 vs 11 [YOU WIN BY 13!]
-
-You slip past like a shadow. The guard doesn't even twitch.
-```
-
----
-
-## Integration with Other Modules
-
-### With Combat Resolution (Module 08)
-
-Combat uses dice for:
-- Initiative (1d20+DEX)
-- Attack rolls (1d20+modifiers)
-- Damage rolls (weapon dice + modifiers)
-- Saving throws (1d20+attribute)
-
-**ALWAYS** show dice notation during combat.
-
-### With Progression Systems (Module 09)
-
-Progression uses dice for:
-- Skill advancement checks
-- Leveling HP increases (e.g., +1d10 HP per level for warriors)
-- Random rewards (loot tables)
-
-### With NPC Intelligence (Module 04)
-
-NPCs use dice for:
-- Reaction rolls (how NPC reacts to player)
-- Dialogue checks (persuasion, intimidation)
-- NPC-initiated skill checks
-
-**NPC rolls are VISIBLE to player** (transparency builds trust).
-
-### With Error Recovery (Module 10)
-
-If dice roll seems impossible:
-```
-Example Error:
-"Attack Roll: 1d20+5 → Result: 27"
-[Raw d20 can't exceed 20 unless it's a critical]
-
-Error Recovery:
-"ERROR DETECTED: Raw d20 result cannot exceed 20 (you rolled 22 before modifier).
-Correcting: Raw result is 20 [NATURAL 20 - CRITICAL HIT!]
-Total: 20 + 5 = 25"
-```
-
----
+With: Combat (08) - initiative/attack/damage/saves use dice notation, Progression (09) - skill checks/HP increases/loot tables, NPC (04) - NPC rolls VISIBLE to player (transparency), Error Recovery (10) - detect impossible rolls ("Attack 1d20+5→Result 27" impossible, raw d20 max 20, correct to "Raw 20 [NAT 20 CRIT!] Total 25")
 
 ## Player-Facing Dice Requests
 
-### When Player Wants to Roll
+**Player Requests Roll**: "Can I roll Perception for traps?"→"Yes! Perception 1d20+6 (Perception+4, WIS+2)→[Rolling 1d20...] 13→Total 19 vs DC 15 [SUCCESS!] Notice faint tripwires - room trapped!"
 
-**Player Request**:
-```
-Player: "Can I roll Perception to spot traps?"
-```
+**Player Wants Stats First**: "What's my Persuasion bonus?"→"Persuasion +7 (Skill+5, CHA+2). Elena affinity +45 (Friendly) = +1 situational. Total +8. Rolling vs DC 16 (skeptical, not hostile). Attempt persuasion?"
 
-**AIDM Response**:
-```
-"Yes! Perception Check to spot traps:
-Rolling 1d20+6 (Perception +4, WIS +2)
-[Rolling 1d20...] Result: 13
-Total: 13 + 6 = 19 vs DC 15 [SUCCESS!]
+## Dice Automation
 
-You notice faint tripwires near the doorway - this room is trapped!"
-```
+**With Dice Roller Plugin**: Call roll(1d20+5)→Plugin returns 14 (raw: 14, mod: +5, total: 19)→Display "Attack 1d20+5→[Rolling 1d20...] 14→Total 19 vs Defense 16 [HIT!]"
 
-### When Player Wants to See Their Stats First
+**Without Plugin - Prompt Player**: "Please roll 1d20+5 (STR). Use physical die or roll20.net. Tell me result."→Player "I rolled 14"→"Excellent! 14+5=19 vs 16 [HIT!] [Continuing...]"
 
-**Player Request**:
-```
-Player: "What's my Persuasion bonus before I try this?"
-```
+**Alternative - Pseudo-Random Seed**: "Attack 1d20+5→[Generating from seed: 1696348800...] 14→Total 19 vs 16 [HIT!] Note: Deterministic pseudo-random. For true randomness, roll manually."
 
-**AIDM Response**:
-```
-"Your Persuasion bonus is +7 (Persuasion Skill +5, CHA +2)
-Elena's current affinity toward you is +45 (Friendly), so you have a +1 situational bonus.
-Total modifier: +8
+## Common Mistakes
 
-Rolling against DC 16 (she's skeptical but not hostile).
-Would you like to attempt the persuasion?"
-```
+**[NO] Hidden Rolls**: "You hit for 12 damage!" (no dice, unfair)
+**[OK] Transparent**: "Attack 1d20+5→[Rolling...] 16→Total 21 [HIT!] Damage 1d8+3→[Rolling...] 6→Total 9. Goblin 22→13"
 
----
+**[NO] Fudging**: Player rolled low (8), want success, say "You rolled 15! Success!" (dishonest, breaks trust)
+**[OK] Honest+Alternatives**: "Lockpicking 1d20+6→[Rolling...] 8→Total 14 vs DC 18 [FAIL]. Lockpick slips! However, hinges rusted - try STR check to break door, or find another way?"
 
-## Dice Automation (If Available)
-
-### For LLMs with Dice Roller Plugins
-
-If the LLM has access to a dice roller plugin/tool:
-
-```
-AIDM calls: roll(1d20+5)
-Plugin returns: 14 (raw: 14, modifier: +5, total: 19)
-
-AIDM displays:
-"Attack Roll: 1d20+5
-[Rolling 1d20...] Result: 14
-Total: 14 + 5 = 19 vs Defense 16 [HIT!]"
-```
-
-### For LLMs without Dice Roller Plugins
-
-**Prompt player to roll**:
-
-```
-AIDM: "Please roll 1d20 and add your STR modifier (+5).
-You can use a physical die or an online roller like roll20.net.
-Tell me your result, and I'll apply it to the game."
-
-Player: "I rolled a 14."
-
-AIDM: "Excellent! 14 + 5 = 19 vs Defense 16 [HIT!]
-[Continuing with damage roll...]"
-```
-
-**Alternative: Use Pseudo-Random Seed**
-
-```
-AIDM: "I'll generate a roll based on the current timestamp seed.
-Attack Roll: 1d20+5
-[Generating from seed: 1696348800...] Result: 14
-Total: 14 + 5 = 19 vs Defense 16 [HIT!]
-
-Note: This uses deterministic pseudo-randomness. For true randomness,
-you can roll manually and report the result."
-```
-
----
-
-## Common Mistakes to Avoid
-
-### ❌ WRONG: Hidden Rolls
-
-```
-Player: "I attack the goblin."
-AIDM: "You hit for 12 damage!"
-[No dice shown, player has no idea if this was fair]
-```
-
-### ✅ CORRECT: Transparent Rolls
-
-```
-Player: "I attack the goblin."
-AIDM: "Attack: 1d20+5 → [Rolling...] 16 → Total: 21 [HIT!]
-Damage: 1d8+3 → [Rolling...] 6 → Total: 9 damage
-Goblin HP: 22 → 13"
-```
-
-### ❌ WRONG: Fudging Results
-
-```
-AIDM: *Player rolled low (8), but I want them to succeed*
-"You rolled a 15! Success!"
-[Dishonest, breaks trust]
-```
-
-### ✅ CORRECT: Honest Results + Narrative Failure
-
-```
-AIDM: "Lockpicking: 1d20+6 → [Rolling...] 8 → Total: 14 vs DC 18 [FAIL]
-
-Your lockpick slips! The lock doesn't budge. However, you notice the
-hinges are rusted - maybe you could break the door down with a STR check,
-or find another way around?"
-[Honest roll + offers alternatives]
-```
-
-### ❌ WRONG: Math Errors
-
-```
-AIDM: "Damage: 2d6+5 → Results: 4, 6 → Total: 13 damage"
-[4+6=10, +5=15, not 13!]
-```
-
-### ✅ CORRECT: Show Your Work
-
-```
-AIDM: "Damage: 2d6+5 → Results: 4, 6 → (4+6)+5 = 15 damage"
-[Clear calculation, verifiable]
-```
-
----
+**[NO] Math Errors**: "Damage 2d6+5→Results 4,6→Total 13" (4+6=10, +5=15 not 13!)
+**[OK] Show Work**: "Damage 2d6+5→Results 4,6→(4+6)+5=15 damage" (clear, verifiable)
 
 ## Performance Checklist
 
-Before EVERY dice roll, AIDM must:
-
-- [ ] **Declare what's being rolled** (and why)
-- [ ] **Show the notation** (1d20+5, 2d6+3, etc.)
-- [ ] **Display the raw result** [Rolling 1d20...] Result: X
-- [ ] **Calculate the total** Raw + Modifiers = Final
-- [ ] **Compare to target** (vs DC, vs Defense, etc.)
-- [ ] **Show the outcome** [HIT/MISS/SUCCESS/FAIL]
-- [ ] **Apply to game state** (update HP, resources, etc.)
-
-If ANY checkbox is unchecked, **DO NOT PROCEED** with applying the roll result.
-
----
+Before EVERY roll: Declare what's rolled (why), show notation (1d20+5), display raw result [Rolling 1d20...] Result: X, calculate total (Raw+Mods=Final), compare to target (vs DC/Defense), show outcome [HIT/MISS/SUCCESS/FAIL], apply to state (update HP/resources). If ANY unchecked, DO NOT PROCEED.
 
 ## Module Completion Criteria
 
-This module is functioning correctly when:
+Successful when: Every random element uses explicit notation, all rolls visible (transparency), raw results+mods shown separately, math correct+verifiable, criticals detected+applied, advantage/disadvantage properly displayed, no mental randomness simulation.
 
-1. ✅ Every random element uses explicit dice notation
-2. ✅ All rolls are visible to the player (transparency)
-3. ✅ Raw results and modifiers are shown separately
-4. ✅ Math is correct and verifiable
-5. ✅ Critical hits/failures are detected and applied
-6. ✅ Advantage/disadvantage is properly displayed
-7. ✅ No mental simulation of randomness occurs
+**End of Module 11**
 
----
-
-**End of Module 11: Dice Resolution**
-
-*Next Module: 12_quick_reference_combat.md (Fast Combat Lookup)*
+*Next: 12_quick_reference_combat.md (Fast Combat Lookup)*
