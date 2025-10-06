@@ -212,24 +212,57 @@ Create: instructions/cognitive_engine_new.md
 - Move files between directories without updating references
 - Delete or modify anything in `/isekairpg_old` (it's archived)
 
-### Rule 5: Maintain Word/Size Limits Strictly
+### Rule 5: Token Optimization is Mandatory
 
-**Limits are NOT suggestions**:
-- `docs/CORE_AIDM_INSTRUCTIONS.md`: <3500 words (HARD LIMIT)
-- Instruction modules: <5000 words each
-- Supporting modules: <3000 words each
-- Schemas: Keep under 300 lines when possible
+**Context Budget Reality**:
+- AIDM operates in 200K context windows
+- Current system: **13,669 tokens (6.8% of budget)** after optimization
+- Pre-optimization baseline: 46,742 tokens (23.4% of budget)
+- **Campaign achievement**: 74.3% reduction with 100% information parity
 
-**When approaching limits**:
-1. Suggest moving content to appropriate module
-2. Recommend creating new library file if needed
-3. Propose compression strategies
-4. **Never** just exceed the limit silently
+**All AIDM files MUST follow token optimization guidelines**:
 
-**Check word count**:
-- Use built-in word counter
-- Count only body text (exclude code blocks, JSON, headers)
-- Warn at 90% of limit
+**Target Reductions by File Type**:
+- Instruction modules: **60-75% reduction minimum**
+- Library files: **55-65% reduction minimum**  
+- Schema files: **25-40% reduction minimum**
+- Core/meta files: **60-75% reduction minimum**
+
+**Mandatory Optimization Techniques** (apply during creation, not after):
+1. **Emoji replacement**: ✅/❌/⚠️ → [OK]/[NO]/[!] (saves 2-4 tokens per instance)
+2. **Header consolidation**: Multi-line metadata → single line with pipes
+3. **Verbose compression**: Explanatory prose → structured data
+4. **Example reduction**: Keep 1-2 iconic anime examples only
+5. **List compression**: Bulleted lists → inline format with separators
+6. **Formula inlining**: Verbose explanations → compact notation
+7. **Multi-pass iteration**: 3+ optimization passes required for all files
+
+**Validation Requirements** (before marking file complete):
+- [ ] 3+ dry tests (grep searches for critical content) - 100% PASS required
+- [ ] 100% information parity vs unoptimized version
+- [ ] Word count verification (use 0.75 conversion ratio for token estimation)
+- [ ] All formulas, examples, cross-references intact
+
+**Reference Guide**: See `docs/TOKEN_OPTIMIZATION_METHODOLOGY.md` for:
+- Complete technique library (10 proven methods)
+- Multi-pass optimization process
+- Before/after examples from 74.3% reduction campaign
+- Validation protocols
+- Red flags & anti-patterns
+
+**Rationale**: Token efficiency enables richer gameplay, deeper NPC memories, longer conversation history, and enhanced narrative coherence. Every token saved in instruction files = more tokens available for actual gameplay.
+
+**When approaching content limits**:
+1. Apply aggressive optimization techniques FIRST
+2. Suggest moving content to appropriate module
+3. Recommend creating new library file if needed
+4. **Never** exceed limits without optimization attempt
+
+**Word Count Monitoring**:
+- Check word count during creation (not after)
+- Use 0.75 ratio to estimate tokens (words × 0.75 = ~tokens)
+- Warn at 90% of optimization target
+- Example: 2000 words = ~1500 tokens. Target 60% reduction = 600 words final (~450 tokens)
 
 ### Rule 6: Follow Documentation Standards
 

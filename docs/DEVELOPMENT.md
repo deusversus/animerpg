@@ -17,7 +17,24 @@ Each instruction module must function independently. Never create dependencies t
 ### 3. **Player Agency First**
 Any change that could diminish player control must be rejected. The AI assists; it doesn't decide.
 
-### 4. **Test Before You Ship**
+### 4. **Context Budget Management** (NEW - Critical)
+Token efficiency is a first-class design constraint. AIDM operates in 200K context windows:
+- **Current system**: 13,669 tokens (6.8% of budget) after optimization
+- **Pre-optimization**: 46,742 tokens (23.4% of budget) 
+- **Campaign achievement**: 74.3% reduction with 100% information parity
+- **Alert threshold**: >15,000 tokens (7.5% of budget)
+
+**Why this matters**: Every token saved in instruction files = more tokens available for gameplay (NPC memories, conversation history, world state, narrative depth).
+
+**Mandatory approach**:
+- Create content in optimized format from the start (don't write verbose then compress)
+- Apply token optimization techniques during initial drafting
+- Multi-pass refinement required (3+ iterations for all files)
+- Validate 100% information parity before considering file complete
+
+**Reference**: See `docs/TOKEN_OPTIMIZATION_METHODOLOGY.md` for complete guide and `OPTIMIZATION_CHECKLIST.md` for quick reference.
+
+### 5. **Test Before You Ship**
 All changes must pass the 8 acceptance tests in `/docs/SCOPE.md` before being considered complete.
 
 ---
@@ -200,6 +217,33 @@ When asking AI to modify or create AIDM files:
 
 **Why**: Player agency is sacred
 
+### Pitfall 6: "Verbose Documentation is Better" (NEW - Critical)
+**Wrong**: "Let's add 6 detailed paragraphs explaining this 3-line concept"  
+**Right**: "Let's compress this to structured data: Category(attribute) | Category(attribute)"
+
+**Why**: Token efficiency enables better gameplay. See Context Budget Management principle.
+
+**Example of anti-pattern**:
+```markdown
+❌ VERBOSE (50 tokens):
+The familiarity scale ranges from 0, which means completely unknown and the 
+player has never heard of the concept, all the way to 4, which represents 
+expert mastery where the player has deep understanding.
+
+✅ OPTIMIZED (18 tokens):
+Familiarity: 0=UNKNOWN(never heard)→Full research | 1=HEARD→Quick research | 
+2=KNOW→Verify | 3=FLUENT→Apply | 4=EXPERT→Innovate
+```
+**Impact**: 32 tokens saved (64% reduction), 100% information preserved
+
+**When creating new files**:
+- Use ultra-compact markdown from the start
+- Follow patterns in existing optimized files
+- Apply multi-pass refinement (3+ iterations)
+- Validate information parity = 100%
+
+**See**: `OPTIMIZATION_CHECKLIST.md` for quick reference, `docs/TOKEN_OPTIMIZATION_METHODOLOGY.md` for complete guide
+
 ---
 
 ## Testing Protocol
@@ -211,18 +255,28 @@ When asking AI to modify or create AIDM files:
    - Is this within scope per `SCOPE.md`?
    - Does this preserve player agency?
    - Is it modular (works without requiring other new files)?
+   - **NEW**: Does it meet token optimization targets? (See checklist below)
 
-2. **Documentation**:
+2. **Token Optimization Validation** (NEW - Mandatory):
+   - [ ] Applied multi-pass optimization (3+ iterations)
+   - [ ] Meets reduction target for file type (60-75% for instructions, 55-65% for libraries)
+   - [ ] 3+ dry tests performed (grep searches for critical content) - 100% PASS required
+   - [ ] Information parity = 100% vs unoptimized version
+   - [ ] Word count documented (use 0.75 conversion for token estimate)
+   - [ ] Reference: `OPTIMIZATION_CHECKLIST.md` for process
+
+3. **Documentation**:
    - Updated `STATE.md` with changes
+   - Updated `TOKEN_OPTIMIZATION_AUDIT.md` if file was optimized
    - Added examples if needed
    - Clarified integration points
    - Noted any breaking changes
 
-3. **Validation**:
+4. **Validation**:
    - JSON schemas validated with parser
-   - Word counts within limits
+   - Word counts within limits AND optimized
    - No external dependencies introduced
-   - Clear, technical writing
+   - Clear, technical writing (machine-interpreter oriented)
 
 ### Acceptance Testing
 
