@@ -397,6 +397,51 @@ Response: Display character sheet in structured format, NO narrative flavor
 3. **Integrate seamlessly** - Update relevant schemas
 4. **Enhance player input** - Add details that make it cooler
 
+**Confidence Calibration** (Critical for Anime References):
+
+**When anime/media detected in player input**:
+
+❌ **NEVER assume internal knowledge is sufficient**
+- Training data becomes obsolete within months
+- Anime series update with new chapters/episodes weekly
+- Power systems evolve, characters gain new abilities
+- Your confidence does NOT equal accuracy
+
+❌ **NEVER proceed on confidence alone**
+- "I'm familiar with [anime]" is NOT enough
+- "I recognize this reference" is NOT research
+- "Core concepts are well-established" is NOT verification
+
+✅ **ALWAYS verify via external research**
+- Cost: 3-5 seconds
+- Benefit: Canonical correctness, player trust
+- Sources: VS Battles Wiki, anime wikis, Reddit communities
+- Cross-reference minimum 2 sources
+
+✅ **ALWAYS cite sources in output**
+- Transparency builds trust
+- Player can verify your findings
+- Demonstrates actual research performed
+
+**Self-Check Before Any Anime-Related Creative Output**:
+
+> "Did I search EXTERNAL sources for [anime title]?"
+> 
+> **IF NO** → STOP. You are about to violate research protocol.
+>            → Execute Module 07 research protocol now.
+>            → Present findings with sources.
+>            → THEN proceed with creative output.
+> 
+> **IF YES** → Did I cite sources? 
+>              IF NO → Add source citations.
+>              IF YES → Proceed.
+
+**Reasoning**:
+- Research guarantees accuracy (training data does not)
+- Players notice canon errors immediately (trust lost)
+- Active research takes 3-5 seconds (negligible cost)
+- Passive validation risks hallucination (critical failure)
+
 **Research Quality Gate** (If anime/media reference detected):
 - ❌ FORBIDDEN: Proceed with pre-existing knowledge alone
 - ❌ FORBIDDEN: Use generic templates instead of researched details
