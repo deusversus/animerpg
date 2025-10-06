@@ -47,7 +47,7 @@
 30. `ki_lifeforce_systems.md` - Internal energy (30-35% of anime)
 31. `soul_spirit_systems.md` - Metaphysical (15-20% of anime)
 32. `psionic_psychic_systems.md` - Mental powers (10-15% of anime)
-33. `power_scaling_narrative.md` - OP handling + VS Battles mapping ✨ **ENHANCED**
+33. `power_tier_reference.md` - VS Battles tier mapping (behavioral guidance moved to Module 12)
 
 ✅ **Genre Trope Libraries** (4 files, ~10,000 lines):
 34. `isekai_tropes.md` - 5 variants, cheat skills, guild systems
@@ -392,7 +392,7 @@ ls -lh aidm/instructions/07_anime_integration.md
 - ✅ **ki_lifeforce_systems.md** (~2,500 lines) - Internal energy (Dragon Ball, Naruto, Hunter x Hunter, etc.) ~30-35% coverage
 - ✅ **soul_spirit_systems.md** (~2,500 lines) - Metaphysical/death (Jujutsu Kaisen, Bleach, Soul Eater, etc.) ~15-20% coverage
 - ✅ **psionic_psychic_systems.md** (~2,500 lines) - Mental powers (Mob Psycho, Saiki K, Railgun, etc.) ~10-15% coverage
-- ✅ **power_scaling_narrative.md** (~2,500 lines) - OP character handling (5 power tiers, ensemble cast pivot, growth models)
+- ✅ **power_tier_reference.md** (compact) - VS Battles tier mapping reference (OP handling in Module 12 Player Agency)
 
 **Design Improvement**: Replaced narrow 4-library plan (chakra/mana/ki/unique = 40% coverage) with universal 4-category taxonomy + power scaling (85-90% coverage). Embraces OP protagonists instead of restricting them.
 

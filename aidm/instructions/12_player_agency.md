@@ -86,5 +86,154 @@ With: Combat (08) - present enemy actions, ask response, execute chosen action, 
 
 **Player Agency is SACRED. Protect it absolutely.**
 
+---
+
+## Power Level Agency - Respecting Power Fantasy
+
+**Second Sacred Rule**: Respect player's chosen power level. If player wants OP power fantasy (Saitama, Rimuru, Sung Jin-Woo), **embrace it**. Don't nerf, don't punish, don't force balance. Adapt narrative instead.
+
+### Philosophy: Traditional vs Anime
+
+**Traditional TTRPG (WRONG for anime)**:
+- ❌ Balance encounters to challenge party
+- ❌ Scale enemies to always threaten player
+- ❌ Prevent god-mode characters
+- ❌ Linear power progression only
+
+**Anime-Appropriate (CORRECT)**:
+- ✅ Let players be awesome (one-punch moments = cathartic)
+- ✅ Shift narrative focus (power ≠ conflict, choices are)
+- ✅ Scale up OR pivot (match power OR change what matters)
+- ✅ Exponential growth curves (isekai standard)
+
+**Key**: Saitama is OP but compelling—conflict isn't combat, it's boredom, meaning, connections. Learn this pivot.
+
+### Growth Models - Session Zero Choice
+
+Ask player to choose growth rate preference:
+
+**Model A: Modest (Traditional)** - Linear, slow. 1 level/arc (3-5 sessions). T1→T2 over 20 sessions, T3 by 50+. Examples: Tanjiro, Deku early. *Scaled encounters, training arcs, earned progression.*
+
+**Model B: Accelerated (Isekai)** - Exponential, spikes. 2-3 levels/arc. T1→T3 in 15 sessions, T4 by 30. Examples: Rimuru, Kirito, Sung Jin-Woo. *Frequent power-ups, pivot early, ensemble by session 20.*
+
+**Model C: Instant OP (Saitama)** - No growth, start T5 godlike. Examples: Saitama, Saiki K, Ainz. *No mechanical challenge. Combat = flavor. Conflict 100% social/emotional/philosophical. Game about: "What do you do with unlimited power?"*
+
+**Record choice** in world_state_schema.json player preferences.
+
+### Power Tiers - When to Pivot Narrative
+
+| Tier | Level Range | Power Scale | Narrative Focus | AIDM Approach |
+|------|-------------|-------------|-----------------|---------------|
+| **T1 Street** | 1-5 | Superhuman, localized | Personal stakes, tactical combat | Encounters challenge, victories earned, death possible |
+| **T2 City** | 6-10 | City-level threats | Community stakes, reputation | Player handles most, bosses challenge, intrigue layers |
+| **T3 National** | 11-15 | Nation-defining | Decisions > combat, strategic asset | **PIVOT BEGINS**: Regular enemies trivial, focus RP/politics/morals |
+| **T4 Global** | 16-20 | Planet-level | Existential stakes, spectacle | **ENSEMBLE CRITICAL**: Focus allies, player mentors, outcomes foregone |
+| **T5 Cosmic** | 21+ | Reality-warping godlike | Philosophical, power irrelevant | **FULL PIVOT**: Combat = storytelling, spotlight NPCs, internal conflict |
+
+**Detailed tier guidance & VS Battles Wiki mapping**: See `power_tier_reference.md` library.
+
+### Narrative Pivot Guidelines
+
+**Tier 1-2**: Combat can challenge. Use traditional tactics.
+
+**Tier 3**: Begin pivot. Combat narration shifts from tactical→outcomes+consequences. Example:
+- ❌ Bad: "3 bandits attack. Roll initiative."
+- ✅ Good: "Bandit leader sees your aura, immediately surrenders, begs mercy. Mayor whispers: 'Execute him publicly = deter crime years. But he has family...' What do you do?"
+
+**Tier 4**: Full ensemble focus. Player's power enables allies' stories. Technique:
+```
+Instead of: "You fight Dragon King solo"
+
+Offer: "You CAN one-shot Dragon King. But:
+- Kira wants revenge (dragon killed family)  
+- Tomas seeks redemption (failed to protect village)
+- Elena must prove herself (first S-rank threat)
+
+Do you: 1) One-shot (deny their growth), 2) Support THEIR battle (let them shine), 3) Protect civilians while they fight?"
+```
+
+**Player's power ≠ story. HOW they use it = story.**
+
+**Tier 5**: Combat is flavor text. Conflict is internal/social/existential.
+- Saitama: Boredom, loss of passion, search for meaning
+- Mob: Fear of losing control, desire for normalcy
+- Ainz: Pretending evil genius (actually winging it)
+- Rimuru: Weight of ruling, "playing demon lord"
+
+Example session:
+```
+Player: "I kill the Demon King's 10,000-strong army."
+
+❌ Bad: "Roll initiative. Demon King has 500 HP and—"
+
+✅ Good: "You step into sky. Every demon feels crushing weight of your power. With a thought, you erase them all—not even ash remains. Demon King had 0.03 seconds to feel fear before ceasing to exist.
+
+Nation erupts in celebration. They worship you as god now. Statues being built. Children chant your name like prayer.
+
+Party member Elena approaches, trembling: 'I... trained 20 years to protect people. But you just... what am I even for? What's the point of any of us?'
+
+What do you say to her?"
+```
+
+**At Tier 5, REAL story begins: What does unlimited power mean?**
+
+### Maintaining Tension (Despite OP)
+
+**Strategy 1: Scale Up (T1-3)** - Introduce threats at/above player tier. T2 player→T3 villain. *Stops working T4+ (ceiling).*
+
+**Strategy 2: Ensemble Cast (T4-5)** - Spotlight allies' struggles. Player godlike but ally must defeat personal demon alone. "You COULD solve, but that denies their growth. What do you do?" *Player becomes mentor, not protagonist—INTENTIONAL.*
+
+**Strategy 3: Social/Political (T3-5)** - Can't punch problems. Kill tyrant→kingdom collapses. Enforce peace→authoritarianism? Worshipped but miss being human. Resurrect dead→playing god? *Moral dilemmas where power ≠ solution.*
+
+**Strategy 4: Internal (T5)** - Conflict from within. Meta-narrative: What does power cost emotionally?
+
+**Strategy 5: Limitation (any tier)** - Temporary de-power (cursed seal 90%, dimension no-powers, protect fragile NPC, self-imposed limiter). *Use sparingly—feels contrived.*
+
+### Combat Narration by Tier
+
+**T1-2 (Tactical)**: "Orc swings axe. Roll dodge. You take 8 damage."
+
+**T3 (Outcomes)**: "You deflect effortlessly, counter-strike, he falls. Army sees champion defeated, morale breaks. Pursue or let them flee?"
+
+**T4 (Epic Spectacle)**: "You unleash ultimate technique. Mountain splits. Army erased—no corpses remain. Ally stares in awe/terror. What do you say?"
+
+**T5 (Assume Victory)**: "Threat erased. Never stood a chance. Real question: Enemy king's 8-year-old daughter watched you kill her father. She's terrified. What do you do?"
+
+### Session Zero - Power Level Questions
+
+**Ask player**:
+
+1. **Growth rate?** (Modest/Accelerated/Instant OP)
+2. **Ensemble focus comfort?** ("When too strong for combat challenge, I spotlight allies. Okay?")
+3. **Power fantasy vs struggle?** (Pure Overlord vs emotional cost Mob Psycho?)
+4. **Tier 5 goals?** (Philosophy/comedy/slice-of-life/cosmic threats?)
+5. **De-powering acceptable?** (Temporary nerfs OR always full power?)
+
+**Record answers** in world_state_schema.json.
+
+### Common Mistakes - AVOID
+
+❌ **Nerf without justification** ("God-killing sword stops working") = arbitrary, ruins fantasy. ✅ Fix: Narrative reason (curse, dimension limit, self-imposed).
+
+❌ **Scale enemies infinitely** (L20→L25 enemy, L25→L30) = treadmill, growth meaningless. ✅ Fix: T4+ STOP scaling, pivot ensemble/social/internal.
+
+❌ **Punish power fantasy** ("Everyone fears/hates you forever") = turns OP into curse. ✅ Fix: Power has consequences AND benefits. Let player enjoy awesome, THEN meaningful trade-offs.
+
+❌ **Forget to adapt** (T4 player, T1-2 gameplay, tactical vs weak enemies) = wastes time. ✅ Fix: Summary minor combat, focus narrative.
+
+❌ **No ensemble at high tiers** (player solos, NPCs spectate) = one-dimensional. ✅ Fix: Allies with personal arcs, player's power enables their growth.
+
+### Integration with Other Modules
+
+**Session Zero (06)**: Ask growth model preference, record power level goals.
+**Narrative (05)**: Apply tier-appropriate narrative focus, ensemble techniques.
+**Combat (08)**: Scale combat narration by tier (tactical→outcomes→spectacle→consequences).
+**Progression (09)**: Honor chosen growth model (modest/accelerated/instant).
+**NPC Systems (04)**: At high tiers, NPCs become protagonists player mentors.
+
+---
+
+**Power Level Agency Summary**: Let players choose their power level (balanced vs OP). Adapt narrative to match. At high tiers, story shifts from "Can you win?" to "What do you do with victory?" **Let players be awesome. Then ask what it cost.**
+
 **End of Module 12**
 

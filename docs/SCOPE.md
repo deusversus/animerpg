@@ -65,7 +65,7 @@ This document explicitly defines what IS and IS NOT included in AIDM v2. When in
   - `ki_lifeforce_systems.md`: Internal energy (Dragon Ball, Naruto, Hunter x Hunter, etc.) - ~30-35% coverage
   - `soul_spirit_systems.md`: Metaphysical/death powers (Jujutsu Kaisen, Bleach, Soul Eater, etc.) - ~15-20% coverage
   - `psionic_psychic_systems.md`: Mental powers (Mob Psycho, Saiki K, Railgun, etc.) - ~10-15% coverage
-  - `power_scaling_narrative.md`: OP character handling (5 power tiers, ensemble cast pivot, growth models)
+  - `power_tier_reference.md`: VS Battles tier mapping (OP handling in Module 12 Player Agency)
 - Common anime mechanics documentation
 
 ---

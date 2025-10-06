@@ -88,7 +88,7 @@
 - ✅ aidm/libraries/power_systems/ki_lifeforce_systems.md (Internal energy: ~30-35% anime coverage)
 - ✅ aidm/libraries/power_systems/soul_spirit_systems.md (Metaphysical: ~15-20% anime coverage)
 - ✅ aidm/libraries/power_systems/psionic_psychic_systems.md (Mental: ~10-15% anime coverage)
-- ✅ aidm/libraries/power_systems/power_scaling_narrative.md (OP character handling: 5 tiers, ensemble cast pivot)
+- ✅ aidm/libraries/power_systems/power_tier_reference.md (VS Battles tier mapping - behavioral in Module 12)
 
 **Design Improvement**: Replaced narrow 4-library plan (chakra/mana/ki/unique = 40% coverage) with universal 4-category taxonomy + power scaling framework (85-90% coverage). Embraces OP protagonists instead of restricting them.
 
@@ -327,7 +327,7 @@ Remaining work is **enhancement** (libraries and templates add content variety):
 - Decision: Replace 4-library plan (chakra/mana/ki/unique) with 5-library universal taxonomy
 - Old System: 40% anime coverage, narrow categories, "no god mode" philosophy
 - New System: 85-90% coverage, 4 universal energy types + power scaling framework
-- Libraries: mana_magic_systems.md (external), ki_lifeforce_systems.md (internal), soul_spirit_systems.md (metaphysical), psionic_psychic_systems.md (mental), power_scaling_narrative.md (OP character handling)
+- Libraries: mana_magic_systems.md (external), ki_lifeforce_systems.md (internal), soul_spirit_systems.md (metaphysical), psionic_psychic_systems.md (mental), power_tier_reference.md (tier mapping)
 - Rationale: User identified critical flaws (1) treating OP as problem vs narrative style, (2) chakra-first myopia
 - Design Philosophy Shift: Embrace power fantasy, not restrict it. Tier 1-5 framework with ensemble cast pivot at high tiers.
 - Impact: Broader anime coverage, proper handling of Saitama/Ainz/Rimuru-style OP protagonists
@@ -630,7 +630,7 @@ Based on current pace:
   - `ki_lifeforce_systems.md`: Internal energy (~30-35% coverage) - Dragon Ball, Naruto, Hunter x Hunter, Bleach, One Piece
   - `soul_spirit_systems.md`: Metaphysical/death (~15-20% coverage) - Jujutsu Kaisen, Bleach, Soul Eater, Yu Yu Hakusho
   - `psionic_psychic_systems.md`: Mental powers (~10-15% coverage) - Mob Psycho, Saiki K, Railgun, Code Geass
-  - `power_scaling_narrative.md`: OP character handling - 5 power tiers, ensemble cast pivot, growth models
+  - `power_tier_reference.md`: VS Battles tier mapping (OP handling in Module 12)
 - **COVERAGE IMPROVEMENT**: 40% → 85-90% of anime power systems
 - **PHILOSOPHY SHIFT**: Embrace power fantasy (not restrict it), facilitate OP protagonists with proper narrative adaptation
 - **FILES CREATED**: 5 new libraries (~12,500 lines total)
@@ -834,7 +834,7 @@ If you're starting a new session with an AI assistant:
 
 **Post-Phase 1 Enhancement - VS Battles Wiki Integration** (January 14, 2025):
 
-User identified VS Battles Wiki as excellent resource for standardized power scaling. Integrated into Module 07 and power_scaling_narrative.md library:
+User identified VS Battles Wiki as excellent resource for standardized power scaling. Integrated into Module 07 and power_tier_reference.md library (OP handling in Module 12):
 - VS Battles Wiki added as PRIORITY research resource (character profiles, verse scaling, tiering system)
 - Research Workflow updated with 3-step VS Battles process (character → mechanics → verse)
 - Added mapping table: AIDM Tiers 1-5 ↔ VS Battles 10-C to 2-A+ equivalents
@@ -844,7 +844,7 @@ User identified VS Battles Wiki as excellent resource for standardized power sca
 - Impact: Standardized scaling, cross-anime comparison, prevent game-breaking integrations
 - Token cost: ~400 tokens (justified for industry-standard power scaling)
 
-Files modified: `07_anime_integration.md`, `power_scaling_narrative.md`, `MODULE_07_OPTIMIZATION_LOG.md`
+Files modified: `07_anime_integration.md`, `power_tier_reference.md` (created), `12_player_agency.md` (OP handling added)
 
 ---
 
@@ -1537,7 +1537,7 @@ Remaining work is purely optional: 5 example templates for user convenience + 1 
   - Internal energy: `ki_lifeforce_systems.md` (~2,500 lines, ~30-35%)
   - Metaphysical: `soul_spirit_systems.md` (~2,500 lines, ~15-20%)
   - Mental powers: `psionic_psychic_systems.md` (~2,500 lines, ~10-15%)
-  - OP handling: `power_scaling_narrative.md` (~2,500 lines, 5 tiers + ensemble pivot)
+  - OP handling: Module 12 Player Agency (behavioral), `power_tier_reference.md` (tier lookups)
 
 **Rationale**:
 - Flaw 1: "No god mode" contradicted anime OP protagonists (Saitama, Ainz, Rimuru, Solo Leveling)

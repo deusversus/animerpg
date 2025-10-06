@@ -80,7 +80,7 @@ Skill systems (active/passive/ultimate abilities) for anime power frameworks. **
 
 ## Cross-Refs
 
-**Libraries**: stat_frameworks.md (INT/STR governs skill power), leveling_curves.md (skills via levels), power_scaling_narrative.md (ultimates at high tiers), power systems (skill frameworks). **Schemas**: character_schema (skill storage/mastery), session_state_schema (CD tracking/use counts), power_system_schema (skill integration). **Modules**: 08_combat (skill resolution), 09_progression (acquisition/advancement), 06_session_zero (starting skills).
+**Libraries**: stat_frameworks.md (INT/STR governs skill power), leveling_curves.md (skills via levels), power_tier_reference.md (tier mapping), power systems (skill frameworks). **Schemas**: character_schema (skill storage/mastery), session_state_schema (CD tracking/use counts), power_system_schema (skill integration). **Modules**: 08_combat (skill resolution), 09_progression (acquisition/advancement), 06_session_zero (starting skills), 12_player_agency (power level handling).
 
 ---
 

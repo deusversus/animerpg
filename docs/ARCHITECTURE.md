@@ -445,7 +445,7 @@ AIDM v2 runs entirely within an LLM conversation. There is no server, no databas
 - `aidm/libraries/power_systems/psionic_psychic_systems.md` (~2,500 lines, ~10-15% anime coverage)
   - Mental energy projection, esper systems, Geass, telekinesis, reality warping
   - Examples: Mob Psycho, Saiki K, Railgun/Index, Code Geass, Elfen Lied
-- `aidm/libraries/power_systems/power_scaling_narrative.md` (~2,500 lines)
+- `aidm/libraries/power_systems/power_tier_reference.md` (compact tier reference)
   - OP character handling: 5 power tiers (Street → City → National → Global → Cosmic)
   - Ensemble cast pivot at Tier 4+, 3 growth models (Modest, Accelerated, Instant OP)
   - Examples: One Punch Man, Overlord, That Time I Got Reincarnated as a Slime, Solo Leveling
