@@ -136,7 +136,7 @@ git diff filename_BACKUP.md filename.md
 - [ ] All dry tests PASS (100% required)
 - [ ] Information parity check vs backup (100% required)
 - [ ] Word count reduction meets target (60-75% for aggressive)
-- [ ] Token estimate calculated (words × 0.75)
+- [ ] Token estimate calculated (words × 2.73)
 - [ ] Update tracking documentation (TOKEN_OPTIMIZATION_AUDIT.md)
 - [ ] Commit with descriptive message
 - [ ] Delete backup file (after confirming commit)

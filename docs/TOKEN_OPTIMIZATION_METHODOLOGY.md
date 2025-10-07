@@ -416,9 +416,9 @@ grep -i "power_tier_reference|stat_frameworks|skill_taxonomies" *.md
 # Count words in file
 (Get-Content file.md | Measure-Object -Word).Words
 
-# Estimate tokens (use 0.75 conversion ratio)
+# Estimate tokens (use 2.73 conversion ratio - validated via external test)
 $words = (Get-Content file.md | Measure-Object -Word).Words
-$tokens = [math]::Round($words * 0.75)
+$tokens = [math]::Round($words * 2.73)
 Write-Host "Estimated tokens: $tokens"
 ```
 
@@ -533,7 +533,7 @@ Write-Host "Estimated tokens: $tokens"
 ---
 
 ### ❌ DON'T: Trust estimations alone
-**Why**: Word-to-token conversion varies (0.65-0.85 ratio)
+**Why**: Word-to-token conversion varies by content type (avg 2.73, range 2.1-3.3)
 
 **Solution**: Use dry tests + actual token counting when possible
 
