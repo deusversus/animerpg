@@ -287,6 +287,10 @@
           "description": "Which power systems are in use",
           "items": {"type": "string"}
         },
+        "active_narrative_profile": {
+          "description": "Current narrative DNA profile for storytelling consistency - ensures genre-authentic narration persists across save/load",
+          "$ref": "narrative_profile_schema.json"
+        },
         "player_preferences": {
           "type": "object",
           "description": "Player calibration settings",

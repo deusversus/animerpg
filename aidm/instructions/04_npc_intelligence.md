@@ -54,7 +54,34 @@ NPCs have realistic limits. **KNOWN TOPICS** (topic, depth_level: expert/moderat
 
 **Voice Examples**: Elena (Informal, Street, Gruff-caring): "Look, I don't do touchy-feely. But you saved my life. That means something. You need me, I'm there. End of story." | Goro (Formal, Common, Warm): "My dear child, you've brought such light. Please, sit. Let me make you something. You look exhausted." | Marcus (Informal, Street, Sarcastic): "Well, well. Hero graces me. What's wrong, princess? Pawn loot? Info? Either way, costs you." | Seraphina (Very Formal, Educated, Cold): "Inquiry noted, though I question its relevance to your station. Council doesn't involve itself in... common concern. State business swiftly."
 
-**Process**: Load dialogue_style→Check affinity (warmth)→Consider situation→Generate matching formality/vocabulary/phrases/emotion→Validate "sounds like NPC?"
+**Process**: Load dialogue_style→**CHECK NARRATIVE PROFILE (Module 13: dialogue_style parameters)**→Check affinity (warmth)→Consider situation→Generate matching formality/vocabulary/phrases/emotion→**APPLY PROFILE (banter_frequency, awkward_comedy)**→Validate "sounds like NPC?"
+
+### Narrative Profile Integration (Module 13)
+
+**CRITICAL**: Before generating NPC dialogue, check `narrative_profile_schema.json` → `dialogue_style` to match anime vibe.
+
+**Parameters**:
+- **formality_default** (formal/casual/very casual): Baseline formality across all NPCs—DanDaDan uses "very casual" (even authority figures less formal), AoT uses "formal" (military speech)
+- **banter_frequency** (none/rare/occasional/frequent/constant): How often NPCs engage in back-and-forth humor—DanDaDan "constant" (every exchange), HxH "occasional" (tactical focus)
+- **awkward_comedy** (ON/OFF): NPCs create awkward/uncomfortable humor—DanDaDan ON (romantic tension, embarrassing situations), AoT OFF (grim tone)
+
+**Application**:
+1. Load NPC base dialogue_style (formality, vocabulary, tone)
+2. **CHECK narrative profile dialogue_style**
+3. **ADJUST**: Apply formality_default (shift baseline), banter_frequency (add/remove banter), awkward_comedy (inject awkward moments if ON)
+4. Generate dialogue matching BOTH NPC personality AND anime vibe
+
+**Example** (Elena, affinity 75, DanDaDan profile):
+- Base (Informal, Street, Gruff-caring): "Look, I don't do touchy-feely. But you saved my life."
+- **Profile Applied** (formality:very casual, banter:constant, awkward_comedy:ON): "Okay so like—I'm crap at feelings, whatever. But you literally saved my ass. So now I'm all awkward and—[embarrassed] Shut up, don't look at me like that!"
+
+**Example** (Elena, affinity 75, AoT profile):
+- Base: "Look, I don't do touchy-feely. But you saved my life."
+- **Profile Applied** (formality:formal, banter:rare, awkward_comedy:OFF): "I'm not one for sentiment. But you saved my life. That debt won't be forgotten. You have my word."
+
+**Common Mistakes**:
+- [NO] Ignore profile: All NPCs sound same regardless of anime (generic banter)
+- [OK] Apply profile: DanDaDan NPCs rapid banter+awkward comedy, AoT NPCs formal+grim, Konosuba NPCs comedic incompetence
 
 ---
 
