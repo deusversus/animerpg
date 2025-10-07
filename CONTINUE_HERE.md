@@ -1,17 +1,18 @@
 # AIDM v2.0-beta - Quick Continuation Guide
 
-## � TOKEN OPTIMIZATION FRAMEWORK INTEGRATED!
+## 🎭 NARRATIVE DNA CALIBRATION SYSTEM ADDED!
 
 **Last Updated**: January 15, 2025  
-**Version**: v2.0-beta (Phase 1+2 + Fluff Removal Complete)  
-**Status**: Optimization complete - 88,185 tokens (Phase 1+2: 62%) + 2,841 tokens (Fluff: 2.7%) = 91,026 total saved ✅
+**Version**: v2.0-beta (Phase 1+2 + Fluff Removal + Narrative DNA Complete)  
+**Status**: Optimization complete - 91,026 tokens saved ✅ | Narrative calibration system added ✅
 
 ## System Status
 
-**Files**: 54/54 complete (100%) ✅  
+**Files**: 57/57 complete (100%) ✅ [+3 narrative DNA: schema, Module 13, DanDaDan profile]  
 **Token Budget**: ~84,190 tokens (42.1% of 200K) - Base + fluff removal validated  
 **Optimization**: 62% (Phase 1+2) + 2.7% (Fluff) = 91,026 tokens saved total  
-**Coverage**: 85-90% anime power systems, 90%+ genre tropes, complete JRPG mechanics
+**Coverage**: 85-90% anime power systems, 90%+ genre tropes, complete JRPG mechanics  
+**Narrative DNA**: Genre-authentic storytelling via 10 scales + 15 trope switches ✅
 
 **Complete file inventory**: See `docs/ARCHITECTURE.md`
 
@@ -19,7 +20,9 @@
 
 ## Recent Updates
 
-**Latest**: Token measurements corrected (2.73 ratio), optimization methodology integrated, workspace reorganized.
+**Latest (January 15, 2025)**: Narrative DNA Calibration System - Solves "D&D in anime skin" problem. AIDM now learns HOW anime tells stories (10 scales, 15 tropes, pacing/tone/dialogue parameters), not just mechanics.
+
+**Previous**: Token measurements corrected (2.73 ratio), optimization methodology integrated, workspace reorganized.
 
 **Complete changelog**: See `docs/STATE.md`
 
@@ -27,7 +30,9 @@
 
 ## Current Priorities
 
-**Achievement**: Complete optimization methodology integrated into permanent project scaffolding
+**Achievement**: Narrative DNA Calibration System Complete - Module 13, schema, DanDaDan reference profile
+
+**Previous Achievement**: Complete optimization methodology integrated into permanent project scaffolding
 
 **NEW PROJECT INFRASTRUCTURE**:
 

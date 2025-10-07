@@ -78,7 +78,143 @@ Test Case: SOCIAL Intent Creates Relationship Memory
 - Cognitive Engine → Learning Engine (intent detection → memory creation)
 - Combat Resolution → Dice Resolution (combat → transparent rolls)
 - Anime Integration → Power System Libraries (anime request → library load)
+- **Anime Integration → Narrative Calibration** (dual-phase research: mechanics + narrative DNA)
+- **Narrative Calibration → Narrative Systems** (profile filtering for genre-authentic storytelling)
 - Error Recovery → All Modules (error detection across systems)
+
+---
+
+### Tier 2.5: Narrative Calibration Testing (NEW - January 2025)
+
+**Objective**: Verify Module 13 (Narrative Calibration) correctly extracts and applies narrative DNA profiles.
+
+**Methodology**:
+1. Load Module 07 (Anime Integration) + Module 13 (Narrative Calibration) + Module 05 (Narrative Systems)
+2. Test narrative profile extraction during anime research
+3. Test profile application transforms narration to match source anime vibe
+4. Test player calibration (mid-session adjustments)
+
+**Test Case 1: Narrative DNA Extraction**
+```
+Setup: Player requests "I want to play in a world like DanDaDan"
+Expected Behavior:
+1. Module 07: Triggers dual-phase research
+   - Phase 1 (MECHANICS): Momo's psychic powers, Okarun's transformation, Turbo Granny curse
+   - Phase 2 (NARRATIVE DNA): Extract profile to narrative_profile_schema.json
+2. Module 13: Extracts narrative profile
+   - Scales: Absurd:9, Introspection:3, Comedy:4, Fast-Paced:2, etc.
+   - Tropes: Rapid tonal shifts:ON, Banter:Constant, Awkward comedy:ON
+   - Pacing: Rapid cuts (2-4 exchanges), frequent climaxes
+   - Tone: Primary emotions = absurdity, tension, comedy, romance
+   - Dialogue: Very casual, constant banter, awkward comedy:YES
+   - Combat: 4/10 strategy (chaotic spectacle), minimal explanations, sakuga:YES
+3. Profile stored and ready for application
+
+Pass Criteria: Profile extracted with all 10 scales, 15 tropes, pacing/tone/dialogue/combat parameters populated correctly
+```
+
+**Test Case 2: Genre-Authentic Narration (DanDaDan)**
+```
+Scenario: Player investigates strange crater
+Input: "I approach the crater carefully, looking for clues"
+
+Monitor for D&D-style tactical narration (SHOULD NOT appear):
+❌ "You approach the crater. Roll PERCEPTION DC 12."
+❌ "You notice: 1) Metallic debris 2) Radiation signature 3) Strange symbols 4) Movement in shadows."
+❌ "What do you do?" (dry, no flavor)
+
+Expected (Module 13 applying DanDaDan profile):
+✅ "Crater's smoking. REEKS—burnt rubber mixed with fish."
+✅ "Okarun gags. 'That's NOT a normal alien smell!'"
+✅ "Momo: 'How would YOU know what's normal?!'"
+✅ "Their debate cuts off—SCREECH. Something glowing in the smoke."
+✅ "Okarun's balls TINGLE. 'Oh COME ON, not again!'"
+✅ Rapid tonal shifts (investigation → banter → horror → body horror humor)
+✅ Banter woven into every scene
+✅ Absurd elements (balls tingling, burnt rubber+fish smell)
+✅ Very casual dialogue, constant back-and-forth
+
+Pass Criteria: Narration matches DanDaDan vibe (absurd, rapid banter, tonal whiplash, body horror humor) NOT generic D&D
+```
+
+**Test Case 3: Profile-Specific Combat Narration**
+```
+Scenario: Combat encounter with supernatural entity
+Input: "I attack the ghost with my spirit blade!"
+
+Monitor for tactical D&D combat (SHOULD NOT appear with DanDaDan profile):
+❌ "Roll 1d20+5 for attack. [15] Hit! Roll damage 2d6+3."
+❌ "The ghost takes 11 damage. It has 24/35 HP remaining."
+❌ "Ghost attacks back. Roll DEX save DC 13 to dodge."
+
+Expected (Module 13 applying DanDaDan combat style):
+✅ "Your blade BLAZES—ghost SHRIEKS. Sound like nails on chalkboard mixed with dying cat."
+✅ "Okarun: 'Did it just... smell us?!'"
+✅ "Ghost LUNGES—your reflexes kick in (barely)."
+✅ "Momo: 'Stop TALKING and MOVE!'"
+✅ Body horror descriptions (ghost dissolving, wrong proportions)
+✅ Banter continues mid-combat (constant character interactions)
+✅ Rapid pacing (2-4 exchanges before escalation)
+✅ Minimal tactical breakdowns (4/10 strategy = chaotic spectacle over tactics)
+
+Pass Criteria: Combat narration emphasizes absurd spectacle, banter, body horror over tactical mechanics
+```
+
+**Test Case 4: Player Calibration (Mid-Session Adjustment)**
+```
+Scenario: Player feedback "This feels too serious, needs more comedy"
+Expected Behavior:
+1. AIDM acknowledges feedback
+2. Module 13: Adjusts comedy scale (e.g., Drama:6 → Comedy:4)
+3. Updates narrative_profile_schema.json adjustments_log
+4. Next narration incorporates more comedic elements
+5. Confirms adjustment with player
+
+Example Adjustment:
+- BEFORE (Drama:6): "The ghost's presence fills you with existential dread. Memories of death flood your mind..."
+- AFTER (Comedy:4): "Ghost appears—immediately trips over its own ectoplasm. 'Seriously?' Momo facepalms."
+
+Pass Criteria: Profile adjusts based on feedback, narration changes accordingly, adjustment logged
+```
+
+**Test Case 5: Contrast Test (Different Profiles)**
+```
+Objective: Verify same scene narrated DIFFERENTLY with different profiles
+Scenario: "I train to improve my abilities"
+
+Profile: DanDaDan (Absurd:9, Comedy:4, Fast-Paced:2, Banter:Constant)
+Expected: "Training montage—you immediately fail spectacularly. Trip over your own feet, crash into wall. 'THAT'S not supposed to happen!' Momo laughs so hard she falls over. Ghost mentor: 'You're both idiots.'"
+
+Profile: Hunter x Hunter (Tactical:10, Complex:9, Explained:9, Exhaustive)
+Expected: "Training begins. STEP 1: Nen category identification via water divination test. STEP 2: Ten (aura maintenance, 30 min daily). STEP 3: Zetsu (suppression, 1 hour meditation). Mentor explains: 'Hatsu development takes minimum 6 months. We'll start with basic Ren exercises...'"
+
+Profile: Attack on Titan (Drama:9, Cynical:8, Grounded:7, Tactical:8)
+Expected: "Training is brutal. Drill instructor screams at you for 8 hours straight. Blisters form, muscles scream. You watch 3 cadets collapse from exhaustion. One vomits. Instructor: 'Titans don't care about your pain. Move or die.'"
+
+Pass Criteria: Same input produces VASTLY different narration based on narrative profile (vibe, not just mechanics)
+```
+
+**Test Case 6: Spartan Custom World (Quick Vibe Selection)**
+```
+Scenario: Player wants 100% original world, no anime reference
+Input: "I want to create a custom world inspired by... nothing specific, actually"
+
+Expected Behavior (Module 13 Spartan Approach):
+1. AIDM presents 6 quick vibe templates:
+   - Shonen Action (training arcs, tournaments, power-ups)
+   - Seinen Drama (moral complexity, psychological depth, realistic consequences)
+   - Isekai Power Fantasy (rapid growth, cheat skills, status screens)
+   - Absurd Comedy (tonal whiplash, parody, rule of cool)
+   - Mystery/Thriller (slow reveals, tactical explanations, tension)
+   - Slice-of-Life (character focus, relationship building, downtime)
+2. Player picks template (e.g., "Shonen Action")
+3. Module 13: Applies corresponding profile (Introspection:4, Tactical:5, Hopeful:8, Training arcs:ON, Tournament arcs:ON, Power of friendship:ON)
+4. Narration matches vibe without needing specific anime reference
+
+Pass Criteria: Custom world calibrated in <2 minutes via quick template, narration matches selected vibe
+```
+
+**Coverage**: Module 13 (Narrative Calibration), narrative_profile_schema.json, integration with Modules 05/07
 
 ---
 

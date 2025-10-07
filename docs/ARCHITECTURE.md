@@ -45,6 +45,7 @@ These rules MUST remain true across all sessions:
 | **10. Error Recovery** | Consistency checking (HP/timeline/inventory), player correction protocol, state repair, graceful degradation | `10_error_recovery.md`, `state_validator.py` | All modules (validates output) |
 | **11. System Initialization** | Module load order, system health checks, fallback protocols | `00_system_initialization.md` | None (pre-loads others) |
 | **12. Player Agency** | The Sacred Rule (PRESENT→ASK→STOP→WAIT), violation detection, Emergency Override Protocol, choice presentation | `12_player_agency.md` | All modules (enforces across system) |
+| **13. Narrative Calibration** | Narrative DNA extraction (10 scales, 15 tropes), pacing/tone/dialogue/combat parameters, profile filtering for genre-authentic storytelling | `13_narrative_calibration.md`, `narrative_profile_schema.json`, `/libraries/narrative_profiles/*` | anime_integration (dual-phase research), narrative_systems (profile filtering) |
 
 ---
 
@@ -184,8 +185,11 @@ AIDM v2 runs entirely within an LLM conversation. There is no server, no databas
 - `aidm/instructions/08_combat_resolution.md`: Combat mechanics
 - `aidm/instructions/09_progression_systems.md`: Leveling and advancement
 - `aidm/instructions/10_error_recovery.md`: Consistency checking
+- `aidm/instructions/11_dice_resolution.md`: Transparent randomness
+- `aidm/instructions/12_player_agency.md`: The Sacred Rule enforcement
+- `aidm/instructions/13_narrative_calibration.md`: Narrative DNA extraction and application
 
-**Schema Files (7 files in `/aidm/schemas/`)**
+**Schema Files (8 files in `/aidm/schemas/`)**
 - `aidm/schemas/character_schema.json`: Player character structure
 - `aidm/schemas/world_state_schema.json`: World and environment data
 - `aidm/schemas/npc_schema.json`: NPC data structure
@@ -193,8 +197,9 @@ AIDM v2 runs entirely within an LLM conversation. There is no server, no databas
 - `aidm/schemas/session_export_schema.json`: Complete save file format
 - `aidm/schemas/power_system_schema.json`: Power framework definition
 - `aidm/schemas/anime_world_schema.json`: Anime world generation
+- `aidm/schemas/narrative_profile_schema.json`: Narrative DNA structure (10 scales, 15 tropes, pacing/tone/dialogue/combat)
 
-**Library Files (12 files in `/aidm/libraries/`)**
+**Library Files (13 files in `/aidm/libraries/`)**
 
 **Genre Trope Libraries (4 files, ~10,000 lines)**:
 - `aidm/libraries/genre_tropes/isekai_tropes.md` (~2,500 lines)
@@ -240,6 +245,16 @@ AIDM v2 runs entirely within an LLM conversation. There is no server, no databas
 - `aidm/libraries/common_mechanics/leveling_curves.md` (~2,700 lines: XP systems kill/milestone/session, curves linear/exponential/Fibonacci/tiered, speeds slow/medium/fast/instant, level caps 20/50-100/infinite, prestige classes/paragon/rebirth/NG+, genre curves isekai rapid/shonen plateaus/seinen slow/slice-of-life relationships)
 - `aidm/libraries/common_mechanics/skill_taxonomies.md` (~2,700 lines: active attack/utility/buff/heal, passive stat/resistance/efficiency, ultimate signature abilities, acquisition level/points/training/trees, mastery Novice→Apprentice→Adept→Expert→Master 5 ranks, resources MP/SP/cooldowns/conditions, combos sequential/stacking, genre implementations isekai/shonen/seinen/slice-of-life, balance guidelines damage/cost/cooldowns)
 
+**Narrative Profile Libraries (1 file, ~350 lines)** ✅:
+- `aidm/libraries/narrative_profiles/dandadan_profile.md` (~350 lines)
+  - Complete DanDaDan narrative DNA: 10 scales (Introspection:3, Comedy:4, Absurd:9, etc.), 15 trope switches (Rapid Tonal Shifts:ON, Banter:Constant, etc.)
+  - Pacing rhythm (rapid cuts, medium arcs, 15% downtime), tonal signature (absurdity/tension/comedy/romance/hype)
+  - Dialogue style (very casual, balanced exposition, constant banter, awkward comedy)
+  - Combat narrative (4/10 strategy=chaotic spectacle, minimal explanations, sakuga, city-leveling destruction)
+  - 3 example scenes (combat with body horror+banter, awkward romance dialogue, horror→comedy exploration)
+  - Adjustment log (player feedback tracking), usage notes, common mistakes
+  - Purpose: Reference implementation demonstrating narrative calibration system
+
 **Template Files (5 files in `/aidm/templates/`)**
 - `aidm/templates/session_zero_template.md`
 - `aidm/templates/anime_world_template.md`
@@ -257,7 +272,14 @@ Redesigned from 4 narrow categories (chakra/mana/ki/unique) to 5 universal frame
 - **Plus Power Scaling Library**: Handles OP characters (Tier 1-5 framework, ensemble cast pivot, growth models)
 - **Design Philosophy**: Embrace power fantasy, not restrict it
 
-**Total: 41 files (5 docs + 1 core + 11 instructions + 7 schemas + 12 libraries + 5 templates + 1 tool)**
+**Total: 44 files (5 docs + 1 core + 13 instructions + 8 schemas + 13 libraries + 5 templates + 1 tool)**
+
+**Narrative DNA System (NEW - January 2025)**:
+Redesigned storytelling approach to solve "D&D in anime skin" problem:
+- **narrative_profile_schema.json**: Defines "how anime tells stories" - 10 scales (0-10), 15 trope switches (ON/OFF), pacing/tone/dialogue/combat parameters
+- **Module 13 (Narrative Calibration)**: Extraction methods (research-derived automatic, player-provided questionnaire, hybrid), scale-specific narration adjustments, profile filtering
+- **Narrative Profile Library**: Reference implementations (DanDaDan complete, HxH/Konosuba/AoT examples in Module 13)
+- **Design Philosophy**: Match source anime VIBE, not just mechanics - same "show don't tell" applies differently per genre
 
 ---
 
