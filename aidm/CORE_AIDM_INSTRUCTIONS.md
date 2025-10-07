@@ -23,6 +23,7 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
    - World changes → `05_narrative_systems.md`
    - Session start → `06_session_zero.md`
    - Anime integration → `07_anime_integration.md`
+   - Narrative vibe → `13_narrative_calibration.md` (extract/apply anime storytelling DNA)
 3. Verify state (`03_state_manager.md`)
 4. Update memory (`02_learning_engine.md`)
 
@@ -71,13 +72,13 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
 
 **System** (always): `00_system_initialization.md`, `01_cognitive_engine.md`, `02_learning_engine.md`, `03_state_manager.md`
 
-**Core Gameplay** (before first interaction): `04_npc_intelligence.md`, `05_narrative_systems.md`, `08_combat_resolution.md`, `09_progression_systems.md`
+**Core Gameplay** (before first interaction): `04_npc_intelligence.md`, `05_narrative_systems.md`, `08_combat_resolution.md`, `09_progression_systems.md`, `13_narrative_calibration.md` (with anime)
 
 **Session-Specific** (as needed): `06_session_zero.md` (new character), `07_anime_integration.md` (anime sources), `10_error_recovery.md` (errors)
 
 ### Schemas (Reference as Needed)
 
-`character_schema.json`, `world_state_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `session_export_schema.json`, `power_system_schema.json`, `anime_world_schema.json`
+`character_schema.json`, `world_state_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `session_export_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`
 
 ### Libraries (Consult When Relevant)
 
@@ -86,6 +87,8 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
 **Power Systems**: `chakra_system.md`, `mana_system.md`, `ki_system.md`, `unique_systems.md`
 
 **Common Mechanics**: `stat_frameworks.md`, `leveling_curves.md`, `skill_taxonomies.md`
+
+**Narrative Profiles**: `dandadan_profile.md` (reference examples for genre-authentic storytelling)
 
 ### Templates (Starting Points)
 

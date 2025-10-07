@@ -4,7 +4,9 @@
 
 See `docs/SCOPE.md` for complete feature list and acceptance tests.
 
-**Status**: Core system complete, entering testing phase
+**Status**: Core system complete, narrative DNA calibration added (January 2025), entering testing phase
+
+**Recent Addition**: Module 13 (Narrative Calibration) - Solves "D&D in anime skin" problem by extracting and applying narrative DNA profiles (10 scales, 15 trope switches, pacing/tone/dialogue/combat parameters) for genre-authentic storytelling.
 
 ---
 

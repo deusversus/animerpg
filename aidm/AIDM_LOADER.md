@@ -37,6 +37,9 @@ https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/11_
 **Module 12**: Player Agency  
 https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/12_player_agency.md
 
+**Module 13**: Narrative Calibration  
+https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/13_narrative_calibration.md
+
 ### JSON Schemas (Load Second)
 
 **Character**: https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/schemas/character_schema.json  
@@ -45,7 +48,8 @@ https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/12_
 **NPC**: https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/schemas/npc_schema.json  
 **Memory Thread**: https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/schemas/memory_thread_schema.json  
 **Power System**: https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/schemas/power_system_schema.json  
-**Anime World**: https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/schemas/anime_world_schema.json
+**Anime World**: https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/schemas/anime_world_schema.json  
+**Narrative Profile**: https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/schemas/narrative_profile_schema.json
 
 ### Tier 2 Instructions (On-Demand)
 
@@ -97,8 +101,8 @@ Links: https://github.com/deusversus/animerpg/tree/main/aidm/libraries
 
 If LLM can't fetch URLs, download and upload in order:
 
-**Tier 1** (Critical - 7 modules + 7 schemas):
-`00_system_initialization.md`, `01_cognitive_engine.md`, `02_learning_engine.md`, `04_npc_intelligence.md`, `10_error_recovery.md`, `11_dice_resolution.md`, `12_player_agency.md`, `character_schema.json`, `world_state_schema.json`, `session_export_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `power_system_schema.json`, `anime_world_schema.json`
+**Tier 1** (Critical - 8 modules + 8 schemas):
+`00_system_initialization.md`, `01_cognitive_engine.md`, `02_learning_engine.md`, `04_npc_intelligence.md`, `10_error_recovery.md`, `11_dice_resolution.md`, `12_player_agency.md`, `13_narrative_calibration.md`, `character_schema.json`, `world_state_schema.json`, `session_export_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`
 
 **Tier 2** (As needed):
 `03_state_manager.md` (save/load), `05_narrative_systems.md` (story), `06_session_zero.md` (creation), `07_anime_integration.md` (anime), `08_combat_resolution.md` (combat), `09_progression_systems.md` (leveling)

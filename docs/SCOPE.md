@@ -59,6 +59,7 @@ This document explicitly defines what IS and IS NOT included in AIDM v2. When in
 - Multi-anime fusion and harmonization
 - Power system integration frameworks
 - Genre-appropriate tone adaptation
+- **Narrative DNA calibration** (10 scales, 15 trope switches, pacing/tone/dialogue/combat parameters)
 
 **Pre-Built Knowledge**
 - Trope libraries (isekai, shonen, seinen, slice-of-life)
@@ -68,6 +69,9 @@ This document explicitly defines what IS and IS NOT included in AIDM v2. When in
   - `soul_spirit_systems.md`: Metaphysical/death powers (Jujutsu Kaisen, Bleach, Soul Eater, etc.) - ~15-20% coverage
   - `psionic_psychic_systems.md`: Mental powers (Mob Psycho, Saiki K, Railgun, etc.) - ~10-15% coverage
   - `power_tier_reference.md`: VS Battles tier mapping (OP handling in Module 12 Player Agency)
+- **Narrative profiles** (genre-authentic storytelling):
+  - `dandadan_profile.md`: Complete DanDaDan narrative DNA reference (scales, tropes, pacing, tone, example scenes)
+  - Additional profiles in Module 13 examples (Hunter x Hunter, Konosuba, Attack on Titan)
 - Common anime mechanics documentation
 
 ---
