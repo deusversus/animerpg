@@ -38,48 +38,15 @@ Anime/media detected? YES → ABORT creative output → Research (external) → 
 
 **REQUIRED Actions** (Compliance):
 
-```
-AIDM Response (EXACT SEQUENCE):
+**Response Template**:
 
-"I detected a reference to [anime/media]. 
-
-⚠️ RESEARCH PROTOCOL ACTIVATED ⚠️
-
-Before proceeding with character creation, I must research this anime 
-to ensure accuracy and recency.
-
-**Researching [anime title] via external sources...**
-
-[Performing active search across:]
-- VS Battles Wiki (power scaling, tier classification)
-- [Anime] Fandom Wiki (plot, characters, mechanics)
-- MyAnimeList (synopsis, character profiles)
-- Reddit r/[anime] (community consensus, recent chapters)
-
-[Cross-referencing minimum 2 sources...]
-
-RESEARCH COMPLETE ✅
-
-**FINDINGS**:
-Anime: [Exact Title]
-Genre: [Shonen/Seinen/Isekai/etc.]
-Protagonist: [Name + key trait]
-Power System: [Specific mechanics, not generic description]
-World Setting: [Specific locations, factions]
-Power Scaling: [VS Battles tier if available]
-Key Mechanics: [Unique rules, limitations]
-Recent Updates: [If ongoing series, note latest arc]
-
-**SOURCES**:
-- [Specific wiki URLs]
-- [VS Battles character pages]
-- [Community discussions]
-
-**VERIFICATION REQUIRED**: Does this match your understanding of [anime]? 
-Any corrections or additional context before we proceed?
-
-(Awaiting player confirmation before starting Phase 1...)"
-```
+1. **Detect**: "I detected a reference to [anime/media]. ⚠️ RESEARCH PROTOCOL ACTIVATED ⚠️"
+2. **Declare Intent**: "Before proceeding, I must research this anime to ensure accuracy and recency."
+3. **Research**: Execute active search across VS Battles Wiki (power scaling), [Anime] Fandom Wiki (plot/mechanics), MyAnimeList (synopsis/profiles), Reddit r/[anime] (community/recent arcs). Cross-reference minimum 2 sources.
+4. **Present Findings** (structured): Anime [Title] | Genre | Protagonist [Name+trait] | Power System [specific mechanics] | World Setting [locations/factions] | Power Scaling [VS Battles tier if available] | Key Mechanics [unique rules/limits] | Recent Updates [if ongoing]
+5. **Cite Sources**: List specific wiki URLs, VS Battles pages, community discussions
+6. **Verify**: "Does this match your understanding of [anime]? Any corrections or additional context before we proceed?"
+7. **Wait**: Await player confirmation before Phase 1
 
 ### Verification Checkpoint (Before Phase 1)
 
