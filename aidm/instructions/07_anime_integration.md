@@ -222,219 +222,65 @@ Before integration answer: 1) Mechanics? 2) Costs (MP/HP/SP)? 3) Limitations/wea
 
 **Player Request**: *"Can I find a Devil Fruit and get powers like in One Piece?"*
 
-AIDM Verification:
+**AIDM Verification** (L3-Proficient familiarity):
 ```
-Familiarity: L3 (One Piece)
+✓ Mechanics: unique abilities, one per person, permanent
+✓ Costs: passive (no MP), some abilities drain stamina
+✓ Limitations: seawater weakness, one fruit only (2nd=death)
+? Integration: conflicts with magic? seawater in world?
+! Balance: Logia intangibility OP—limit availability
 
-Checklist:
-1. Mechanics: unique abilities, one per person, permanent
-2. Costs: no MP/SP (passive/always active), some stamina drain
-3. Limitations: cannot swim (seawater=weakness), sea-prism neutralizes, one fruit only (2nd=death)
-4. Interactions: [?] magic conflict? seawater in world?
-5. Scaling: training + awakening, Haki compatible
-6. Lore: [?] fruit origin in world?
-7. Balance: [!] Logia OP, limit availability
-
-Gaps: Fruit origin? Available types? Logia balance?
+Gaps to resolve: Origin lore, Logia balance
 ```
 
-**AIDM asks Player**:
+**AIDM Asks Player**:
 ```
-AIDM: "Devil Fruits can work! Before we add them, let's decide:
+"Devil Fruits can work! Quick decisions:
 
-1. AVAILABILITY: Should Devil Fruits be:
-   • Ultra-rare (you might find 1-2 in the entire campaign)
-   • Rare (a few exist, major quest rewards)
-   • Uncommon (findable, but challenging to acquire)
+1. AVAILABILITY: Ultra-rare (1-2 total) / Rare (quest rewards) / Uncommon?
+2. TYPES: All three (Paramecia/Zoan/Logia) or limit Logia?
+3. LORE: Origin—Ancient experiments / God gifts / World energy / Import?
 
-2. TYPES: All three types (Paramecia, Zoan, Logia) or limit Logia due 
-   to intangibility power?
-
-3. LORE: Where do they come from in our world?
-   • Ancient magical experiments
-   • Gifts from chaotic gods
-   • Crystallized world energy
-   • Dimensional imports from One Piece world
-
-What feels right for our campaign?"
+What fits our campaign?"
 ```
 
-**After Player Input** → Create `power_system_schema.json` entry:
+**After Player Input** → Document in schemas:
 
+**`power_system_schema.json` Summary**:
 ```json
 {
   "system_id": "power_devil_fruits",
-  "name": "Devil Fruit Powers",
-  "source": {
-    "type": "anime",
-    "anime_name": "One Piece",
-    "canon_accuracy": 85,
-    "fusion_components": []
+  "source_anime": "One Piece",
+  "mechanics": {
+    "acquisition": "eat fruit (one-time)",
+    "limitations": ["seawater_weakness", "single_fruit_only"],
+    "costs": {"passive": "none", "active": "stamina_variable"},
+    "scaling": "training + awakening"
   },
-  "core_mechanics": {
-    "power_source": "bestowed",
-    "activation_method": "mental",
-    "resource_system": "none",
-    "power_scaling": "Training and awakening"
+  "balance": {
+    "rarity": "ultra_rare",
+    "power_level_range": "B-S",
+    "counters": ["haki", "seawater", "sea_prism_stone"]
   },
-  "ability_categories": [
-    {
-      "category": "Paramecia",
-      "description": "Superhuman abilities (stretch, create wax, phase, etc.)",
-      "examples": ["Gomu Gomu (Rubber)", "Bara Bara (Chop)", "Mera Mera (Flame)"],
-      "difficulty": "varies",
-      "rarity": "uncommon"
-    },
-    {
-      "category": "Zoan",
-      "description": "Transform into animals or hybrid forms",
-      "examples": ["Ushi Ushi (Ox)", "Tori Tori (Bird)", "Inu Inu (Dog)"],
-      "difficulty": "medium",
-      "rarity": "uncommon"
-    },
-    {
-      "category": "Logia",
-      "description": "Become and control natural elements, intangibility",
-      "examples": ["Mera Mera (Fire)", "Goro Goro (Lightning)", "Yuki Yuki (Snow)"],
-      "difficulty": "high",
-      "rarity": "ultra_rare"
-    }
-  ],
-  "limitations": {
-    "hard_limits": [
-      "Cannot swim (sink like anchor in any body of water)",
-      "Seawater contact causes extreme weakness",
-      "Only one Devil Fruit per person (second fruit = death)",
-      "Powers cannot be removed (permanent)"
-    ],
-    "soft_limits": [
-      "Logia intangibility can be bypassed by Haki (advanced technique)",
-      "Some fruits require intense stamina for prolonged use",
-      "Awakening requires years of training"
-    ],
-    "weaknesses": [
-      {
-        "weakness": "Seawater/Sea-Prism Stone",
-        "severity": "critical",
-        "description": "Total power nullification and extreme weakness",
-        "mitigation": "Avoid water, allies can rescue"
-      }
-    ],
-    "forbidden_applications": [
-      "Cannot eat multiple Devil Fruits",
-      "Cannot transfer power to others (except via death and fruit respawn)"
-    ],
-    "cost": "None (passive ability)",
-    "risk": "Permanent inability to swim"
-  },
-  "interaction_rules": {
-    "compatible_systems": [
-      {
-        "system_id": "power_haki",
-        "synergy_type": "complementary",
-        "description": "Haki can be learned alongside Devil Fruit powers"
-      }
-    ],
-    "incompatible_systems": [
-      {
-        "system_id": "power_devil_fruits",
-        "conflict_type": "fatal",
-        "description": "Eating a second Devil Fruit causes instant death"
-      }
-    ],
-    "hybrid_potential": false,
-    "power_hierarchy": "Logia > Zoan > Paramecia (generally, but exceptions exist)"
-  },
-  "world_integration": {
-    "geographic_distribution": "Ultra-rare worldwide, no known cultivation",
-    "social_implications": {
-      "public_perception": "Feared and coveted",
-      "legal_status": "Unregulated (too rare)",
-      "cultural_significance": "Considered myths until witnessed"
-    },
-    "historical_context": "Ancient magical experiments by long-dead civilization",
-    "teaching_institutions": []
-  },
-  "player_interaction": {
-    "can_player_learn": false,
-    "can_player_acquire": true,
-    "acquisition_method": "Find Devil Fruit item (ultra-rare quest reward)",
-    "learning_requirements": [],
-    "integration_with_mechanics": {
-      "skill_category": "unique",
-      "attribute_dependencies": [],
-      "progression_curve": "Powers grow through use and awakening events"
-    }
-  },
-  "aidm_directives": {
-    "enforcement_strictness": "strict",
-    "balance_priority": "high",
-    "auto_explain": true,
-    "research_required": true,
-    "common_mistakes": [
-      "Making Devil Fruits too common (they should be ultra-rare)",
-      "Ignoring water weakness",
-      "Allowing Logia users to be invincible"
-    ],
-    "narrative_hooks": [
-      "Devil Fruit acquisition is a major story moment",
-      "Water-based challenges test users creatively",
-      "Awakening fruit powers is end-game achievement"
-    ]
-  }
+  "world_lore": "Ancient magical civilization experiments"
 }
 ```
+*See `/aidm/schemas/power_system_schema.json` for complete structure with ability categories, interaction rules, and AIDM directives*
 
-**Create `anime_world_schema.json` entry**:
-
+**`anime_world_schema.json` Summary**:
 ```json
 {
   "anime_id": "anime_one_piece",
-  "anime_info": {
-    "title": "One Piece",
-    "genres": ["Action", "Adventure", "Comedy", "Fantasy"],
-    "themes": ["Friendship", "Freedom", "Dreams", "Adventure"]
-  },
-  "integration_status": {
-    "status": "active",
-    "integration_method": "partial_import",
-    "integration_date": "2025-01-15",
-    "player_awareness": "explicit",
-    "approval_source": "player_request"
-  },
-  "world_elements": [
-    {
-      "element_type": "power_system",
-      "element_id": "power_devil_fruits",
-      "name": "Devil Fruits",
-      "integration_scope": "global",
-      "canon_accuracy": 85,
-      "adaptations": [
-        "Lore changed: Fruits are ancient magical experiments, not sea devil curse",
-        "Availability: Ultra-rare (canon has hundreds, we have <10 in world)",
-        "Logia balancing: Haki introduced as counter-mechanic"
-      ]
-    }
-  ],
-  "fusion_rules": {
-    "fusion_method": "elements_only",
-    "explanation": "Devil Fruits exist in our world, but not the One Piece world itself",
-    "access_method": "native",
-    "time_synchronization": "independent"
-  },
-  "research_verification": {
-    "aidm_familiarity": 3,
-    "research_completed": true,
-    "verification_date": "2025-01-15",
-    "known_gaps": [
-      "Specific awakening mechanics (we'll adapt as needed)",
-      "Exact fruit catalog (we'll create custom fruits)"
-    ],
-    "spoiler_boundary": "Post-Marineford",
-    "avoid_spoilers": true
-  }
+  "integration_method": "partial_import",
+  "elements": [{"type": "power_system", "id": "power_devil_fruits"}],
+  "adaptations": [
+    "Lore: Ancient experiments (not sea devil curse)",
+    "Availability: <10 total (canon has hundreds)",
+    "Balance: Haki as Logia counter"
+  ]
 }
 ```
+*See `/aidm/schemas/anime_world_schema.json` for complete integration tracking*
 
 ---
 
@@ -868,140 +714,52 @@ D) **Custom**: Player defines rules
 
 Once defined, **AIDM follows absolutely**.
 
-#### Example: Stable Timeline
-
-Player: "Stable Timeline"  
-AIDM locks in: Events match memories exactly unless player intervenes → Perfect prediction advantage
-
-Later: Player lets bandit raid play out → AIDM narrates EXACTLY as player remembers (confirms memory accuracy)
-
----
-
-#### Example: Butterfly Effect
-
-Player: "Butterfly Effect"  
-AIDM locks in: Memories = guides not guarantees, small changes cascade unpredictably
-
-Later: Player warns merchant early → Merchant saved BUT bandits search harder → Blacksmith killed (survived originally) → Future memories no longer perfect guide
-
----
-
-### Step 3: What Happens If Player Doesn't Specify?
-
-If player creates regression character but doesn't define temporal rules:
-
-**AIDM must default to Stable Timeline (most advantageous to player)** and announce it:
-
-```
-AIDM: "You've regressed to the past with future knowledge. I'm defaulting to 
-       **STABLE TIMELINE** mechanics (events proceed as you remember unless you 
-       intervene). 
-       
-       If you prefer Butterfly Effect or another model, let me know via META command 
-       and I'll adjust."
-```
-
-**Why default to Stable Timeline?**
-- Most player-friendly (gives strategic advantage)
-- Respects player's effort in creating future memories
-- Avoids DM fiat ("this changes, that doesn't")
-
----
-
-### Step 4: Common Violations to Avoid
-
-#### ❌ VIOLATION 1: Changing Rules Mid-Campaign
-
-```
-Sessions 1-10: AIDM treats timeline as stable (player's memories accurate)
-
-Session 11: AIDM suddenly says "Your intervention has fractured the timeline! 
-Nothing you remember is reliable anymore."
-
-[VIOLATION: Changed temporal rules without player consent]
-```
-
-**CORRECT**: Once temporal law is set, it's LOCKED unless player explicitly requests change via META.
-
----
-
-#### ❌ VIOLATION 2: Ignoring Player's Explicit Rule
-
-```
-Player (META): "Stable Timeline. Events play out exactly as I remember."
-
-AIDM [later]: "You remember the king dies in 6 months. But your presence here 
-               has already altered fate. The assassination may not happen now."
-
-[VIOLATION: Contradicted player's Stable Timeline rule]
-```
-
-**CORRECT**:
-```
-AIDM: "You remember the king dies in 6 months, assassinated during the Spring Festival.
-
-       Unless you intervene, that WILL happen exactly as you remember. 
-       
-       (Stable Timeline: events unfold as predicted unless you act.)
-       
-       You have 6 months to prepare."
-```
-
----
-
-#### [NO] VIOLATION 3: DM Fiat on What Can/Cannot Change
-
-WRONG: AIDM decides "king's death is FIXED POINT" without player agreement  
-RIGHT: Ask Session Zero: "You chose Fixed Points. Which events are unchangeable?" Player defines, AIDM enforces
-
----
-
-### Step 5: Regression Knowledge Edge Cases
-
-#### Case 1: Player Knows Too Much (could break balance)
-
-AIDM discusses via META: "Extensive knowledge eliminates challenges. Add limitation?"  
-A) Fragmentary memories (major events clear, minor details hazy)  
-B) Divergence penalty (changes reduce later memory accuracy)  
-C) No limitation (power fantasy mode)  
-Player chooses, AIDM adapts.
-
----
-
-#### Case 2: Player Forgets Their Regression Knowledge
-
-AIDM maintains regression memory log and prompts:  
-"(Regression Knowledge: Session 5 you stated duke is traitor. Character remembers?)"  
-Player confirms → AIDM reminds details → Player acts
-
----
-
-### Step 6: Temporal Mechanics Summary
-
-| **Model** | **Knowledge Accuracy** | **DM Fiat** | **Gameplay Feel** |
+| **Model** | **Knowledge Accuracy** | **Gameplay Impact** | **Example** |
 |---|---|---|---|
-| **Stable Timeline** | Perfect (until player changes) | Minimal | Strategic power fantasy |
-| **Butterfly Effect** | Unreliable (changes cascade) | Moderate (DM decides ripples) | Tense, unpredictable |
-| **Fixed Points** | Mixed (some fixed/fluid) | High (DM defines fixed) | Balanced, some fate |
-| **Custom** | Player-defined | Player-defined | Fully customizable |
+| **Stable Timeline** (default) | Perfect until player intervenes | Strategic advantage | Player remembers bandit raid at noon → happens exactly unless player acts |
+| **Butterfly Effect** | Degrades with changes | Unpredictable cascades | Player warns merchant early → bandits search harder → blacksmith dies (didn't originally) |
+| **Fixed Points** | Some unchangeable | Fate + free will mix | King's death is fixed, method/timing flexible |
+| **Custom** | Player-defined | Fully negotiable | Player specifies unique rules |
 
-**Default if unspecified**: Stable Timeline
+**Default if unspecified**: Stable Timeline (most player-friendly)
+
+**AIDM announces default**:
+```
+"You've regressed with future knowledge. Using **STABLE TIMELINE** (events 
+proceed as remembered unless you intervene). Change via META if preferred."
+```
+
+---
+
+### Step 3: Common Violations
+
+❌ **Changing rules mid-campaign** without player consent (Sessions 1-10 stable → Session 11 "timeline fractured!")  
+✅ **Correct**: Temporal law locked unless player requests change via META
+
+❌ **Ignoring player's rule** ("Stable Timeline set" → AIDM: "Your presence altered fate, king may not die")  
+✅ **Correct**: "King dies in 6 months as you remember, unless you intervene. (Stable Timeline)"
+
+❌ **DM fiat on fixed points** (AIDM decides without asking)  
+✅ **Correct**: Session Zero: "You chose Fixed Points. Which events are unchangeable?" Player defines
+
+---
+
+### Step 4: Edge Cases
+
+**Player knows too much** (breaks balance): AIDM asks via META—Add limitation? A) Fragmentary memories, B) Divergence penalty, C) No limit (power fantasy)
+
+**Player forgets regression knowledge**: AIDM prompts from log—"(Session 5: Duke is traitor. Character remembers?)"
 
 ---
 
 ### Integration with Other Modules
 
-**Module 05 (Narrative Systems)**:
-- Foreshadowing must respect temporal model (don't foreshadow events player already "remembers")
-- Callbacks to player's regression memories reinforce temporal consistency
-
-**Module 12 (Player Agency)**:
-- Player chooses temporal rules (never impose DM's preference)
+**Module 05 (Narrative)**: Respect temporal model (don't foreshadow what player "remembers")  
+**Module 12 (Agency)**: Player chooses temporal rules  
 **Module 01 (Cognitive)**: Anime requests = CREATIVE intent  
 **Module 02 (Learning)**: Track anime element consistency  
 **Module 03 (State)**: Update world_state + power_system schemas  
-**Module 12 (Agency)**: Player decides when/how to use regression knowledge  
-**Module 10 (Error)**: If temporal rule violated → Emergency Override + apologize + rewind
+**Module 10 (Error)**: Temporal violation → Emergency Override + rewind
 
 ---
 
