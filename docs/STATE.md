@@ -1583,6 +1583,66 @@ Remaining work is purely optional: 5 example templates for user convenience + 1 
 
 ## Changelog
 
+### January 15, 2025 - Integration Audit & Critical Fixes (Post-Narrative DNA)
+
+**INTEGRATION AUDIT COMPLETE**: Comprehensive cross-reference verification after Module 13 integration
+- **Audit Report**: Created `docs/INTEGRATION_AUDIT.md` (580 lines) - Complete audit methodology, findings, gap analysis, fix verification
+- **Files Checked**: 28 files (13 instruction modules, 8 schemas, 7 documentation files)
+- **Integration Points Verified**: 23 cross-references (Module 13 references, narrative_profile_schema references, documentation updates)
+- **Status**: Module 13 properly referenced in critical integration points (Modules 00/05/07, AIDM_LOADER, CORE_AIDM_INSTRUCTIONS) ✓
+
+**CRITICAL GAPS IDENTIFIED & FIXED** (3 gaps preventing full narrative DNA application):
+
+1. **session_export_schema.json** - Narrative profile persistence gap
+   - **Problem**: Narrative profile NOT saved in session exports → calibration lost on save/load
+   - **Fix**: Added `active_narrative_profile` property to `system_state` (references narrative_profile_schema.json)
+   - **Impact**: Narrative DNA (DanDaDan absurdity:9, rapid tonal shifts:ON, etc.) now persists across sessions
+
+2. **Module 04 (NPC Intelligence)** - Dialogue style integration gap
+   - **Problem**: NPCs generated dialogue using generic `dialogue_style` WITHOUT checking narrative profile → all NPCs sound same regardless of anime genre
+   - **Fix**: Added "Narrative Profile Integration" section (+28 lines)
+     - Process now checks `dialogue_style` parameters: formality_default, banter_frequency, awkward_comedy
+     - Examples: Elena with DanDaDan profile ("Okay so like—I'm crap at feelings, whatever. [embarrassed] Shut up!") vs AoT profile ("I'm not one for sentiment. But you saved my life. That debt won't be forgotten.")
+   - **Impact**: NPCs now speak genre-appropriately (DanDaDan = rapid awkward banter, AoT = formal grim military speech, Konosuba = comedic incompetence)
+
+3. **Module 08 (Combat Resolution)** - Combat narration integration gap
+   - **Problem**: Combat narrated using generic "Anime-Flavored (epic/dramatic)" WITHOUT checking narrative profile → all combat sounds similar
+   - **Fix**: Added "Combat Narration (Narrative Profile Integration)" section (+39 lines)
+     - Checks `combat_narrative_style` parameters: strategy_vs_spectacle (0-10), power_explanations (ON/OFF), sakuga_moments, named_attacks, environmental_destruction
+     - Round structure updated: Step 4 now "NARRATE (apply combat_narrative_style)"
+     - Examples: DanDaDan chaotic spectacle ("Okarun BLURS—claws TEAR asphalt, WALL SHATTERS!") vs HxH tactical analysis ("Gon analyzes: 'Water diviner—controls moisture. If I keep distance, charge Jajanken...'")
+   - **Impact**: Combat narration matches anime genre (DanDaDan=chaotic spectacle, HxH=tactical breakdown, AoT=brutal desperation)
+
+**SYSTEM STATUS**: Module 13 (Narrative Calibration) now FULLY INTEGRATED
+- ✅ Core loading: AIDM_LOADER.md, CORE_AIDM_INSTRUCTIONS.md (commit 7d0f13a)
+- ✅ Schema validation: Module 00 (required schemas, lazy-load protocol)
+- ✅ Narrative filtering: Module 05 (CRITICAL INTEGRATION note)
+- ✅ Research extraction: Module 07 (dual-phase: mechanics + narrative DNA)
+- ✅ NPC dialogue: Module 04 (dialogue_style application) - **NEW** (commit 258e427)
+- ✅ Combat narration: Module 08 (combat_narrative_style application) - **NEW** (commit 258e427)
+- ✅ Save/load persistence: session_export_schema.json (active_narrative_profile) - **NEW** (commit 258e427)
+
+**Files Modified**: 4 files (1 new, 3 updated)
+- `docs/INTEGRATION_AUDIT.md` (NEW - 580 lines): Complete audit report with gaps/fixes/recommendations
+- `aidm/schemas/session_export_schema.json`: Added `active_narrative_profile` to `system_state`
+- `aidm/instructions/04_npc_intelligence.md`: Added narrative profile dialogue integration section
+- `aidm/instructions/08_combat_resolution.md`: Added combat narration integration section
+
+**Validation Recommended** (per INTEGRATION_AUDIT.md):
+1. Save/Load Test: Create session with DanDaDan profile → Save → Load → Verify profile persists
+2. NPC Dialogue Test: Talk to NPC with DanDaDan profile (banter:constant) → Verify rapid banter
+3. Combat Narration Test: Combat with DanDaDan (strategy:4, destruction:HIGH) → Verify chaotic spectacle vs HxH tactical
+4. Contrast Test: Switch profiles (DanDaDan→AoT) → Verify dialogue/combat changes appropriately
+
+**Optional Enhancements** (non-critical, documented in INTEGRATION_AUDIT.md):
+- Module 06 (Session Zero): Add Phase 1.5 narrative calibration (player questionnaire before character creation)
+- Module 02 (Learning Engine): Add NARRATIVE_ADJUSTMENTS memory category (track calibration evolution)
+- Module 03 (State Manager): Document narrative profile in export protocol (actual fix in session_export_schema)
+
+**Commit**: 258e427 "INTEGRATION AUDIT: Fix 3 critical narrative DNA gaps - session export, NPC dialogue, combat narration"
+
+---
+
 ### January 15, 2025 - Narrative DNA Calibration System Added
 
 **MAJOR FEATURE**: Addressed "D&D in anime skin" problem - AIDM now learns narrative DNA (how anime tells stories), not just mechanics
