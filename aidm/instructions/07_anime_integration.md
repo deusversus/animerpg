@@ -131,6 +131,35 @@ BLOCKING: No creative output/templates until research complete + presented + pla
 
 [OK] "Researching [anime] via external sources..." | "Research complete: [specifics]" | "Cross-referencing [X] sources..." | "Sources: VS Battles, Fandom, Reddit" | "Verify: match your understanding?" | Concrete specifics (not generic)
 
+### Research Extraction (Two Phases)
+
+**Phase 1: MECHANICS** (power systems, world rules, lore)
+**Phase 2: NARRATIVE DNA** (how the anime tells stories—see Module 13)
+
+**CRITICAL**: Research BOTH simultaneously. Mechanics without narrative = "D&D in anime skin".
+
+**During Research, Extract**:
+1. Power systems (chakra costs, quirk limits, etc.) → `power_system_schema.json`
+2. World elements (locations, factions, threats) → `anime_world_schema.json`
+3. **Narrative profile** (pacing, tone, tropes, dialogue style) → `narrative_profile_schema.json`
+
+**Example** (DanDaDan research):
+```
+MECHANICS: Momo's psychic powers (telekinesis, barrier, spirit channeling), 
+Okarun's transformation (speed boost, enhanced strength, ghost possession), 
+Turbo Granny curse mechanics
+
+NARRATIVE DNA: 
+- Absurdity scale: 9/10 (aliens+ghosts+body horror)
+- Rapid tonal shifts: ON (comedy→horror instantly)
+- Banter frequency: Constant (awkward, romantic tension)
+- Combat style: Chaotic spectacle over tactics
+- Violence: Stylized body horror
+- Pacing: Rapid-fire, constant escalation
+```
+
+Both stored → Applied to gameplay.
+
 ### Research Methods
 
 #### Method 1: Direct Player Collaboration

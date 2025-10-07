@@ -34,15 +34,16 @@
 
 ## System Components
 
-**Core Components** (13 instruction modules, 7 schemas, 2 quick refs):
-- Instructions: System init, cognitive engine, learning, state, NPCs, narrative, session zero, anime, combat, progression, error recovery, dice, player agency
-- Schemas: Character, world, session export, NPC, memory, power systems, anime worlds
+**Core Components** (13 instruction modules, 8 schemas, 2 quick refs):
+- Instructions: System init, cognitive engine, learning, state, NPCs, narrative, session zero, anime, combat, progression, error recovery, dice, player agency, **narrative calibration**
+- Schemas: Character, world, session export, NPC, memory, power systems, anime worlds, **narrative profiles**
 - Quick Refs: Combat, progression
 
-**Libraries** (12 files - 85-90% anime coverage):
+**Libraries** (13 files - 85-90% anime coverage):
 - Power Systems (5): Mana/magic, Ki/lifeforce, Soul/spirit, Psionic/psychic, Power tiers
 - Genre Tropes (4): Isekai, Shonen, Seinen, Slice-of-life  
 - Mechanics (3): Stat frameworks, Leveling curves, Skill taxonomies
+- Narrative Profiles (1): DanDaDan (reference example)
 
 **Complete details**: See `docs/ARCHITECTURE.md` → File Inventory section
 
@@ -1581,6 +1582,48 @@ Remaining work is purely optional: 5 example templates for user convenience + 1 
 ---
 
 ## Changelog
+
+### January 15, 2025 - Narrative DNA Calibration System Added
+
+**MAJOR FEATURE**: Addressed "D&D in anime skin" problem - AIDM now learns narrative DNA (how anime tells stories), not just mechanics
+
+**New Components**:
+- **narrative_profile_schema.json** - Defines "how anime tells stories" structure:
+  - 10 sliding scales (0-10): Introspection vs Action, Comedy vs Drama, Simple vs Complex, Power Fantasy vs Struggle, Explained vs Mysterious, Fast vs Slow, Episodic vs Serialized, Grounded vs Absurd, Tactical vs Instinctive, Hopeful vs Cynical
+  - 15 trope switches (ON/OFF): Fourth wall breaks, inner monologue, visual metaphor, rapid tonal shifts, tournament arcs, power of friendship, tragic backstory, escalating threats, slice-of-life, mystery box, unreliable narrator, existential philosophy, rule of cool, mundane epic, tragic hero
+  - Parameters: Pacing rhythm, tonal signature, dialogue style, combat narrative style, meta tracking (extraction method, confidence, player approval, adjustment log)
+  
+- **Module 13 (Narrative Calibration)** - Instruction module teaching extraction and application:
+  - Extraction methods: Research-derived (automatic during Module 07 anime research), Player-provided (Session Zero questionnaire), Hybrid (player adjusts research)
+  - Scale-specific narration adjustments (Introspection 0-3=action focus vs 7-10=inner monologue; Comedy 0-3=undercut tension vs 7-10=tragic weight)
+  - Integration: Filters Module 05 narrative rules, applies to Module 04 NPC dialogue, dual-phase research with Module 07
+  - Example profiles: DanDaDan (Absurd:9, Rapid Shifts:ON), Hunter x Hunter (Tactical:10, Exhaustive), Konosuba (Comedy:1, Parody), Attack on Titan (Drama:9, Cynical:8)
+  - Spartan custom worlds: 6 quick vibe templates (shonen/seinen/isekai/comedy/mystery/slice-of-life) OR full questionnaire (optional)
+  - Player feedback loop: Mid-session calibration ("too serious" → shift comedy scale), adjustment tracking, profile evolution after 5-10 sessions
+  
+- **DanDaDan Reference Profile** - Complete implementation demonstrating system:
+  - Scales: Introspection:3, Comedy:4, Simple:5, Power Fantasy:6, Mysterious:7, Fast-Paced:2, Serialized:6, Absurd:9, Tactical:5, Hopeful:3
+  - Enabled tropes: Rapid tonal shifts, Rule of cool, Tragic backstory, Mystery box, Inner monologue, Awkward comedy, Visual metaphor
+  - Pacing: Rapid cuts (2-4 exchanges), medium arcs (6-12 sessions), 15% downtime, frequent climaxes
+  - 3 example scenes: Combat (body horror+banter), Dialogue (awkward romance), Exploration (horror→comedy)
+  - Adjustment log: Session 3 (drama 6→4 "needs comedy"), Session 5 (absurdity 8→9 "go weirder"), Session 7 (enabled visual metaphor)
+  - Usage notes: Banter CORE, tonal whiplash FEATURE, explain less/show more, romance via subtext, embrace absurd
+
+**Problem Solved**: 
+- BEFORE: "You approach the crater. Roll PERCEPTION DC 12. [Roll 15, success]. You notice: 1) Metallic debris 2) Radiation signature 3) Strange symbols 4) Movement in shadows. What do you do?" (generic tactical D&D)
+- AFTER: "Crater's smoking. REEKS—burnt rubber mixed with fish. Okarun gags. 'That's NOT a normal alien smell!' Momo: 'How would YOU know what's normal?!' Their debate cuts off—SCREECH. Something glowing in the smoke. Okarun's balls TINGLE. 'Oh COME ON, not again!' What do you do?" (DanDaDan authentic vibe with absurdity, rapid banter, body horror humor, tonal shifts)
+
+**Integration**:
+- Schema added to Module 00 validation (7→8 schemas total)
+- Module 13 added to Tier 2 lazy-load (loads WITH Module 07, applies narrative DNA)
+- Module 07 updated: Dual-phase research extraction (Phase 1: Mechanics → power_system_schema, Phase 2: Narrative DNA → narrative_profile_schema)
+- Module 05 updated: Critical integration note - "Module 13 FILTERS all narrative rules. Same principle ('show don't tell') applies DIFFERENTLY per anime: DanDaDan (absurd visuals+rapid banter), AoT (grim environment+trauma), Konosuba (comedic failure)"
+
+**Impact**: Transforms "D&D in anime skin" (generic tactical narration regardless of source material) → genre-authentic storytelling matching source anime. DanDaDan narration has absurd chaos banter, Hunter x Hunter has tactical explanations, Konosuba has comedic failure parody—same mechanics, different FEEL.
+
+**Files Created**: 4 new (narrative_profile_schema.json ~200 lines, 13_narrative_calibration.md ~1,100 lines, dandadan_profile.md ~350 lines) + 3 integration edits (Modules 00/05/07)
+
+---
 
 ### January 15, 2025 - Instruction Module Fluff Removal
 

@@ -19,7 +19,7 @@ Bootstrap sequence runs once per session: Load modules (correct order), Validate
 
 ## Step 1: Schema Validation
 
-**Required Schemas (7)**: `character_schema.json`, `world_state_schema.json`, `session_export_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `power_system_schema.json`, `anime_world_schema.json`
+**Required Schemas (8)**: `character_schema.json`, `world_state_schema.json`, `session_export_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`
 
 **Validation**: Check file exists→Validate JSON→Check required fields
 
@@ -38,6 +38,7 @@ Bootstrap sequence runs once per session: Load modules (correct order), Validate
 - `05_narrative_systems` (story hooks)
 - `06_session_zero` (char creation)
 - `07_anime_integration` (CREATIVE/anime research)
+- `13_narrative_calibration` (loaded WITH Module 07, applies narrative DNA)
 - `08_combat_resolution` (COMBAT intent)
 - `09_progression_systems` (XP/level-up)
 

@@ -26,6 +26,13 @@ CORRECT: "Marcus. 45. CEO. Died working late. Heart stopped. Woke 15 years old. 
 
 **Pacing**: DETAIL (major locations, important NPCs, combat, discoveries, emotions) | SUMMARIZE (familiar travel, routine shopping/training, rest, non-critical dialogue)
 
+**CRITICAL INTEGRATION**: Module 13 (Narrative Calibration) FILTERS all narrative rules. Same principle ("show don't tell") applies DIFFERENTLY:
+- DanDaDan: Show via absurd visuals + rapid banter
+- Attack on Titan: Show via grim environment + character trauma
+- Konosuba: Show via comedic failure + party chaos
+
+**Before narrating, check narrative profile** → Apply scales/tropes → Match source anime vibe.
+
 ---
 
 ## Workflow
