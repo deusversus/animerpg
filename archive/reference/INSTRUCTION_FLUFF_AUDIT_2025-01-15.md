@@ -8,15 +8,20 @@
 
 ## Executive Summary
 
-**Total AIDM Files**: 30 active instruction/library files (excluding backups)  
+**REVISED ASSESSMENT** (Post-Initial Compression):
+
+The October 2025 token optimization campaign already compressed AIDM instruction modules heavily (62% reduction). Initial audit overestimated removable fluff by not accounting for prior work.
+
+**Total AIDM Files**: 30 active instruction/library files  
 **Total Word Count**: ~38,000 words  
-**Estimated Fluff**: ~8,000-10,000 words (21-26% reduction potential)  
-**Primary Issues**: 
-- Verbose examples with full JSON schemas embedded
-- Repetitive scenario walkthroughs
-- Excessive meta-commentary
-- Redundant "WRONG vs CORRECT" examples
-- Verbose checklists with redundant items
+**REALISTIC Fluff Estimate**: ~1,500-2,500 words (4-7% additional reduction potential)  
+**Primary Issues** (remaining):
+- Module 07: Embedded JSON schemas (FIXED: 838w removed)
+- Module 07: Verbose regression examples (FIXED: included in 838w)
+- Spot opportunities in 06/12 modules (~300-500w)
+- Minor trope library redundancy (~200-400w)
+
+**Many files already optimized**: 05_narrative_systems, seinen_tropes, others use ultra-concise format (tables, brief examples, minimal meta-commentary). Further compression risks sacrificing clarity.
 
 ---
 
