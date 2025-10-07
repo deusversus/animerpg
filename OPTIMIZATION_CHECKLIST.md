@@ -57,8 +57,8 @@
 $words = (Get-Content filename.md | Measure-Object -Word).Words
 Write-Host "Words: $words"
 
-# Estimate tokens (0.75 conversion ratio)
-$tokens = [math]::Round($words * 0.75)
+# Estimate tokens (2.73 conversion ratio - validated via external test)
+$tokens = [math]::Round($words * 2.73)
 Write-Host "Estimated tokens: $tokens"
 
 # Calculate reduction from baseline
@@ -212,5 +212,5 @@ Deku(quirk→Gran Torino)
 ---
 
 **Full Methodology**: `docs/TOKEN_OPTIMIZATION_METHODOLOGY.md`  
-**Current System Status**: 13,669 tokens (6.8% of 200K budget) ✅  
-**Token Budget Alert Threshold**: >15,000 tokens (7.5% of 200K) ⚠️
+**Current System Status**: 87,031 tokens (43.5% of 200K budget) - Base system ✅  
+**Token Budget Alert Threshold**: >100,000 tokens (50% of 200K) ⚠️

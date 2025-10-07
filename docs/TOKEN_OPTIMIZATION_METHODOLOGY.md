@@ -1,7 +1,9 @@
 # Token Optimization Methodology
 **Purpose**: Comprehensive guide for context-aware token optimization in LLM-based systems  
-**Status**: Battle-tested (74.3% reduction achieved across 22 files, 100% information parity)  
+**Status**: Validated (62% reduction on instruction modules, 88,185 tokens saved)  
 **Application**: AnimeRPG AIDM system + any future AI-driven content projects
+
+**IMPORTANT**: Word-to-token ratio is **2.73** (not 0.75). Use actual LLM token counting for validation.
 
 ---
 

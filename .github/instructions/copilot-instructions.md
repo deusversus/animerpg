@@ -216,9 +216,9 @@ Create: instructions/cognitive_engine_new.md
 
 **Context Budget Reality**:
 - AIDM operates in 200K context windows
-- Current system: **13,669 tokens (6.8% of budget)** after optimization
-- Pre-optimization baseline: 46,742 tokens (23.4% of budget)
-- **Campaign achievement**: 74.3% reduction with 100% information parity
+- Current base system: **87,031 tokens (43.5% of budget)** - 13 modules + 7 schemas
+- Pre-optimization: 142,192 tokens (instruction modules)
+- **Actual reduction**: 62% (88,185 tokens saved)
 
 **All AIDM files MUST follow token optimization guidelines**:
 

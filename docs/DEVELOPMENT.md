@@ -17,12 +17,12 @@ Each instruction module must function independently. Never create dependencies t
 ### 3. **Player Agency First**
 Any change that could diminish player control must be rejected. The AI assists; it doesn't decide.
 
-### 4. **Context Budget Management** (NEW - Critical)
+### 4. **Context Budget Management** (Critical)
 Token efficiency is a first-class design constraint. AIDM operates in 200K context windows:
-- **Current system**: 13,669 tokens (6.8% of budget) after optimization
-- **Pre-optimization**: 46,742 tokens (23.4% of budget) 
-- **Campaign achievement**: 74.3% reduction with 100% information parity
-- **Alert threshold**: >15,000 tokens (7.5% of budget)
+- **Current base system**: 87,031 tokens (43.5% of budget) - 13 modules + 7 schemas
+- **Pre-optimization**: 142,192 tokens (instruction modules alone)
+- **Actual reduction**: 62% (88,185 tokens saved)
+- **Alert threshold**: >100,000 tokens (50% of budget)
 
 **Why this matters**: Every token saved in instruction files = more tokens available for gameplay (NPC memories, conversation history, world state, narrative depth).
 

@@ -9,9 +9,9 @@
 
 ## Current Phase
 
-**Phase**: Token Budget Optimization (Phase 1 + Phase 2 COMPLETE) ✅  
-**Achievement**: Reduced system from 46,742 → 13,669 tokens (70.7% reduction) while maintaining 100% information parity  
-**Validation**: 10+ dry tests confirm zero information loss, all anime examples/formulas/cross-references accessible
+**Phase**: Token Optimization Complete (Phase 1 validated) ✅  
+**Achievement**: Reduced instruction modules 62% (142,192 → 54,007 tokens), validated via external test  
+**Status**: Previous estimates corrected - used wrong word-to-token ratio (0.75 vs actual 2.73)
 
 ---
 
@@ -26,7 +26,7 @@
 - **Libraries**: 12/12 complete (100%) ✅ **OPTIMIZED Phase 2**
 - **Testing**: 8/8 test scripts complete (100%) ✅
 - **Total Lines**: ~95,000+ (libraries ~30,500 + testing ~23,000 + core ~41,500 lines)
-- **Token Budget**: **13,669 tokens (6.8% of 200K context)** - **34,746 saved via optimization campaign** ✅
+- **Token Budget**: **87,031 tokens (43.5% of 200K)** - Base system (13 modules + 7 schemas) measured via external test ✅
 - **Backup Status**: Full system backed up to `/backup/aidm_pre_phase1_backup_[timestamp].zip` + `/backup/aidm_pre_phase2_backup_[timestamp].zip` ✅
 
 ---
