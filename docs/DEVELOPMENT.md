@@ -4,6 +4,8 @@
 
 This document provides critical guidelines for collaborating with AI assistants (like GitHub Copilot, ChatGPT, Claude, etc.) when developing or modifying AIDM v2.
 
+**What is AIDM v2?** See `README.md` for complete system overview.
+
 ---
 
 ## Core Principles

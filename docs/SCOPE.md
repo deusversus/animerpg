@@ -4,6 +4,8 @@
 
 This document explicitly defines what IS and IS NOT included in AIDM v2. When in doubt about whether to implement a feature or accept a suggested change, refer to this document first.
 
+**What is AIDM v2?** See `README.md` for complete system overview.
+
 ---
 
 ## In Scope (MVP Features)
