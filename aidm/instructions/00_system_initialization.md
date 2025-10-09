@@ -42,7 +42,11 @@ Bootstrap sequence runs once per session: Load modules (correct order), Validate
 - `08_combat_resolution` (COMBAT intent)
 - `09_progression_systems` (XP/level-up)
 
-**TIER 3 - REFERENCE LIBRARIES** (load specific sections on demand): `aidm/libraries/*.md`, `aidm/templates/*.md`
+**TIER 3 - REFERENCE LIBRARIES** (load specific sections on demand): 
+- `aidm/libraries/*.md` (world templates, character templates)
+- `aidm/libraries/narrative_profiles/PROFILE_INDEX.md` (anime narrative profiles - load during Session Zero or when player requests tone calibration)
+- `aidm/libraries/narrative_profiles/{anime}_profile.md` (specific profile details - load only when selected)
+- `aidm/templates/*.md` (character sheets, session summaries)
 
 **Benefits**: 40-60% token savings, faster responses, flexibility, scalability
 

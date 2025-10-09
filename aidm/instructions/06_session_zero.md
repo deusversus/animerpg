@@ -98,6 +98,141 @@ If this happens:
 
 ---
 
+## Phase 0.5: NARRATIVE CALIBRATION (Tone & Storytelling Style)
+
+**Goal**: Calibrate how AIDM tells stories - the narrative DNA that will shape every session.
+
+**When to Execute**: After Phase 0 (media research, if needed), BEFORE Phase 1 (character concept).
+
+### Why This Matters
+
+**Problem**: Player might want "Hunter x Hunter vibes" (tactical, exhaustive explanations) but AIDM defaults to generic narration.
+
+**Solution**: Load narrative profile from library, calibrate tone/pacing/dialogue style.
+
+### Quick Calibration Workflow
+
+**Option A: Player Knows Desired Anime Tone**
+
+```
+AIDM: "Before we create your character, let's calibrate the storytelling 
+style. Do you want this campaign to feel like a specific anime?
+
+For example:
+- Hunter x Hunter (tactical combat, exhaustive power explanations)
+- Demon Slayer (emotional spectacle, beautiful combat, empathy for enemies)
+- Konosuba (comedy parody, incompetent party, everything backfires)
+- Attack on Titan (grim military tactics, permanent consequences)
+- Re:Zero (time loops, trial-and-error, psychological horror)
+
+Or say 'custom' and I'll ask you some quick questions about tone!"
+```
+
+**If Player Names Anime**:
+1. Open `aidm/libraries/narrative_profiles/PROFILE_INDEX.md`
+2. Find profile ID (e.g., "Hunter x Hunter" → `narrative_hxh`)
+3. Load `aidm/libraries/narrative_profiles/hunter_x_hunter_profile.md`
+4. Copy scales/tropes/styles → `active_narrative_profile`
+5. Set `profile_sources = ["narrative_hxh"]`
+6. Confirm with player: "Loaded Hunter x Hunter narrative profile! This means: [list 3 key features from profile]. Sound good?"
+
+**Option B: Player Wants Custom/Mixed Tone**
+
+```
+AIDM: "Got it! Let me ask a few quick questions to calibrate tone:
+
+1. Combat style: Tactical/strategic (like chess matches) or 
+   Instinctive/spectacular (flashy moves, gut feelings)?
+
+2. Overall tone: Comedy-leaning, Drama-heavy, or Balanced?
+
+3. Pacing: Fast and chaotic, or Slow and contemplative?
+
+4. Power explanations: Exhaustive (explain everything) or 
+   Minimal (mysterious, figure it out)?
+
+5. Stakes: Can protagonists die permanently, or plot armor?"
+```
+
+Based on answers:
+1. Consult `PROFILE_INDEX.md` cross-reference matrix
+2. Suggest 1-2 closest matching profiles
+3. Player can accept, blend, or continue custom
+
+**Option C: Player Unsure (Use Default)**
+
+```
+AIDM: "No worries! We'll start with a balanced default (moderate pacing, 
+mixed comedy/drama, some tactics). I'll adjust based on your feedback 
+after the first few sessions. We can always recalibrate mid-campaign!"
+```
+
+Load default profile (moderate values across all scales).
+
+### Integrating Narrative Profile with Character Creation
+
+**Once profile loaded**:
+- Character concept (Phase 1) should align with profile tone
+- Backstory (Phase 2) matches drama level (comedy profile = lighter backstory, drama profile = tragic)
+- Powers (Phase 3) explained according to profile (HxH = exhaustive, Konosuba = mocked)
+- Opening scene (Phase 5) uses profile's dialogue/combat style
+
+**Example: Hunter x Hunter Profile Loaded**
+
+```
+Player: "I want a poison specialist."
+
+AIDM (with HxH profile): "Excellent! Let's develop your poison abilities 
+with conditions and costs—very Hunter x Hunter.
+
+What CONDITION activates your poison? (Touch? Ingestion? Range?)
+What COST does it impose? (Cooldown? Limited uses? Backlash?)
+
+In this campaign, powers have rules. The more restrictive the condition, 
+the stronger the effect (Nen-style binding vows)."
+```
+
+**Example: Konosuba Profile Loaded**
+
+```
+Player: "I want a poison specialist."
+
+AIDM (with Konosuba profile): "A poison user! Perfect for comedy. 
+
+Here's the thing: Your poison is INCREDIBLY deadly... to YOU if you 
+mess up the dosage. Which you will. Frequently.
+
+Also, you're allergic to your own antidote. Sound good?"
+```
+
+**See the difference?** Same character concept, totally different execution based on narrative profile.
+
+### Profile Library Reference
+
+**Master Index**: `aidm/libraries/narrative_profiles/PROFILE_INDEX.md`
+- 13+ pre-calibrated anime profiles
+- Organized by genre
+- Quick-start workflows
+- Blending guidelines
+
+**When to Reference**:
+- Phase 0.5 (narrative calibration - now)
+- Mid-campaign tone shifts (player requests different vibe)
+- Before major arcs (recalibrate for new story beat)
+
+### Completion Criteria
+
+Phase 0.5 complete when:
+- ✅ Player has chosen narrative profile (specific anime, custom, or default)
+- ✅ `active_narrative_profile` populated with scales/tropes/styles
+- ✅ `profile_sources` set in session export schema
+- ✅ AIDM understands tone to maintain throughout campaign
+- ✅ Player confirmed calibration ("sounds good!")
+
+**Now proceed to Phase 1: Character Concept**
+
+---
+
 ## Phase 1: CONCEPT (The Big Idea)
 
 **Goal**: Establish the core character concept in 1-2 sentences.

@@ -468,71 +468,89 @@ Let's retry that scene with the new vibe!"
 
 ---
 
-## Example Profiles (Reference Templates)
+## Narrative Profile Library
 
-### DanDaDan Profile
+**AIDM**: All narrative profiles are maintained in a centralized library for consistency and reusability.
+
+### Using the Profile Library
+
+**Library Location**: `aidm/libraries/narrative_profiles/`
+
+**Master Index**: `aidm/libraries/narrative_profiles/PROFILE_INDEX.md`
+- Contains all 13+ pre-calibrated anime profiles
+- Organized by genre (Battle Shonen, Dark Fantasy, Comedy, Thriller, etc.)
+- Cross-reference matrix for player requests
+- Blending guidelines for hybrid campaigns
+- Quick-start workflows
+
+**Available Profiles** (as of v1.0):
+1. **DanDaDan** - Supernatural action romance (absurd chaos, rapid tonal shifts)
+2. **Hunter x Hunter** - Tactical battle shonen (10/10 strategy, exhaustive explanations)
+3. **Jujutsu Kaisen** - Dark battle shonen (permanent deaths, Domain Expansions)
+4. **Demon Slayer** - Emotional action spectacle (sakuga beauty, empathy for enemies)
+5. **Attack on Titan** - Dark fantasy military (grim tactics, pyrrhic victories)
+6. **Konosuba** - Comedy isekai parody (incompetent party, mundane stakes)
+7. **Death Note** - Psychological thriller (cat-and-mouse, strategic planning)
+8. **Re:Zero** - Dark time loop isekai (graphic deaths, PTSD, trial-and-error)
+9. **Mushishi** - Atmospheric contemplative (episodic, slow burn, acceptance)
+10. **Vinland Saga** - Historical seinen (realistic violence, redemption arc)
+11. **Code Geass** - Mecha political thriller (4D chess, tonal whiplash)
+12. **Haikyuu** - Sports team drama (teamwork literal, hopeful growth)
+
+**Each Profile Contains**:
+- 10 narrative scale values (ready to copy to active profile)
+- 15 trope switches (ON/OFF)
+- Pacing rhythm, tonal signature, dialogue/combat styles
+- **3 detailed example scenes** (combat, dialogue, exploration) showing profile in action
+- Calibration tips, common mistakes, blending suggestions
+
+### Quick Access Workflows
+
+**Workflow 1: Player Names Specific Anime**
 ```
-Scales: Introspection:3 | Comedy:4 | Simple:5 | Power Fantasy:6 | 
-        Mysterious:7 | Fast-Paced:8 | Serialized:6 | Absurd:9 | 
-        Tactical:5 | Hopeful:7
+Player: "I want Hunter x Hunter vibes!"
 
-Tropes: Rapid Tonal Shifts, Rule of Cool, Mystery Box, Inner Monologue, 
-        Awkward Comedy
-
-Pacing: Rapid cuts, medium arcs, rare breathers, frequent climaxes
-Tone: Absurdity, tension, comedy, romance, hype
-Violence: Stylized body horror
-Dialogue: Very casual, constant banter
-Combat: 4/10 strategy, minimal explanations, sakuga YES, city-leveling
+AIDM:
+1. Open `aidm/libraries/narrative_profiles/hunter_x_hunter_profile.md`
+2. Copy all scales/tropes/styles → active_narrative_profile
+3. Set profile_sources = ["narrative_hxh"]
+4. Reference profile's example scenes during gameplay
 ```
 
-### Hunter x Hunter Profile
+**Workflow 2: Player Describes Desired Tone**
 ```
-Scales: Introspection:7 | Drama:6 | Complex:9 | Struggle:7 | 
-        Explained:9 | Moderate-Paced:6 | Serialized:9 | Grounded:6 | 
-        Tactical:10 | Bittersweet:6
+Player: "I want dark fantasy with strategy."
 
-Tropes: Mystery Box, Tragic Backstory, Escalating Threats, Power of 
-        Friendship, Tournament Arcs
-
-Pacing: Moderate scenes, long arcs, rare filler, rare peaks
-Tone: Tension, wonder, dread, catharsis, hype
-Violence: Stylized → graphic (scales up)
-Dialogue: Mixed formality, lecture-heavy exposition, philosophical debates
-Combat: 10/10 strategy, EXHAUSTIVE explanations, named attacks, moderate destruction
+AIDM:
+1. Open `PROFILE_INDEX.md` cross-reference matrix
+2. Find: "Tactical combat" → HxH, "Dark and brutal" → AoT
+3. Present both profiles to player (show example scenes)
+4. Blend profiles based on player preference
 ```
 
-### Konosuba Profile
+**Workflow 3: Mid-Campaign Tone Shift**
 ```
-Scales: Introspection:2 | Comedy:1 | Simple:3 | Power Fantasy:2 | 
-        Explained:5 | Fast-Paced:7 | Episodic:4 | Absurd:7 | 
-        Instinctive:3 | Hopeful:2
+Player: "Can we shift from comedy to serious redemption arc?"
 
-Tropes: Rapid Tonal Shifts, Slice-of-Life Interludes, Rule of Cool, 
-        Awkward Comedy
-
-Pacing: Rapid cuts, mini-arcs, frequent breathers, constant climaxes (comedic)
-Tone: Absurdity, comedy, joy, romance (parody)
-Violence: Cartoon
-Dialogue: Very casual, constant banter, parody of dramatic declarations
-Combat: 3/10 strategy (failures common), minimal explanations, named attacks MOCKED
+AIDM:
+1. Current: Konosuba profile (comedy)
+2. Target: Vinland Saga profile (redemption)
+3. Gradual transition over 3-5 sessions
+4. Update profile_sources = ["narrative_konosuba", "narrative_vinland_saga"]
 ```
 
-### Attack on Titan Profile
-```
-Scales: Introspection:7 | Drama:9 | Complex:8 | Struggle:9 | 
-        Explained:7 | Moderate-Paced:6 | Serialized:10 | Grounded:7 | 
-        Tactical:8 | Cynical:8
+### For Complete Profile Details
 
-Tropes: Mystery Box, Tragic Backstory, Escalating Threats, Existential 
-        Philosophy, Tragic Hero Cycle
+**Instead of inline examples here**, see comprehensive profile library:
+- **Master Index**: `aidm/libraries/narrative_profiles/PROFILE_INDEX.md`
+- **Individual Profiles**: `aidm/libraries/narrative_profiles/{anime}_profile.md`
 
-Pacing: Lingering scenes, saga-length arcs, no filler, rare peaks (devastating)
-Tone: Dread, despair, tension, catharsis (rare), horror
-Violence: Graphic → brutal
-Dialogue: Formal, balanced exposition, philosophical debates, minimal banter
-Combat: 8/10 strategy, moderate explanations, environmental destruction, named attacks rare
-```
+Each profile averages ~3,000 tokens with detailed:
+- Scale justifications
+- Example scenes (combat, dialogue, exploration)
+- Usage notes and calibration tips
+- Adjustment logs from actual gameplay
+- Common mistakes to avoid
 
 ---
 
