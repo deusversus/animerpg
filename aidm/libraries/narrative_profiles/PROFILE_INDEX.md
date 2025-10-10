@@ -9,26 +9,11 @@
 
 ## Quick Reference Guide
 
-### How to Use This Library
+**For Players (Session Zero)**: Browse by genre → Read 2-3 matching profiles → Discuss elements with AIDM → AIDM calibrates
 
-**For Players (Session Zero)**:
-1. Browse profiles by genre below
-2. Read 2-3 profiles that match your desired campaign tone
-3. Discuss with AIDM which elements appeal to you
-4. AIDM will calibrate narrative DNA using selected profile(s)
+**For AIDM**: Present index → Player selects 1-3 profiles → Extract DNA (copy scales/tropes/styles to `active_narrative_profile`) → Store profile ID(s) in session schema → Reference during gameplay
 
-**For AIDM**:
-1. During Session Zero, present this index to player
-2. Player selects 1-3 profiles as tonal references
-3. Extract narrative DNA from selected profiles:
-   - Copy scale values to `active_narrative_profile`
-   - Enable/disable tropes based on profile
-   - Set dialogue_style and combat_narrative_style
-4. Store profile ID(s) in session export schema
-5. Reference profile during gameplay for consistency
-
-**Profile File Naming**: `{anime_title_snake_case}_profile.md`  
-**Profile ID Format**: `narrative_{short_name}`
+**Format**: Files = `{anime}_profile.md` | IDs = `narrative_{short_name}`
 
 ---
 
@@ -36,283 +21,151 @@
 
 ### Battle Shonen (Action-Focused, Growth Arcs)
 
-| Profile | ID | Key Features | Best For |
-|---------|-----|--------------|----------|
-| **Hunter x Hunter** | `narrative_hxh` | Tactical combat (10/10), exhaustive power explanations, complex moral choices, strategic battles, Nen system depth | Players who want EXPLAINED tactics, every ability has conditions/costs, earn victories through strategy |
-| **Jujutsu Kaisen** | `narrative_jjk` | Dark tone, permanent character deaths, horror elements (Mahito), Domain Expansions, binding vows, modern urban supernatural | Players who want consequences, beautiful combat + tragedy, cursed techniques with rules |
-| **Demon Slayer** | `narrative_demon_slayer` | Emotional spectacle, Breathing techniques (sakuga), empathy for enemies, tragic backstories, hopeful despite darkness | Players who want visually stunning combat, crying after victories, kind protagonist |
+**Hunter x Hunter** (`narrative_hxh`): Tactical 10/10, exhaustive explanations, Nen conditions/costs, strategic battles | *Best for*: Earned victories through strategy  
+**Jujutsu Kaisen** (`narrative_jjk`): Dark tone, permanent deaths, Domain Expansions, binding vows, horror (Mahito) | *Best for*: Consequences + beautiful tragedy  
+**Demon Slayer** (`narrative_demon_slayer`): Emotional sakuga, Breathing techniques, empathy for enemies, tragic backstories | *Best for*: Visually stunning combat, kind protagonist
 
-**Common Themes**: Power systems with rules, training arcs, escalating threats, friendship (varies by subversion level)
+*Common*: Power systems with rules, training arcs, escalating threats, friendship (varies)
 
 ---
 
 ### Dark Fantasy / Military
 
-| Profile | ID | Key Features | Best For |
-|---------|-----|--------------|----------|
-| **Attack on Titan** | `narrative_aot` | Grim military tactics, titan horror, political conspiracy, "no safety" philosophy, dramatic declarations, pyrrhic victories | Players who want mortal danger always, formal military tone, truth worse than mystery, walls = false security |
+**Attack on Titan** (`narrative_aot`): Grim military tactics, titan horror, political conspiracy, pyrrhic victories, formal tone, "no safety" | *Best for*: Mortal danger always, truth worse than mystery
 
-**Common Themes**: War brutality, existential threats, political intrigue, high casualties
+*Common*: War brutality, existential threats, politics, high casualties
 
 ---
 
 ### Comedy / Parody
 
-| Profile | ID | Key Features | Best For |
-|---------|-----|--------------|----------|
-| **Konosuba** | `narrative_konosuba` | Anti-power-fantasy, incompetent party, mundane stakes (rent > Demon King), constant banter, fanservice played for comedy, everything backfires hilariously | Players who want failing upward, dysfunctional found family, absurd situations with grounded reactions, ALWAYS undercut drama |
+**Konosuba** (`narrative_konosuba`): Anti-power-fantasy, incompetent party, mundane stakes (rent>Demon King), constant banter, backfire comedy | *Best for*: Failing upward, dysfunctional family, undercut drama
 
-**Common Themes**: Parody tropes, slapstick, financial struggles, chaos wins
+*Common*: Parody tropes, slapstick, financial struggles, chaos wins
 
 ---
 
 ### Psychological Thriller / Mystery
 
-| Profile | ID | Key Features | Best For |
-|---------|-----|--------------|----------|
-| **Death Note** | `narrative_death_note` | Cat-and-mouse mind games, dual inner monologue (protagonist + antagonist), "Just as planned", plans within plans, moral ambiguity, no physical combat | Players who want strategic detective vs mastermind, psychological horror, evidence > violence, delayed plan reveals |
-| **Code Geass** | `narrative_code_geass` | Mecha political intrigue, Geass powers with costs, tonal whiplash (school comedy → tragedy), strategic mastermind protagonist, moral ambiguity, "checkmate" moments | Players who want 4D chess tactics, dual identity strain (student vs terrorist), complex betrayals, tragic hero |
+**Death Note** (`narrative_death_note`): Cat-and-mouse, dual inner monologue, "just as planned", plans within plans, no combat | *Best for*: Detective vs mastermind, evidence>violence  
+**Code Geass** (`narrative_code_geass`): Mecha politics, Geass costs, tonal whiplash (school→tragedy), strategic mastermind, checkmate moments | *Best for*: 4D chess, dual identity strain
 
-**Common Themes**: Strategy over strength, inner monologue, moral grey areas, tragic descents
+*Common*: Strategy>strength, inner monologue, moral grey, tragic descents
 
 ---
 
 ### Isekai (Transported to Another World)
 
-| Profile | ID | Key Features | Best For |
-|---------|-----|--------------|----------|
-| **Konosuba** | `narrative_konosuba` | Comedy isekai parody (see Comedy section) | Light-hearted isekai mockery |
-| **Re:Zero** | `narrative_rezero` | Time loop horror, Return by Death (resets on death), graphic deaths, PTSD accumulation, mystery solving through iteration, isolation from meta-knowledge | Players who want suffering isekai, trial-and-error gameplay, learning through failure, psychological trauma, earned victories after 3-7 failed loops |
+**Konosuba** (`narrative_konosuba`): Comedy isekai parody (see Comedy section)  
+**Re:Zero** (`narrative_rezero`): Time loop horror, Return by Death, graphic deaths, PTSD accumulation, trial-and-error mystery | *Best for*: Suffering isekai, learning through 3-7 failed loops
 
-**Common Themes**: Isekai trope awareness (Konosuba parodies, Re:Zero subverts), overpowered mechanics with costs
+*Common*: Trope awareness (Konosuba parodies, Re:Zero subverts), OP mechanics with costs
 
 ---
 
 ### Atmospheric / Contemplative
 
-| Profile | ID | Key Features | Best For |
-|---------|-----|--------------|----------|
-| **Mushishi** | `narrative_mushishi` | Episodic wanderer, no combat (observation/treatment), mushi as natural phenomena, bittersweet endings, slow pacing (90% contemplation), nature descriptions, silence is content | Players who want philosophy over action, acceptance over victory, quiet beauty, Ginko helps then leaves, environmental storytelling |
+**Mushishi** (`narrative_mushishi`): Episodic wanderer, no combat (observation/treatment), mushi as nature, bittersweet endings, slow (90% contemplation), silence=content | *Best for*: Philosophy>action, acceptance>victory, quiet beauty
 
-**Common Themes**: Slice-of-life, existential acceptance, nature focus, melancholy beauty
+*Common*: Slice-of-life, existential acceptance, nature focus, melancholy
 
 ---
 
 ### Seinen (Mature, Realistic)
 
-| Profile | ID | Key Features | Best For |
-|---------|-----|--------------|----------|
-| **Vinland Saga** | `narrative_vinland_saga` | Historical brutality, realistic violence (ugly not stylish), redemption arc (S1 revenge → S2 pacifism), slow burn character growth, Viking Age accuracy, "I have no enemies" philosophy | Players who want grounded medieval combat, PTSD depicted, pacifism as HARD choice, slavery/war consequences, found family through trauma |
+**Vinland Saga** (`narrative_vinland_saga`): Historical brutality, realistic ugly violence, redemption (revenge→pacifism), Viking accuracy, "I have no enemies" | *Best for*: Grounded medieval, PTSD depicted, pacifism HARD choice
 
-**Common Themes**: Moral complexity, violence has cost, slow character transformation, historical grounding
+*Common*: Moral complexity, violence has cost, slow transformation, historical grounding
 
 ---
 
 ### Sports / Team Drama
 
-| Profile | ID | Key Features | Best For |
-|---------|-----|--------------|----------|
-| **Haikyuu** | `narrative_haikyuu` | Volleyball teamwork (literal cooperation required), underdog victories, practice matters, chibi comedy breaks, hopeful tone, losses teach, respect rivals, "One More!" mentality | Players who want team-based campaign, skill development through training, found family, tournament structure, inspirational growth |
+**Haikyuu** (`narrative_haikyuu`): Volleyball teamwork (literal cooperation), underdog wins, practice matters, chibi comedy, losses teach, "One More!" | *Best for*: Team campaign, skill training, found family
 
-**Common Themes**: Teamwork mechanics, training arcs, rivalries with respect, emotional catharsis
+*Common*: Teamwork mechanics, training arcs, respect rivals, emotional catharsis
 
 ---
 
 ### Supernatural Romance / Action
 
-| Profile | ID | Key Features | Best For |
-|---------|-----|--------------|----------|
-| **DanDaDan** | `narrative_dandadan` | Occult + aliens, rapid tonal shifts (horror → romance → comedy), body-swap mechanics, psychic powers, relationship focus, "believe to perceive" theme, Gen Z dialogue | Players who want genre-blending chaos, relationship development through weird situations, fast-paced multi-genre |
+**DanDaDan** (`narrative_dandadan`): Occult+aliens, rapid tonal shifts (horror→romance→comedy), body-swap, psychic powers, relationship focus, Gen Z dialogue | *Best for*: Genre-blending chaos, fast multi-genre
 
-**Common Themes**: Romance subplot, tonal whiplash, supernatural meets sci-fi
-
----
+*Common*: Romance subplot, tonal whiplash, supernatural+sci-fi---
 
 ## Cross-Reference Matrix
 
-### If Player Wants... → Recommend These Profiles
+**If Player Wants... → Recommend**:
 
-| Player Request | Primary Profile(s) | Secondary Profile(s) |
-|----------------|-------------------|---------------------|
-| "Tactical combat with explanations" | Hunter x Hunter | Jujutsu Kaisen, Code Geass |
-| "Dark and brutal" | Attack on Titan, Re:Zero | Vinland Saga, Jujutsu Kaisen |
-| "Comedy and fun" | Konosuba | Haikyuu (team comedy), DanDaDan (tonal chaos) |
-| "Psychological mind games" | Death Note | Code Geass, Re:Zero (loop mystery) |
-| "Beautiful combat spectacle" | Demon Slayer | Jujutsu Kaisen (Domain Expansions) |
-| "Time loops / trial and error" | Re:Zero | (unique - no alternatives) |
-| "Contemplative and slow" | Mushishi | Vinland Saga (S2 farm arc) |
-| "Redemption arc" | Vinland Saga | Jujutsu Kaisen (Yuji's guilt) |
-| "Team dynamics" | Haikyuu | Konosuba (dysfunctional team) |
-| "Mecha and politics" | Code Geass | Attack on Titan (military politics) |
-| "Isekai parody" | Konosuba | (unique - no alternatives) |
-| "Isekai serious" | Re:Zero | (unique - no alternatives) |
-| "Power system with rules" | Hunter x Hunter | Jujutsu Kaisen, Demon Slayer |
-| "Empathy for enemies" | Demon Slayer | Vinland Saga (Thorfinn's pacifism) |
-| "Tournament structure" | Haikyuu | Hunter x Hunter (Heavens Arena) |
+"Tactical combat" → HxH | JJK, Code Geass  
+"Dark/brutal" → AoT, Re:Zero | Vinland, JJK  
+"Comedy/fun" → Konosuba | Haikyuu, DanDaDan  
+"Mind games" → Death Note | Code Geass, Re:Zero  
+"Beautiful combat" → Demon Slayer | JJK  
+"Time loops" → Re:Zero (unique)  
+"Contemplative/slow" → Mushishi | Vinland (S2)  
+"Redemption arc" → Vinland | JJK  
+"Team dynamics" → Haikyuu | Konosuba  
+"Mecha/politics" → Code Geass | AoT  
+"Isekai parody" → Konosuba (unique)  
+"Isekai serious" → Re:Zero (unique)  
+"Power system rules" → HxH | JJK, Demon Slayer  
+"Empathy for enemies" → Demon Slayer | Vinland  
+"Tournament structure" → Haikyuu | HxH
 
 ---
 
 ## Blending Profiles (Advanced)
 
-**AIDM can combine 2-3 profiles for hybrid campaigns**:
+**AIDM can combine 2-3 profiles**:
 
-### Example Blends
+**"Tactical Dark Fantasy"**: HxH (tactics) + AoT (grim) + JJK (horror) = Explained powers, high lethality, strategic with permanent deaths
 
-**"Tactical Dark Fantasy"**:
-- Hunter x Hunter (tactics) + Attack on Titan (grim tone) + Jujutsu Kaisen (horror)
-- Result: Explained power system, high lethality, strategic battles with permanent deaths
+**"Comedic Isekai with Heart"**: Konosuba (comedy) + Haikyuu (bonding) = Dysfunctional party failing upward but genuinely caring
 
-**"Comedic Isekai with Heart"**:
-- Konosuba (comedy) + Haikyuu (team bonding) 
-- Result: Dysfunctional party failing upward but genuinely caring for each other
+**"Psychological Horror Isekai"**: Re:Zero (loops) + Death Note (planning) = Loop knowledge to outmaneuver intelligent opponents
 
-**"Psychological Horror Isekai"**:
-- Re:Zero (time loops) + Death Note (strategic planning)
-- Result: Using loop knowledge to outmaneuver intelligent opponents
+**"Contemplative Redemption"**: Mushishi (slow, acceptance) + Vinland (redemption) = Quiet growth, bittersweet, violence renounced
 
-**"Contemplative Redemption"**:
-- Mushishi (slow pacing, acceptance) + Vinland Saga (redemption arc)
-- Result: Quiet character growth, bittersweet endings, violence renounced
-
-### Blending Guidelines
-
-1. **Choose 1 Primary Profile** (dominant tone/pacing)
-2. **Add 1-2 Secondary Profiles** (specific elements only)
-3. **Avoid Contradictions**:
-   - ❌ Konosuba + Attack on Titan (comedy vs grim incompatible)
-   - ❌ Mushishi + Demon Slayer (slow vs fast pacing clash)
-   - ✅ Jujutsu Kaisen + Demon Slayer (both dark shonen, different emphasis)
-   - ✅ Death Note + Code Geass (both strategic thriller, different settings)
-
-4. **Extract Carefully**:
-   - Narrative scales: Average primary + secondary (or choose primary's values)
-   - Tropes: Enable union of both profiles' enabled tropes
-   - Dialogue/Combat styles: Choose primary's style, adjust 1-2 parameters from secondary
+**Guidelines**:  
+1. Choose **1 primary** (dominant tone/pacing)  
+2. Add **1-2 secondary** (specific elements)  
+3. **Avoid contradictions**: ❌ Konosuba+AoT (comedy vs grim) | ❌ Mushishi+Demon Slayer (slow vs fast) | ✅ JJK+Demon Slayer (both dark shonen) | ✅ Death Note+Code Geass (both strategic)  
+4. **Extract**: Scales=average or primary | Tropes=union of enabled | Dialogue/Combat=primary's style, adjust 1-2 from secondary
 
 ---
 
 ## Profile Structure (All Profiles Follow This Format)
 
-Each profile contains:
-
-1. **Metadata**: Profile ID, source anime, confidence level
-2. **Narrative Scales**: 10 scales (0-10 values) matching Module 13 schema
-3. **Storytelling Tropes**: 15 tropes (ON/OFF) matching Module 13 schema
-4. **Pacing Rhythm**: Scene/arc length, climax frequency, downtime ratio
-5. **Tonal Signature**: Primary emotions, violence/fanservice/horror levels
-6. **Dialogue Style**: 6 parameters matching Module 13 dialogue_style
-7. **Combat Narrative Style**: 5 parameters matching Module 13 combat_narrative_style
-8. **Example Scenes**: 3 examples (combat, dialogue, exploration) showing profile in action
-9. **Adjustment Log**: Session-by-session calibration history
-10. **Usage Notes**: When to apply, calibration tips, common mistakes to avoid
+1. Metadata (ID, source, confidence) | 2. Narrative Scales (10 scales 0-10) | 3. Storytelling Tropes (15 ON/OFF) | 4. Pacing Rhythm (scene/arc length, climax frequency, downtime %) | 5. Tonal Signature (emotions, violence/fanservice/horror) | 6. Dialogue Style (6 parameters) | 7. Combat Narrative (5 parameters) | 8. Example Scenes (3: combat, dialogue, exploration) | 9. Adjustment Log (session calibration history) | 10. Usage Notes (when to apply, tips, mistakes)
 
 ---
 
 ## Quick Start Workflows
 
-### Workflow 1: Player Knows Exactly What They Want
+**1. Player Knows Anime**: "I want Hunter x Hunter!" → Open `hunter_x_hunter_profile.md` → Copy scales/tropes/styles to `active_narrative_profile` → Set `profile_sources=["narrative_hxh"]` → Reference "Usage Notes" during gameplay
 
-**Player**: "I want a campaign like Hunter x Hunter!"
+**2. Player Knows Genre**: "Dark fantasy + strategy" → Consult matrix (Tactical→HxH, Dark→AoT) → Show both example scenes → Player chooses blend (HxH tactics + AoT tone) → Extract HxH (Tactical:10, Explained:3, exhaustive dialogue) + AoT (Drama:9, Cynical:8, military formality) → Merge → Set `profile_sources=["narrative_hxh","narrative_aot"]`
 
-**AIDM Steps**:
-1. Open `aidm/libraries/narrative_profiles/hunter_x_hunter_profile.md`
-2. Copy all 10 narrative scale values → `active_narrative_profile.scales`
-3. Enable tropes from profile → `active_narrative_profile.tropes`
-4. Copy dialogue_style parameters → `active_narrative_profile.dialogue_style`
-5. Copy combat_narrative_style parameters → `active_narrative_profile.combat_narrative_style`
-6. Set `active_narrative_profile.profile_sources = ["narrative_hxh"]`
-7. Save to session export schema
-8. During gameplay, reference profile's "Usage Notes" for calibration tips
+**3. Player Wants Custom**: "Fun campaign, no references" → Use Module 13 baseline → Session Zero calibration questions (comedy vs drama? tactical vs instinctive?) → Leave `profile_sources=[]` → After 3-5 sessions, suggest closest library match → Player adopts or continues custom
 
----
-
-### Workflow 2: Player Knows Genre, Not Specific Anime
-
-**Player**: "I want dark fantasy with lots of strategy."
-
-**AIDM Steps**:
-1. Consult Cross-Reference Matrix: "Tactical combat" → Hunter x Hunter, "Dark and brutal" → Attack on Titan
-2. Present both profiles to player (show example scenes)
-3. Player chooses blend: HxH (tactics) + AoT (tone)
-4. Extract from HxH: Tactical scale (10), Explained scale (3), dialogue_style (exhaustive explanations)
-5. Extract from AoT: Drama scale (9), Cynical scale (8), combat_narrative_style (military formality)
-6. Merge into `active_narrative_profile`
-7. Set `profile_sources = ["narrative_hxh", "narrative_aot"]`
-8. Reference both profiles during gameplay
-
----
-
-### Workflow 3: Player Wants Custom, No Reference
-
-**Player**: "I just want a fun campaign, not sure about anime references."
-
-**AIDM Steps**:
-1. Use default narrative DNA (Module 13 baseline)
-2. During Session Zero, ask calibration questions:
-   - "Do you want comedy or drama?" → Adjust comedy_vs_drama scale
-   - "Tactical or instinctive combat?" → Adjust tactical_vs_instinctive scale
-   - Etc. (use Module 13 questionnaire)
-3. Leave `profile_sources = []` (custom profile)
-4. After 3-5 sessions, analyze gameplay and suggest closest matching profile from library
-5. Player can adopt profile or continue custom
-
----
-
-### Workflow 4: Mid-Campaign Tone Shift
-
-**Scenario**: Campaign started Konosuba-style (comedy), player wants shift to serious.
-
-**AIDM Steps**:
-1. Discuss with player: "Which serious tone? Dark (AoT), Tactical (HxH), Redemption (Vinland)?"
-2. Player chooses: "I want redemption arc like Vinland Saga"
-3. Gradual transition (don't shock player):
-   - Session N: Konosuba comedy but introduce serious consequence (party member dies)
-   - Session N+1: Comedy reduced 50%, drama increased (funeral, guilt)
-   - Session N+2: Shift to Vinland Saga profile (slow burn, PTSD, pacifism themes)
-4. Update `active_narrative_profile.profile_sources = ["narrative_konosuba", "narrative_vinland_saga"]` (shows evolution)
-5. Mark transition in `active_narrative_profile.adjustment_log`
+**4. Mid-Campaign Tone Shift**: Konosuba(comedy) → serious → "Which serious? Dark/Tactical/Redemption?" → Player: "Vinland redemption" → Gradual transition: Session N (comedy but serious consequence), N+1 (50% comedy, introduce guilt), N+2 (shift to Vinland: slow burn, PTSD, pacifism) → Update `profile_sources=["narrative_konosuba","narrative_vinland_saga"]` → Mark in `adjustment_log`
 
 ---
 
 ## Profile Maintenance & Updates
 
-### Adding New Profiles
+**Adding New Profile**: Follow structure → Add to index under genre → Update cross-reference matrix → Add blending suggestions → Increment count → Update date
 
-**When creating new profile**:
-1. Follow standardized structure (see "Profile Structure" above)
-2. Add entry to this index under appropriate genre
-3. Update Cross-Reference Matrix with new profile's strengths
-4. Add blending suggestions if profile has unique mechanics
-5. Increment "Total Profiles" count at top of document
-6. Update "Last Updated" date
-
-**Suggested Profiles for Future Addition**:
-- Fullmetal Alchemist (adventure, equivalent exchange philosophy)
-- Steins;Gate (time travel thriller, sacrifice)
-- One Punch Man (parody, OP protagonist boredom)
-- Mob Psycho 100 (coming-of-age, psychic powers, emotional growth)
-- Made in Abyss (exploration horror, cute art style + dark content)
-- Monogatari Series (dialogue-heavy, wordplay, supernatural mystery)
-- Cowboy Bebop (episodic space western, jazz, melancholy)
-- Fate/Zero (dark battle royale, tragic heroes, moral complexity)
+**Suggested Future Profiles**: Fullmetal Alchemist (adventure, equivalent exchange) | Steins;Gate (time travel thriller) | One Punch Man (parody, OP boredom) | Mob Psycho 100 (coming-of-age psychic) | Made in Abyss (exploration horror, cute+dark) | Monogatari (dialogue-heavy wordplay) | Cowboy Bebop (episodic space western jazz) | Fate/Zero (battle royale, tragic heroes)
 
 ---
 
 ## Integration with Module 13
 
-**This library is companion resource to Module 13 (Narrative Calibration)**:
+**Relationship**: Module 13 defines schema (scales, tropes, styles) | Library provides pre-calibrated examples | Library=examples, Module 13=system
 
-- **Module 13 defines**: Narrative DNA schema (scales, tropes, styles)
-- **This library provides**: Pre-calibrated DNA profiles extracted from popular anime
-- **Relationship**: Library = examples, Module 13 = system
-
-**File References**:
-- Narrative DNA schema: `aidm/instructions/13_narrative_calibration.md`
-- Session export schema: `aidm/schemas/session_export_schema.json` (stores `active_narrative_profile`)
-- Module 00 (Session Init): References this library during Session Zero
-- Module 04 (NPCs): Uses `dialogue_style` from active profile
-- Module 05 (Great Sage): Uses narrative scales for tone consistency
-- Module 08 (Combat): Uses `combat_narrative_style` from active profile
+**File References**: Schema=`13_narrative_calibration.md` | Session data=`session_export_schema.json` (`active_narrative_profile`) | Module 00 (Init)=references during Session Zero | Module 04 (NPCs)=uses `dialogue_style` | Module 05 (Great Sage)=uses scales for tone | Module 08 (Combat)=uses `combat_narrative_style`
 
 ---
 

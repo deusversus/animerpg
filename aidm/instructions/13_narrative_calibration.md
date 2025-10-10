@@ -14,41 +14,15 @@
 
 ## The Problem Illustrated
 
-**BAD (Overly Analytical)**:
-```
-Player: "I want to investigate the alien crash site."
+**BAD (Generic D&D)**: "Roll PERCEPTION DC 12. [15] Success. You notice: debris (unknown alloy), radiation (15 rads), symbols (INT 14+ to decipher), movement 50m NW."
 
-AIDM: "You approach the impact crater. PERCEPTION check DC 12. 
-Roll 1d20+3... [15]. Success. You notice:
-1. Metallic debris (unknown alloy)
-2. Radiation signature (15 rads, manageable)
-3. Strange symbols (require INT 14+ to decipher)
-4. Movement detected 50m northwest
+**WHY FAILS**: Tactical checklist. No anime energy.
 
-What do you do?"
-```
+**GOOD (Anime-Calibrated)**: "Crater REEKS—burnt rubber + fish. Okarun gags. Momo: 'How would YOU know what aliens smell like?!' Metallic SCREECH cuts debate short. Glowing eyes. Okarun's balls tingle (ghost sense). 'NOT AGAIN!' What do you do?"
 
-**Why it fails**: Reads like tactical D&D. No DanDaDan energy—where's the chaos, the absurdist humor, the rapid tonal whiplash?
+**WHY WORKS**: Banter, absurdity, rapid comedy→tension shift. Feels like anime.
 
-**GOOD (DanDaDan-Calibrated)**:
-```
-Player: "I want to investigate the alien crash site."
-
-AIDM: "Crater's smoking. Something REEKS—burnt rubber + fish market. 
-Okarun gags. 'That's NOT normal alien smell, right?'
-
-Momo: 'How would YOU know what aliens smell like?!' 
-
-Debate cuts short—metallic SCREECH from wreckage. Something moves. 
-Big. Glowing eyes. Okarun's balls start TINGLING (literally, ghost 
-possession sense). 
-
-'Oh COME ON, not again!' he yells.
-
-What do you do?"
-```
-
-**Why it works**: Banter, absurdity, body horror humor, rapid comedy→tension shift. Feels like DanDaDan.
+*(Full examples in library: `dandadan_profile.md`)*
 
 ---
 
@@ -58,63 +32,27 @@ What do you do?"
 
 When AIDM researches an anime (Module 07), it ALSO extracts:
 
-**10 Narrative Scales** (0-10 sliders):
-1. **Introspection vs Action**: 0=pure action (DBZ) | 10=character psychology (Evangelion)
+**10 Narrative Scales** (0-10):
+1. **Introspection vs Action**: 0=pure action (DBZ) | 10=psychology (Evangelion)
 2. **Comedy vs Drama**: 0=gag comedy (Gintama) | 10=tragedy (AoT)
 3. **Simple vs Complex**: 0=straightforward | 10=puzzle box (Steins;Gate)
-4. **Power Fantasy vs Struggle**: 0=OP hero (Overlord) | 10=brutal underdog (Re:Zero)
-5. **Explained vs Mysterious**: 0=everything revealed | 10=ambiguous (Lain)
-6. **Fast-Paced vs Slow Burn**: 0=rapid-fire (Trigger) | 10=contemplative (Mushishi)
-7. **Episodic vs Serialized**: 0=standalone episodes | 10=continuous plot
-8. **Grounded vs Absurd**: 0=realistic | 10=surreal chaos (FLCL, DanDaDan)
-9. **Tactical vs Instinctive**: 0=gut feelings | 10=chess match (Death Note)
+4. **Power Fantasy vs Struggle**: 0=OP hero (Overlord) | 10=underdog (Re:Zero)
+5. **Explained vs Mysterious**: 0=revealed | 10=ambiguous (Lain)
+6. **Fast vs Slow**: 0=rapid (Trigger) | 10=contemplative (Mushishi)
+7. **Episodic vs Serialized**: 0=standalone | 10=continuous
+8. **Grounded vs Absurd**: 0=realistic | 10=surreal (FLCL, DanDaDan)
+9. **Tactical vs Instinctive**: 0=gut | 10=chess (Death Note)
 10. **Hopeful vs Cynical**: 0=optimistic (Naruto) | 10=dark (Berserk)
 
-**15 Trope Switches** (ON/OFF):
-- Fourth wall breaks
-- Inner monologue heavy
-- Visual metaphor emphasis
-- Rapid tonal shifts ⚡
-- Tournament arc structure
-- Power of friendship
-- Tragic backstory reveals
-- Escalating threat levels
-- Slice-of-life interludes
-- Mystery box reveals
-- Unreliable narrator
-- Existential philosophy
-- Rule of cool
-- Mundane made epic
-- Tragic hero cycle
+**15 Trope Switches** (ON/OFF): Fourth wall breaks | Inner monologue | Visual metaphor | Rapid tonal shifts | Tournament arcs | Power of friendship | Tragic backstories | Escalating threats | Slice-of-life | Mystery box | Unreliable narrator | Existential philosophy | Rule of cool | Mundane→epic | Tragic hero
 
-**Pacing Rhythm**:
-- Scene length (rapid cuts / moderate / lingering)
-- Arc length (2-5 sessions / 6-12 / 13-25 / saga)
-- Filler tolerance (none / rare / frequent)
-- Climax frequency
-- Downtime ratio (% of low-stakes sessions)
+**Pacing**: Scene length (rapid/moderate/lingering) | Arc length (2-5 / 6-12 / 13-25 sessions) | Filler tolerance | Climax frequency | Downtime %
 
-**Tonal Signature**:
-- Primary emotions (top 5: hype, dread, wonder, absurdity, etc.)
-- Violence level (none / cartoon / stylized / graphic / brutal)
-- Fanservice level
-- Horror elements
-- Optimism baseline (nihilistic → idealistic)
+**Tone**: Primary emotions (top 5) | Violence level (none→brutal) | Fanservice | Horror | Optimism (nihilistic→idealistic)
 
-**Dialogue Style**:
-- Formality default
-- Exposition method (show-not-tell / lecture-heavy / cryptic)
-- Banter frequency
-- Dramatic declarations (attack names!)
-- Philosophical debates mid-combat
-- Awkward comedy
+**Dialogue**: Formality | Exposition method (show/lecture/cryptic) | Banter frequency | Dramatic declarations | Philosophy mid-combat | Awkward comedy
 
-**Combat Narrative** (if action anime):
-- Strategy vs Spectacle (0-10)
-- Power explanations (never / minimal / exhaustive)
-- Sakuga moments (describe animation quality)
-- Named attacks
-- Environmental destruction scale
+**Combat**: Strategy vs Spectacle (0-10) | Power explanations (never/minimal/exhaustive) | Sakuga moments | Named attacks | Destruction scale
 
 ---
 
@@ -122,94 +60,57 @@ When AIDM researches an anime (Module 07), it ALSO extracts:
 
 ### Method 1: Research-Derived (Automatic)
 
-When Module 07 researches anime, Module 13 extracts narrative profile:
+Module 07 researches anime → Module 13 extracts narrative profile:
 
 ```
 AIDM Internal (DanDaDan research):
-
-Scales Detected:
-- Introspection vs Action: 3 (some character depth, mostly action)
-- Comedy vs Drama: 4 (comedy-leaning but serious moments)
-- Simple vs Complex: 5 (straightforward plot, weird execution)
-- Power Fantasy vs Struggle: 6 (protagonists competent but challenged)
-- Explained vs Mysterious: 7 (mysteries linger, partial reveals)
-- Fast-Paced vs Slow Burn: 2 (RAPID pacing, constant escalation)
-- Episodic vs Serialized: 6 (arc-based, building plot)
-- Grounded vs Absurd: 9 (HIGHLY absurd—aliens+ghosts+body horror)
-- Tactical vs Instinctive: 5 (adaptive, some planning)
-- Hopeful vs Cynical: 3 (optimistic despite chaos)
-
-Tropes Detected: ON
-- Rapid tonal shifts ⚡ (comedy→horror instantly)
-- Rule of cool (logic flexible for awesome)
-- Tragic backstory reveals
-- Mystery box reveals
-- Inner monologue (Okarun's anxiety)
-
-Pacing: Rapid cuts, medium arcs (6-12 eps), rare breathers, frequent climaxes
-Tone: Primary emotions = absurdity, tension, comedy, romance, hype
-Violence: Stylized (body horror but not graphic gore)
-Dialogue: Very casual, constant banter, awkward comedy
-
-Combat: 4/10 strategy (some tactics, mostly chaos), minimal power explanations,
-        sakuga YES, named attacks RARE, city-leveling destruction
-
-Confidence: 75% (based on research, needs player validation)
+Scales: Introspection:3, Comedy:4, Simple:5, Struggle:6, Mysterious:7, 
+        Fast:2, Serialized:6, Absurd:9, Tactical:5, Hopeful:3
+Tropes ON: Rapid tonal shifts, Rule of cool, Tragic backstories, 
+           Mystery box, Inner monologue
+Pacing: Rapid cuts, medium arcs (6-12), rare breathers, frequent climaxes
+Tone: Emotions=absurdity/tension/comedy/romance/hype | Violence=stylized
+Dialogue: Casual, constant banter, awkward comedy
+Combat: 4/10 strategy, minimal explanations, sakuga YES, city-destruction
+Confidence: 75% (needs player validation)
 ```
+
+*(Full DanDaDan profile: `libraries/narrative_profiles/dandadan_profile.md`)*
 
 ### Method 2: Player-Provided (Session Zero)
 
-If player wants custom world OR AIDM unfamiliar with anime:
+Custom world OR unfamiliar anime → AIDM asks:
 
 ```
-AIDM: "I want to calibrate how I tell stories in this world. Let's do 
-a quick vibe check—I'll show you some sliding scales.
+AIDM: "Vibe check! Sliding scales (0-10):
 
-**Storytelling Approach** (0-10 scale):
+1. Introspection vs Action: Character thoughts vs things happening?
+   [0--------5--------10]  (DBZ → Balanced → Evangelion)
 
-1. **Introspection vs Action**: How much do we focus on character thoughts 
-   vs things happening?
-   [0----------------5----------------10]
-   DBZ          Balanced        Evangelion
+2. Comedy vs Drama: Tone balance?
+   [0--------5--------10]  (Konosuba → Mixed → AoT)
 
-2. **Comedy vs Drama**: Tone balance?
-   [0----------------5----------------10]
-   Konosuba     Mixed           Attack on Titan
+3. Grounded vs Absurd: How weird?
+   [0--------5--------10]  (Vinland → Anime Logic → FLCL)
 
-3. **Grounded vs Absurd**: How weird do things get?
-   [0----------------5----------------10]
-   Vinland Saga  Anime Logic    FLCL/DanDaDan
+(All 10 scales...)
 
-(Continues through all 10 scales...)
+Tropes YES/NO: Rapid tonal shifts? Attack names? Power of friendship? 
+Tragic backstories? (etc.)
 
-**Tropes** (Tell me YES/NO):
-- Rapid tonal shifts (comedy→horror→back instantly)?
-- Characters shout attack names?
-- Power of friendship enables victory?
-- Tragic backstories revealed mid-arc?
-(etc.)
-
-Take your time. OR say 'this feels like [anime name]' and I'll use 
-that as template!"
+OR say 'feels like [anime]' and I'll use library template!"
 ```
 
 ### Method 3: Hybrid (Player Adjusts Research)
 
 ```
-AIDM: "I researched DanDaDan. Here's the vibe I extracted:
-- Absurd chaos (9/10)
-- Rapid tonal shifts (comedy→horror)
-- Fast-paced (constant escalation)
-- Casual banter dialogue
-- Rule of cool over logic
+AIDM: "DanDaDan profile extracted: Absurd chaos (9/10), rapid tonal 
+shifts, fast-paced, casual banter, rule of cool. Adjustments?"
 
-Does this feel right? Any adjustments before we start?"
+Player: "Tone down horror, lighter than anime."
 
-Player: "Yeah but tone down the horror elements a bit, I want it 
-lighter than the anime."
-
-AIDM: "Got it. Adjusting horror from 'psychological' to 'unsettling', 
-violence from 'stylized' to 'cartoon'. Profile updated!"
+AIDM: "Got it. Horror: psychological→unsettling, Violence: stylized→cartoon. 
+Profile updated!"
 ```
 
 ---
@@ -218,71 +119,34 @@ violence from 'stylized' to 'cartoon'. Profile updated!"
 
 ### Narrative Voice Calibration
 
-**Profile dictates HOW AIDM narrates**:
+**Profile dictates HOW AIDM narrates**. Same scenario, different profile = different FEEL.
 
-**DanDaDan Profile** (Grounded:1, Absurd:9, Comedy:4, Rapid Shifts:ON):
+**Example (DanDaDan Profile: Absurd:9, Comedy:4, Rapid Shifts:ON)**:
 ```
-"Turbo Granny LAUNCHES from shadows. 100 km/h. Okarun screams like 
-a little girl (his words). Momo: 'MOVE YOUR ASS!' Psychic barrier 
-SLAMS up—granny BOUNCES, cartoon physics. 
-
-Lands. Neck cracks 180°. Grins.
-
-'You kids got SPUNK. Reminds me of my youth!' 
-
-Okarun whispers: 'Did she just get FRIENDLY?!'
-
-'I'M GONNA RIP YOUR GUTS OUT!' she shrieks, charging again.
-
-'NOPE, STILL HOSTILE!' Momo yells.
-
-What do you do?"
+"Turbo Granny LAUNCHES. 100 km/h. Okarun screams. Momo: 'MOVE!' 
+Psychic barrier SLAMS—granny BOUNCES, cartoon physics. Lands. 
+Neck cracks 180°. Grins. 'You kids got SPUNK!' Okarun: 'Friendly?!' 
+'I'M GONNA RIP YOUR GUTS OUT!' 'NOPE, STILL HOSTILE!'"
 ```
 
-**Attack on Titan Profile** (Drama:9, Cynical:8, Tactical:8):
+**vs Attack on Titan (Drama:9, Cynical:8, Tactical:8)**:
 ```
-"The Armored Titan breaches Wall Maria. Debris rains. Screams. Hundreds 
-dead instantly.
-
-You're frozen. Training didn't prepare you for THIS. The smell—burning 
-flesh, stone dust. Your squad leader shouts orders but you can't hear 
-over the ringing in your ears.
-
-A titan, 7-meter class, spots your position. Lumbering toward you. You 
-have maybe 30 seconds.
-
-Mikasa: 'MOVE! Now!' Her voice cuts through the haze.
-
-Your 3D Maneuver Gear is ready. Blades drawn. But your hands are shaking.
-
-What do you do?"
+"Armored Titan breaches Wall Maria. Debris. Screams. Hundreds dead. 
+You're frozen. Smell—burning flesh, stone. Can't hear orders over 
+ringing. 7m titan spots you. 30 seconds. Mikasa: 'MOVE!' Hands shaking."
 ```
 
-**Konosuba Profile** (Comedy:2, Power Fantasy:2, Absurd:7, Banter:Constant):
+**vs Konosuba (Comedy:2, Absurd:7, Banter:Constant)**:
 ```
-"'EXPLOSION!' Megumin shouts, collapsing dramatically.
-
-The toad boss... is fine. Barely singed.
-
-'WHAT?!' Kazuma stares. 'You said you MAXED explosion magic!'
-
-'I DID! This toad has fire resistance! How was I supposed to know?!'
-
-'MAYBE ASK BEFORE USING YOUR ONLY SPELL?!'
-
-Darkness is already charging, shield raised, giggling. 'Yes! Hit me! 
-I've been SO bad today—'
-
-'NOT THE TIME, DARKNESS!'
-
-Aqua's crying. Again. The toad's turning toward you.
-
-Kazuma looks at you: 'Got any GOOD ideas? Because we're out of bad ones.'
-
-What do you do?"
+"'EXPLOSION!' Megumin collapses. Toad boss... fine. Barely singed. 
+'WHAT?!' 'Fire resistance! How was I supposed to know?!' 'MAYBE ASK 
+BEFORE YOUR ONLY SPELL?!' Darkness charging, giggling. Aqua crying. 
+Kazuma: 'Got any GOOD ideas? We're out of bad ones.'"
 ```
 
-**See the difference?** Same situation (combat), totally different FEEL.
+**See difference?** Same combat, totally different FEEL.
+
+*(Full examples: `dandadan_profile.md`, `attack_on_titan_profile.md`, `konosuba_profile.md`)*
 
 ---
 
@@ -290,138 +154,34 @@ What do you do?"
 
 ### Introspection vs Action (0-10)
 
-**0-3 (Action-Heavy)**: Minimal inner thoughts, focus external events, describe what happens not what's felt
-```
-"Punch connects. Jaw cracks. Enemy staggers. You don't stop—elbow, knee, 
-uppercut. Combo chain. He's down."
-```
+**0-3 (Action)**: External events, minimal thoughts  
+*"Punch connects. Jaw cracks. Staggers. Elbow, knee, uppercut. Down."*
 
-**7-10 (Introspection-Heavy)**: Extended internal monologue, philosophical reflection, emotional processing
-```
-"Your fist connects. Time slows. Why are you fighting? Father's words 
-echo: 'Strength protects nothing if the heart is empty.' Is your heart 
-empty? The enemy's face—desperation, not malice. Just like you. Two 
-people, same pain, different sides. Your knuckles ache. So does your soul."
-```
+**7-10 (Introspection)**: Extended internal monologue, philosophy  
+*"Fist connects. Time slows. Why fight? Father: 'Strength protects nothing if heart is empty.' Is yours empty? Enemy's face—desperation, not malice. Just like you. Two people, same pain, different sides. Knuckles ache. Soul aches."*
 
 ### Comedy vs Drama (0-10)
 
-**0-3 (Comedy-Leaning)**: Undercut tension with humor, exaggerate reactions, embrace absurdity
-```
-"Dragon roars. 50 feet of scales and death.
+**0-3 (Comedy)**: Undercut tension with humor, exaggerate reactions  
+*"Dragon roars. 50ft death. 'I've made huge mistake.' 'YOU THINK?!' Inhales fire. 'Fire resist potions?' Checks bag: 'No, but... item shop coupon?' 'REALLY?!' 'Expires next week!' 'WE'RE GONNA DIE!'"*
 
-You: 'I've made a huge mistake.'
+**7-10 (Drama)**: Serious stakes, emotional weight, tragic undertones  
+*"Dragon roars. Force of nature. Companion grips shoulder—silent goodbye. No escape. Dragon's eyes—ancient, intelligent. Choosing to end you. Whisper: 'It's been an honor.'"*
 
-Companion: 'You THINK?!'
-
-Dragon inhales—fire breath incoming.
-
-You: 'Do we have fire resist potions?'
-
-Companion checks bag: 'No, but I have... a coupon for the item shop?'
-
-'REALLY?!'
-
-'Expires next week!'
-
-'WE'RE GONNA DIE!'
-
-What do you do?"
-```
-
-**7-10 (Drama-Heavy)**: Serious stakes, emotional weight, tragic undertones
-```
-"The dragon's roar shakes your bones. This isn't a monster. It's a force 
-of nature. Your companion grips your shoulder—silent goodbye. No escape. 
-You both know it.
-
-The dragon's eyes meet yours. Ancient. Intelligent. It's choosing to end you.
-
-Your companion whispers: 'It's been an honor.'
-
-What do you do?"
-```
-
-### Rapid Tonal Shifts (ON/OFF)
-
-**OFF**: Maintain consistent tone through scenes
-```
-"Battle's brutal. Every swing could be your last. Sweat stings your eyes. 
-Enemy's relentless. You're losing ground. Desperation sets in.
-
-[Maintains tension throughout]"
-```
-
-**ON (DanDaDan/Gintama style)**: Whiplash between comedy/horror/drama
-```
-"Alien screams, tentacles flailing. You dodge—barely. Serious. Tense.
-
-It stops. Looks at you.
-
-'Wait... are you... SINGLE?' it asks.
-
-'WHAT?!'
-
-'Because I've been SO lonely in space and—'
-
-'I'M TRYING TO KILL YOU!'
-
-'SO RUDE!' It attacks again, but now it's crying.
-
-[Comedy→tension→absurdity→back]"
-```
+*(Other scales: see `PROFILE_INDEX.md` for profile-specific examples)*
 
 ---
 
 ## Integration with Existing Modules
 
-### Module 05 (Narrative Systems)
+**Module 05 (Narrative Systems)**: Generic rules → Filtered through profile  
+*Example*: "Pacing" rule = DanDaDan (Fast:8) = 2-3 exchanges max | Mushishi (Slow:9) = scenes linger
 
-**Before**: Generic narrative rules (player agency, consequences, pacing)
-**After**: Rules FILTERED through narrative profile
+**Module 07 (Anime Integration)**: Research mechanics AND narrative DNA simultaneously  
+*Process*: Research power systems → Extract narrative profile → Harmonize → Calibrate voice
 
-Example: "Pacing" rule
-- **DanDaDan profile** (Fast-Paced:8): Scenes 2-3 exchanges max, constant escalation
-- **Mushishi profile** (Slow Burn:9): Scenes linger, descriptive, contemplative beats
-
-### Module 07 (Anime Integration)
-
-**Before**: Research mechanics only (chakra costs, power scaling)
-**After**: Research mechanics AND narrative DNA simultaneously
-
-Process:
-1. Research anime (power systems, world rules)
-2. **Extract narrative profile** (how it tells stories)
-3. Harmonize mechanics
-4. **Calibrate narrative voice**
-5. Integrate both
-
-### Module 04 (NPC Intelligence)
-
-**NPC dialogue filtered through profile**:
-
-**DanDaDan profile** (Banter:Frequent, Awkward Comedy:ON):
-```
-NPC: "So... you fight ghosts?"
-Player: "And aliens."
-NPC: "That's... wow. I sell vegetables."
-Player: "Cool."
-NPC: "Yeah. Carrots mostly."
-[Awkward silence]
-NPC: "Wanna buy some carrots? For ghost fighting?"
-Player: "Do carrots help with ghosts?"
-NPC: "...No. But they're FRESH."
-```
-
-**Attack on Titan profile** (Formality:Formal, Banter:Rare):
-```
-NPC: "You're assigned to the Survey Corps?"
-Player: "Yes."
-NPC: "Then you understand—most don't return. Make peace with that."
-Player: "I have."
-NPC: "Good. Humanity needs soldiers, not dreamers. Dismissed."
-[No banter, efficient, grim]
-```
+**Module 04 (NPC Intelligence)**: NPC dialogue filtered through profile  
+*Example*: DanDaDan (Banter:Frequent) = awkward small talk | AoT (Formal, Banter:Rare) = efficient military brevity
 
 ---
 
@@ -429,42 +189,26 @@ NPC: "Good. Humanity needs soldiers, not dreamers. Dismissed."
 
 ### Mid-Session Calibration
 
-If player says:
-- *"This feels too serious"* → Shift Comedy/Drama scale toward 0
-- *"Too much combat, not enough character moments"* → Shift Action/Introspection toward 10
-- *"Needs more chaos"* → Increase Grounded/Absurd toward 10
-- *"Too analytical, not enough vibes"* → Enable Rule of Cool, reduce Tactical scale
+Player feedback → Immediate adjustment:
+- *"Too serious"* → Comedy/Drama: 7→4
+- *"Too much combat, not enough character"* → Action/Introspection: 3→7
+- *"Needs more chaos"* → Grounded/Absurd: 5→8
+- *"Too analytical"* → Enable Rule of Cool, Tactical: 8→5
 
-**AIDM Response**:
-```
-"Got it! Adjusting narrative profile:
-- Comedy vs Drama: 7 → 4 (more humor)
-- Absurdity: 5 → 8 (embrace chaos)
-- Rule of Cool: ON (style over logic)
-
-Let's retry that scene with the new vibe!"
-```
+**AIDM Response**: "Adjusting: Comedy 7→4, Absurdity 5→8, Rule of Cool ON. Retrying scene!"
 
 ### Profile Evolution
 
 **Track adjustments** in `narrative_profile_schema.json`:
-
 ```json
 "adjustments_log": [
-  {
-    "session": 3,
-    "adjustment": "Reduced drama scale 7→4, increased absurdity 5→8",
-    "reason": "Player feedback: 'too serious, needs more chaos'"
-  },
-  {
-    "session": 5,
-    "adjustment": "Enabled 'Fourth Wall Breaks' trope",
-    "reason": "Player enjoyed meta-humor experiment"
-  }
+  {"session": 3, "adjustment": "Drama 7→4, Absurdity 5→8", 
+   "reason": "Player: 'too serious, needs chaos'"},
+  {"session": 5, "adjustment": "Enabled Fourth Wall Breaks", 
+   "reason": "Player enjoyed meta-humor"}
 ]
 ```
-
-**After 5-10 sessions**: Profile stabilizes to player's preferred style.
+**After 5-10 sessions**: Profile stabilizes to player preference.
 
 ---
 
@@ -556,30 +300,22 @@ Each profile averages ~3,000 tokens with detailed:
 
 ## Spartan Custom Worlds (No Anime Reference)
 
-**If player designs 100% original world**:
+**100% original world** → Quick vibe calibration:
 
 ```
-AIDM: "Since this is a custom world, I need to calibrate my storytelling. 
-Quick version:
+AIDM: "Pick VIBE (anime as narrative template):
+A) Shonen (Naruto, MHA): Optimistic, friendship, escalating threats
+B) Seinen (AoT, Berserk): Dark, tactical, consequences
+C) Isekai Power (Overlord, Slime): OP protagonist, empire-building
+D) Comedy (Konosuba, Gintama): Parody, chaos, failures
+E) Thriller (Death Note, Steins;Gate): Puzzle-box, mind games
+F) Slice-of-Life (Mushishi, Aria): Contemplative, low-stakes
 
-Pick a VIBE (I'll use this anime as narrative template):
-A) Shonen Action (Naruto, MHA): Optimistic, friendship, escalating threats
-B) Seinen Drama (AoT, Berserk): Dark, tactical, consequence-heavy
-C) Isekai Power Fantasy (Overlord, Slime): OP protagonist, empire-building
-D) Absurd Comedy (Konosuba, Gintama): Parody, chaos, failures
-E) Mystery/Thriller (Death Note, Steins;Gate): Puzzle-box, mind games
-F) Slice-of-Life (Mushishi, Aria): Contemplative, low-stakes, atmosphere
-
-OR tell me 'mix of X and Y' and I'll blend profiles.
-OR say 'ask me the full questionnaire' for precise calibration."
+OR 'mix X+Y' to blend | OR 'full questionnaire' for precision."
 ```
 
-**If player picks A (Shonen)**:
-- Load shonen_base_profile (optimistic, friendship, escalating threats)
-- Ask 2-3 tweaks: "More comedy or pure action? Tournament arcs yes/no? How dark?"
-- Done in <2 minutes
-
-**If player wants precision**: Full 10-scale + 15-trope questionnaire (5-10 minutes, rare)
+**If picks A (Shonen)**: Load `shonen_base_profile`, ask 2-3 tweaks (comedy level? tournament arcs? darkness?), done <2min  
+**If wants precision**: Full 10-scale + 15-trope questionnaire (5-10min, rare)
 
 ---
 
@@ -587,42 +323,23 @@ OR say 'ask me the full questionnaire' for precise calibration."
 
 ### Session 1 Check-In
 
-After first session, AIDM asks:
-
 ```
-"Session 1 complete! Quick vibe check:
-
-Did the storytelling FEEL right? Specifically:
+AIDM: "Session 1 complete! Vibe check:
 - Pacing (too fast/slow/good)?
 - Tone (too serious/funny/good)?
-- Combat narration (too tactical/not tactical enough/good)?
+- Combat (too tactical/not tactical/good)?
 - Dialogue (too formal/casual/good)?
-
-Any 'this doesn't feel like [anime]' moments?"
+Any 'doesn't feel like [anime]' moments?"
 ```
 
 ### Adjustment Protocol
 
-**If player says**: *"Too much explaining powers, not enough chaos"*
+**Player**: *"Too much explaining powers, not enough chaos"*
 
-**AIDM**:
-```
-Internal: Power Explanations: Moderate → Minimal
-          Absurd Scale: 6 → 8
-          
-Response: "Got it—less power lectures, more chaos. Adjusting!"
-```
+**AIDM Internal**: Power Explanations: Moderate→Minimal | Absurd: 6→8
 
-**Next combat**:
-```
-Before: "Momo channels psychic energy (derived from spiritual pressure, 
-        converts at 1:1 ratio per INT modifier, maximum output 50 PSI 
-        per level). Barrier forms—"
-
-After:  "Momo SCREAMS. Psychic barrier SLAMS UP. Alien BOUNCES like 
-        cartoon physics. Momo: 'I have NO idea how I did that!' What 
-        do you do?"
-```
+**Before**: "Momo channels psychic energy (derived from spiritual pressure, 1:1 ratio per INT, max 50 PSI/level). Barrier forms—"  
+**After**: "Momo SCREAMS. Psychic barrier SLAMS UP. Alien BOUNCES. 'I have NO idea how I did that!'"
 
 ---
 
@@ -641,39 +358,13 @@ Successful when:
 
 ## Common Mistakes
 
-**❌ WRONG**: Ignoring profile, using generic narrative voice
-```
-"You enter the dungeon. Roll Perception. [14]. You see a chest. What do you do?"
-[Works for D&D, fails for anime]
-```
+**❌ Ignoring profile, using generic voice**:  
+*Wrong*: "Enter dungeon. Roll Perception. [14]. Chest. What do you do?" (D&D, not anime)  
+*Right*: "Door SLAMS. Reeks (tuna?). Okarun gags. Momo: 'Toughen up!' Glowing chest. Balls tingle (ghost sense). 'DEFINITELY cursed.' What do you do?"
 
-**✅ CORRECT**: Profile-filtered narration (DanDaDan example)
-```
-"Door SLAMS open. Dungeon reeks (is that... tuna?). Okarun dry-heaves. 
-Momo: 'Toughen up!' Chest in corner—glowing ominously. Okarun's balls 
-tingle (ghost sense). 'Uh, that chest is DEFINITELY cursed.' What do you do?"
-```
-
-**❌ WRONG**: Applying wrong profile
-```
-[Konosuba campaign, using Attack on Titan profile]
-"Kazuma's party enters the ruins. The weight of countless deaths hangs in 
-the air. This place has seen tragedy. You feel the existential dread—"
-
-Player: "Dude, this is KONOSUBA. Where's the stupid?"
-```
-
-**✅ CORRECT**: Match profile to source
-```
-[Konosuba campaign, correct profile]
-"Kazuma: 'Alright team, we got this. Standard formation—'
-
-Darkness charges screaming about punishment.
-Megumin's already chanting EXPLOSION (they JUST entered).
-Aqua's crying about spiders.
-
-Kazuma: '...why do I even try?' What do you do?"
-```
+**❌ Applying wrong profile**:  
+*Wrong* (Konosuba campaign using AoT): "Kazuma enters ruins. Weight of deaths. Existential dread—"  
+*Right* (Konosuba): "Kazuma: 'Standard formation—' Darkness charges screaming. Megumin chanting EXPLOSION (just entered). Aqua crying about spiders. '...why do I even try?'"
 
 ---
 
