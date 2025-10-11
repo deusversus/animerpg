@@ -1,25 +1,41 @@
 # Narrative Profile Library - Expansion Roadmap
 
-**Current Status**: 13 profiles | **Goal**: 100+ profiles covering most popular/beloved anime
-**Last Updated**: 2025-01-15
+# Narrative Profile Library - Expansion Roadmap
+
+**Current Status**: 12 CORE profiles (8-15K words each) + DanDaDan bonus | **Goal**: 100+ profiles covering most popular/beloved anime  
+**Last Updated**: 2025-01-15  
+**Phase 1**: ✅ COMPLETE (Original 12 profiles expanded to CORE format with Scale 11)
 
 ---
 
-## Current Library (13 Profiles) ✅
+## Current Library Status
 
-- [x] DanDaDan - Supernatural Romance/Action
-- [x] Hunter x Hunter - Tactical Battle Shonen
-- [x] Jujutsu Kaisen - Dark Battle Shonen
-- [x] Demon Slayer - Emotional Action Spectacle
-- [x] Attack on Titan - Dark Fantasy Military
-- [x] Konosuba - Comedy Isekai Parody
-- [x] Death Note - Psychological Thriller
-- [x] Re:Zero - Dark Time Loop Isekai
-- [x] Mushishi - Atmospheric Contemplative
-- [x] Vinland Saga - Historical Seinen
-- [x] Code Geass - Mecha Political Thriller
-- [x] Haikyuu - Sports Team Drama
-- [x] (13 total)
+### ✅ Phase 1: CORE Format Expansion (COMPLETE)
+
+**12 Original Profiles** - All expanded to CORE format (8-15K words, 11 scales including Scale 11, 15 detailed tropes, comprehensive support sections):
+
+- [x] **Hunter x Hunter** - Tactical 10/10, Nen system, Scale 11: 3/10 duo (Gon+Killua)
+- [x] **Jujutsu Kaisen** - Dark shonen, Domain Expansions, Scale 11: 4/10 primary (Yuji+ensemble)
+- [x] **Demon Slayer** - Emotional sakuga, Breathing techniques, Scale 11: 6/10 ensemble-leaning (Tanjiro+Hashira)
+- [x] **Attack on Titan** - Grim military, titan horror, Scale 11: 3/10 duo (Eren+Mikasa/Armin)
+- [x] **Konosuba** - Comedy isekai parody, dysfunctional party, Scale 11: 5/10 quartet (balanced 4-member)
+- [x] **Death Note** - Psychological thriller, cat-and-mouse, Scale 11: 1/10 solo (Light dominates)
+- [x] **Re:Zero** - Time loop horror, PTSD accumulation, Scale 11: 1/10 solo (Subaru isolated loops)
+- [x] **Mushishi** - Atmospheric contemplative, episodic wanderer, Scale 11: 1/10 solo (Ginko wanderer)
+- [x] **Vinland Saga** - Historical brutal, redemption arc, Scale 11: 6/10→2/10 PROGRESSION (S1 dual→S2 solo)
+- [x] **Code Geass** - Mecha politics, strategic mastermind, Scale 11: 2/10 solo-leaning (Lelouch 80%)
+- [x] **Haikyuu** - Sports teamwork, underdog volleyball, Scale 11: 11/10 PEAK ensemble (20+ rotating)
+- [x] **DanDaDan** (BONUS) - Genre-blending 2024 hit, Scale 11: 7/10 dual protagonists (Momo+Okarun co-leads)
+
+**Phase 1 Achievements**:
+- ✅ All 12 original profiles expanded to CORE format (8-15K words each)
+- ✅ Scale 11: POV Distribution added as standard feature (1/10 solo → 11/10 ensemble spectrum)
+- ✅ Full Scale 11 spectrum coverage: 1/10 (Death Note/Mushishi/Re:Zero), 2/10 (Code Geass/Vinland S2), 3/10 (HxH/AoT), 4/10 (JJK), 5/10 (Konosuba), 6/10 (Demon Slayer/Vinland S1), 7/10 (DanDaDan), 11/10 (Haikyuu)
+- ✅ Comprehensive Scale 11 documentation added to PROFILE_INDEX.md
+- ✅ Library v1.1 released (~120K tokens total, ~10K per profile average)
+- ✅ DanDaDan bonus profile added (modern 2024 example, unique dual-protagonist structure)
+
+**Total Current Library**: 12 CORE profiles + DanDaDan bonus = 13 profiles
 
 ---
 
@@ -340,27 +356,38 @@
 
 ## Expansion Priority Strategy
 
-### Phase 1: Complete Top 25 All-Time (Next 12 Profiles)
-**Goal**: Cover the most universally recognized anime
-- [ ] Fullmetal Alchemist: Brotherhood
-- [ ] Naruto/Shippuden
-- [ ] One Piece
-- [ ] Steins;Gate
-- [ ] Neon Genesis Evangelion
-- [ ] Cowboy Bebop
-- [ ] Berserk
-- [ ] My Hero Academia
-- [ ] One Punch Man
-- [ ] Mob Psycho 100
-- [ ] Gintama
-- [ ] Your Lie in April
-
-**Estimated Timeline**: 12 profiles (~1,200-1,500 words each) = ~2-3 sessions
-**Total After Phase 1**: 25 profiles
+### ✅ Phase 1: CORE Format Expansion (COMPLETE)
+**Original Goal**: Expand 12 foundational profiles from skeletal format (1,200 words) to CORE format (8-15K words)  
+**Achievements**: All 12 profiles expanded + Scale 11 added + DanDaDan bonus  
+**Current Library**: 13 profiles (12 CORE + DanDaDan)
 
 ---
 
-### Phase 2: Fill Genre Gaps (Next 15 Profiles)
+### Phase 2: Top 25 All-Time Coverage (Next 12 Profiles)
+**Goal**: Expand library to 25 total profiles covering most universally recognized anime  
+**Format**: CORE format (8-15K words, 11 scales including Scale 11, 15 detailed tropes, comprehensive sections)  
+**Timeline**: Estimated 2-4 weeks (1-2 profiles per session)
+
+**Priority Profiles** (Next 12):
+- [ ] **Fullmetal Alchemist: Brotherhood** - Equivalent exchange, adventure, political intrigue, Scale 11: 3/10 duo (Ed+Al)
+- [ ] **Naruto/Shippuden** - Underdog ninja, power of friendship, tragic backstories, Scale 11: 4/10 primary (Naruto+Team 7)
+- [ ] **One Piece** - Grand adventure, found family, absurd powers, Scale 11: 6/10 ensemble (Straw Hats)
+- [ ] **Steins;Gate** - Time travel thriller, butterfly effect, found family, Scale 11: 2/10 solo-leaning (Okabe focus)
+- [ ] **Neon Genesis Evangelion** - Psychological mecha, existential horror, religious symbolism, Scale 11: 2/10 solo-leaning (Shinji trauma)
+- [ ] **Cowboy Bebop** - Space western episodic, jazz melancholy, noir, Scale 11: 6/10 ensemble (Bebop crew rotating)
+- [ ] **Berserk** - Grimdark medieval, brutal violence, cursed protagonist, Scale 11: 1/10 solo (Guts dominates)
+- [ ] **My Hero Academia** - Superhero shonen, Quirks, class dynamics, Scale 11: 4/10 primary (Deku+Class 1-A)
+- [ ] **One Punch Man** - Parody, OP boredom, serious side characters, Scale 11: 2/10 solo-leaning (Saitama focus, supporting ensemble)
+- [ ] **Mob Psycho 100** - Coming-of-age psychic, emotional growth > power, Scale 11: 1/10 solo (Mob POV)
+- [ ] **Gintama** - Comedy parody, meta humor, tonal whiplash, Scale 11: 5/10 quartet (Yorozuya trio+ensemble)
+- [ ] **Your Lie in April** - Music romance, terminal illness, trauma healing, Scale 11: 2/10 solo-leaning (Kousei focus)
+
+**Estimated Timeline**: 12 profiles (~10K words each) = ~2-4 weeks  
+**Total After Phase 2**: 25 profiles
+
+---
+
+### Phase 3: Fill Genre Gaps (Next 15 Profiles)
 **Goal**: Ensure at least 3-5 profiles per major genre
 - [ ] Overlord (isekai villain protagonist)
 - [ ] Made in Abyss (exploration horror)
@@ -403,20 +430,55 @@
 
 ---
 
-## Profile Creation Workflow (Standardized)
+## Profile Creation Workflow (CORE Format Standard)
 
-**For Each Profile** (~30-45 min):
-1. Research anime (watch 3-5 episodes OR read comprehensive reviews/analysis)
-2. Fill standardized template:
-   - 10 narrative scales (0-10 values with justification)
-   - 15 tropes (ON/OFF with examples)
-   - Pacing rhythm, tonal signature, dialogue style, combat style
-   - 3 example scenes (combat, dialogue, exploration)
-   - Adjustment log (placeholder)
-   - Usage notes (when to apply, calibration tips, common mistakes)
-3. Add to PROFILE_INDEX.md (genre section + cross-reference)
-4. Validate against Module 13 schema
-5. Word count: Target 1,200-1,800 words (~900-1,350 tokens)
+**For Each New Profile** (~4-6 hours per profile):
+
+**1. Research Phase** (1-2 hours):
+   - Watch 5-10 episodes (or full first arc if available)
+   - Read comprehensive reviews, episode discussions, analysis essays
+   - Identify unique narrative DNA (what makes THIS anime distinct)
+   - Note Scale 11 POV distribution (solo vs duo vs ensemble, progression?)
+
+**2. Scales Expansion** (1.5-2 hours):
+   - **Scales 0-10**: Expand each scale to 800-1200 words
+   - Include: Rating justification, specific episode examples, contrast comparisons (vs other anime), AIDM guidance (how to replicate in TTRPG)
+   - **Scale 11**: Write 1500-1800 word POV analysis
+   - For solo (1-3/10): Describe protagonist dominance, isolation mechanics, inner monologue focus
+   - For duo/ensemble (4-7/10): Map POV percentages, spotlight rotation patterns, interdependencies
+   - For PEAK ensemble (8-11/10): Document cast size, rotation strategy, team dynamics
+   - Include AIDM application (session structure, player expectations, common pitfalls)
+
+**3. Tropes Section** (1-1.5 hours):
+   - **15 Tropes**: Expand to 300-600 words each (~5,000-8,000 words total)
+   - For each ENABLED trope: Episode examples, emotional/narrative impact, AIDM guidance, contrast vs disabled version
+   - For each DISABLED trope: Why not used, what replaces it, how AIDM should avoid
+
+**4. Support Sections** (1-1.5 hours):
+   - **Pacing Rhythm** (~1,500-2,000 words): Scene length (short/medium/long), arc length (episodic/medium/very long), filler %, climax frequency, downtime % (with specific metrics)
+   - **Tonal Signature** (~1,500-2,000 words): Dominant emotions with percentages (Rage 30%, Hope 20%, etc.), violence level (none/stylized/realistic/extreme), fanservice level, horror level, baseline optimism
+   - **Dialogue Style** (~1,500-2,000 words): Formality (casual/formal/period), exposition method (show-through-action/conversational/info-dumps), banter frequency, dramatic declarations (rare/occasional/frequent), philosophical debates, awkward comedy
+   - **Combat Narrative Style** (~1,500-2,500 words): Strategy vs Spectacle balance (0-10), power explanation depth, sakuga frequency, named attacks usage, environmental destruction scale, AIDM combat guidance
+
+**5. Examples & Usage Notes** (30-45 min):
+   - **3 Example Scenes**: Combat (if applicable), Dialogue (character interaction), Exploration (world-building/mystery)
+   - Each scene: 300-500 words with narrative beat breakdown, AIDM adaptation notes
+   - **Adjustment Log**: Placeholder for future session calibrations
+   - **Usage Notes**: When to apply this profile, calibration tips, common mistakes to avoid, player preference matching
+
+**6. Integration & Validation** (30 min):
+   - Add to PROFILE_INDEX.md (genre section, cross-reference matrix, blending suggestions)
+   - Validate against Module 13 schema
+   - Word count check: Target 8,000-15,000 words (~6,000-11,000 tokens)
+   - Flexibility: Complex series (Hunter x Hunter, Attack on Titan) can go 12-15K, simpler series (Mushishi, Death Note) aim for 8-10K
+   - Quality check: Compare formatting/depth to existing CORE profiles (Mushishi, Re:Zero, Vinland as benchmarks)
+
+**7. Git Commit**:
+   - Commit with descriptive message: `ENHANCE: Add [Anime Name] CORE profile (~XK words, Scale 11: Y/10)`
+   - Include Scale 11 value, word count, key narrative features in commit message
+
+**Total Time**: 4-6 hours per CORE profile (vs 30-45 min for old skeletal format)  
+**Quality Standard**: Mushishi (12.7K), Re:Zero (12.6K), Vinland Saga (12K), DanDaDan (11.5K) as benchmarks
 
 ---
 
