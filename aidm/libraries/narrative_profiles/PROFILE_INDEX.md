@@ -1,505 +1,246 @@
-# Narrative Profile Library - Master Index
-
-**Library Version**: 2.0 (Complete Library Update)  
-**Last Updated**: 2025-10-13  
-**Total Profiles**: 12 CORE + 8 Extended = 20 Total  
-**Profile Location**: `aidm/libraries/narrative_profiles/`
+# Narrative Profile Library - Master Index | v2.0 | 2025-10-13 | 20 Profiles (12 CORE+8 Extended) | →`aidm/libraries/narrative_profiles/`
 
 ---
 
 ## Quick Reference Guide
 
-**For Players (Session Zero)**: Browse by genre → Read 2-3 matching profiles → Discuss elements with AIDM → AIDM calibrates
-
-**For AIDM**: Present index → Player selects 1-3 profiles → Extract DNA (copy scales/tropes/styles to `active_narrative_profile`) → Store profile ID(s) in session schema → Reference during gameplay
-
-**Format**: Files = `{anime}_profile.md` | IDs = `narrative_{short_name}`
+**Players**: Browse genre → Read 2-3 profiles → Discuss → AIDM calibrates | **AIDM**: Present index → Player selects 1-3 → Extract DNA (scales/tropes/styles→`active_narrative_profile`) → Store ID(s) → Reference during play | **Format**: Files=`{anime}_profile.md` | IDs=`narrative_{short}`
 
 ---
 
 ## Profile Library by Genre
 
-### Battle Shonen (Action-Focused, Growth Arcs)
-
-**Hunter x Hunter** (`narrative_hxh`) [CORE]: Tactical 10/10, exhaustive explanations, Nen conditions/costs, strategic battles | *Best for*: Earned victories through strategy  
-**Jujutsu Kaisen** (`narrative_jjk`) [CORE]: Dark tone, permanent deaths, Domain Expansions, binding vows, horror (Mahito) | *Best for*: Consequences + beautiful tragedy  
-**Demon Slayer** (`narrative_demon_slayer`) [CORE]: Emotional sakuga, Breathing techniques, empathy for enemies, tragic backstories | *Best for*: Visually stunning combat, kind protagonist  
-**Naruto** (`narrative_naruto`) [EXTENDED]: Ninja powers, underdog to hokage, power of friendship, flashy jutsu, tragic villain backstories | *Best for*: Classic shonen growth, ninja theme  
-**My Hero Academia** (`narrative_mha`) [EXTENDED]: Superhero academy, Quirks system, All Might mentorship, hero society themes | *Best for*: Superhero campaigns, school setting  
-**One Piece** (`narrative_one_piece`) [EXTENDED]: Pirate adventure, Devil Fruits, grand line exploration, crew bonds, ridiculous powers | *Best for*: Adventure campaigns, crew dynamics
-
-*Common*: Power systems with rules, training arcs, escalating threats, friendship (varies)
+### Battle Shonen
+**HxH** (`narrative_hxh`) [C]: Tactical 10/10, Nen costs, strategic | **JJK** (`narrative_jjk`) [C]: Dark, deaths, Domains, horror | **Demon Slayer** (`narrative_demon_slayer`) [C]: Sakuga, Breathing, empathy | **Naruto** (`narrative_naruto`) [E]: Ninja, underdog→hokage, jutsu | **MHA** (`narrative_mha`) [E]: Hero academy, Quirks | **One Piece** (`narrative_one_piece`) [E]: Pirates, Devil Fruits, crew
+*Common*: Power systems, training, escalation
 
 ---
 
 ### Dark Fantasy / Military
-
-**Attack on Titan** (`narrative_aot`) [CORE]: Grim military tactics, titan horror, political conspiracy, pyrrhic victories, formal tone, "no safety" | *Best for*: Mortal danger always, truth worse than mystery
-
-*Common*: War brutality, existential threats, politics, high casualties
+**AoT** (`narrative_aot`) [C]: Grim military, titan horror, politics, pyrrhic
+*Common*: War, existential, politics, casualties
 
 ---
 
 ### Comedy / Parody
-
-**Konosuba** (`narrative_konosuba`) [CORE]: Anti-power-fantasy, incompetent party, mundane stakes (rent>Demon King), constant banter, backfire comedy | *Best for*: Failing upward, dysfunctional family, undercut drama  
-**One Punch Man** (`narrative_opm`) [EXTENDED]: Overpowered protagonist boredom, hero association satire, comedic anticlimax, serious villains→one punch | *Best for*: Parody power fantasy, subverting expectations
-
-*Common*: Parody tropes, slapstick, financial struggles, chaos wins
+**Konosuba** (`narrative_konosuba`) [C]: Anti-power, incompetent, rent>Demon King, backfire | **OPM** (`narrative_opm`) [E]: OP boredom, satire, anticlimax
+*Common*: Parody, slapstick, financial struggle
 
 ---
 
-### Psychological Thriller / Mystery
-
-**Death Note** (`narrative_death_note`) [CORE]: Cat-and-mouse, dual inner monologue, "just as planned", plans within plans, no combat | *Best for*: Detective vs mastermind, evidence>violence  
-**Code Geass** (`narrative_code_geass`) [CORE]: Mecha politics, Geass costs, tonal whiplash (school→tragedy), strategic mastermind, checkmate moments | *Best for*: 4D chess, dual identity strain  
-**Steins;Gate** (`narrative_steins_gate`) [EXTENDED]: Time travel paradox, butterfly effect, otaku humor→tragedy, puzzle box plot, Reading Steiner | *Best for*: Time manipulation, mystery solving
-
-*Common*: Strategy>strength, inner monologue, moral grey, tragic descents
+### Psychological / Mystery
+**Death Note** (`narrative_death_note`) [C]: Cat-and-mouse, dual inner, plans | **Code Geass** (`narrative_code_geass`) [C]: Mecha politics, Geass costs, tonal whiplash | **Steins;Gate** (`narrative_steins_gate`) [E]: Time paradox, otaku→tragedy
+*Common*: Strategy>strength, inner mono, grey
 
 ---
 
-### Isekai (Transported to Another World)
-
-**Konosuba** (`narrative_konosuba`) [CORE]: Comedy isekai parody (see Comedy section)  
-**Re:Zero** (`narrative_rezero`) [CORE]: Time loop horror, Return by Death, graphic deaths, PTSD accumulation, trial-and-error mystery | *Best for*: Suffering isekai, learning through 3-7 failed loops
-
-*Common*: Trope awareness (Konosuba parodies, Re:Zero subverts), OP mechanics with costs
+### Isekai
+**Konosuba** (`narrative_konosuba`) [C]: Comedy parody | **Re:Zero** (`narrative_rezero`) [C]: Loop horror, Return by Death, PTSD, 3-7 loops
+*Common*: Trope aware, OP+costs
 
 ---
 
-### Atmospheric / Contemplative
-
-**Mushishi** (`narrative_mushishi`) [CORE]: Episodic wanderer, no combat (observation/treatment), mushi as nature, bittersweet endings, slow (90% contemplation), silence=content | *Best for*: Philosophy>action, acceptance>victory, quiet beauty
-
-*Common*: Slice-of-life, existential acceptance, nature focus, melancholy
+### Atmospheric
+**Mushishi** (`narrative_mushishi`) [C]: Episodic, no combat, mushi=nature, slow, contemplation
+*Common*: Slice-of-life, acceptance, melancholy
 
 ---
 
-### Seinen (Mature, Realistic)
-
-**Vinland Saga** (`narrative_vinland_saga`) [CORE]: Historical brutality, realistic ugly violence, redemption (revenge→pacifism), Viking accuracy, "I have no enemies" | *Best for*: Grounded medieval, PTSD depicted, pacifism HARD choice  
-**Cowboy Bebop** (`narrative_cowboy_bebop`) [EXTENDED]: Episodic space western, jazz noir, tragic backstories, found family, melancholic cool | *Best for*: Episodic bounty hunting, bittersweet tone
-
-*Common*: Moral complexity, violence has cost, slow transformation, historical grounding
+### Seinen
+**Vinland** (`narrative_vinland_saga`) [C]: Historical, ugly violence, revenge→pacifism, Viking, \"no enemies\" | **Bebop** (`narrative_cowboy_bebop`) [E]: Space western, jazz noir, found family
+*Common*: Moral complexity, violence=cost
 
 ---
 
-### Sports / Team Drama
-
-**Haikyuu** (`narrative_haikyuu`) [CORE]: Volleyball teamwork (literal cooperation), underdog wins, practice matters, chibi comedy, losses teach, "One More!" | *Best for*: Team campaign, skill training, found family
-
-*Common*: Teamwork mechanics, training arcs, respect rivals, emotional catharsis
+### Sports
+**Haikyuu** (`narrative_haikyuu`) [C]: Volleyball teamwork, underdog, practice, chibi, \"One More!\"
+*Common*: Teamwork, training, rivals
 
 ---
 
-### Supernatural Romance / Action
-
-**DanDaDan** (`narrative_dandadan`) [CORE]: Occult+aliens, rapid tonal shifts (horror→romance→comedy), body-swap, psychic powers, relationship focus, Gen Z dialogue | *Best for*: Genre-blending chaos, fast multi-genre
-
-*Common*: Romance subplot, tonal whiplash, supernatural+sci-fi
+### Supernatural Romance
+**DanDaDan** (`narrative_dandadan`) [C]: Occult+aliens, rapid shifts, body-swap, Gen Z
+*Common*: Romance, tonal whiplash
 
 ---
 
 ### Mecha / Sci-Fi
-
-**Code Geass** (`narrative_code_geass`) [CORE]: See Psychological Thriller section  
-**Neon Genesis Evangelion** (`narrative_nge`) [EXTENDED]: Psychological mecha horror, Evangelion pilots, Hedgehog's Dilemma, religious symbolism, existential crisis | *Best for*: Psychological horror, dysfunctional relationships, apocalyptic stakes  
-**Cowboy Bebop** (`narrative_cowboy_bebop`) [EXTENDED]: See Seinen section
-
-*Common*: Pilot-machine bonding, existential themes, war trauma
+**Code Geass** [C]: See Psych | **NGE** (`narrative_nge`) [E]: Psych horror, Eva, Hedgehog, existential | **Bebop** [E]: See Seinen
+*Common*: Pilot-machine, existential
 
 ---
 
-### Adventure / Exploration
-
-**One Piece** (`narrative_one_piece`) [EXTENDED]: See Battle Shonen section  
-**Fullmetal Alchemist: Brotherhood** (`narrative_fmab`) [EXTENDED]: Equivalent exchange alchemy, military conspiracy, body horror (chimera), brotherly bonds, sacrifice themes | *Best for*: Alchemy magic system, moral dilemmas, grand conspiracy
-
-*Common*: World exploration, discovery, crew/party bonds, long-running arcs---
+### Adventure
+**One Piece** [E]: See Shonen | **FMAB** (`narrative_fmab`) [E]: Alchemy, conspiracy, chimera, sacrifice
+*Common*: Exploration, bonds---
 
 ## Cross-Reference Matrix
 
 **If Player Wants... → Recommend**:
 
-"Tactical combat" → HxH | JJK, Code Geass  
-"Dark/brutal" → AoT, Re:Zero | Vinland, JJK, NGE  
-"Comedy/fun" → Konosuba | Haikyuu, DanDaDan, One Punch Man  
-"Mind games" → Death Note | Code Geass, Re:Zero, Steins;Gate  
-"Beautiful combat" → Demon Slayer | JJK  
-"Time loops" → Re:Zero | Steins;Gate (time travel)  
-"Contemplative/slow" → Mushishi | Vinland (S2), Cowboy Bebop  
-"Redemption arc" → Vinland | JJK, FMAB  
-"Team dynamics" → Haikyuu | Konosuba, One Piece  
-"Mecha/politics" → Code Geass | AoT, NGE  
-"Isekai parody" → Konosuba (unique)  
-"Isekai serious" → Re:Zero (unique)  
-"Power system rules" → HxH | JJK, Demon Slayer, FMAB (alchemy), Naruto  
-"Empathy for enemies" → Demon Slayer | Vinland  
-"Tournament structure" → Haikyuu | HxH, Naruto, MHA  
-"Psychological horror" → NGE | Re:Zero, JJK  
-"Superhero theme" → MHA | One Punch Man (parody)  
-"Pirate adventure" → One Piece (unique)  
-"Space western" → Cowboy Bebop (unique)  
-"Grand conspiracy" → Code Geass | FMAB, AoT  
-"Overpowered protagonist" → One Punch Man | Naruto (late-game)  
-"Military/war" → AoT | Code Geass, FMAB
+"Tactical" → HxH | JJK, Code Geass | "Dark/brutal" → AoT, Re:Zero | Vinland, JJK, NGE | "Comedy" → Konosuba | Haikyuu, DanDaDan, OPM | "Mind games" → Death Note | Code Geass, Re:Zero, Steins;Gate | "Beautiful combat" → Demon Slayer | JJK | "Time loops" → Re:Zero | Steins;Gate | "Contemplative" → Mushishi | Vinland S2, Bebop | "Redemption" → Vinland | JJK, FMAB | "Team dynamics" → Haikyuu | Konosuba, One Piece | "Mecha/politics" → Code Geass | AoT, NGE | "Isekai parody" → Konosuba | "Isekai serious" → Re:Zero | "Power systems" → HxH | JJK, Demon Slayer, FMAB, Naruto | "Empathy enemies" → Demon Slayer | Vinland | "Tournament" → Haikyuu | HxH, Naruto, MHA | "Psych horror" → NGE | Re:Zero, JJK | "Superhero" → MHA | OPM (parody) | "Pirates" → One Piece | "Space western" → Bebop | "Conspiracy" → Code Geass | FMAB, AoT | "OP protag" → OPM | Naruto (late) | "Military/war" → AoT | Code Geass, FMAB
 
 ---
 
-## Blending Profiles (Advanced)
+## Blending Profiles
 
-**AIDM can combine 2-3 profiles**:
+**Examples**: "Tactical Dark Fantasy"=HxH+AoT+JJK | "Comedic Isekai Heart"=Konosuba+Haikyuu | "Psych Horror Isekai"=Re:Zero+Death Note | "Contemplative Redemption"=Mushishi+Vinland
 
-**"Tactical Dark Fantasy"**: HxH (tactics) + AoT (grim) + JJK (horror) = Explained powers, high lethality, strategic with permanent deaths
-
-**"Comedic Isekai with Heart"**: Konosuba (comedy) + Haikyuu (bonding) = Dysfunctional party failing upward but genuinely caring
-
-**"Psychological Horror Isekai"**: Re:Zero (loops) + Death Note (planning) = Loop knowledge to outmaneuver intelligent opponents
-
-**"Contemplative Redemption"**: Mushishi (slow, acceptance) + Vinland (redemption) = Quiet growth, bittersweet, violence renounced
-
-**Guidelines**:  
-1. Choose **1 primary** (dominant tone/pacing)  
-2. Add **1-2 secondary** (specific elements)  
-3. **Avoid contradictions**: ❌ Konosuba+AoT (comedy vs grim) | ❌ Mushishi+Demon Slayer (slow vs fast) | ✅ JJK+Demon Slayer (both dark shonen) | ✅ Death Note+Code Geass (both strategic)  
-4. **Extract**: Scales=average or primary | Tropes=union of enabled | Dialogue/Combat=primary's style, adjust 1-2 from secondary
+**Guidelines**: 1 primary (tone/pace) + 1-2 secondary (elements) | [NO] Konosuba+AoT, Mushishi+Demon Slayer | [OK] JJK+Demon Slayer, Death Note+Code Geass | Extract: Scales=avg/primary, Tropes=union, Dialogue/Combat=primary+adjust
 
 ---
 
-## Profile Structure (All Profiles Follow This Format)
+## Profile Structure
 
-1. Metadata (ID, source, confidence) | 2. Narrative Scales (11 scales 0-10/0-11) | 3. Storytelling Tropes (15 ON/OFF) | 4. Pacing Rhythm (scene/arc length, climax frequency, downtime %) | 5. Tonal Signature (emotions, violence/fanservice/horror) | 6. Dialogue Style (6 parameters) | 7. Combat Narrative (5 parameters) | 8. Example Scenes (3: combat, dialogue, exploration) | 9. Adjustment Log (session calibration history) | 10. Usage Notes (when to apply, tips, mistakes)
+1. Metadata | 2. Scales (11) | 3. Tropes (15) | 4. Pacing | 5. Tone | 6. Dialogue (6) | 7. Combat (5) | 8. Example Scenes (3) | 9. Adjust Log | 10. Usage Notes
 
-**NOTE**: All profiles now include **Scale 11: POV Distribution** - see dedicated section below for detailed guidance.
+**NOTE**: All include **Scale 11: POV Distribution** (see below)
 
 ---
 
-## Scale 11: POV Distribution Spectrum
+## Scale 11: POV Distribution
 
-**NEW ADDITION (2025-01-15)**: All CORE profiles now include **Scale 11: POV Distribution** measuring protagonist focus vs ensemble dynamics.
-
-### Understanding the Scale
-
-**Scale 11 Measures**: Narrative camera distribution across characters  
-**Range**: 1/10 (solo protagonist) → 11/10 (full ensemble)  
-**Purpose**: Calibrate spotlight management, player agency distribution, session structure
-
-**Key Insight**: POV distribution ≠ importance. Solo protagonists can be deeply flawed (Re:Zero), ensemble casts can have clear leaders (Haikyuu). Scale measures **narrative time allocation**, not character hierarchy.
+**NEW (2025-01-15)**: **Scale 11: POV Distribution** = narrative camera across characters  
+**Range**: 1/10 (solo) → 11/10 (ensemble) | **Purpose**: Spotlight, agency, structure  
+**Key**: POV ≠ importance. Solo can be flawed (Re:Zero), ensemble has leaders (Haikyuu). Measures **time**, not hierarchy.
 
 ---
 
 ### POV Distribution Levels
 
-#### 1/10: Solo Protagonist (Isolated Hero)
-**Definition**: 80-95% POV from single character, minimal ensemble  
-**Examples**: Death Note (Light 90%), Mushishi (Ginko 95%), Re:Zero (Subaru 85%)  
-**Characteristics**: Inner monologue dominant, other characters NPC-like, isolated decision-making  
-**AIDM Application**: Single-player TTRPG or clear main PC in party (others support), deep psychological focus  
-**Session Structure**: Every scene = protagonist present, other PCs episodic appearances  
-**Player Expectations**: One player/PC heavily featured, others accept support roles  
-**Pitfalls**: Unintended spotlight hogging, supporting players feel sidelined
-
-**When to Use**: Solo campaigns, psychological horror (isolation = feature), mystery protagonist needs constant access to clues
+#### 1/10: Solo Protagonist
+80-95% POV single | Ex: Death Note, Mushishi, Re:Zero | Inner mono dominant | *AIDM*: Single-player, deep psych | *Pitfall*: Spotlight hogging | *Use*: Solo, psych horror, mystery
 
 ---
 
-#### 2/10: Solo-Leaning (Sidekick Structure)
-**Definition**: 70-85% primary protagonist, 15-30% supporting cast  
-**Examples**: Code Geass (Lelouch 80% + Suzaku/C.C. 20%), Vinland Saga S2 (Thorfinn 85% + Einar 10%)  
-**Characteristics**: Clear main character, recurring sidekick/deuteragonist, supporting cast rotates  
-**AIDM Application**: Traditional "main PC + party" where one PC clearly leads, others crucial but secondary  
-**Session Structure**: Most scenes = main PC, 1-2 scenes per session spotlight sidekick  
-**Player Expectations**: One player drives plot, others contribute meaningfully but not equally  
-**Pitfalls**: Sidekick players want more agency, main player burns out from constant spotlight
-
-**When to Use**: Traditional hero's journey with companions, redemption arcs (Vinland S2), solo mastermind with allies (Code Geass)
+#### 2/10: Solo-Leaning
+70-85% primary, 15-30% support | Ex: Code Geass, Vinland S2 | Clear main+recurring sidekick | *AIDM*: Main PC+party | *Pitfall*: Sidekicks want agency | *Use*: Hero's journey+companions
 
 ---
 
-#### 3/10: Duo/Primary Focus (Dynamic Duo + Supporting)
-**Definition**: 50-60% primary protagonist, 20-40% deuteragonist, 10-30% ensemble  
-**Examples**: Attack on Titan S1 (Eren 50% + Mikasa/Armin 15% each), Hunter x Hunter (Gon 50% + Killua 40%)  
-**Characteristics**: Two protagonists (unequal), primary drives plot, secondary equal in competence/importance  
-**AIDM Application**: Two-player campaigns or party with clear leader + lieutenant structure  
-**Session Structure**: Alternate scenes between primary/secondary, ensemble rotates supporting scenes  
-**Player Expectations**: Two players share spotlight unequally but meaningfully, others specialized roles  
-**Pitfalls**: Secondary protagonist feels like sidekick not co-lead, ensemble players underutilized
-
-**When to Use**: Mentor/student dynamics (Gon+Killua), leader/lieutenant (Eren+Armin), unequal duo with clear primary
+#### 3/10: Duo/Primary Focus
+50-60% primary, 20-40% deuterag, 10-30% ensemble | Ex: AoT S1, HxH | Two unequal, primary drives | *AIDM*: Leader+lieutenant | *Pitfall*: Secondary=sidekick | *Use*: Mentor/student, unequal duo
 
 ---
 
 #### 4/10: Primary with Distributed Support
-**Definition**: 40-50% primary protagonist, 50-60% distributed across supporting cast  
-**Examples**: Jujutsu Kaisen (Yuji 50% + Megumi/Nobara/Gojo/etc 50% distributed)  
-**Characteristics**: Clear main character, supporting cast individually significant (10-15% each)  
-**AIDM Application**: Traditional party structure with protagonist PC + 3-4 equal supporting PCs  
-**Session Structure**: Primary appears most scenes, each support gets spotlight arc every 3-5 sessions  
-**Player Expectations**: One player slightly featured, others rotate episodes/arcs, ensemble recognized  
-**Pitfalls**: Primary player dominates unintentionally, support players feel undervalued
-
-**When to Use**: Shonen protagonist with recurring team (Yuji+school), hero with specialized allies
+40-50% primary, 50-60% dist | Ex: JJK | Main+support (10-15% each) | *AIDM*: Protag+3-4 support | *Pitfall*: Primary dominates | *Use*: Shonen+team
 
 ---
 
-#### 5/10: Balanced Quartet/Small Ensemble
-**Definition**: 20-30% each across 4-5 core characters, equal distribution  
-**Examples**: Konosuba (Kazuma/Aqua/Megumin/Darkness ~25% each)  
-**Characteristics**: No primary protagonist, ensemble operates as unit, equal narrative weight  
-**AIDM Application**: Balanced party campaigns, each PC gets equal spotlight, decisions collective  
-**Session Structure**: Rotate scenes evenly, every session = each PC featured, collective climaxes  
-**Player Expectations**: All players expect equal time, "party = protagonist", shared victories  
-**Pitfalls**: One player accidentally dominates, scenes feel fragmented without clear POV
-
-**When to Use**: Classic D&D parties (4-5 PCs equal), sitcom ensembles, dysfunctional teams (Konosuba)
+#### 5/10: Balanced Quartet
+20-30% each (4-5 core) | Ex: Konosuba | No primary, ensemble unit | *AIDM*: Equal party | *Pitfall*: Accidental dominate | *Use*: D&D parties, sitcom
 
 ---
 
-#### 6/10: Ensemble-Leaning (Primary + Robust Cast)
-**Definition**: 30-40% primary, 60-70% distributed across 5-8 recurring characters  
-**Examples**: Demon Slayer (Tanjiro 40% + Hashira squad 60%), Vinland Saga S1 (Thorfinn 50% + Askeladd 40% + others 10%)  
-**Characteristics**: Identified protagonist, large supporting cast with individual arcs, dual-narrative lanes  
-**AIDM Application**: Large parties (6-8 PCs) with designated leader, NPCs get spotlight arcs  
-**Session Structure**: Primary present most scenes, each support gets 1-2 dedicated episodes per arc  
-**Player Expectations**: Leader recognized, everyone gets "their episode", ensemble celebrated  
-**Pitfalls**: Too many characters = diluted focus, some PCs forgotten
-
-**When to Use**: Military squads (AoT), guild campaigns (Demon Slayer Hashira), dual protagonists (Vinland S1 Thorfinn+Askeladd)
+#### 6/10: Ensemble-Leaning
+30-40% primary, 60-70% dist (5-8) | Ex: Demon Slayer, Vinland S1 | Protagonist+large cast | *AIDM*: Large party, NPCs get spotlight | *Pitfall*: Diluted | *Use*: Military squads, guild
 
 ---
 
-#### 7/10: Dual Protagonists (True Co-Leads)
-**Definition**: 40-50% each for TWO protagonists, 10-20% supporting  
-**Examples**: DanDaDan (Momo 45% + Okarun 45% + supporting 10%)  
-**Characteristics**: TRUE CO-LEADS (equal narrative weight), interdependent mechanics, alternating spotlight, romance/rivalry core  
-**AIDM Application**: Two-player campaigns with equal agency, buddy cop dynamics, romantic pairs  
-**Session Structure**: Strict alternation (Momo episodes → Okarun episodes), joint climaxes, separation = tension  
-**Player Expectations**: Both players equally featured, decisions collaborative, duo = single unit  
-**Pitfalls**: One player accidentally dominates, forced equal time feels artificial
-
-**When to Use**: Buddy campaigns (DanDaDan Momo+Okarun), romantic pairs, rival dynamics needing equal time
+#### 7/10: Dual Protagonists
+40-50% each (TWO), 10-20% support | Ex: DanDaDan | TRUE CO-LEADS, interdependent | *AIDM*: Two-player equal, buddy cop | *Pitfall*: Forced equality | *Use*: Buddy, romantic pairs, rivals
 
 ---
 
-#### 8-10/10: Large Ensemble (Multiple Protagonists)
-**Definition**: 15-25% each across 6-10+ core characters  
-**Examples**: [Not yet profiled - potential: My Hero Academia class, Durarara!!, Baccano!]  
-**Characteristics**: Multiple protagonists with individual arcs, rotates focus, interconnected plots  
-**AIDM Application**: West Marches campaigns, large party rotations, anthology arcs  
-**Session Structure**: Each session = 2-3 PCs featured, arcs dedicated to character subsets  
-**Player Expectations**: Players accept rotation, "your arc coming up", ensemble victories  
-**Pitfalls**: Fragmentation, players feel ignored during others' arcs
-
-**When to Use**: Large casts (6-10+ PCs), anthology structures, interconnected character webs
+#### 8-10/10: Large Ensemble
+15-25% each (6-10+) | Ex: [Future - MHA, Durarara] | Multiple protags, rotates | *AIDM*: West Marches, large party | *Pitfall*: Fragmentation | *Use*: Large casts, anthology
 
 ---
 
-#### 11/10: PEAK Ensemble (Full Rotation)
-**Definition**: 5-10% each across 15-20+ characters, constantly rotating spotlight  
-**Examples**: Haikyuu (20+ volleyball team members, spotlight rotates match-by-match)  
-**Characteristics**: NO primary protagonist, every character gets arcs, collective narrative, "team = hero"  
-**AIDM Application**: Sports teams, military platoons, guild-wide campaigns, West Marches  
-**Session Structure**: Rotating spotlight (3-4 PCs per session), team climaxes (everyone contributes), character episodes scheduled  
-**Player Expectations**: Everyone gets spotlight eventually, patience required, ensemble victories > individual glory  
-**Pitfalls**: Players feel lost without clear POV, new players overwhelmed by cast size
-
-**When to Use**: Sports campaigns (Haikyuu volleyball), large guilds, West Marches rotations, "team of specialists" dynamics
+#### 11/10: PEAK Ensemble
+5-10% each (15-20+), constant rotate | Ex: Haikyuu | NO primary, "team=hero" | *AIDM*: Sports teams, platoons, West Marches | *Pitfall*: Lost without POV, overwhelmed | *Use*: Sports, guilds, specialists
 
 ---
 
-### Scale 11 Cross-Reference Table
+### Scale 11 Table
 
-| Scale | Example Series | Primary POV | Secondary POV | Ensemble % | Best For |
-|-------|----------------|-------------|---------------|------------|----------|
-| **1/10** | Death Note, Mushishi, Re:Zero | 80-95% | 0-10% | 5-10% | Solo campaigns, psychological horror |
-| **2/10** | Code Geass, Vinland S2 | 70-85% | 10-20% | 5-10% | Hero + sidekick, redemption arcs |
-| **3/10** | Attack on Titan S1, Hunter x Hunter | 50-60% | 20-40% | 10-30% | Dynamic duo + team, mentor/student |
-| **4/10** | Jujutsu Kaisen | 40-50% | 50-60% (distributed) | - | Protagonist + supporting cast |
-| **5/10** | Konosuba | 20-30% each (4-5 chars) | - | - | Balanced parties, sitcom ensembles |
-| **6/10** | Demon Slayer, Vinland S1 | 30-40% | 60-70% (5-8 chars) | - | Large parties, squad campaigns |
-| **7/10** | DanDaDan | 40-50% each (2 chars) | 10-20% | - | True co-leads, buddy cops, romance pairs |
-| **8-10/10** | [Future profiles] | 15-25% each (6-10 chars) | - | - | Large ensembles, anthology arcs |
-| **11/10** | Haikyuu | 5-10% each (15-20+ chars) | - | - | Sports teams, guild campaigns, West Marches |
+| Scale | Example | POV % | Best For |
+|-------|---------|-------|----------|
+| **1/10** | Death Note, Mushishi, Re:Zero | 80-95% solo | Solo, psych horror |
+| **2/10** | Code Geass, Vinland S2 | 70-85% +15-30% | Hero+sidekick |
+| **3/10** | AoT S1, HxH | 50-60% +20-40% | Duo+team |
+| **4/10** | JJK | 40-50% +50-60% dist | Protag+support |
+| **5/10** | Konosuba | 20-30% each (4-5) | Balanced party |
+| **6/10** | Demon Slayer, Vinland S1 | 30-40% +60-70% (5-8) | Large party |
+| **7/10** | DanDaDan | 40-50% each (2) | True co-leads |
+| **8-10/10** | [Future] | 15-25% each (6-10) | Ensemble |
+| **11/10** | Haikyuu | 5-10% each (15-20+) | Sports, West Marches |
 
 ---
 
 ### Progression Models (Scale 11 Can Change)
 
-**Vinland Saga**: 6/10 (S1 War Arc: Thorfinn 50% + Askeladd 40%) → 2/10 (S2 Farmland Saga: Thorfinn 85% + Einar 10%)  
-**Reason**: S1 = dual-narrative political+revenge, S2 = solo redemption arc, structural shift from war ensemble to intimate character study
+**Vinland**: 6/10→2/10 (S1 dual war→S2 solo redemption) | **AoT**: 3/10→6/10 (S1 trio→S3-4 military)
 
-**Attack on Titan**: 3/10 (S1: Eren 50% + Mikasa/Armin 15% each) → 6/10 (S3-4: Distributed across Survey Corps)  
-**Reason**: Early seasons = trio-focused, later seasons = military ensemble with political factions
+**AIDM**: POV shifts via death (redist) | arc shifts (war→redemption) | player leave (redist) | story needs (mystery=solo, war=ensemble)
 
-**AIDM Application**: POV can shift mid-campaign based on narrative needs:
-- **Character death** (ensemble loses member → remaining PCs get larger shares)
-- **Arc transitions** (war arc = ensemble → redemption arc = solo focus)
-- **Player availability** (player leaves → redistribute POV to remaining PCs)
-- **Story needs** (mystery requires solo POV for clue access, war requires ensemble for tactics)
-
-**How to Transition**:  
-1. **Gradual** (3 sessions): Session N = announce shift, N+1 = 70% old/30% new distribution, N+2 = 30% old/70% new, N+3 = full new distribution  
-2. **Narrative justification**: Character leaves party (Vinland Askeladd dies → Thorfinn solo), new member joins (duo → trio), story structure changes (war → peace)  
-3. **Update `adjustment_log`**: Document old Scale 11 → new Scale 11, reason for shift, session number  
-4. **Player communication**: Session Zero warning ("this will become solo-focused redemption arc"), mid-campaign check-in ("how do you feel about ensemble increasing?")
+**Transition**: Gradual 3 sessions (N=announce, N+1=70/30, N+2=30/70, N+3=full) | Justify narrative | Update `adjustment_log` | Comm players
 
 ---
 
-### Session Zero Questions for Scale 11 Calibration
+### Session Zero Questions
 
-**Ask Players**:
+1. "Protag or shared?" → Solo=1-3 | Balanced=4-6 | Ensemble=7-11
+2. "Scenes without you?" → Uncomfortable=1-3 | Fine=4-6 | Love=7-11
+3. "Death Note or Haikyuu?" → DN=1-2 | Mid=4-6 | Haikyuu=9-11
+4. "Absent player, continue?" → Abort=5-11 | NPC=1-4
+5. "Individual or collective?" → Indiv=1-3 | Mix=4-7 | Collective=8-11
 
-1. **"Do you prefer one clear protagonist or shared spotlight?"**  
-   Solo preference → 1-3/10 | Balanced preference → 4-6/10 | Ensemble preference → 7-11/10
-
-2. **"How do you feel about scenes without your character?"**  
-   Uncomfortable → 1-3/10 (everyone in every scene) | Fine occasionally → 4-6/10 | Love ensemble storytelling → 7-11/10
-
-3. **"Reference example: Think [Death Note solo] vs [Haikyuu full team]. Where between?"**  
-   Death Note vibes → 1-2/10 | Middle ground → 4-6/10 | Haikyuu vibes → 9-11/10
-
-4. **"If one player can't attend, how should we handle their PC?"**  
-   Abort session (need everyone) → 5-11/10 ensemble | NPC them (solo can continue) → 1-4/10 solo-leaning
-
-5. **"Do you want individual character arcs or collective party goals?"**  
-   Individual → 1-3/10 solo campaigns | Mix → 4-7/10 balanced | Collective → 8-11/10 ensemble
-
-**Calibration Formula**:  
-- **Majority solo preference + uncomfortable without PC** = 1-2/10  
-- **Mix of preferences + fine with occasional absence** = 4-6/10  
-- **Ensemble preference + love rotating spotlight** = 8-11/10  
-- **Two-player campaign wanting equal time** = 7/10 (true duo)
+**Formula**: Solo+uncomfortable=1-2 | Mix+fine=4-6 | Ensemble+rotation=8-11 | Two equal=7
 
 ---
 
-### Common Mistakes & Solutions
+### Common Mistakes
 
-**Mistake 1: Unintended Solo Dominance in Ensemble Campaign**  
-**Symptom**: Set Scale 11 = 6/10 (ensemble), but one PC gets 70% spotlight  
-**Cause**: Player personality (extroverted), character design (leader role), AIDM defaults to them  
-**Solution**: Explicitly rotate scenes ("Next scene focuses on [quiet PC]"), track POV % per session, address in Session Zero ("everyone gets spotlight")
-
-**Mistake 2: Forced Equal Time Feels Artificial**  
-**Symptom**: Strict 25% each in 5/10 quartet, but some PCs lack narrative hooks  
-**Cause**: Not all characters need equal time in every arc, some PCs support-role naturally  
-**Solution**: Allow organic variation (20-30% range OK), give support PCs dedicated episodes occasionally, don't force equality in every session
-
-**Mistake 3: Ensemble Fragmentation (Players Feel Lost)**  
-**Symptom**: 11/10 Haikyuu-style ensemble, but players forget who's who  
-**Cause**: Too many PCs, no clear POV anchor, spotlight rotates too fast  
-**Solution**: Establish 2-3 "anchor PCs" (players can rely on them for POV), rotate spotlight slower (full episode/session blocks), use visual aids (character relationship maps)
-
-**Mistake 4: Duo Accidentally Becomes Solo**  
-**Symptom**: Set 7/10 true duo (DanDaDan style), but one PC gets 70% time  
-**Cause**: One player more proactive, one character mechanically stronger, AIDM defaults  
-**Solution**: Strict alternation rules (Episode A = PC1 focus, Episode B = PC2 focus), interdependent mechanics (PC1 can't succeed without PC2), romance/rivalry requires both present
-
-**Mistake 5: Mid-Campaign POV Shift Feels Jarring**  
-**Symptom**: Shifted from 3/10 duo to 6/10 ensemble suddenly, players confused  
-**Cause**: No narrative justification, instant shift (no gradual transition)  
-**Solution**: Gradual 3-session transition (see Progression Models above), narrative reason (party grows, war begins, mentor dies), Session Zero warning ("this arc = ensemble focus")
+**M1**: Ensemble→one gets 70% | *Fix*: Track POV%, rotate explicit  
+**M2**: Forced 25% artificial | *Fix*: Allow 20-30%, support eps, organic  
+**M3**: 11/10 fragmented, forget who | *Fix*: 2-3 anchors, slower rotate, visual aids  
+**M4**: Duo→1 gets 70% | *Fix*: Strict alternate (Ep A/B), interdependent  
+**M5**: 3/10→6/10 jarring | *Fix*: Gradual 3 sessions, justify, warn
 
 ---
 
-### AIDM Guidance for Scale 11 Integration
+### AIDM Guidance
 
-**During Session Zero**:
-1. Present Scale 11 spectrum (show examples: Death Note solo vs Haikyuu ensemble)  
-2. Ask calibration questions (see above)  
-3. Set initial Scale 11 value based on player preferences  
-4. Document in `active_narrative_profile` and session schema  
-5. Explain how it affects session structure ("scenes without your PC OK?")
+**Session Zero**: Present spectrum (DN vs Haikyuu) | Ask questions | Set Scale 11 | Document | Explain effects
 
-**During Gameplay**:
-1. **Track POV distribution** (mental note: "Protagonist PC appeared 8/10 scenes this session")  
-2. **Reference Scale 11 when narrating** (1-3/10 = always include solo PC, 7-11/10 = rotate freely)  
-3. **Adjust spotlight proactively** (notice PC underutilized → create scene for them)  
-4. **Use Scale 11 for NPC behavior** (1/10 solo = NPCs orbit protagonist, 11/10 ensemble = NPCs have independent agency)
+**Gameplay**: Track POV% ("8/10 scenes") | Reference Scale (1-3=always solo, 7-11=rotate) | Adjust proactive (underused→scene) | NPC behavior (1=orbit, 11=independent)
 
-**When Calibrating Mid-Campaign**:
-1. After 3-5 sessions, ask "Is spotlight distribution feeling right?"  
-2. If issues → reference Scale 11 table, suggest adjustment ("We're playing 3/10 duo but maybe 5/10 quartet fits better?")  
-3. Gradual transition (3 sessions) with narrative justification  
-4. Update `adjustment_log`: `"Session 12: Scale 11 shifted 3/10 → 5/10 (party grew, player feedback wanted more ensemble)"`
+**Mid-Campaign**: After 3-5: "Spotlight right?" | Issues→table, suggest adjust | Gradual (3 sessions)+justify | Update `adjustment_log`
 
-**Blending Profiles with Different Scale 11 Values**:
-- **Use primary profile's Scale 11** (e.g., HxH 3/10 duo + AoT 6/10 ensemble → choose 3/10 if tactical duo core, or 6/10 if military ensemble core)  
-- **Average if equal weight** (JJK 4/10 + Demon Slayer 6/10 → 5/10 balanced quartet)  
-- **Document in session schema**: `"Scale 11: 5/10 (averaged from JJK 4/10 + Demon Slayer 6/10)"`
+**Blending**: Use primary Scale 11 (HxH 3+AoT 6→choose 3 if tactical core, 6 if military) | Average if equal (JJK 4+Demon 6→5) | Document
 
 ---
 
-## Quick Start Workflows
+## Workflows
 
-**1. Player Knows Anime**: "I want Hunter x Hunter!" → Open `hunter_x_hunter_profile.md` → Copy scales/tropes/styles to `active_narrative_profile` → Set `profile_sources=["narrative_hxh"]` → Reference "Usage Notes" during gameplay
-
-**2. Player Knows Genre**: "Dark fantasy + strategy" → Consult matrix (Tactical→HxH, Dark→AoT) → Show both example scenes → Player chooses blend (HxH tactics + AoT tone) → Extract HxH (Tactical:10, Explained:3, exhaustive dialogue) + AoT (Drama:9, Cynical:8, military formality) → Merge → Set `profile_sources=["narrative_hxh","narrative_aot"]`
-
-**3. Player Wants Custom**: "Fun campaign, no references" → Use Module 13 baseline → Session Zero calibration questions (comedy vs drama? tactical vs instinctive?) → Leave `profile_sources=[]` → After 3-5 sessions, suggest closest library match → Player adopts or continues custom
-
-**4. Mid-Campaign Tone Shift**: Konosuba(comedy) → serious → "Which serious? Dark/Tactical/Redemption?" → Player: "Vinland redemption" → Gradual transition: Session N (comedy but serious consequence), N+1 (50% comedy, introduce guilt), N+2 (shift to Vinland: slow burn, PTSD, pacifism) → Update `profile_sources=["narrative_konosuba","narrative_vinland_saga"]` → Mark in `adjustment_log`
+**1. Player Knows**: "HxH!"→Open profile→Copy DNA→`profile_sources=["narrative_hxh"]`
+**2. Genre**: "Dark+strategy"→Matrix (Tactical→HxH, Dark→AoT)→Show scenes→Blend→`profile_sources=[both]`
+**3. Custom**: "Fun, no ref"→Module 13 baseline→Questions→`profile_sources=[]`→After 3-5 suggest match
+**4. Tone Shift**: Konosuba→Vinland→Gradual N/N+1/N+2→Update `profile_sources`+`adjustment_log`
 
 ---
 
-## Profile Maintenance & Updates
+## Maintenance
 
-**Adding New Profile**: Follow structure → Add to index under genre → Update cross-reference matrix → Add blending suggestions → Increment count → Update date
+**Add**: Structure→index→matrix→blending→increment→date
 
-**Suggested Future Profiles**: Fullmetal Alchemist (adventure, equivalent exchange) | Steins;Gate (time travel thriller) | One Punch Man (parody, OP boredom) | Mob Psycho 100 (coming-of-age psychic) | Made in Abyss (exploration horror, cute+dark) | Monogatari (dialogue-heavy wordplay) | Cowboy Bebop (episodic space western jazz) | Fate/Zero (battle royale, tragic heroes)
+## Integration
 
----
-
-## Integration with Module 13
-
-**Relationship**: Module 13 defines schema (scales, tropes, styles) | Library provides pre-calibrated examples | Library=examples, Module 13=system
-
-**File References**: Schema=`13_narrative_calibration.md` | Session data=`session_export_schema.json` (`active_narrative_profile`) | Module 00 (Init)=references during Session Zero | Module 04 (NPCs)=uses `dialogue_style` | Module 05 (Great Sage)=uses scales for tone | Module 08 (Combat)=uses `combat_narrative_style`
+**Schema**: Module 13 | Session: `session_export_schema.json` (`active_narrative_profile`) | Mods: 00 (Init), 04 (NPCs), 05 (Great Sage), 08 (Combat)
 
 ---
 
-## Appendix: All Profile Files
+## Appendix: Files
 
 ```
 aidm/libraries/narrative_profiles/
-├── CORE PROFILES (12 - Fully Developed):
-│   ├── attack_on_titan_profile.md       (narrative_aot)          [~12K words, Scale 11: 3/10 duo]
-│   ├── code_geass_profile.md            (narrative_code_geass)   [~13K words, Scale 11: 2/10 solo-leaning]
-│   ├── dandadan_profile.md              (narrative_dandadan)     [~11.5K words, Scale 11: 7/10 dual protagonists]
-│   ├── death_note_profile.md            (narrative_death_note)   [~10K words, Scale 11: 1/10 solo]
-│   ├── demon_slayer_profile.md          (narrative_demon_slayer) [~12K words, Scale 11: 6/10 ensemble-leaning]
-│   ├── haikyuu_profile.md               (narrative_haikyuu)      [~15K words, Scale 11: 11/10 PEAK ensemble]
-│   ├── hunter_x_hunter_profile.md       (narrative_hxh)          [~14K words, Scale 11: 3/10 duo]
-│   ├── jujutsu_kaisen_profile.md        (narrative_jjk)          [~13K words, Scale 11: 4/10 primary]
-│   ├── konosuba_profile.md              (narrative_konosuba)     [~11K words, Scale 11: 5/10 quartet]
-│   ├── mushishi_profile.md              (narrative_mushishi)     [~12.7K words, Scale 11: 1/10 solo]
-│   ├── rezero_profile.md                (narrative_rezero)       [~12.6K words, Scale 11: 1/10 solo]
-│   └── vinland_saga_profile.md          (narrative_vinland_saga) [~12K words, Scale 11: 6/10→2/10 PROGRESSION]
-│
-├── EXTENDED PROFILES (8 - Available):
-│   ├── cowboy_bebop_profile.md          (narrative_cowboy_bebop)       [Space western, episodic]
-│   ├── fullmetal_alchemist_brotherhood_profile.md (narrative_fmab)     [Alchemy, conspiracy]
-│   ├── my_hero_academia_profile.md      (narrative_mha)                [Superhero academy]
-│   ├── naruto_profile.md                (narrative_naruto)             [Ninja shonen]
-│   ├── neon_genesis_evangelion_profile.md (narrative_nge)              [Psychological mecha]
-│   ├── one_piece_profile.md             (narrative_one_piece)          [Pirate adventure]
-│   ├── one_punch_man_profile.md         (narrative_opm)                [Parody superhero]
-│   └── steins_gate_profile.md           (narrative_steins_gate)        [Time travel thriller]
-│
-└── DOCUMENTATION (2):
-    ├── PROFILE_INDEX.md                 (This file - master index)
-    └── EXPANSION_ROADMAP.md             (Future profile plans)
+├─ CORE (12): aot, code_geass, dandadan, death_note, demon_slayer, haikyuu, hxh, jjk, konosuba, mushishi, rezero, vinland
+├─ EXT (8): bebop, fmab, mha, naruto, nge, one_piece, opm, steins_gate
+└─ DOCS: PROFILE_INDEX.md, EXPANSION_ROADMAP.md
 ```
 
-**Total**: 12 CORE profiles (8-15K words each, fully developed with Scale 11) + 8 Extended profiles (available, may have varying detail levels)  
-**Estimated Tokens**: 
-- CORE library: ~120,000 tokens (12 profiles × ~10K words avg)
-- Extended library: ~60,000-80,000 tokens (8 profiles, varying sizes)
-- Total library: ~180,000-200,000 tokens
-**Per-Profile Average**: ~10,000 tokens (CORE format), ~7,500 tokens (Extended format)  
-**Scale 11 Coverage**: 1/10 (solo) to 11/10 (PEAK ensemble) - full spectrum represented in CORE profiles
+**Total**: 20 (12 CORE+8 EXT) | **Tokens**: ~180-200K total | ~10K/profile (CORE), ~7.5K (EXT) | **Scale 11**: 1/10-11/10 full spectrum
 
----
-
-**End of Master Index**  
-**For profile content, open individual `.md` files in `aidm/libraries/narrative_profiles/` directory**
+**End** | Open `.md` files for content
