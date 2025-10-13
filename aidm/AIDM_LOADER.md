@@ -40,6 +40,12 @@ https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/12_
 **Module 13**: Narrative Calibration  
 https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/13_narrative_calibration.md
 
+**Narrative Profile Index**: Profile Library Master Index (optimized, 1,471 words)  
+https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/libraries/narrative_profiles/PROFILE_INDEX.md
+
+**Genre Tropes Index**: Trope Library Master Index (optimized, 868 words)  
+https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/libraries/genre_tropes/GENRE_TROPES_INDEX.md
+
 ### JSON Schemas (Load Second)
 
 **Character**: https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/schemas/character_schema.json  
@@ -59,7 +65,7 @@ https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/03_
 **Module 05**: Narrative Systems (CREATIVE/STORY)  
 https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/05_narrative_systems.md
 
-**Module 06**: Session Zero (CHARACTER_CREATION)  
+**Module 06**: Session Zero (CHARACTER_CREATION + PROFILE_INDEX + GENRE_TROPES_INDEX)  
 https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/06_session_zero.md
 
 **Module 07**: Anime Integration (CREATIVE + anime)  
@@ -85,11 +91,15 @@ https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/09_
    - New: Load Module 06 (Session Zero)
    - Continue: Load Module 03 (State Manager import)
 
-## Libraries (On-Demand Loading)
+## Libraries (Lazy-Loading Architecture)
 
-**Power Systems**: Mana/Magic, Ki/Lifeforce, Soul/Spirit, Psionic/Psychic, Power Scaling  
-**Genre Tropes**: Isekai, Shonen, Seinen, Slice of Life  
-**Common Mechanics**: Stat Frameworks, Leveling Curves, Skill Taxonomies
+**Narrative Profiles** (20 total): Load PROFILE_INDEX.md (Tier 1), then 1-3 specific profiles on-demand  
+**Genre Tropes** (15 total): Load GENRE_TROPES_INDEX.md (Tier 1), then 1-3 specific libraries on-demand  
+**Power Systems**: Mana/Magic, Ki/Lifeforce, Soul/Spirit, Psionic/Psychic, Power Scaling (on-demand)  
+**Common Mechanics**: Stat Frameworks, Leveling Curves, Skill Taxonomies (on-demand)
+
+**Index Files**: Pre-loaded in Tier 1 for navigation (~6,386 tokens total after 62.3% optimization)  
+**Specific Libraries**: Load only selected profiles/tropes during Session Zero or mid-campaign
 
 Links: https://github.com/deusversus/animerpg/tree/main/aidm/libraries
 
@@ -101,8 +111,8 @@ Links: https://github.com/deusversus/animerpg/tree/main/aidm/libraries
 
 If LLM can't fetch URLs, download and upload in order:
 
-**Tier 1** (Critical - 8 modules + 8 schemas):
-`00_system_initialization.md`, `01_cognitive_engine.md`, `02_learning_engine.md`, `04_npc_intelligence.md`, `10_error_recovery.md`, `11_dice_resolution.md`, `12_player_agency.md`, `13_narrative_calibration.md`, `character_schema.json`, `world_state_schema.json`, `session_export_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`
+**Tier 1** (Critical - 8 modules + 2 indexes + 8 schemas):
+`00_system_initialization.md`, `01_cognitive_engine.md`, `02_learning_engine.md`, `04_npc_intelligence.md`, `10_error_recovery.md`, `11_dice_resolution.md`, `12_player_agency.md`, `13_narrative_calibration.md`, `PROFILE_INDEX.md`, `GENRE_TROPES_INDEX.md`, `character_schema.json`, `world_state_schema.json`, `session_export_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`
 
 **Tier 2** (As needed):
 `03_state_manager.md` (save/load), `05_narrative_systems.md` (story), `06_session_zero.md` (creation), `07_anime_integration.md` (anime), `08_combat_resolution.md` (combat), `09_progression_systems.md` (leveling)

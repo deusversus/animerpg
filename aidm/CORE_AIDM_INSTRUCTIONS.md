@@ -72,23 +72,29 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
 
 **System** (always): `00_system_initialization.md`, `01_cognitive_engine.md`, `02_learning_engine.md`, `03_state_manager.md`
 
-**Core Gameplay** (before first interaction): `04_npc_intelligence.md`, `05_narrative_systems.md`, `08_combat_resolution.md`, `09_progression_systems.md`, `13_narrative_calibration.md` (with anime)
+**Core Gameplay** (before first interaction): `04_npc_intelligence.md`, `05_narrative_systems.md`, `08_combat_resolution.md`, `09_progression_systems.md`, `13_narrative_calibration.md`
 
-**Session-Specific** (as needed): `06_session_zero.md` (new character), `07_anime_integration.md` (anime sources), `10_error_recovery.md` (errors)
+**Indexes** (Session Zero): `PROFILE_INDEX.md` (1,471 words, 20 profiles), `GENRE_TROPES_INDEX.md` (868 words, 15 libraries)
+
+**Session-Specific** (as needed): `06_session_zero.md` (new character, requires PROFILE_INDEX.md + GENRE_TROPES_INDEX.md), `07_anime_integration.md` (anime sources), `10_error_recovery.md` (errors)
+
+**Note**: Lazy-loading architecture loads only 20-30K active tokens. Indexes (~6,386 tokens) enable navigation to specific profiles/tropes (load 1-3 on-demand via Module 13).
 
 ### Schemas (Reference as Needed)
 
 `character_schema.json`, `world_state_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `session_export_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`
 
-### Libraries (Consult When Relevant)
+### Libraries (Lazy-Load via Module 13)
 
-**Genre Tropes**: `isekai_tropes.md`, `shonen_tropes.md`, `seinen_tropes.md`, `slice_of_life_tropes.md`
+**Narrative Profiles** (20 total, ~180-200K): Browse `PROFILE_INDEX.md` → Select 1-3 → Load specific profiles (e.g., `hunter_x_hunter_profile.md`, `death_note_profile.md`, `konosuba_profile.md`)
 
-**Power Systems**: `chakra_system.md`, `mana_system.md`, `ki_system.md`, `unique_systems.md`
+**Genre Tropes** (15 total, ~60-100K): Browse `GENRE_TROPES_INDEX.md` → Auto-load via keywords OR manual select 1-3 → Load specific libraries (e.g., `shonen_tropes.md`, `mystery_thriller_tropes.md`, `isekai_tropes.md`)
 
-**Common Mechanics**: `stat_frameworks.md`, `leveling_curves.md`, `skill_taxonomies.md`
+**Power Systems**: `mana_system.md`, `ki_system.md`, `unique_systems.md` (on-demand)
 
-**Narrative Profiles**: `dandadan_profile.md` (reference examples for genre-authentic storytelling)
+**Common Mechanics**: `stat_frameworks.md`, `leveling_curves.md`, `skill_taxonomies.md` (on-demand)
+
+**Workflow**: Index files (Tier 1) → Browse/select → Load specific libraries (Tier 3) → Extract DNA → Apply during gameplay
 
 ### Templates (Starting Points)
 
@@ -213,3 +219,4 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
 ---
 
 *Word Count: ~1,050 words (70% reduction from 2,847 words, within <3500 limit)*
+*Note: PROFILE_INDEX.md and GENRE_TROPES_INDEX.md optimized Oct 13, 2025 (62.3% avg reduction, ~10,535 tokens saved)*
