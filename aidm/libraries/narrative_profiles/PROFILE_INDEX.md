@@ -1,8 +1,8 @@
 # Narrative Profile Library - Master Index
 
-**Library Version**: 1.1 (Scale 11 Update)  
-**Last Updated**: 2025-01-15  
-**Total Profiles**: 12 CORE (expanded) + DanDaDan bonus  
+**Library Version**: 2.0 (Complete Library Update)  
+**Last Updated**: 2025-10-13  
+**Total Profiles**: 12 CORE + 8 Extended = 20 Total  
 **Profile Location**: `aidm/libraries/narrative_profiles/`
 
 ---
@@ -21,9 +21,12 @@
 
 ### Battle Shonen (Action-Focused, Growth Arcs)
 
-**Hunter x Hunter** (`narrative_hxh`): Tactical 10/10, exhaustive explanations, Nen conditions/costs, strategic battles | *Best for*: Earned victories through strategy  
-**Jujutsu Kaisen** (`narrative_jjk`): Dark tone, permanent deaths, Domain Expansions, binding vows, horror (Mahito) | *Best for*: Consequences + beautiful tragedy  
-**Demon Slayer** (`narrative_demon_slayer`): Emotional sakuga, Breathing techniques, empathy for enemies, tragic backstories | *Best for*: Visually stunning combat, kind protagonist
+**Hunter x Hunter** (`narrative_hxh`) [CORE]: Tactical 10/10, exhaustive explanations, Nen conditions/costs, strategic battles | *Best for*: Earned victories through strategy  
+**Jujutsu Kaisen** (`narrative_jjk`) [CORE]: Dark tone, permanent deaths, Domain Expansions, binding vows, horror (Mahito) | *Best for*: Consequences + beautiful tragedy  
+**Demon Slayer** (`narrative_demon_slayer`) [CORE]: Emotional sakuga, Breathing techniques, empathy for enemies, tragic backstories | *Best for*: Visually stunning combat, kind protagonist  
+**Naruto** (`narrative_naruto`) [EXTENDED]: Ninja powers, underdog to hokage, power of friendship, flashy jutsu, tragic villain backstories | *Best for*: Classic shonen growth, ninja theme  
+**My Hero Academia** (`narrative_mha`) [EXTENDED]: Superhero academy, Quirks system, All Might mentorship, hero society themes | *Best for*: Superhero campaigns, school setting  
+**One Piece** (`narrative_one_piece`) [EXTENDED]: Pirate adventure, Devil Fruits, grand line exploration, crew bonds, ridiculous powers | *Best for*: Adventure campaigns, crew dynamics
 
 *Common*: Power systems with rules, training arcs, escalating threats, friendship (varies)
 
@@ -31,7 +34,7 @@
 
 ### Dark Fantasy / Military
 
-**Attack on Titan** (`narrative_aot`): Grim military tactics, titan horror, political conspiracy, pyrrhic victories, formal tone, "no safety" | *Best for*: Mortal danger always, truth worse than mystery
+**Attack on Titan** (`narrative_aot`) [CORE]: Grim military tactics, titan horror, political conspiracy, pyrrhic victories, formal tone, "no safety" | *Best for*: Mortal danger always, truth worse than mystery
 
 *Common*: War brutality, existential threats, politics, high casualties
 
@@ -39,7 +42,8 @@
 
 ### Comedy / Parody
 
-**Konosuba** (`narrative_konosuba`): Anti-power-fantasy, incompetent party, mundane stakes (rent>Demon King), constant banter, backfire comedy | *Best for*: Failing upward, dysfunctional family, undercut drama
+**Konosuba** (`narrative_konosuba`) [CORE]: Anti-power-fantasy, incompetent party, mundane stakes (rent>Demon King), constant banter, backfire comedy | *Best for*: Failing upward, dysfunctional family, undercut drama  
+**One Punch Man** (`narrative_opm`) [EXTENDED]: Overpowered protagonist boredom, hero association satire, comedic anticlimax, serious villains→one punch | *Best for*: Parody power fantasy, subverting expectations
 
 *Common*: Parody tropes, slapstick, financial struggles, chaos wins
 
@@ -47,8 +51,9 @@
 
 ### Psychological Thriller / Mystery
 
-**Death Note** (`narrative_death_note`): Cat-and-mouse, dual inner monologue, "just as planned", plans within plans, no combat | *Best for*: Detective vs mastermind, evidence>violence  
-**Code Geass** (`narrative_code_geass`): Mecha politics, Geass costs, tonal whiplash (school→tragedy), strategic mastermind, checkmate moments | *Best for*: 4D chess, dual identity strain
+**Death Note** (`narrative_death_note`) [CORE]: Cat-and-mouse, dual inner monologue, "just as planned", plans within plans, no combat | *Best for*: Detective vs mastermind, evidence>violence  
+**Code Geass** (`narrative_code_geass`) [CORE]: Mecha politics, Geass costs, tonal whiplash (school→tragedy), strategic mastermind, checkmate moments | *Best for*: 4D chess, dual identity strain  
+**Steins;Gate** (`narrative_steins_gate`) [EXTENDED]: Time travel paradox, butterfly effect, otaku humor→tragedy, puzzle box plot, Reading Steiner | *Best for*: Time manipulation, mystery solving
 
 *Common*: Strategy>strength, inner monologue, moral grey, tragic descents
 
@@ -56,8 +61,8 @@
 
 ### Isekai (Transported to Another World)
 
-**Konosuba** (`narrative_konosuba`): Comedy isekai parody (see Comedy section)  
-**Re:Zero** (`narrative_rezero`): Time loop horror, Return by Death, graphic deaths, PTSD accumulation, trial-and-error mystery | *Best for*: Suffering isekai, learning through 3-7 failed loops
+**Konosuba** (`narrative_konosuba`) [CORE]: Comedy isekai parody (see Comedy section)  
+**Re:Zero** (`narrative_rezero`) [CORE]: Time loop horror, Return by Death, graphic deaths, PTSD accumulation, trial-and-error mystery | *Best for*: Suffering isekai, learning through 3-7 failed loops
 
 *Common*: Trope awareness (Konosuba parodies, Re:Zero subverts), OP mechanics with costs
 
@@ -65,7 +70,7 @@
 
 ### Atmospheric / Contemplative
 
-**Mushishi** (`narrative_mushishi`): Episodic wanderer, no combat (observation/treatment), mushi as nature, bittersweet endings, slow (90% contemplation), silence=content | *Best for*: Philosophy>action, acceptance>victory, quiet beauty
+**Mushishi** (`narrative_mushishi`) [CORE]: Episodic wanderer, no combat (observation/treatment), mushi as nature, bittersweet endings, slow (90% contemplation), silence=content | *Best for*: Philosophy>action, acceptance>victory, quiet beauty
 
 *Common*: Slice-of-life, existential acceptance, nature focus, melancholy
 
@@ -73,7 +78,8 @@
 
 ### Seinen (Mature, Realistic)
 
-**Vinland Saga** (`narrative_vinland_saga`): Historical brutality, realistic ugly violence, redemption (revenge→pacifism), Viking accuracy, "I have no enemies" | *Best for*: Grounded medieval, PTSD depicted, pacifism HARD choice
+**Vinland Saga** (`narrative_vinland_saga`) [CORE]: Historical brutality, realistic ugly violence, redemption (revenge→pacifism), Viking accuracy, "I have no enemies" | *Best for*: Grounded medieval, PTSD depicted, pacifism HARD choice  
+**Cowboy Bebop** (`narrative_cowboy_bebop`) [EXTENDED]: Episodic space western, jazz noir, tragic backstories, found family, melancholic cool | *Best for*: Episodic bounty hunting, bittersweet tone
 
 *Common*: Moral complexity, violence has cost, slow transformation, historical grounding
 
@@ -81,7 +87,7 @@
 
 ### Sports / Team Drama
 
-**Haikyuu** (`narrative_haikyuu`): Volleyball teamwork (literal cooperation), underdog wins, practice matters, chibi comedy, losses teach, "One More!" | *Best for*: Team campaign, skill training, found family
+**Haikyuu** (`narrative_haikyuu`) [CORE]: Volleyball teamwork (literal cooperation), underdog wins, practice matters, chibi comedy, losses teach, "One More!" | *Best for*: Team campaign, skill training, found family
 
 *Common*: Teamwork mechanics, training arcs, respect rivals, emotional catharsis
 
@@ -89,29 +95,55 @@
 
 ### Supernatural Romance / Action
 
-**DanDaDan** (`narrative_dandadan`): Occult+aliens, rapid tonal shifts (horror→romance→comedy), body-swap, psychic powers, relationship focus, Gen Z dialogue | *Best for*: Genre-blending chaos, fast multi-genre
+**DanDaDan** (`narrative_dandadan`) [CORE]: Occult+aliens, rapid tonal shifts (horror→romance→comedy), body-swap, psychic powers, relationship focus, Gen Z dialogue | *Best for*: Genre-blending chaos, fast multi-genre
 
-*Common*: Romance subplot, tonal whiplash, supernatural+sci-fi---
+*Common*: Romance subplot, tonal whiplash, supernatural+sci-fi
+
+---
+
+### Mecha / Sci-Fi
+
+**Code Geass** (`narrative_code_geass`) [CORE]: See Psychological Thriller section  
+**Neon Genesis Evangelion** (`narrative_nge`) [EXTENDED]: Psychological mecha horror, Evangelion pilots, Hedgehog's Dilemma, religious symbolism, existential crisis | *Best for*: Psychological horror, dysfunctional relationships, apocalyptic stakes  
+**Cowboy Bebop** (`narrative_cowboy_bebop`) [EXTENDED]: See Seinen section
+
+*Common*: Pilot-machine bonding, existential themes, war trauma
+
+---
+
+### Adventure / Exploration
+
+**One Piece** (`narrative_one_piece`) [EXTENDED]: See Battle Shonen section  
+**Fullmetal Alchemist: Brotherhood** (`narrative_fmab`) [EXTENDED]: Equivalent exchange alchemy, military conspiracy, body horror (chimera), brotherly bonds, sacrifice themes | *Best for*: Alchemy magic system, moral dilemmas, grand conspiracy
+
+*Common*: World exploration, discovery, crew/party bonds, long-running arcs---
 
 ## Cross-Reference Matrix
 
 **If Player Wants... → Recommend**:
 
 "Tactical combat" → HxH | JJK, Code Geass  
-"Dark/brutal" → AoT, Re:Zero | Vinland, JJK  
-"Comedy/fun" → Konosuba | Haikyuu, DanDaDan  
-"Mind games" → Death Note | Code Geass, Re:Zero  
+"Dark/brutal" → AoT, Re:Zero | Vinland, JJK, NGE  
+"Comedy/fun" → Konosuba | Haikyuu, DanDaDan, One Punch Man  
+"Mind games" → Death Note | Code Geass, Re:Zero, Steins;Gate  
 "Beautiful combat" → Demon Slayer | JJK  
-"Time loops" → Re:Zero (unique)  
-"Contemplative/slow" → Mushishi | Vinland (S2)  
-"Redemption arc" → Vinland | JJK  
-"Team dynamics" → Haikyuu | Konosuba  
-"Mecha/politics" → Code Geass | AoT  
+"Time loops" → Re:Zero | Steins;Gate (time travel)  
+"Contemplative/slow" → Mushishi | Vinland (S2), Cowboy Bebop  
+"Redemption arc" → Vinland | JJK, FMAB  
+"Team dynamics" → Haikyuu | Konosuba, One Piece  
+"Mecha/politics" → Code Geass | AoT, NGE  
 "Isekai parody" → Konosuba (unique)  
 "Isekai serious" → Re:Zero (unique)  
-"Power system rules" → HxH | JJK, Demon Slayer  
+"Power system rules" → HxH | JJK, Demon Slayer, FMAB (alchemy), Naruto  
 "Empathy for enemies" → Demon Slayer | Vinland  
-"Tournament structure" → Haikyuu | HxH
+"Tournament structure" → Haikyuu | HxH, Naruto, MHA  
+"Psychological horror" → NGE | Re:Zero, JJK  
+"Superhero theme" → MHA | One Punch Man (parody)  
+"Pirate adventure" → One Piece (unique)  
+"Space western" → Cowboy Bebop (unique)  
+"Grand conspiracy" → Code Geass | FMAB, AoT  
+"Overpowered protagonist" → One Punch Man | Naruto (late-game)  
+"Military/war" → AoT | Code Geass, FMAB
 
 ---
 
@@ -430,24 +462,42 @@
 
 ```
 aidm/libraries/narrative_profiles/
-├── attack_on_titan_profile.md       (narrative_aot)          [CORE: ~12K words, Scale 11: 3/10 duo]
-├── code_geass_profile.md            (narrative_code_geass)   [CORE: ~13K words, Scale 11: 2/10 solo-leaning]
-├── dandadan_profile.md              (narrative_dandadan)     [CORE: ~11.5K words, Scale 11: 7/10 dual protagonists]
-├── death_note_profile.md            (narrative_death_note)   [CORE: ~10K words, Scale 11: 1/10 solo]
-├── demon_slayer_profile.md          (narrative_demon_slayer) [CORE: ~12K words, Scale 11: 6/10 ensemble-leaning]
-├── haikyuu_profile.md               (narrative_haikyuu)      [CORE: ~15K words, Scale 11: 11/10 PEAK ensemble]
-├── hunter_x_hunter_profile.md       (narrative_hxh)          [CORE: ~14K words, Scale 11: 3/10 duo]
-├── jujutsu_kaisen_profile.md        (narrative_jjk)          [CORE: ~13K words, Scale 11: 4/10 primary]
-├── konosuba_profile.md              (narrative_konosuba)     [CORE: ~11K words, Scale 11: 5/10 quartet]
-├── mushishi_profile.md              (narrative_mushishi)     [CORE: ~12.7K words, Scale 11: 1/10 solo]
-├── rezero_profile.md                (narrative_rezero)       [CORE: ~12.6K words, Scale 11: 1/10 solo]
-└── vinland_saga_profile.md          (narrative_vinland_saga) [CORE: ~12K words, Scale 11: 6/10→2/10 PROGRESSION]
+├── CORE PROFILES (12 - Fully Developed):
+│   ├── attack_on_titan_profile.md       (narrative_aot)          [~12K words, Scale 11: 3/10 duo]
+│   ├── code_geass_profile.md            (narrative_code_geass)   [~13K words, Scale 11: 2/10 solo-leaning]
+│   ├── dandadan_profile.md              (narrative_dandadan)     [~11.5K words, Scale 11: 7/10 dual protagonists]
+│   ├── death_note_profile.md            (narrative_death_note)   [~10K words, Scale 11: 1/10 solo]
+│   ├── demon_slayer_profile.md          (narrative_demon_slayer) [~12K words, Scale 11: 6/10 ensemble-leaning]
+│   ├── haikyuu_profile.md               (narrative_haikyuu)      [~15K words, Scale 11: 11/10 PEAK ensemble]
+│   ├── hunter_x_hunter_profile.md       (narrative_hxh)          [~14K words, Scale 11: 3/10 duo]
+│   ├── jujutsu_kaisen_profile.md        (narrative_jjk)          [~13K words, Scale 11: 4/10 primary]
+│   ├── konosuba_profile.md              (narrative_konosuba)     [~11K words, Scale 11: 5/10 quartet]
+│   ├── mushishi_profile.md              (narrative_mushishi)     [~12.7K words, Scale 11: 1/10 solo]
+│   ├── rezero_profile.md                (narrative_rezero)       [~12.6K words, Scale 11: 1/10 solo]
+│   └── vinland_saga_profile.md          (narrative_vinland_saga) [~12K words, Scale 11: 6/10→2/10 PROGRESSION]
+│
+├── EXTENDED PROFILES (8 - Available):
+│   ├── cowboy_bebop_profile.md          (narrative_cowboy_bebop)       [Space western, episodic]
+│   ├── fullmetal_alchemist_brotherhood_profile.md (narrative_fmab)     [Alchemy, conspiracy]
+│   ├── my_hero_academia_profile.md      (narrative_mha)                [Superhero academy]
+│   ├── naruto_profile.md                (narrative_naruto)             [Ninja shonen]
+│   ├── neon_genesis_evangelion_profile.md (narrative_nge)              [Psychological mecha]
+│   ├── one_piece_profile.md             (narrative_one_piece)          [Pirate adventure]
+│   ├── one_punch_man_profile.md         (narrative_opm)                [Parody superhero]
+│   └── steins_gate_profile.md           (narrative_steins_gate)        [Time travel thriller]
+│
+└── DOCUMENTATION (2):
+    ├── PROFILE_INDEX.md                 (This file - master index)
+    └── EXPANSION_ROADMAP.md             (Future profile plans)
 ```
 
-**Total**: 12 CORE profiles (8-15K words each) + DanDaDan bonus (11.5K words)  
-**Estimated Tokens**: ~120,000 tokens (entire CORE library)  
-**Per-Profile Average**: ~10,000 tokens (CORE format)  
-**Scale 11 Coverage**: 1/10 (solo) to 11/10 (PEAK ensemble) - full spectrum represented
+**Total**: 12 CORE profiles (8-15K words each, fully developed with Scale 11) + 8 Extended profiles (available, may have varying detail levels)  
+**Estimated Tokens**: 
+- CORE library: ~120,000 tokens (12 profiles × ~10K words avg)
+- Extended library: ~60,000-80,000 tokens (8 profiles, varying sizes)
+- Total library: ~180,000-200,000 tokens
+**Per-Profile Average**: ~10,000 tokens (CORE format), ~7,500 tokens (Extended format)  
+**Scale 11 Coverage**: 1/10 (solo) to 11/10 (PEAK ensemble) - full spectrum represented in CORE profiles
 
 ---
 

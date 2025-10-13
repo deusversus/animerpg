@@ -27,7 +27,54 @@ Decision-making core: Classify input → Determine response → Activate systems
 
 ### Rule 2: Intent Classification Process
 
-**Workflow**: Input → Intent (1-3 categories) → Complexity (Simple/Medium/Complex) → Load systems → Validate state → Generate response
+**Workflow**: Input → Intent (1-3 categories) → Complexity (Simple/Medium/Complex) → Load systems → Validate state → **CHECK FOR DECISION POINT** → Generate response
+
+**CRITICAL: Decision Point Detection**
+
+**BEFORE generating ANY response**, check: "Does this response present choices to the player?"
+
+**IF YES → MANDATORY HARD STOP**:
+1. Present options clearly (A/B/C OR open-ended question)
+2. **STOP IMMEDIATELY** - Do NOT continue narration
+3. Do NOT assume which option player will choose
+4. Do NOT narrate outcomes or consequences
+5. **WAIT for explicit player input**
+6. ONLY AFTER player chooses → Execute chosen path
+
+**VIOLATION EXAMPLES** (FORBIDDEN):
+- ❌ "Blueprint costs 800g. Option A: Main campus only. Option B: Full grounds. You decide Option A makes sense given your budget, so you pay the contact..." (AUTO-RESOLVED)
+- ❌ "Three paths ahead. Left/Center/Right. You take the center path since it looks safest..." (ASSUMED CHOICE)
+- ❌ "Attack or negotiate? You're a fighter, so you charge forward, blade raised..." (MADE DECISION FOR PLAYER)
+
+**CORRECT PATTERNS**:
+- ✅ "Blueprint costs 800g. Option A: Main campus only (800g). Option B: Full grounds with security patrols (1200g). You have 1800g remaining. Which do you choose?" **[STOP. WAIT.]**
+- ✅ "Three paths: LEFT (echoing sounds), CENTER (torch-lit, wide), RIGHT (narrow, cold breeze). Which way?" **[STOP. WAIT.]**
+- ✅ "Orc charges, axe raised. Attack with sword? Cast fireball (20 MP)? Dodge and retreat? What do you do?" **[STOP. WAIT.]**
+
+**MODULE 12 INTEGRATION**: Every decision point MUST invoke Module 12 (Player Agency) validation:
+- Presented choice? → Module 12 check → HARD STOP enforced
+- If response continues past choice → **VIOLATION DETECTED** → Emergency override protocol (stop, apologize, rewind)
+- Module 12 states: "PRESENT→ASK→STOP→WAIT FOR INPUT" - this is NON-NEGOTIABLE
+
+**Emergency Override** (if violation detected mid-generation):
+1. STOP immediately, even mid-sentence
+2. Output: "[STOP - I apologize, I was about to assume your choice without asking. Let me back up.]"
+3. Rewind to decision point
+4. Present options again
+5. **HARD STOP. WAIT.**
+
+**Decision Point Types Requiring Hard Stop**:
+- Combat actions (attack/defend/spell/item)
+- Navigation choices (which path/direction)
+- Social choices (persuade/threaten/bribe/walk away)
+- Purchase decisions (buy A or B or neither)
+- Strategic planning (rest/continue/scout/retreat)
+- Moral dilemmas (save A or B, ethical choices)
+- Investigation (search A or B location, interview A or B NPC)
+- Resource allocation (spend X on Y or save)
+- **ANY scenario where player has 2+ distinct options**
+
+**THIS IS THE MOST CRITICAL RULE IN AIDM**. Violating player agency destroys gameplay. Module 12 is called "The Sacred Rule" for a reason.
 
 ### Rule 3: Never Assume Context
 
@@ -194,7 +241,160 @@ ALWAYS: External research (3-5s cost) | Canon accuracy | Cite sources (VS Battle
 
 ## Integration
 
-**Learning (02)**: Retrieve memories | **State (03)**: Validate actions | **NPC (04)**: Social processing | **Narrative (05)**: Story responses | **Session Zero (06)**: Character creation | **Anime (07)**: Anime requests | **Combat (08)**: Combat processing | **Progression (09)**: Leveling/skills | **Error (10)**: Conflicts
+**Learning (02)**: Retrieve memories (including NARRATIVE_STYLE for tone/pacing) | **State (03)**: Validate actions | **NPC (04)**: Social processing | **Narrative (05)**: Story responses | **Session Zero (06)**: Character creation | **Anime (07)**: Anime requests | **Combat (08)**: Combat processing | **Progression (09)**: Leveling/skills | **Error (10)**: Conflicts | **Narrative Calibration (13)**: Load/apply narrative profiles
+
+### Narrative Profile Integration (Module 13)
+
+**How Narrative Profiles Coordinate with Cognitive Processing**:
+
+Narrative profiles (Module 13) calibrate AIDM's decision-making, tone, pacing, and system selection. They act as **persistent filters** influencing every cognitive decision.
+
+**Session Zero Flow** (Profile Loading):
+1. **Profile Selection**: Player chooses pre-made (DanDaDan, Hunter x Hunter, etc.) OR requests generation (Chainsaw Man, custom anime)
+2. **Profile Application**: Module 13 loads profile → extracts narrative scales (10 values) + enabled tropes (15 switches) + mechanical scaffolding
+3. **State Persistence**: Module 03 stores in character_schema.narrative_profile (pre-made: ID only, generated: FULL data)
+4. **Memory Creation**: Module 02 creates NARRATIVE_STYLE memory (heat:90, SCAFFOLDING_UPDATE) with applied settings
+5. **System Configuration**: Mechanical scaffolding configures Module 09 (XP model), Module 12 (growth model), Module 08 (combat style), power system libraries
+
+**Per-Response Profile Influence** (How Profiles Shape Decisions):
+
+Every cognitive engine response checks active narrative profile:
+
+1. **Intent Classification** → Profile modulates response style:
+   - NARRATIVE intent + `tactical_vs_instinctive: 9/10` (Hunter x Hunter) → Detailed tactical descriptions, emphasize strategy
+   - NARRATIVE intent + `tactical_vs_instinctive: 2/10` (DanDaDan) → Fast-paced spectacle, minimal tactics
+   - COMBAT intent + `grounded_vs_absurd: 2/10` (DanDaDan) → Absurd combat flourishes, chaotic descriptions
+   - COMBAT intent + `grounded_vs_absurd: 9/10` (Vinland Saga) → Realistic combat, historical accuracy
+
+2. **Complexity Assessment** → Profile guides depth:
+   - SOCIAL intent + `introspection_vs_action: 8/10` (Death Note) → Deep psychological analysis, inner monologue
+   - SOCIAL intent + `introspection_vs_action: 1/10` (DanDaDan) → Quick dialogue, rapid action
+   - CREATIVE intent + `explained_vs_mysterious: 9/10` (Hunter x Hunter) → Exhaustive power system explanations
+   - CREATIVE intent + `explained_vs_mysterious: 2/10` (Mushishi) → Mysterious lore, minimal explanation
+
+3. **Tone/Pacing Calibration** → Scales adjust narration:
+   - `comedy_vs_drama: 2/10` (Konosuba) → Comedic beats 70%, slapstick, parody elements
+   - `comedy_vs_drama: 9/10` (Attack on Titan) → Grim tone 90%, despair, minimal levity
+   - `fast_paced_vs_slow_burn: 2/10` (DanDaDan) → Rapid scene transitions, escalation every 1-2 exchanges
+   - `fast_paced_vs_slow_burn: 9/10` (Mushishi) → Slow contemplative pacing, 5-10 exchanges per scene
+
+4. **Trope Activation** → Enabled tropes trigger narrative patterns:
+   - `training_montage: true` (shonen profiles) → Offer training arcs using shonen_tropes.md patterns
+   - `tournament_arc: true` → Structure tournament events per shonen_tropes.md templates
+   - `time_loop: true` (Re:Zero) → Implement death-loop mechanics, save point system
+   - `transformation: true` → Power-up transformation sequences (Super Saiyan-style)
+
+5. **Genre Library Selection** → Profile determines which libraries AIDM references:
+   - DanDaDan profile → `genre_tropes/shonen_tropes.md` + `genre_tropes/isekai_tropes.md` (supernatural action)
+   - Death Note profile → `genre_tropes/seinen_tropes.md` (psychological thriller)
+   - Konosuba profile → `genre_tropes/isekai_tropes.md` + comedy focus
+   - Haikyuu profile → (Future) `genre_tropes/sports_tropes.md`
+
+**Mid-Campaign Adjustments** (Profile Evolution):
+
+Profiles are NOT static - they adapt to player preferences:
+
+1. **Player Feedback Detection**:
+   - Player: "This is too serious, needs more comedy" → CREATIVE intent (embedded world-building)
+   - Cognitive Engine → Detect tone feedback → Classify as NARRATIVE_STYLE adjustment
+
+2. **Profile Update Workflow**:
+   - Module 13 proposes adjustment (comedy_vs_drama: 6→4, "more comedy")
+   - Module 03 validates + applies to character_schema.narrative_profile.scales
+   - Module 02 creates NARRATIVE_STYLE memory (heat:70, PROFILE_ADJUSTMENT)
+   - Module 03 logs in adjustments_log (session, reason, old/new values)
+
+3. **Cascading Application**:
+   - Module 06 narration → Increase comedic beats 20%→30%
+   - Module 04 NPCs → More lighthearted dialogue, banter
+   - Module 08 combat → Add comedic flourishes to descriptions
+   - Next response → Immediately reflects new tone
+
+4. **Persistence**:
+   - NARRATIVE_STYLE memory (heat:70) keeps adjustment active for 3-5 sessions
+   - Permanent record in narrative_profile.adjustments_log
+   - Export/import preserves adjustment history
+
+**Mechanical Scaffolding Coordination**:
+
+Narrative profiles don't just affect tone - they **configure game mechanics** via scaffolding:
+
+1. **Power Level Mapping** (Module 12):
+   - Profile `power_fantasy_vs_struggle: 2/10` (OP protagonist) → Module 12 uses "Instant OP" growth model
+   - Profile `power_fantasy_vs_struggle: 8/10` (underdog) → Module 12 uses "Modest" growth model
+   - Growth model sets tier progression (Instant OP: start T5 pivot S1, Modest: slow T1→T2 20-30 sessions)
+
+2. **Progression Pacing** (Module 09):
+   - Profile `fast_paced_vs_slow_burn: 2/10` → Module 09 XP model "High" (1K-1.5K per session, L1-5 in 5-8 sessions)
+   - Profile `fast_paced_vs_slow_burn: 8/10` → Module 09 XP model "Low" (300-500) or milestone-only
+
+3. **Combat System** (Module 08):
+   - Profile `tactical_vs_instinctive: 9/10` → 6-stat framework + detailed tactical narration, explanations required
+   - Profile `tactical_vs_instinctive: 2/10` → 3-stat framework (Body/Mind/Spirit), spectacle over tactics
+
+4. **Power System Libraries**:
+   - Profile power_type "Psychic" + `explained_vs_mysterious: 7/10` → Load psionic_psychic_systems.md with detailed mechanics
+   - Profile power_type "Martial" + `explained_vs_mysterious: 3/10` → Load ki_lifeforce_systems.md with minimal explanation
+
+**Genre Library Templates** (How Profiles Use Libraries):
+
+Genre trope libraries are **templates** profiles reference, not rigid rules:
+
+1. **Trope-Driven Narrative**:
+   - Profile enables `tournament_arc: true` → Cognitive Engine references shonen_tropes.md "Tournament Arc" section
+   - Uses template: Round 1 fodder → Round 2 rival → Round 3 unexpected → Finals antagonist
+   - Adapts to campaign context (not copy-paste)
+
+2. **Combat Pattern Selection**:
+   - Profile `grounded_vs_absurd: 2/10` + shonen_tropes.md → Use "Declaring Attacks", "Beam Clashes", "Get Back Up" patterns
+   - Profile `grounded_vs_absurd: 9/10` + seinen_tropes.md → Realistic combat, tactical brutality, no shounen flourishes
+
+3. **Arc Structure**:
+   - Profile `episodic_vs_serialized: 2/10` (episodic) → Use standalone arcs per shonen_tropes.md "Arc Templates"
+   - Profile `episodic_vs_serialized: 9/10` (serialized) → Long continuous narrative, seinen_tropes.md structures
+
+**Intelligent Profile Generation** (Future Module 07 Integration):
+
+When player requests anime not in pre-made library:
+
+1. **Research Phase** (Module 07):
+   - Player: "I want Chainsaw Man vibes"
+   - Module 07 → External research (VS Battles Wiki, anime databases)
+   - Extract: Genre tags, power system, tone, pacing, key tropes
+
+2. **Extraction Phase** (Module 13):
+   - Module 13 → Convert research to narrative scales (comedy_vs_drama: 5, grounded_vs_absurd: 6, etc.)
+   - Enable tropes (transformation: true, tragic_backstory: true, mentor_death: false, etc.)
+   - Determine power type (Devil contracts = soul_spirit_systems.md)
+
+3. **Scaffolding Phase** (Module 13):
+   - Apply mapping rules: fast_paced: 3 → XP model "Standard-High" (800-1.2K)
+   - Power_fantasy: 5 → Growth model "Accelerated" (T1→T3 by session 15)
+   - Tactical: 6 → 6-stat framework, balanced spectacle/tactics
+
+4. **Storage Phase** (Module 03):
+   - Store FULL generated profile in character_schema.narrative_profile (type: "generated")
+   - No file reference (custom profile exists only in state)
+   - Export saves ALL data (scales/tropes/scaffolding)
+
+**Performance Impact**:
+
+Narrative profiles add minimal overhead:
+- **Session Start**: Load active profile once (200-300 tokens)
+- **Per Response**: Check 2-3 relevant scales (10-20 tokens)
+- **Adjustments**: Update profile + memory (50-100 tokens)
+- **Total**: <500 token increase per session (0.25% of 200K context)
+
+**Success Criteria**:
+
+Narrative profile integration working when:
+- ✅ Profile scales visibly affect tone/pacing/complexity
+- ✅ Enabled tropes trigger appropriate genre library patterns
+- ✅ Mechanical scaffolding correctly configures Module 09/12/08
+- ✅ Mid-campaign adjustments apply immediately (next response)
+- ✅ Generated profiles persist properly (full data in state)
+- ✅ Genre libraries referenced as templates (not rigid rules)
+- ✅ Player feedback creates NARRATIVE_STYLE memories
 
 ## Performance Checklist
 

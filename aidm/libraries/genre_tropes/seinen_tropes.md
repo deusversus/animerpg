@@ -74,6 +74,20 @@ Seinen combat: **Realistic** (injuries matter, no HP sponge), **Lethal** (headsh
 
 ## Cross-Refs
 
+**Narrative Profiles** (Reference Implementations):
+- **death_note_profile.md**: Psychological warfare masterclass (introspection:9, tactical:10), zero combat, mental chess, moral ambiguity
+- **attack_on_titan_profile.md**: Grim military thriller (drama:9, hopeful:8), mystery box, political intrigue, high mortality
+- **vinland_saga_profile.md**: Historical realism (grounded:10, introspection:7), zero supernatural, character depth, philosophical themes
+- **mushishi_profile.md**: Contemplative slice-of-life (slow_burn:9, introspection:8), episodic mysteries, zero combat, atmospheric
+
+**Power System Libraries**: ki_lifeforce_systems.md (realistic martial arts), soul_spirit_systems.md (supernatural seinen), mana_magic_systems.md (dark fantasy)
+
+**Genre Libraries**: shonen_tropes.md (tactical combat overlap), slice_of_life_tropes.md (contemplative moments), isekai_tropes.md (dark isekai)
+
+**Modules**: Module 08 Combat (tactical/realistic), Module 04 NPC System (complex relationships), Module 05 Narrative Engine (moral ambiguity), Module 13 Narrative Calibration (applies seinen profiles)
+
+## Cross-Refs (Original)
+
 **Libraries**: Module 12 Player Agency (handling dark themes, player choice in moral ambiguity), shonen_tropes.md (contrast, seinen-shonen hybrids: Attack on Titan, Demon Slayer), isekai_tropes.md (dark isekai: Re:Zero, Overlord), psychological warfare mechanics (Module 04 combat adaptations). **Schemas**: character_schema (trauma tracking, sanity, morality alignment), session_state_schema (faction standings, trust levels, consequences log), world_state_schema (political landscape, war casualties). **Modules**: 04_combat (lethal combat rules), 05_narrative (moral complexity, unreliable narrators), 06_session_zero (safety tools, content boundaries).
 
 ---

@@ -93,6 +93,43 @@ When player gives feedback (patterns: "Be less on the nose", "read my whole repl
 
 **Management**: Fade to background unless manifesting. Allow natural decay.
 
+### 7. NARRATIVE_STYLE (Tone & Pacing Adjustments)
+**Heat Decay**: Moderate | **Base**: 40-90 | **Compression**: When superseded or applied
+
+**Contents**: Narrative profile changes (scale adjustments, trope toggles), tone/pacing feedback from player, calibration adjustments, mechanical scaffolding updates, session zero narrative choices
+
+**Subcategory: PROFILE_ADJUSTMENT**
+
+When player requests narrative calibration mid-campaign (patterns: "Add more comedy", "Too serious", "Speed up pacing", "More/less tactical", "Tone down absurdity"):
+
+**Actions**:
+1. Create: NARRATIVE_STYLE / PROFILE_ADJUSTMENT
+2. Set heat: 70-90 (depending on magnitude), decay: -5/session (moderate)
+3. Metadata: `{"category":"narrative_style","subcategory":"profile_adjustment","heat":70-90,"decay_rate":-5,"scale_changed":"comedy_vs_drama","old_value":6,"new_value":4,"reason":"player feedback: needs more levity","session":5,"applied":true}`
+4. Apply to character_schema.narrative_profile (update scale/trope)
+5. Cascade to modules (Module 06 narration, Module 04 NPC dialogue, Module 08 combat style)
+6. Track application success
+
+**Subcategory: SCAFFOLDING_UPDATE**
+
+When mechanical scaffolding changes (XP model, growth model, stat framework shifts):
+
+**Actions**:
+1. Create: NARRATIVE_STYLE / SCAFFOLDING_UPDATE
+2. Set heat: 80 (high importance), decay: -3/session (slow, persist long)
+3. Metadata: `{"category":"narrative_style","subcategory":"scaffolding_update","heat":80,"decay_rate":-3,"component":"xp_model","old_value":"Standard 600-900","new_value":"High 1K-1.5K","reason":"switched from balanced to power fantasy","session":1,"cascades":["Module 09 progression","Module 12 growth model"]}`
+4. Update mechanical systems (Module 09, Module 12)
+5. Log in character_schema.narrative_profile.adjustments_log
+
+**Integration**: Before narrative generation (Module 05/06), check NARRATIVE_STYLE heat>60. Apply active adjustments to tone/pacing/combat narration style. Module 13 (Narrative Calibration) creates these memories when profiles load/change.
+
+**Example Memories**:
+- "Session 1: Applied DanDaDan profile (comedy_vs_drama:4, fast_paced:2, absurd:8). High XP model 1K-1.5K, Accelerated growth. Combat: 70% spectacle, 30% tactical." (Heat:90, SCAFFOLDING_UPDATE)
+- "Session 5: Player feedback 'needs more comedy, too serious'. Adjusted comedy_vs_drama 6→4. Module 06 narration +20% comedic beats, Module 04 NPCs more lighthearted." (Heat:70, PROFILE_ADJUSTMENT)
+- "Session 10: Toggled training_montage trope ON. Player wants more training arcs. Added shonen-style training sequences per shonen_tropes.md." (Heat:75, PROFILE_ADJUSTMENT)
+
+**Rule**: NARRATIVE_STYLE memories track HOW campaign feels, ensuring tone consistency across sessions. Applied adjustments fade (compress) after 3-5 sessions, but permanent record remains in narrative_profile.adjustments_log.
+
 ## Heat Index System
 
 **Heat** = memory activity/awareness. Higher heat = more influence on decisions.

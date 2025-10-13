@@ -72,7 +72,19 @@ Isekai (異世界 "different world") anime frameworks: transported/reborn/trappe
 
 ## Cross-Refs
 
-**Libraries**: Module 12 Player Agency (OP handling), mana_magic_systems.md (fantasy magic), ki_lifeforce_systems.md (cultivation/leveling), shonen_tropes.md (power-ups/friendship), slice_of_life_tropes.md (peaceful variants). **Schemas**: character_schema (status screen/skills/levels), world_state_schema (isekai tracking), anime_world_schema (multi-world gate). **Modules**: 06_session_zero (isekai setup), 07_anime_integration (research specific anime), 09_progression (leveling/skill trees/rank-ups).
+**Narrative Profiles** (Reference Implementations):
+- **konosuba_profile.md**: Comedy isekai parody (comedy:2, absurd:3), dysfunctional party, subverted tropes, status screen comedy
+- **rezero_profile.md**: Dark psychological isekai (drama:8, hopeful:6), time loop suffering, Return by Death mechanic, zero combat power
+- **attack_on_titan_profile.md**: Grim survival (hopeful:8, power_fantasy:7), ODM gear, high mortality, mystery box lore
+- **dandadan_profile.md**: Supernatural chaos (absurd:2, fast_paced:2), rapid escalation, psychic+spirit powers, alien invasions
+
+**Power System Libraries**: Module 12 Player Agency (OP handling), mana_magic_systems.md (fantasy magic), ki_lifeforce_systems.md (cultivation/leveling), soul_spirit_systems.md (unique powers)
+
+**Genre Libraries**: shonen_tropes.md (power-ups/friendship overlap), slice_of_life_tropes.md (peaceful isekai variants), seinen_tropes.md (dark isekai)
+
+**Schemas**: character_schema (status screen/skills/levels), world_state_schema (isekai tracking), anime_world_schema (multi-world gate)
+
+**Modules**: Module 06 Session Zero (isekai setup), Module 07 Anime Integration (research specific anime), Module 09 Progression (leveling/skill trees/rank-ups), Module 13 Narrative Calibration (applies isekai profiles)
 
 ---
 

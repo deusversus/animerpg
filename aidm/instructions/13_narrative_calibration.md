@@ -185,6 +185,204 @@ Kazuma: 'Got any GOOD ideas? We're out of bad ones.'"
 
 ---
 
+## Narrative DNA → Mechanical Scaffolding
+
+**CRITICAL**: AIDM intelligently maps narrative DNA to game mechanics. Apply to BOTH pre-made and generated profiles.
+
+### Power Level Mapping (Module 12)
+
+**Power Fantasy Scale → Growth Model**:
+
+**0-2 (OP protagonist)**: Instant OP model  
+- Start Tier 5 (cosmic), narrative pivot from session 1 (internal conflict/philosophy)  
+- Combat assumes victory, spotlight NPCs/allies  
+- *Examples*: Overlord, One Punch Man, Slime isekai
+
+**3-6 (Balanced)**: Accelerated model  
+- Start T1 → T3 by session 15, standard growth with faster pivot  
+- Combat scales with player  
+- *Examples*: Naruto, Demon Slayer, MHA
+
+**7-10 (Underdog)**: Modest model  
+- Start T1, slow (T2 by session 20), death possible, struggle emphasized  
+- *Examples*: Re:Zero, AoT, HxH early arcs
+
+### Progression Pacing (Module 09)
+
+**Fast vs Slow Scale → XP Multiplier**:
+
+**0-3 (Fast)**: High XP (1K-1.5K/session)  
+- L1-5 in 5-8 sessions, L10 in 15-20 sessions  
+- *Examples*: DanDaDan, Trigger anime, tournament arcs
+
+**4-6 (Moderate)**: Standard XP (600-900/session)  
+- L1-5 in 8-12 sessions, L10 in 30-40 sessions  
+- *Examples*: Most shonen, balanced
+
+**7-10 (Slow)**: Low XP (300-500) or milestone-only  
+- Growth de-emphasized, focus atmosphere/character  
+- *Examples*: Mushishi, slice-of-life, philosophical seinen
+
+**Arc consideration**: Episodic+Fast=High XP (arc=growth), Serialized+Moderate=Standard (growth spans arcs)
+
+### Combat System (Module 08)
+
+**Tactical Scale → Stat Framework**:
+
+**0-3 (Instinctive)**: 3-stat (Body/Mind/Spirit)  
+- Spectacle focus, minimal tactics, rule of cool  
+**4-6 (Balanced)**: 6-stat (STR/DEX/CON/INT/WIS/CHA)  
+- Moderate complexity, strategy+spectacle  
+**7-10 (Tactical)**: 6-stat + custom mechanics  
+- Exhaustive explanations, strategic planning (Nen conditions, Domain rules)
+
+**Strategy vs Spectacle → Narration**:  
+- 0-3: Chaos/visuals, outcomes not tactics  
+- 4-6: Key decisions + epic moments  
+- 7-10: Exhaustive breakdown, chess-like
+
+### Genre Library Auto-Loading Rules
+
+**CRITICAL**: Certain campaign types should **automatically load specific genre libraries** alongside core profile genres.
+
+**Genre Tropes Master Index**: `aidm/libraries/genre_tropes/GENRE_TROPES_INDEX.md` - Contains all 15 genre trope libraries with descriptions, auto-load triggers, and blending guidelines. Reference during Session Zero for campaign type selection.
+
+**Auto-Load Triggers** (detect during profile generation or Session Zero):
+
+**Spy/Espionage/Intelligence Campaigns**:
+- **Keywords**: spy, espionage, intelligence, secret agent, undercover, covert ops, assassination, infiltration, surveillance
+- **Auto-load**: `mystery_thriller_tropes.md` + `seinen_tropes.md`
+- **Reason**: Spy campaigns are fundamentally mystery/thriller genre (investigation, clue management, conspiracy frameworks, tension pacing)
+- **Example**: Spy x Family, James Bond, Mission: Impossible → Mystery investigation structure + Seinen mature themes
+
+**Detective/Investigation Campaigns**:
+- **Keywords**: detective, investigation, murder mystery, solving crimes, clues, whodunit
+- **Auto-load**: `mystery_thriller_tropes.md`
+- **Reason**: Investigation structure, red herrings, revelation pacing
+- **Example**: Death Note, Detective Conan, Psycho-Pass
+
+**Horror/Survival Campaigns**:
+- **Keywords**: horror, survival, zombie, monster hunting, eldritch, psychological horror
+- **Auto-load**: `horror_tropes.md` + `mystery_thriller_tropes.md` (if investigation elements)
+- **Reason**: Atmosphere, dread pacing, unknown threats
+- **Example**: Another, Higurashi, Parasyte
+
+**Tournament/Competition Campaigns**:
+- **Keywords**: tournament, competition, sports, ranking battles, championship
+- **Auto-load**: `shonen_tropes.md` + `sports_tropes.md`
+- **Reason**: Arc structure, rivalry dynamics, team/individual growth
+- **Example**: Hunter x Hunter (Heavens Arena), My Hero Academia (Sports Festival), Haikyuu
+
+**Isekai/Reincarnation Campaigns**:
+- **Keywords**: isekai, reincarnation, transported to another world, summoned, game world, VR world, second life
+- **Auto-load**: `isekai_tropes.md` + `comedy_tropes.md` (if comedic) OR `seinen_tropes.md` (if serious)
+- **Reason**: Power progression structure, world-building frameworks, status screens, cheat skills, culture shock
+- **Example**: Re:Zero (isekai + seinen), Konosuba (isekai + comedy), Overlord (isekai + seinen)
+
+**Mecha/Pilot Campaigns**:
+- **Keywords**: mecha, giant robot, pilot, mobile suit, EVA, gundam
+- **Auto-load**: `mecha_tropes.md` + `scifi_tropes.md`
+- **Reason**: Pilot-machine bonding, tactical mecha combat, military structure, technology systems
+- **Example**: Code Geass, Neon Genesis Evangelion, Gundam series
+
+**Magical Girl Campaigns**:
+- **Keywords**: magical girl, mahou shoujo, transformation, magical warrior, guardian
+- **Auto-load**: `magical_girl_tropes.md` + `shoujo_romance_tropes.md` (if romantic elements)
+- **Reason**: Transformation sequences, team dynamics, dual identity, emotional power sources
+- **Example**: Sailor Moon, Madoka Magica, Precure
+
+**Romance-Focused Campaigns**:
+- **Keywords**: romance, love story, relationship drama, dating sim, harem, love triangle
+- **Auto-load**: `shoujo_romance_tropes.md` + `slice_of_life_tropes.md`
+- **Reason**: Relationship progression, emotional beats, misunderstandings, confession scenes
+- **Example**: Kaguya-sama, Toradora, Your Lie in April
+
+**Supernatural/Urban Fantasy Campaigns**:
+- **Keywords**: supernatural, urban fantasy, yokai, spirits, curses, exorcist, modern magic
+- **Auto-load**: `supernatural_tropes.md` + `mystery_thriller_tropes.md` (if investigation focus)
+- **Reason**: Hidden world rules, spirit lore, curse mechanics, balance between worlds
+- **Example**: Jujutsu Kaisen, Bleach, Mob Psycho 100, Mushishi
+
+**Historical/Period Campaigns**:
+- **Keywords**: historical, period drama, samurai, feudal, warring states, historical fiction
+- **Auto-load**: `historical_tropes.md` + `seinen_tropes.md`
+- **Reason**: Period authenticity, political intrigue, honor codes, historical accuracy
+- **Example**: Vinland Saga, Kingdom, Rurouni Kenshin
+
+**Music/Performance Campaigns**:
+- **Keywords**: music, band, idol, performance, concert, musician, singer
+- **Auto-load**: `music_tropes.md` + `slice_of_life_tropes.md` OR `shoujo_romance_tropes.md`
+- **Reason**: Performance mechanics, creative process, artistic growth, ensemble dynamics
+- **Example**: Your Lie in April, K-On!, Bocchi the Rock
+
+**Sci-Fi/Space Opera Campaigns**:
+- **Keywords**: space, sci-fi, futuristic, cyberpunk, space opera, interstellar, dystopia
+- **Auto-load**: `scifi_tropes.md` + `mystery_thriller_tropes.md` (if conspiracy/investigation)
+- **Reason**: Technology systems, space travel mechanics, alien encounters, dystopian themes
+- **Example**: Cowboy Bebop, Steins;Gate, Psycho-Pass
+
+**Implementation** (Module 13 during profile generation):
+```
+1. Extract campaign keywords from player description
+2. Check auto-load triggers
+3. Load matching genre libraries
+4. Store in narrative_profile.active_libraries: ["seinen_tropes", "mystery_thriller_tropes"]
+5. Reference during gameplay (investigation structure, clue reveals, tension beats)
+```
+
+**Why This Matters** (Test Session Finding):
+- Spy x Family test campaign generated comedy + seinen + slice-of-life (correct base genres)
+- BUT missed mystery_thriller_tropes.md (spy investigation IS mystery/thriller structure)
+- Result: Investigation felt ad-hoc instead of structured (missing clue management, revelation pacing, conspiracy frameworks)
+- **Fix**: Auto-load mystery_thriller for spy/espionage campaigns
+
+---
+
+### Power System Mapping
+
+**Based on type + Explained scale**:
+
+**Psychic/Telekinetic**: `psionic_psychic_systems.md`  
+- MP costs (High Tactical=lower+control, Low=narrative flexibility)  
+- Explained 0-3=mysterious limits, 7-10=clear costs  
+- *Examples*: Mob Psycho, DanDaDan (Momo)
+
+**Martial/Physical**: `ki_lifeforce_systems.md`  
+- SP costs, stamina-focused  
+- *Examples*: Dragon Ball, Naruto taijutsu
+
+**Magic/Spells**: `mana_magic_systems.md`  
+- MP costs, spell slots if Tactical 7+  
+- *Examples*: Fairy Tail, Black Clover, Frieren
+
+**Soul/Metaphysical**: `soul_spirit_systems.md`  
+- Mixed HP/MP costs, permanent consequences  
+- *Examples*: Jujutsu Kaisen, Bleach
+
+**Custom** (Nen/Stands/Devil Fruits): Reference closest library, create custom, Explained scale=documentation depth
+
+### Attribute Priorities
+
+**Physical combat** (low Tactical, martial):  
+- Prioritize: STR/CON/DEX  
+- De-emphasize: INT (unless tactical)
+
+**Strategic combat** (high Tactical, mind games):  
+- Prioritize: INT/WIS/CHA  
+- De-emphasize: STR
+
+**Balanced**: Distribute evenly or by archetype
+
+---
+
+## Scaffolding Application
+
+**Pre-made profiles**: Include "Mechanical Scaffolding (Reference Implementation)" section showing mapping decisions for this anime  
+**Generated profiles**: Apply rules automatically during Session Zero, store selected systems in active_narrative_profile  
+**Persistence**: Full data via Module 03 state tracking (generated profiles can't reference library files)
+
+---
+
 ## Player Feedback Loop
 
 ### Mid-Session Calibration

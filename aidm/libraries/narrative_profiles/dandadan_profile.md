@@ -323,5 +323,167 @@ What do you do?
 
 ---
 
+## Mechanical Scaffolding (Reference Implementation)
+
+This section shows **how AIDM maps DanDaDan's narrative DNA to game mechanics**. Use as template when generating similar profiles (absurd supernatural action-comedy with rapid escalation).
+
+### Power Level Mapping (Module 12)
+
+**Narrative DNA**:
+- Power Fantasy: **4/10** (protagonists struggle but grow, threats constantly scale)
+- Threat Profile: External escalation, each arc introduces stronger supernatural entities
+- Death Risk: Moderate (serious injuries common, death threats real but subverted by comedy)
+
+**Maps To**:
+- **Accelerated Growth Model** (Tier 1 → Tier 3 by session 15)
+- Start at Level 1 (ordinary teens thrust into supernatural chaos)
+- Pivot occurs sessions 3-5 (first major power mastery: Momo controls psychic blasts, Okarun sustains transformation)
+
+**Reasoning**: Not overpowered protagonists but rapid growth matches DanDaDan's escalation velocity. Threats scale faster than heroes (keeps underdog tension), but competence grows quickly enough to avoid "always losing" frustration. Balances struggle (4/10 Power Fantasy) with momentum (2/10 Fast-Paced).
+
+---
+
+### Progression Pacing (Module 09)
+
+**Narrative DNA**:
+- Fast-Paced: **2/10** (rapid velocity, frequent climaxes, minimal downtime)
+- Story structure: Arc-based (3-5 session arcs), constant threat escalation within arcs
+- Emotional beats: Quick rebounds (trauma acknowledged but not lingered on)
+
+**Maps To**:
+- **High XP Model**: 1,000-1,500 XP per session
+- **Level Expectations**:
+  - L1-5 in 5-8 sessions (rapid initial growth as powers awaken)
+  - L6-10 in 8-12 sessions (mastery phase, unlock advanced techniques)
+  - L11+ slows to standard pace (narrative shifts to larger conflicts)
+
+**Reasoning**: Fast pacing demands mechanical rewards to match narrative momentum. Players should FEEL their characters' rapid adaptation to supernatural chaos. High XP compensates for frequent combat/challenges (2-3 encounters per session). Mirrors show's "week 1: aliens exist, week 5: fighting interdimensional curses" velocity.
+
+---
+
+### Combat System (Module 08)
+
+**Narrative DNA**:
+- Tactical: **5/10** (some strategy, but spectacle and chaos emphasized)
+- Strategy: **4/10** (minimal explanations, powers demonstrated not lectured)
+- Spectacle: **10/10** (sakuga moments, city-destruction, body horror)
+- Combat Style: Fast, chaotic, improvised tactics in absurd situations
+
+**Maps To**:
+- **6-Stat Framework** (STR, DEX, CON, INT, WIS, CHA)
+- Balanced depth for strategic moments without bogging down chaos
+
+**Attribute Priorities**:
+- **Prioritize**: DEX (speed-based combat, evasion), CON (taking brutal hits), INT (psychic powers, problem-solving)
+- **Moderate**: WIS (sensing spirits/aliens), STR (secondary to speed)
+- **De-emphasize**: CHA (romance is subplot, not social combat system)
+
+**Combat Narration Approach**:
+- **70% Chaotic Spectacle**: Describe absurd violence, environmental destruction, body horror transformations
+- **20% Tactical Moments**: Key strategic decisions (Momo psychic angle, Okarun transformation timing)
+- **10% Banter**: Mid-combat comedy ("Did you just headbutt a BUILDING?!")
+
+**Reasoning**: Needs tactical depth for abilities (psychic powers require targeting/range decisions, transformations have drawbacks) but shouldn't feel like chess match. 6-stat allows Momo (INT-focused psychic) vs Okarun (DEX-focused speed demon) differentiation. Spectacle dominates—every combat should have ONE "sakuga moment" (dramatic description, player choice amplified).
+
+---
+
+### Power System Mapping
+
+**Narrative DNA**:
+- **Power Types**: Psychic (Momo) + Spirit Possession (Okarun) + Alien Tech (enemies)
+- **Explained Scale**: 4/10 (loose rules, preserve chaos/weirdness)
+- **Cost Structure**: Powers drain users (Momo exhaustion, Okarun control loss)
+
+**Maps To**:
+- **Libraries**: 
+  - `psionic_psychic_systems.md` (Momo's telekinesis, barriers, spiritual awareness)
+  - `soul_spirit_systems.md` (Okarun's possession transformation, spirit exorcism)
+  - (Alien tech = custom per enemy, no library)
+- **Genre Tropes**:
+  - `shonen_tropes.md` (training montages, power of friendship, team dynamics, absurd combat)
+  - `isekai_tropes.md` (supernatural invasion elements, rapid power escalation)
+
+**Resource Mechanics**:
+- **Momo (Psychic)**: MP-intensive, formula: **Power Level × 3 MP** per use
+  - Telekinetic Blast (Power 3): 9 MP
+  - Psychic Barrier (Power 4): 12 MP
+  - Spirit Exorcism (Power 5): 15 MP
+  - MP Pool: (INT + WIS) × 4, recovers on rest
+  
+- **Okarun (Spirit Possession)**: SP-based (Stamina/Spirit Points)
+  - Transformation Activation: 10 SP (lasts 1 minute/10 rounds)
+  - Sustain: 5 SP per round
+  - Drawback: WIS save (DC 12) each round or lose control (attack nearest target)
+  - SP Pool: (CON + WIS) × 3, recovers on rest
+
+**Explained Scale Application**:
+- **4/10 = Loose Costs**: Don't track MP/SP per-action in narrative moments, use for big decisions ("Do I have enough MP for barrier + blast?")
+- Emphasize consequences (exhaustion, control loss) over precise accounting
+- Allow creative use without rigid "can't do that, wrong power" rulings
+
+**Reasoning**: Explained 4/10 means preserve mysterious/chaotic vibe. Costs exist to create tension (Momo running low, Okarun's transformation time limit) but shouldn't feel like spreadsheet. Dual systems mirror protagonists' contrasting power sources. MP/SP formulas provide guidance without over-specifying.
+
+---
+
+### Attribute Priorities by Archetype
+
+**Momo-type (Psychic Medium)**:
+- **Primary**: INT (psychic power strength), WIS (spiritual awareness, sensing aliens), CON (durability under pressure)
+- **Secondary**: DEX (evasion, not tanky)
+- **Dump**: STR (psychic substitutes physical), CHA (socially awkward)
+- **Build Path**: High MP pool, telekinetic control, exorcism abilities
+
+**Okarun-type (Possessed Fighter)**:
+- **Primary**: DEX (transformation grants supernatural speed), CON (sustain damage, SP pool), WIS (resist control loss, sense spirits)
+- **Secondary**: INT (problem-solving, not dumb)
+- **Dump**: STR (speed over strength), CHA (extremely awkward)
+- **Build Path**: High SP pool, transformation mastery, evasion/speed feats
+
+**Hybrid/Ensemble Characters**:
+- DanDaDan supports **ensemble casts** (Tier 3+ ensemble focus)
+- Mix psychic + martial, alien tech users, spirit mediums
+- Prioritize **differentiation** over optimization (every character weird in unique way)
+
+---
+
+### Character Creation Notes
+
+**Recommended Archetypes**:
+- **Dual Protagonists**: Psychic + Possessed (Momo/Okarun dynamic)
+- **Ensemble**: 3-4 characters with contrasting powers (psychic, possessed, cursed, alien-tech user)
+- **Backgrounds**: Ordinary teens thrust into chaos (start weak, grow fast)
+
+**Tone Calibration**:
+- **Banter > Optimization**: Characters should have comedic chemistry, not just tactical synergy
+- **Romance Subplot**: Awkward tension optional but thematic (never explicit, always near-misses)
+- **Horror Tolerance**: Players should enjoy body horror + creepy atmosphere (not grimdark trauma)
+
+**Red Flags / Avoid**:
+- ❌ **Pure Martial Builds**: Doesn't fit supernatural chaos (everyone needs weird power)
+- ❌ **Overly Tactical Players**: If they want Nen conditions (Hunter x Hunter), this profile won't satisfy
+- ❌ **Slow-Burn Preference**: DanDaDan is RAPID—players wanting contemplative pacing (Mushishi) will clash
+- ❌ **Grim Realism**: Tone is absurd, not nihilistic. Players expecting Attack on Titan bleakness wrong fit.
+- ❌ **Power-Gaming**: Loose rules (Explained 4/10) frustrate min-maxers seeking exploit loops
+
+**Session Zero Questions**:
+1. "Comfort with body horror?" (wrong proportions, grotesque aliens)
+2. "Enjoy rapid tonal shifts?" (comedy→horror→romance in single scene)
+3. "Prefer spectacle or tactics?" (if tactics, consider Hunter x Hunter profile)
+4. "Okay with romance subplot?" (optional but thematic)
+
+---
+
+**Scaffolding Summary**:
+- **Power Level**: Accelerated growth (4/10 Power Fantasy → Tier 1-3 in 15 sessions)
+- **Progression**: High XP (2/10 Fast-Paced → 1K-1.5K/session)
+- **Combat**: 6-stat balanced (5/10 Tactical), prioritize DEX/CON/INT, spectacle > strategy
+- **Power Systems**: Psychic (MP, Power×3 formula) + Spirit Possession (SP, 10+5/round), Explained 4/10 = loose costs
+- **Archetypes**: Dual protagonists or ensemble, psychic + possessed combinations
+- **Avoid**: Pure martial, overly tactical, slow-burn, grim realism
+
+Use this template when generating profiles for similar anime: **Absurd supernatural action-comedy with rapid escalation, chaotic spectacle, and awkward ensemble dynamics** (e.g., Mob Psycho 100, Jujutsu Kaisen comedy arcs, Chainsaw Man's tonal chaos).
+
+---
+
 **Profile Status**: Approved ✅  
 **Next Review**: After Session 10 (check if adjustments needed based on player feedback)

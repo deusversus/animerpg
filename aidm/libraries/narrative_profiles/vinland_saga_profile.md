@@ -660,6 +660,191 @@ What do you do?
 
 ---
 
+## Mechanical Scaffolding (Reference Implementation)
+
+This section shows **how AIDM maps Vinland Saga's narrative DNA to game mechanics**. Use as template when generating similar profiles (realistic historical drama with grounded combat, moral complexity, and redemption arcs).
+
+### Power Level Mapping (Module 12)
+
+**Narrative DNA**:
+- Power Fantasy: **6/10** (moderate struggle—protagonists skilled but mortal, losses common, death constant threat)
+- Threat Profile: Historical warfare (disease, betrayal, violence, starvation—not just combat)
+- Death Risk: High (no plot armor, main characters DIE, PTSD/trauma permanent)
+
+**Maps To**:
+- **Modest Growth Model** (slow Tier 1 → Tier 2 progression, realistic skill development)
+- Start at Level 1 (child soldier OR slave with zero combat skill)
+- Pivot occurs sessions 10-15 (Thorfinn masters dual-dagger speed OR Einar earns freedom)
+- Growth to Tier 3+ requires **40+ sessions** (veteran warrior status is campaign-length achievement)
+- **Alternative**: No levels (milestone-based, narrative progression only—skill improvement shown via RP not stats)
+- **Libraries**:
+  - `martial_combat_systems.md` (Historical melee combat, dual daggers, shield walls)
+  - `survival_systems.md` (Sailing, farming, winter survival, slavery)
+- **Genre Tropes**:
+  - `seinen_tropes.md` (historical realism, moral complexity, war brutality, revenge→redemption arc, philosophical depth, PTSD)
+  - `historical_tropes.md` (Viking Age warfare tactics, feudal politics, honor codes vs pragmatism, historical figure portrayals, class systems, siege warfare, court intrigue, warrior culture)
+
+**Reasoning**: Power Fantasy 6/10 = struggle is REAL. Thorfinn is prodigy who still loses constantly (Thorkell, Askeladd, guilt). Modest growth preserves mortality—even veteran warriors DIE (Thors killed despite legendary skill). No supernatural escalation (contrast Hunter x Hunter's Nen mastery, DanDaDan's rapid power-ups). Growth measured in YEARS (Season 1 = child to skilled assassin over decade, Season 2 = slave to farmer over 3+ years). Matches show's "skill earned through suffering" philosophy.
+
+---
+
+### Progression Pacing (Module 09)
+
+**Narrative DNA**:
+- Fast-Paced: **7/10** (SLOW BURN—entire arcs dedicated to character growth, minimal plot advancement)
+- Story structure: Multi-season arcs (War Arc 24 episodes, Farmland Saga 24 episodes—both focus internal struggle over external plot)
+- "Power-ups" = psychological breakthroughs (Thorfinn renouncing violence, not unlocking new technique)
+
+**Maps To**:
+- **Low XP OR Milestone Progression**:
+  - **Low XP**: 300-500 XP per session (slow leveling matches slow character development)
+  - **Milestone**: Progression tied to narrative beats (escape slavery = level up, master farming = level up, first pacifist victory = level up)
+- **Level Expectations** (if using XP):
+  - L1-3 in 15-20 sessions (child to adolescent warrior)
+  - L4-6 in 20-30 sessions (skilled fighter, still mortal)
+  - L7+ requires 40+ sessions (veteran tier, rare)
+- **Alternative**: No XP/levels (pure narrative progression, skills improve via training RP, stats represent inherent talent not growth)
+
+**Reasoning**: Fast-Paced 7/10 = SLOW BURN paradox (show paced slowly despite "7/10" label—reflects contemplative storytelling). Entire Season 2 (24 episodes) = Thorfinn digging dirt, processing trauma, ZERO combat. Low XP matches deliberate pacing (players shouldn't rush to "max level"—journey IS destination). Milestone option emphasizes character arc over mechanical progression ("I'm Level 5" matters less than "I renounced violence"). Matches show's "redemption takes time" philosophy.
+
+---
+
+### Combat System (Module 08)
+
+**Narrative DNA**:
+- Tactical: **6/10** (BALANCED—medieval tactics + brutal realism, strategy matters but chaos dominates)
+- Combat Style: Realistic violence (exhaustion, injury, mud/blood, PTSD consequences)
+- NO superpowers (skill, tactics, physical attributes only)
+
+**Maps To**:
+- **6-Stat Framework** (STR/DEX/CON/INT/WIS/CHA—NO supernatural stats)
+- **Realistic Combat Mechanics**:
+  - **Injury System**: Track wounds (broken ribs = disadvantage on physical actions, severed finger permanent)
+  - **Exhaustion**: Extended combat = CON saves or fatigue (disadvantage, reduced movement)
+  - **Armor Matters**: Chainmail WORKS (deflects slashes, blunt weapons bypass), historical accuracy
+  - **NO Hit Points** (optional): Use wound levels (Unharmed → Wounded → Severely Wounded → Dying → Dead)
+
+**Attribute Priorities**:
+- **Warrior Build (Thorfinn Season 1)**: STR 14 (damage), DEX 16 (speed, dual-dagger finesse), CON 14 (endurance), INT 10, WIS 8 (trauma-reduced), CHA 10
+- **Veteran Build (Thors/Askeladd)**: STR 16, DEX 14, CON 16, INT 14 (tactics), WIS 12, CHA 14 (leadership)
+- **Pacifist Build (Thorfinn Season 2)**: STR 14 (still strong), DEX 16, CON 16 (farm labor), INT 12, WIS 14 (growth), CHA 12, **REFUSES to use combat skills**
+
+**Combat Narration**:
+- **80% Brutal Realism**: Describe mud, blood, broken bones, exhaustion ("Axe CRUNCHES into shield, wood splinters, your arm SCREAMS pain")
+- **15% Tactical Moments**: Shield-wall formations, flanking, terrain use ("Bridge narrows—shield-wall blocks them, they can't flank")
+- **5% Rare Sakuga**: Reserved for legendary fighters (Thors' disarm, Thorkell's monstrous strength—fluid animation equivalent = detailed narration)
+- **PTSD Consequences**: After combat, trauma rolls (WIS save or flashback, nightmares, emotional shutdown)
+
+**Reasoning**: Tactical 6/10 = strategy MATTERS but isn't chess (contrast Hunter x Hunter 10/10 tactical). Medieval warfare uses formations, terrain, but battles are CHAOTIC (fog of war, panic, exhaustion override plans). Brutal realism enforced—injury system makes combat DANGEROUS (losing hand ends warrior career). NO superpowers maintains historical grounding (contrast Demon Slayer's Breathing, JJK's Cursed Energy). Pacifist build shows Season 2 Thorfinn—STILL physically capable, CHOOSES non-violence (mechanically complex—high stats, refuses to use them). Matches show's "violence is horror not glory" philosophy.
+
+---
+
+### Power System Mapping
+
+**Narrative DNA**:
+- **Power Type**: NONE (realistic historical combat, zero supernatural elements)
+- **Explained Scale**: **N/A** (no magic system to explain)
+- **"Power" Source**: Skill (training), genetics (size/strength), tactics (intelligence)
+
+**Maps To**:
+- **NO Power System Library** (historical realism only)
+- **Skill-Based Mechanics**:
+  - **Weapon Proficiency**: Trained via backstory (Thorfinn dual-dagger = childhood training, mechanically = proficiency bonus)
+  - **Size/Strength**: Genetic + training (Thorkell 7ft+ = naturally high STR 18-20, not magic)
+  - **Berserker Rage**: Historical henbane drug (chemical not supernatural—temporary STR boost, WIS penalty, exhaustion after)
+- **No Resource Pools**: No MP, SP, Ki—stamina = CON stat + exhaustion mechanics
+
+**Reasoning**: Vinland Saga is ZERO FANTASY. No magic, no supernatural abilities, no anime power-ups. "Power system" = human biology + medieval technology. Berserkers explained SCIENTIFICALLY (hallucinogenic drugs, historical accuracy). Contrast with every other profile (DanDaDan has psychic powers, Hunter x Hunter has Nen, even realistic shows like Demon Slayer have Breathing)—Vinland Saga is PURE HISTORICAL FICTION. Matches show's "humans are humans, not heroes" philosophy.
+
+---
+
+### Attribute Priorities by Archetype
+
+**Thorfinn Season 1 (Revenge-Driven Assassin)**:
+- **Primary**: DEX 16 (dual-dagger speed, acrobatics), STR 14 (lethal damage), CON 14 (endurance)
+- **Secondary**: INT 10 (tactical basics), CHA 10 (minimal social)
+- **Dump**: WIS 8 (trauma-reduced, PTSD, suicidal tendencies)
+- **Build Path**: Maximize DEX for speed, moderate STR, track TRAUMA (WIS decreases with each kill, represents psychological breakdown)
+
+**Thorfinn Season 2 (Pacifist Slave → Farmer)**:
+- **Primary**: CON 16 (farm labor, endurance), WIS 14 (trauma recovery, philosophical growth), DEX 16 (retains speed)
+- **Secondary**: STR 14 (strong but not priority), INT 12 (learning philosophy), CHA 12 (forming bonds)
+- **Dump**: None (balanced growth)
+- **Build Path**: **Refuse combat despite high stats** (mechanically CAN fight, narratively WON'T), WIS increases as trauma heals, CHA grows via relationships (Einar, Arnheid)
+
+**Thors ("True Warrior" Pacifist Veteran)**:
+- **Primary**: STR 16 (legendary strength), CON 16 (veteran endurance), WIS 16 (philosophy, pacifism)
+- **Secondary**: DEX 14 (combat skill), CHA 14 (family man, respected), INT 14 (tactical genius)
+- **Build Path**: Peak physical stats + high mental stats, **Uses combat skill to DISARM not KILL** (mechanically non-lethal damage, narrative pacifism)
+
+**Askeladd (Tactical Leader / Manipulator)**:
+- **Primary**: INT 16 (brilliant tactician), CHA 16 (leadership, manipulation), DEX 14 (swordsman)
+- **Secondary**: STR 14 (competent fighter), CON 14 (veteran), WIS 12 (pragmatic)
+- **Build Path**: Mental stats over physical, leadership feats, expertise in Deception/Persuasion/Insight
+
+**Thorkell (Monstrous Warrior / Battle-Lover)**:
+- **Primary**: STR 20 (monstrous size 7ft+, genetic outlier), CON 18 (near-unkillable), DEX 12 (surprisingly agile for size)
+- **Secondary**: CHA 14 (charismatic berserker), INT 10 (tactical basics), WIS 10 (battle-obsessed)
+- **Build Path**: PEAK physical stats (genetic freak + lifetime training), uses improvised weapons (tree trunks), represents absolute ceiling for human capability
+
+**Einar (Slave → Freeman / Farmer)**:
+- **Primary**: CON 14 (farm labor), CHA 12 (kind, forms bonds), WIS 12 (learns philosophy)
+- **Secondary**: STR 12 (farm work), INT 10, DEX 10
+- **Dump**: Combat skills (never trained—disadvantage on attack rolls, unfamiliar with weapons)
+- **Build Path**: Non-combatant, represents "normal person" in warrior world, CHA/WIS growth via relationships/philosophy
+
+---
+
+### Character Creation Notes
+
+**Recommended Party Composition**:
+- **Viking Raid Band**: 3-4 warriors (Thorfinn-types), 1 leader (Askeladd-type)
+- **Slaves to Freemen**: Mixed combat/non-combat (Thorfinn + Einar dynamic, warriors protecting farmers)
+- **Redemption Arc**: Former warriors seeking pacifism (all Thorfinn Season 2 equivalents)
+
+**Session Zero MANDATORY**:
+1. **Violence Tolerance**: Graphic descriptions okay? (disembowelment, decapitation, slave beatings, sexual violence IMPLIED)
+2. **Slow Pacing Acceptance**: Entire sessions may be philosophical debates, farming RP, zero combatで
+3. **Moral Complexity**: No clear heroes (Vikings = raiders/murderers, also victims of systems, can player accept grey morality?)
+4. **PTSD Themes**: Trauma mechanics okay? (flashbacks, nightmares, emotional breakdowns)
+5. **Historical Accuracy**: Prefer realism over fun? (combat is brief/brutal, not extended anime battles)
+
+**Tone Calibration**:
+- **Violence is UGLY**: Never glorify combat (describe mud, shit, blood, vomit, broken teeth—war is HELL)
+- **Slow Burn Pacing**: Sessions can be 3 hours of digging dirt, processing trauma, forming bonds (NO COMBAT, that's okay)
+- **Redemption is HARD**: Pacifism costs EVERYTHING (lose status, friends, purpose—Thorfinn's "I have no enemies" takes 20+ sessions to achieve)
+- **Historical Grounding**: Research Viking Age (politics, slavery, warfare, religion), anachronisms break immersion
+- **"True Warrior" Philosophy**: Thors' definition = pacifism, strength = restraint (anti-shounen message, violence = failure)
+- **PTSD Realistic**: Trauma doesn't "heal"—it's managed (Thorfinn still has nightmares in Season 2, that's realistic)
+
+**Red Flags / Avoid**:
+- ❌ **Players Want Fantasy**: Vinland Saga is historical fiction (wrong fit for magic-seekers)
+- ❌ **Players Want Fast Pacing**: Entire arcs are slow (wrong fit for action-addicts)
+- ❌ **Players Want Power Fantasy**: Characters stay MORTAL, growth is SLOW (wrong fit for shounen fans)
+- ❌ **Players Uncomfortable with Brutality**: Slavery, violence, sexual assault IMPLIED (wrong fit for sensitive players)
+- ❌ **Players Want Clear Heroes**: Vikings are RAIDERS (murder civilians for profit), moral greyness constant (wrong fit for black/white morality)
+- ❌ **Players Avoid Emotional RP**: Thorfinn cries, breaks down, questions everything (wrong fit for stoic power-gamers)
+
+**Session Structure**:
+- **Combat Sessions**: Rare (10-20% of campaign), brief (1-3 rounds), BRUTAL (permanent injuries common)
+- **Philosophical Sessions**: Common (30-40%), debates about violence/redemption/kingship, zero dice rolls
+- **Labor Sessions**: Farm work, ship rowing, camp setup (slice-of-life RP, CON checks for exhaustion, bonds form)
+- **Trauma Sessions**: PTSD episodes, nightmares, flashbacks (WIS saves, RP emotional breakdowns, healing via relationships)
+
+---
+
+**Scaffolding Summary**:
+- **Power Level**: Modest growth (6/10 Struggle → slow Tier 1-2, 40+ sessions for Tier 3, high death risk, PTSD permanent)
+- **Progression**: Low XP (300-500/session) OR milestone (arc completion), 15-20 sessions for L1-3, emphasizes narrative over mechanical growth
+- **Combat**: 6-stat realistic (6/10 Tactical), prioritize STR/DEX/CON, injury/exhaustion systems, NO superpowers, 80% brutal narration
+- **Power Systems**: NONE (historical realism only, skill = training, size = genetics, berserkers = drug-induced)
+- **Archetypes**: Warrior (STR/DEX/CON), Leader (INT/CHA), Pacifist Veteran (high combat stats, refuses to use), Non-Combatant (farm labor, philosophy)
+- **Avoid**: Fantasy-seekers, fast pacing preference, power fantasy fans, brutality-uncomfortable players, clear morality preference, stoic RP avoiders
+
+Use this template when generating profiles for similar anime: **Realistic historical drama with grounded combat, moral complexity, and redemption arcs** (e.g., Kingdom's warring states realism, Golden Kamuy's Hokkaido survival, Berserk's grounded medieval arcs before fantasy escalation).
+
+---
+
 **Profile Status**: Approved ✅  
 **Genre**: Historical Drama / Seinen / Redemption Arc / Anti-War  
 **Similar Profiles**: Berserk (dark medieval, trauma), Attack on Titan (war brutality, moral complexity), Monster (psychological seinen)

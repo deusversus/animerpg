@@ -163,11 +163,16 @@ Handling "Nothing Happens": Reframe success (emotional connection > task complet
 
 ## Cross-Reference
 
-Related: `shonen_tropes.md` (school overlap), `isekai_tropes.md` (slice-of-life isekai), `seinen_tropes.md` (mature workplace/coming-of-age)
+**Narrative Profiles** (Reference Implementations):
+- **mushishi_profile.md**: Contemplative episodic (slow_burn:9, introspection:8), supernatural mysteries, atmospheric wandering, zero combat
+- **haikyuu_profile.md**: Sports slice-of-life (hopeful:2, ensemble:true), team bonding, training montages, tournament arcs
+- **konosuba_profile.md**: Comedy slice-of-life (comedy:2, episodic:6), party dynamics, tavern downtime, quest humor
 
-Schemas: `character_schema.json` (relationships, social stats), `session_state_schema.json` (seasons, events), `world_state_schema.json` (setting, NPC network)
+**Genre Libraries**: shonen_tropes.md (school/sports overlap), isekai_tropes.md (slice-of-life isekai), seinen_tropes.md (mature workplace/coming-of-age)
 
-Modules: `06_session_zero.md` (boundaries, pacing), `10_world_simulation.md` (NPC schedules, seasonal events), `11_memory_coherence.md` (details, inside jokes)
+**Schemas**: character_schema.json (relationships, social stats), session_state_schema.json (seasons, events), world_state_schema.json (setting, NPC network)
+
+**Modules**: Module 06 Session Zero (boundaries, pacing), Module 10 World Simulation (NPC schedules, seasonal events), Module 11 Memory Coherence (details, inside jokes), Module 13 Narrative Calibration (applies slice-of-life profiles)
 
 ---
 

@@ -69,7 +69,19 @@ Shonen (少年) anime: Action-focused, determination/growth/friendship, overcomi
 
 ## Cross-Refs
 
-**Libraries**: Module 12 Player Agency (power escalation), ki_lifeforce_systems.md (DBZ/Naruto), mana_magic_systems.md (Fairy Tail/Black Clover), isekai_tropes.md (Solo Leveling/Shield Hero), seinen_tropes.md (Attack on Titan/Demon Slayer). **Schemas**: character_schema (rival tracking, mentor relationships), session_state_schema (training progress, tournament brackets), combat_schema (shonen combat). **Modules**: 04_combat (tactical shonen-style), 09_progression (power-ups, transformations), 10_world_simulation (tournaments, exams).
+**Narrative Profiles** (Reference Implementations):
+- **hunter_x_hunter_profile.md**: Tactical masterclass (tactical:10, explained:9), deep Nen system, tournament arcs, mentor relationships
+- **jujutsu_kaisen_profile.md**: Balanced supernatural (tactical:7, explained:7), cursed energy, team dynamics, training arcs
+- **demon_slayer_profile.md**: Emotional spectacle (tactical:4, comedy:3), Breathing styles, mentor sacrifice, underdog protagonist
+- **haikyuu_profile.md**: Sports shonen (tactical:7, hopeful:2), team roles, training montages, rival dynamics, tournament structure
+
+**Power System Libraries**: Module 12 Player Agency (power escalation), ki_lifeforce_systems.md (DBZ/Naruto), mana_magic_systems.md (Fairy Tail/Black Clover), psionic_psychic_systems.md (Mob Psycho)
+
+**Genre Libraries**: isekai_tropes.md (Solo Leveling/Shield Hero overlap), seinen_tropes.md (Attack on Titan/Demon Slayer tactical elements), slice_of_life_tropes.md (downtime moments)
+
+**Schemas**: character_schema (rival tracking, mentor relationships), session_state_schema (training progress, tournament brackets), combat_schema (shonen combat)
+
+**Modules**: Module 08 Combat (tactical shonen-style), Module 09 Progression (power-ups, transformations), Module 10 World Simulation (tournaments, exams), Module 13 Narrative Calibration (loads profiles, applies scaffolding)
 
 ---
 

@@ -12,7 +12,52 @@
 
 ## Step 1: Loading NPC Data
 
+**CRITICAL: Use npc_schema.json for Story-Relevant NPCs**
+
+**Schema Location**: `aidm/schemas/npc_schema.json`
+
+**When to Use Full Schema** (create structured NPC):
+- ✅ **Recurring NPCs** (player will interact multiple times)
+- ✅ **Plot-critical characters** (quest givers, mentors, rivals, allies, antagonists)
+- ✅ **Relationship-focused NPCs** (affinity tracking matters)
+- ✅ **Complex personalities** (secrets, goals, faction ties, schedules)
+- ✅ **Named significant characters** (not generic "Guard #3")
+
+**When Ad-Hoc NPC Acceptable** (simple generation):
+- ✅ Background characters (crowd flavor, one-time merchants)
+- ✅ Generic NPCs ("a guard", "passerby", "shopkeeper")
+- ✅ Combat-only enemies (bandits, monsters with no personality)
+- ✅ Temporary encounters (no relationship tracking needed)
+
+**Test Session Finding**: 3 significant NPCs created ad-hoc (Gregor the contact, Mouse the informant, Valen the editor) without schema structure. Result: No affinity tracking, no personality persistence, no relationship evolution. **These should have used npc_schema.json**.
+
+**Implementation Workflow** (for story-relevant NPCs):
+```
+1. Player encounters significant NPC
+2. Generate full npc_schema.json structure:
+   - core_identity (name, personality traits/values/fears/goals, appearance, backstory)
+   - knowledge (topics, expertise, boundaries)
+   - behavior (dialogue_style, reaction_patterns, decision_making)
+   - relationships (player_affinity starting value, modifiers, thresholds)
+   - narrative_role (importance: recurring/major, purpose: quest_giver/ally/rival)
+   - current_state (location, activity, schedule)
+3. Store in Module 03 (state_manager) world_state.npcs[npc_id]
+4. Reference for ALL future interactions (consistent personality, affinity tracking)
+5. Update affinity after each interaction (see Step 6)
+6. Create RELATIONSHIP memory threads (Module 02)
+```
+
 **Schema Key Fields**: npc_id, core_identity (name, personality: traits/values/fears/goals), knowledge (known_topics with depth, known_npcs, knowledge_boundaries: prohibited), behavior (dialogue_style: formality/vocabulary/tone, reaction_patterns), relationships (player_affinity -100 to +100, thresholds: hostile -60, unfriendly -20, neutral 0, friendly 30, trusted 60, devoted 90), current_state (location, activity, schedule)
+
+**Schema Benefits**:
+- ✅ Affinity tracking (relationship evolution over campaign)
+- ✅ Personality consistency (traits/values/fears persist)
+- ✅ Knowledge boundaries (realistic expertise limits)
+- ✅ Behavioral patterns (predictable reactions)
+- ✅ Faction ties (world interconnection)
+- ✅ Schedules (NPCs have lives, aren't always available)
+- ✅ Secrets (discovery mechanics, plot reveals)
+- ✅ Evolution triggers (personality can change based on events)
 
 ## Step 2: Affinity System
 
