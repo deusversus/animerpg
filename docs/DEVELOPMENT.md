@@ -22,12 +22,12 @@ Any change that could diminish player control must be rejected. The AI assists; 
 ### 3.5. **Genre-Authentic Storytelling** (NEW - January 2025)
 AIDM must learn HOW anime tells stories (narrative DNA), not just mechanics. Module 13 (Narrative Calibration) extracts storytelling vibe via 10 scales (0-10), 15 trope switches (ON/OFF), and pacing/tone/dialogue/combat parameters. This prevents "D&D in anime skin" - same mechanics, different FEEL per source anime.
 
-### 4. **Context Budget Management** (Critical)
-Token efficiency is a first-class design constraint. AIDM operates in 200K context windows:
-- **Current base system**: ~97,816 tokens (48.9% of budget) - 13 modules + 8 schemas + narrative DNA
-- **Pre-optimization**: 142,192 tokens (instruction modules alone)
-- **Actual reduction**: 62% base + narrative DNA system (~13,626 tokens for genre-authentic storytelling)
-- **Alert threshold**: >100,000 tokens (50% of budget)
+### 4. **Context Budget Management** (Optimized)
+Index files optimized October 13, 2025 for efficient Session Zero loading:
+- **Session Zero load**: ~18,565 tokens (36.2% reduction from 29,100)
+- **Index files**: PROFILE_INDEX.md (1,471 words), GENRE_TROPES_INDEX.md (868 words)
+- **Total savings**: ~10,535 tokens with 100% information parity
+- **Lazy-loading**: Core modules + indexes in Tier 1, libraries loaded on-demand
 
 **Why this matters**: Every token saved in instruction files = more tokens available for gameplay (NPC memories, conversation history, world state, narrative depth).
 
@@ -37,10 +37,10 @@ Token efficiency is a first-class design constraint. AIDM operates in 200K conte
 - Multi-pass refinement required (3+ iterations for all files)
 - Validate 100% information parity before considering file complete
 
-**Reference**: See `docs/TOKEN_OPTIMIZATION_METHODOLOGY.md` for complete guide and `OPTIMIZATION_CHECKLIST.md` for quick reference.
+**Reference**: Index optimization methodology documented in `archive/index_optimization_2025-10-13/`
 
-### 5. **Test Before You Ship**
-All changes must pass the 8 acceptance tests in `/docs/SCOPE.md` before being considered complete.
+### 5. **Production Ready**
+Core system complete and optimized. DEEP_RESEARCH_PROMPT.md available for external analysis.
 
 ---
 

@@ -69,9 +69,10 @@ This document explicitly defines what IS and IS NOT included in AIDM v2. When in
   - `soul_spirit_systems.md`: Metaphysical/death powers (Jujutsu Kaisen, Bleach, Soul Eater, etc.) - ~15-20% coverage
   - `psionic_psychic_systems.md`: Mental powers (Mob Psycho, Saiki K, Railgun, etc.) - ~10-15% coverage
   - `power_tier_reference.md`: VS Battles tier mapping (OP handling in Module 12 Player Agency)
-- **Narrative profiles** (genre-authentic storytelling):
-  - `dandadan_profile.md`: Complete DanDaDan narrative DNA reference (scales, tropes, pacing, tone, example scenes)
-  - Additional profiles in Module 13 examples (Hunter x Hunter, Konosuba, Attack on Titan)
+- **Narrative profiles** (20 total, optimized access):
+  - Optimized PROFILE_INDEX.md (1,471 words) enables navigation to specific profiles
+  - Examples: Hunter x Hunter, Death Note, Konosuba, Attack on Titan, DanDaDan
+  - Load 1-3 profiles on-demand during Session Zero via Module 13
 - Common anime mechanics documentation
 
 ---
