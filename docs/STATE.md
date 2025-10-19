@@ -1,105 +1,144 @@
 # AIDM v2 Project State
 
-**Last Updated**: October 17, 2025  
-**Current Version**: 2.0-production  
-**Status**: PRODUCTION READY - Index optimization complete (Oct 13), DEEP_RESEARCH_PROMPT added  
-**Key Metrics**: Session Zero load reduced 36.2% (29,100→18,565 tokens), 100% information parity  
-**Repository**: All changes committed and pushed to GitHub
+**Last Updated**: 2025-10-19  
+**Current Version**: 2.0 MVP  
+**Status**: Production Ready - Pending test completion  
+**Repository**: deusversus/animerpg (main branch)
 
 ---
 
-## Current Phase
+## Active Work
 
-**Phase**: Token Optimization Complete (Phase 1 validated) ✅  
-**Achievement**: Reduced instruction modules 62% (142,192 → 54,007 tokens), validated via external test  
-**Status**: Previous estimates corrected - used wrong word-to-token ratio (0.75 vs actual 2.73)
+**Current Task**: Reorganize roadmap for AI development
+- ✅ Fixed Phase 9 integration errors (removed false claims about missing mecha/sports tropes)
+- ✅ Created AI-optimized ROADMAP_v2.md
+- ⏳ Update STATE.md for AI sessions
+- ⏳ Commit reorganized roadmap
 
----
-
-## Project Status Summary
-
-| Category | Status | Details |
-|----------|--------|---------|
-| **Files** | 54/54 (100%) ✅ | All core files complete |
-| **Token Budget** | ~84,190 (42.1% of 200K) | Base system + fluff removal validated |
-| **Optimization** | 62% base + 2.7% fluff | 88,185 tokens (Phase 1+2) + 2,841 tokens (fluff) = 91,026 total saved |
-| **Coverage** | 85-90% anime | Power systems + genres + mechanics complete |
-| **Testing** | 2/8 tests passed | TEST-001, TEST-004 complete |
-| **Backups** | Phase 1 & 2 ✅ | Pre-optimization backups in /backup/ |
-
-**Complete file inventory & feature breakdown**: See `docs/ARCHITECTURE.md`
+**Next Priority**: Complete 6 remaining acceptance tests (see ROADMAP_v2.md Priority 1)
 
 ---
 
-## System Components
+## Critical Path
 
-## System Components
+## Critical Path
 
-**Core Components** (13 instruction modules, 8 schemas, 2 quick refs):
-- Instructions: System init, cognitive engine, learning, state, NPCs, narrative, session zero, anime, combat, progression, error recovery, dice, player agency, **narrative calibration**
-- Schemas: Character, world, session export, NPC, memory, power systems, anime worlds, **narrative profiles**
-- Quick Refs: Combat, progression
+**Must Complete Before Feature Work**:
+1. TEST-002: Multi-Anime Fusion (contradiction resolution)
+2. TEST-003: Session Persistence (20+ turns)
+3. TEST-005: Memory Coherence (long-term)
+4. TEST-006: Error Recovery (edge cases)
+5. TEST-007: Genre Adaptation (consistency)
+6. TEST-008: Research Protocol (hallucination prevention)
 
-**Libraries** (13 files - 85-90% anime coverage):
-- Power Systems (5): Mana/magic, Ki/lifeforce, Soul/spirit, Psionic/psychic, Power tiers
-- Genre Tropes (4): Isekai, Shonen, Seinen, Slice-of-life  
-- Mechanics (3): Stat frameworks, Leveling curves, Skill taxonomies
-- Narrative Profiles (1): DanDaDan (reference example)
-
-**Complete details**: See `docs/ARCHITECTURE.md` → File Inventory section
+**Current Test Status**: 2/8 passed (TEST-001 Session Zero ✅, TEST-004 Combat ✅)
 
 ---
 
-## Development History
+## System Metrics
 
-**Current Status**: Production deployment ready
-
-**Core System**: 14 instruction modules + 8 schemas + AIDM_LOADER + CORE_AIDM_INSTRUCTIONS
-**Libraries**: 20 narrative profiles + 15 genre tropes + power systems + common mechanics  
-**Optimization**: Index files optimized 62.3% (October 13, 2025)
-**Documentation**: Complete + DEEP_RESEARCH_PROMPT for external analysis
-**Repository**: https://github.com/deusversus/animerpg (current)
-
----
-
-## Key Achievements
-
-**October 2025 Index Optimization**:
-- PROFILE_INDEX.md: 62.2% reduction (3,893→1,471 words)
-- GENRE_TROPES_INDEX.md: 62.3% reduction (2,305→868 words)
-- Session Zero load: 36.2% reduction (29,100→18,565 tokens)
-- Information parity: 100% maintained
-
-**System Completion** (October 2-5, 2025):
-- 14 instruction modules complete
-- 8 JSON schemas complete
-- 25 library files (20 narrative profiles + 15 genre tropes)
-- AIDM_LOADER.md + CORE_AIDM_INSTRUCTIONS.md optimized
-- DEEP_RESEARCH_PROMPT.md added for external AI analysis
+| Metric | Value | Status |
+|--------|-------|--------|
+| **Token Budget** | ~87k base | ✅ 43% of 200k |
+| **Active Load** | ~20-30k | ✅ Tier 1 + selective Tier 2 |
+| **Optimization** | 62.3% reduction | ✅ 142k → 54k modules |
+| **Test Coverage** | 2/8 complete | ⚠️ 75% incomplete |
+| **Long-term Validation** | Untested | ⚠️ 10+ session campaigns needed |
 
 ---
 
-## Next Steps
+## Known Issues
 
-**Current Priority**: Phase 2.1 - Core Systems Restoration (October 2025)
+**Validation Gaps**:
+- Multi-anime fusion (3+ anime) untested
+- Long-term memory (1000+ exchanges) untested
+- Extreme scale (100+ NPCs/quests) theoretical
 
-**Immediate Focus** (Q4 2025):
-- Quest Management System (quest_schema.json, structured tracking)
-- Faction/Reputation System (faction_schema.json, beyond individual NPC affinity)
-- Economy System (currency tracking, market mechanics)
-- Timekeeping/Calendar System (world_state_schema.json expansion)
-- Romance Mechanics (Module 04 NPC Intelligence expansion)
+**Missing Features**:
+- Quest management system (informal via memory only)
+- Faction reputation mechanics (NPC affinity exists, faction-level missing)
+- Economy/currency system (inventory exists, no transactions)
+- Death/resurrection rules (0 HP = defeat, no dying mechanics)
+- Schema migration automation (version tagging exists, no scripts)
 
-**Reference**: See `docs/ROADMAP.md` for complete Phase 2.1 implementation plan
-
-**Deferred**:
-- Narrative profile expansion paused (13/100+ complete - sufficient for v2.0)
-- Phase 2.5+ features (training systems, tournament arcs, combat depth)
-- Multimodal integration (Phase 3)
-
-**Testing**: Run acceptance tests with real players across multiple anime settings
+**Documentation Issues**:
+- Module 10 loading inconsistency (Tier 1 vs Session-Specific)
+- "World State memory" vs "world_events" terminology mismatch
+- Missing prompt injection defense rule
+- Inconsistent "Next:" pointers in modules
 
 ---
+
+## Component Inventory
+
+## Component Inventory
+
+**Instruction Modules** (14):
+- 00-03: System init, cognitive engine, learning, state manager (Tier 1 core)
+- 04-09: NPCs, narrative, session zero, anime, combat, progression (Tier 2 gameplay)
+- 10-13: Error recovery, dice, player agency, narrative calibration (Tier 1/2 support)
+
+**JSON Schemas** (8):
+- character_schema.json, world_state_schema.json, session_export_schema.json
+- npc_schema.json, memory_thread_schema.json
+- power_system_schema.json, anime_world_schema.json, narrative_profile_schema.json
+
+**Libraries**:
+- 20 narrative profiles (Naruto, HxH, AoT, Death Note, etc.)
+- 15 genre trope libraries (isekai, shonen, seinen, slice-of-life, sports, mecha, shoujo_romance, etc.)
+- 5 power system libraries (mana, ki, soul, psionic, tiers)
+- 3 common mechanics (stats, leveling, skills)
+
+**Total**: 14 modules (~54k) + 8 schemas (~33k) + 40+ libraries (selective load)
+
+---
+
+## Recent Changes
+
+**2025-10-19**: Roadmap reorganization
+- Fixed Phase 9 integration errors (mecha/sports trope claims)
+- Created ROADMAP_v2.md (AI-optimized)
+- Prioritized test completion over feature work
+- Added clear AI development protocol
+
+**2025-10-13**: Index optimization
+- PROFILE_INDEX.md: 62.2% reduction
+- GENRE_TROPES_INDEX.md: 62.3% reduction
+- Session Zero load: 36.2% reduction
+
+**2025-10-05**: Deep research integration
+- Added DEEP_RESEARCH_PROMPT.md
+- Integrated Phases 1-8 findings
+- Added Phase 9 audit (with corrections)
+
+---
+
+## Next Session Goals
+
+1. Commit reorganized roadmap
+2. Start TEST-002: Multi-Anime Fusion
+3. Document test results
+4. Update STATE.md with findings
+
+---
+
+## File Locations
+
+**Essential for AI Sessions**:
+- `/docs/ROADMAP_v2.md` - What to work on (prioritized)
+- `/docs/STATE.md` - This file (current progress)
+- `/docs/ARCHITECTURE.md` - System design (invariants)
+- `/tests/test_scripts/` - Acceptance test definitions
+
+**Core System**:
+- `/aidm/instructions/` - 14 instruction modules
+- `/aidm/schemas/` - 8 JSON schemas
+- `/aidm/libraries/` - Narrative profiles, tropes, mechanics
+
+**Development**:
+- `/docs/SCOPE.md` - Feature boundaries
+- `/docs/DEVELOPMENT.md` - Coding guidelines
+- `/tests/` - Test framework---
 
 ## Historical Reference
 
