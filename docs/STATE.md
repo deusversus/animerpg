@@ -81,13 +81,21 @@
 
 ## Next Steps
 
-**System Status**: Production ready for player testing
+**Current Priority**: Phase 2.1 - Core Systems Restoration (October 2025)
 
-**Optional Enhancements**:
-- Additional narrative profiles for more anime coverage
-- Community-contributed genre tropes
-- Advanced templates for common scenarios
-- Multimodal integration (per AIDM Improvement Proposal)
+**Immediate Focus** (Q4 2025):
+- Quest Management System (quest_schema.json, structured tracking)
+- Faction/Reputation System (faction_schema.json, beyond individual NPC affinity)
+- Economy System (currency tracking, market mechanics)
+- Timekeeping/Calendar System (world_state_schema.json expansion)
+- Romance Mechanics (Module 04 NPC Intelligence expansion)
+
+**Reference**: See `docs/ROADMAP.md` for complete Phase 2.1 implementation plan
+
+**Deferred**:
+- Narrative profile expansion paused (13/100+ complete - sufficient for v2.0)
+- Phase 2.5+ features (training systems, tournament arcs, combat depth)
+- Multimodal integration (Phase 3)
 
 **Testing**: Run acceptance tests with real players across multiple anime settings
 

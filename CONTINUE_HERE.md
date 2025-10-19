@@ -66,55 +66,71 @@
 
 ### ✅ Priority 1-3 Extended COMPLETE ✅ (Total: ~40-50 hours)
 
-**All Completed**:
-1. ✅ **Module 13 Scaffolding Rules** (2-3 hours) - Power Level/Progression/Combat/Power System mapping
-2. ✅ **12 CORE Profile Scaffolding** (4-5 hours) - Mechanical scaffolding examples (~1,000-2,500 words each)
-3. ✅ **Module 03 State Tracking** (2-3 hours) - Generated profile persistence (critical fix)
-4. ✅ **Module 02 NARRATIVE_STYLE Memory** (1-2 hours) - Genre preference tracking
-5. ✅ **Module 01 Cognitive Flow** (1-2 hours) - Genre library integration documentation
-6. ✅ **Initial Genre Cross-References** (1 hour) - Profiles ↔ libraries bidirectional links
-7. ✅ **First 7 Genre Libraries** (8-10 hours) - sports, shoujo_romance, mecha (+ existing 4)
-8. ✅ **5 NEW Genre Libraries** (10-12 hours) - horror, mystery/thriller, comedy, supernatural, sci-fi
-9. ✅ **Comprehensive Cross-References** (2-3 hours) - All 12 libraries + Steins;Gate profile integration
-10. ✅ **Documentation** (6-8 hours) - PRIORITY_3_COMPLETION_SUMMARY + PRIORITY_3_EXTENDED_COMPLETION_SUMMARY
+**All Completed**: Narrative calibration system, scaffolding integration, genre libraries complete
 
-**Coverage Achievement**:
-- **Original claim**: 7 libraries = ~60-70% actual coverage
-- **Current reality**: 12 libraries = ~95%+ legitimate coverage of top anime
-- **Remaining gaps**: ~5% (magical girl ~2%, music ~2%, historical ~1% - all niche)
+---
 
-**System Integration Status**:
-- ✅ Module 13: Scaffolding rules complete
-- ✅ 12 CORE profiles: Scaffolding + genre references complete
-- ✅ Steins;Gate profile: Genre references added (non-CORE format)
-- ✅ 12 genre libraries: Comprehensive profile cross-references (CORE + external)
-- ✅ Module 01/02/03: Full integration verified
-- ✅ Bidirectional integration: Profiles ↔ libraries complete
+### 🔄 NEW Priority: Phase 2.1 - Core Systems Restoration (October 2025)
 
-**Next Priorities** (User-Dependent):
+**Context**: v2 focused on narrative authenticity. v1 had gameplay depth systems that were intentionally deferred. Now restoring critical gameplay mechanics.
 
-**Option A: Optional Niche Libraries** (~6-8 hours):
-- Create magical_girl_tropes.md (~2,000 words, Madoka/Sailor Moon)
-- Create music_tropes.md (~2,000 words, Your Lie in April/Bocchi)
-- Create historical_tropes.md (~2,000 words, Kingdom warfare patterns)
-- Achieve 100% coverage of top anime
+**High Priority Systems** (Q4 2025 - Essential):
 
-**Option B: Test Profile Generation** (~3-5 hours):
-- Generate test profile: Chainsaw Man (horror + shonen + seinen)
-- Generate test profile: Frieren (seinen + supernatural + slice-of-life)
-- Generate test profile: Spy x Family (comedy + seinen + slice-of-life)
-- Validate Module 07 + Module 13 intelligent generation workflow
+1. **Quest Management System** (~8-12 hours)
+   - Create quest_schema.json (quest state, objectives, branches, rewards)
+   - Expand Module 03 (State Manager) with quest tracking
+   - Integrate Module 05 (Narrative Systems) for quest generation
+   - Module 02 (Learning Engine) quest memory integration
+   - **Current Gap**: Quests tracked informally in memory threads only
 
-**Option C: Live Gameplay Testing** (~4-6 hours):
-- Run Session Zero with test player
-- Test Module 13 scaffolding in live campaign
-- Validate state persistence (Module 03 generated profile tracking)
-- Test NARRATIVE_STYLE memory adjustments (Module 02)
+2. **Faction/Reputation System** (~6-10 hours)
+   - Create faction_schema.json (faction reputation, politics, relationships)
+   - Expand Module 04 (NPC Intelligence) with faction affinity mechanics
+   - Module 05 narrative drift integration (faction wars, alliances)
+   - **Current Gap**: Only individual NPC affinity exists (-100 to +100)
 
-**Option D: Move to Next Development Phase**:
-- Roadmap update (document scaffolding + genre integration complete)
-- Identify next system priority (combat depth? NPC intelligence? world building?)
-- Begin new development cycle
+3. **Economy System** (~6-8 hours)
+   - Create economy_schema.json (currency, market prices, inflation)
+   - Expand Module 03 state tracking for monetary transactions
+   - Merchant NPC integration with Module 04
+   - **Current Gap**: Inventory exists but no monetary mechanics
+
+4. **Timekeeping/Calendar System** (~4-6 hours)
+   - Expand world_state_schema.json (calendar, seasons, holidays, aging)
+   - Module 05 time-sensitive events integration
+   - Long-term campaign time tracking
+   - **Current Gap**: Only time of day exists
+
+5. **Romance Mechanics** (~4-6 hours)
+   - Expand Module 04 (NPC Intelligence) with romance substates
+   - Confession mechanics, dating systems, love triangles, jealousy
+   - Romance flags in NPC relationships (anime-authentic)
+   - **Current Gap**: Generic affinity system lacks romance specifics
+
+**Medium Priority** (Q1 2026 - Deferred to Phase 2.5):
+- Training systems, tournament arcs, death mechanics, mass combat, downtime activities
+- Crafting, guilds, base building (port from v1 as TIER 3 libraries)
+
+**Implementation Strategy**:
+1. Create missing schemas first (quest, faction, economy)
+2. Expand existing modules (Module 03, 04, 05)
+3. Port v1 systems to v2 architecture as lazy-load libraries (optional depth)
+
+**See**: `docs/ROADMAP.md` for complete Phase 2.1 breakdown
+
+---
+
+### Previous Priorities (COMPLETE ✅)
+
+**Priority 1-3 Extended** (Narrative System):
+- ✅ Module 13 scaffolding rules
+- ✅ 12 CORE profiles with mechanical scaffolding
+- ✅ Module 03 state tracking (generated profiles)
+- ✅ Module 02 NARRATIVE_STYLE memory
+- ✅ 12 comprehensive genre libraries (~55,000 words)
+- ✅ 95%+ top anime coverage
+
+**Profile Expansion**: **PAUSED** (13/100 complete - sufficient for v2.0)
 
 ---
 
