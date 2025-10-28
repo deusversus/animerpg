@@ -59,15 +59,59 @@
 - ✅ Secrets (discovery mechanics, plot reveals)
 - ✅ Evolution triggers (personality can change based on events)
 
-## Step 2: Affinity System
+## Step 2: Affinity & Disposition System
 
-**Scale** (-100 to +100): -61 to -100 HOSTILE (wants dead), -21 to -60 UNFRIENDLY (unhelpful), 0 to 29 NEUTRAL (indifferent), 30 to 59 FRIENDLY (helpful), 60 to 89 TRUSTED (confides secrets), 90 to 100 DEVOTED (die for player)
+**Disposition Formula**: `Disposition = (Character_Affinity * 0.6) + (Faction_Reputation * 0.4) + Faction_Relationship_Modifier`
 
-**Affects**: Dialogue (HOSTILE: "Get lost, scum" vs TRUSTED: "Thank gods! I need help"), Info (NEUTRAL: common only, FRIENDLY: opinions/gossip, TRUSTED: secrets/warnings, DEVOTED: everything at risk), Assistance (HOSTILE: refuses/hinders, NEUTRAL: only if paid, FRIENDLY: willing favors, TRUSTED: significant help, DEVOTED: risks life)
+**1. Character Affinity (-100 to +100)**:
+- This is the personal relationship between the NPC and the character, stored in `npc_schema.relationships.player_affinity`.
+- It is the primary driver of disposition, accounting for 60% of the final score.
+- It is modified by direct actions: helping, harming, keeping promises, etc.
 
-**Modifiers INCREASE**: help goals +5-20, save danger +15-30, respect values +3-10, gifts +5-15, time +1-5, defend reputation +10-20, keep secrets +10-15. **DECREASE**: threaten -10-30, harm loved ones -20-50, violate values -10-25, betray -30-60, ignore needs -5-15, insult -5-20, lie (caught) -10-30
+**2. Faction Reputation (-1000 to +1000, normalized to -100 to +100 for calculation)**:
+- This is the character's public standing with the NPC's faction, stored in `character_schema.world_context.faction_reputations`.
+- It accounts for 40% of the disposition score.
+- **Normalization**: The raw reputation score (e.g., 750) is mapped to the -100 to +100 scale. For a -1000 to 1000 range, this is a simple division by 10.
+- An NPC will be predisposed to like a character who is honored by their faction, even if they've never met.
 
-**Example** (save Elena from thugs): Affinity 75\u2192100. Action: saved +25, aligned values (Family) +5\u2192DEVOTED reached. Narration: tears, fierce hug, "I won't forget... You need ANYTHING - come to me. I've got your back. Always." Creates RELATIONSHIP memory (heat 95, slow decay, plot_critical).
+**3. Faction Relationship Modifier (-50 to +50)**:
+- This is a situational modifier based on inter-faction politics, derived from `world_state.factions`.
+- **Allied Factions**: If the character is a known member of a faction allied with the NPC's faction, apply a **+20** modifier.
+- **Enemy Factions**: If the character is a known member of a faction hostile to the NPC's faction, apply a **-35** modifier.
+- **At War**: If the factions are at war, the modifier becomes **-50**, and the NPC may become immediately hostile regardless of personal affinity.
+
+**Example Calculation**:
+- **Scenario**: Aria (player) meets a Crimson Vanguard guard.
+- **Character Affinity**: 0 (they have never met).
+- **Faction Reputation**: Aria has "Honored" status with the Crimson Vanguard, with a raw reputation score of 800.
+    - Normalized Reputation: 800 / 10 = +80.
+- **Faction Relationship**: Not applicable.
+- **Calculation**: `Disposition = (0 * 0.6) + (80 * 0.4) + 0 = 32`.
+- **Result**: The guard is immediately friendly and helpful ("Welcome, honored friend of the Vanguard!"), despite having no personal history with Aria.
+
+**Example 2 (Conflict)**:
+- **Scenario**: Aria, now a trusted friend of the Crimson Vanguard, meets a guard from the rival faction, the Azure Serpents.
+- **Character Affinity**: 0 (first meeting).
+- **Faction Reputation (Azure Serpents)**: Aria has "Hated" status, score -750.
+    - Normalized Reputation: -750 / 10 = -75.
+- **Faction Relationship**: The Crimson Vanguard and Azure Serpents are enemies.
+    - Modifier: -35.
+- **Calculation**: `Disposition = (0 * 0.6) + (-75 * 0.4) + (-35) = -30 - 35 = -65`.
+- **Result**: The guard is immediately hostile ("I know who you are. Vanguard filth. Get out of my sight before I make you."), creating immediate conflict and narrative tension.
+
+---
+
+**Disposition Thresholds & Effects**: The final disposition score determines NPC behavior.
+- **-100 to -61 (Hostile)**: Actively obstructs, may attack, dialogue is aggressive.
+- **-60 to -21 (Unfriendly)**: Unhelpful, dismissive, provides no information.
+- **-20 to +29 (Neutral)**: Indifferent, transactional, provides only common knowledge.
+- **+30 to +59 (Friendly)**: Helpful, willing to do small favors, shares opinions and gossip.
+- **+60 to +89 (Trusted)**: Proactively helpful, confides secrets, offers significant aid.
+- **+90 to +100 (Devoted)**: Will take personal risks, defend the character, may die for them.
+
+**Modifiers INCREASE Personal Affinity**: help goals +5-20, save danger +15-30, respect values +3-10, gifts +5-15, time +1-5, defend reputation +10-20, keep secrets +10-15. **DECREASE Personal Affinity**: threaten -10-30, harm loved ones -20-50, violate values -10-25, betray -30-60, ignore needs -5-15, insult -5-20, lie (caught) -10-30
+
+**Example** (save Elena from thugs): Personal Affinity 75→100. Action: saved +25, aligned values (Family) +5→DEVOTED reached. Narration: tears, fierce hug, "I won't forget... You need ANYTHING - come to me. I've got your back. Always." Creates RELATIONSHIP memory (heat 95, slow decay, plot_critical).
 
 ---
 
@@ -89,21 +133,7 @@ NPCs have realistic limits. **KNOWN TOPICS** (topic, depth_level: expert/moderat
 
 **Example** (Elena help dangerous quest, affinity 100, goal: protect kids): Personality (Protective+Loyal→wants to help), Situation (dangerous→normally cautious), Affinity (DEVOTED→follow anywhere), Goals (kids need her→conflicted)→Result: Agrees but expresses concern. "Dammit, Aria. You know I've got your back. Always. But if I'm gone and something happens to them... Alright. I'm in. But I'm asking Tomas to watch kids. And you PROMISE we're coming back. Both of us. I can't lose you."
 
-**Reaction Patterns** (personality+threat+affinity): Elena (Protective/Loyal) - Threat to player (high affinity)→AGGRESSIVE (defend), to self→DEFIANT (stands ground), to kids→AGGRESSIVE (immediate violence), to authority→DEFIANT (challenges). Goro (Kind/Peaceful) - Threat to player (moderate)→DIPLOMATIC (defuse), to self→SUBMISSIVE (avoid), to granddaughter→DESPERATE (overcomes pacifism), to authority→RESPECTFUL (defers).
-
----
-
-## Step 5: Dialogue Generation
-
-**Components**: Formality (Formal: "I would be grateful if...", Informal: "Mind giving me a hand?", Very Informal: "Yo, help me out?"), Vocabulary (Educated: "confluence suggests conspiracy", Common: "lot of weird stuff, seems planned", Street: "too much shady crap, someone's playing us"), Tone (Warm: "So glad you're here!", Neutral: "You're here. Good", Cold: "You showed up. Fine", Gruff: "About damn time")
-
-**Voice Examples**: Elena (Informal, Street, Gruff-caring): "Look, I don't do touchy-feely. But you saved my life. That means something. You need me, I'm there. End of story." | Goro (Formal, Common, Warm): "My dear child, you've brought such light. Please, sit. Let me make you something. You look exhausted." | Marcus (Informal, Street, Sarcastic): "Well, well. Hero graces me. What's wrong, princess? Pawn loot? Info? Either way, costs you." | Seraphina (Very Formal, Educated, Cold): "Inquiry noted, though I question its relevance to your station. Council doesn't involve itself in... common concern. State business swiftly."
-
-**Process**: Load dialogue_style→**CHECK NARRATIVE PROFILE (Module 13: dialogue_style parameters)**→Check affinity (warmth)→Consider situation→Generate matching formality/vocabulary/phrases/emotion→**APPLY PROFILE (banter_frequency, awkward_comedy)**→Validate "sounds like NPC?"
-
-### Narrative Profile Integration (Module 13)
-
-**CRITICAL**: Before generating NPC dialogue, check `narrative_profile_schema.json` → `dialogue_style` to match anime vibe.
+**Reaction Patterns** (personality+threat+affinity): Elena (Protective/Loyal) - Threat to player (high affinity)→AGGRESSIVE (defend), to self→DEFIANT (stands ground), to kids→AGGRESSIVE (immediate
 
 **Parameters**:
 - **formality_default** (formal/casual/very casual): Baseline formality across all NPCs—DanDaDan uses "very casual" (even authority figures less formal), AoT uses "formal" (military speech)
@@ -150,28 +180,4 @@ After interaction, create memory_thread for continuity: category "relationships"
 
 **NPC Betrayal** (affinity drops below threshold): Marcus 35→-15 (caught lying repeatedly, crossed NEUTRAL→UNFRIENDLY)→"You think I'm stupid? Twenty years in this business. I know when someone's playing me. Lied about shipment, about Guards. How many other lies? We're done. Don't come back. Cross me again? [Hand on dagger] I won't be so forgiving." [Shop inaccessible, warning: HOSTILE if antagonized]
 
-**NPC Death** (profound consequences): Elena dies protecting Aria from assassins→Update world (remove from roster), update all NPCs who knew her (grief/anger), create CONSEQUENCE memory (heat 100, immutable), update player emotion, trigger narrative (kids need protector)→Narration: "Elena pushes you aside. Blade meant for you. She crumples, blood spreading. Eyes find yours. 'Told you... I've got your back. Always.' Her hand goes limp. Elena is dead. [DECEASED, kids vulnerable, NPCs react, memory immutable] World feels smaller. Colder."
-
----
-
-## Integration
-
-Coordinates with: State Manager (03) - validate NPC state changes/consistency, Learning Engine (02) - create RELATIONSHIP memories, Cognitive Engine (01) - classify social intent, Narrative Systems (05) - NPCs drive quests/story
-
-## Module Completion Criteria
-
-Successful when: Distinct consistent personalities, affinity reflects evolution accurately, knowledge boundaries respected (no omniscience), dialogue matches voice/style, interactions create meaningful memories, logical reactions to actions, relationships feel earned/impactful.
-
-## Common Mistakes
-
-**[NO] Same Voice**: Elena+Goro both: "Greetings, Aria. How may I assist?" →NPCs feel like robots
-
-**[OK] Distinct**: Elena: "Yo, Aria. What's up?" | Goro: "Ah, my dear child! Come, sit. How can this old man help?" →Unique, memorable
-
-**[NO] Instant Affinity**: Give guard 5 gold→"You're my best friend!" [0→90] →Cheap, gamey
-
-**[OK] Gradual**: Give 5 gold→"Huh. Thanks. Not many bother." [0→5] ... [multiple sessions] ... "You know, you're alright. Got your back." [55] →Earned, meaningful
-
-**End of Module 04**
-
-*Next: 05_narrative_systems.md (Emergent Story)*
+**NPC Death** (profound consequences): Elena dies protecting Aria from assassins→Update world (remove from roster), update all NPCs who knew her (grief/anger), create CONSEQUENCE memory (heat 100, immutable), update player emotion, trigger narrative (kids need protector)→Narration: "Elena pushes you aside. Blade meant for you. She crumples, blood spreading. Eyes find yours. 'Told you... I've got your back
