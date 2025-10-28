@@ -304,6 +304,75 @@ Redesigned from 4 narrow categories (chakra/mana/ki/unique) to 5 universal frame
 
 ---
 
+## Token Budget & Capacity Planning
+
+### Current Token Allocation (v2.0)
+
+**Base System** (~87k tokens, 43% of 200k context):
+- Instruction Modules: ~54k tokens (14 files, post-optimization)
+- JSON Schemas: ~33k tokens (8 files)
+- Index Files: ~6.4k tokens (PROFILE_INDEX + GENRE_TROPES_INDEX)
+
+**Active Session Load** (Typical: 20-30k):
+- Tier 1 Core: ~20k (always loaded)
+- Tier 2 Gameplay: ~10-15k (loaded on-demand)
+- Selective Libraries: 1-3 profiles (~3-9k), 2-4 tropes (~2-8k)
+
+**Library Pools** (Lazy-loaded):
+- 20 Narrative Profiles: ~180-200k total (load 1-3 max)
+- 15 Genre Trope Libraries: ~60-100k total (load 2-4 max)
+- 5 Power Systems: ~30-40k total (load 1-2 max)
+- 3 Common Mechanics: ~20-30k total (load as needed)
+
+### Context Model Recommendations
+
+**32k Context Models** (Minimal):
+- Base system (87k) exceeds capacity → NOT RECOMMENDED
+- Use only if aggressive library pruning applied
+- Max 10 NPCs, 5 active quests, simple narratives
+
+**100k Context Models** (Comfortable):
+- Base system: 87k (87% utilization)
+- Headroom: ~13k for dynamic content
+- Supports moderate campaigns (20-30 NPCs, 10-15 quests)
+- Recommended minimum for full AIDM experience
+
+**200k Context Models** (Optimal):
+- Base system: 87k (43.5% utilization)
+- Headroom: ~113k for dynamic content
+- Supports complex campaigns (50+ NPCs, 20+ quests, multi-faction politics)
+- Can load multiple profiles/tropes simultaneously
+- Recommended for long-term play
+
+### Token Budget Monitoring
+
+**Alert Thresholds**:
+- Tier 1 approaching 35k → Review for consolidation
+- Total base approaching 100k → Evaluate necessity of all components
+- Active typical load exceeding 40k → Investigate lazy-loading failures
+- Session load approaching model limit → Memory compression required
+
+**Phase 2.1 Impact Estimate** (+15-25k tokens):
+- Quest system: +5-8k (quest_schema.json + Module 03 expansion)
+- Faction system: +4-6k (faction mechanics in Module 03/04)
+- Economy system: +3-5k (economy_schema.json + merchant NPCs)
+- Combat enhancements: +3-6k (death mechanics, maneuvers)
+- **Projected v2.1 total**: 102-112k base (51-56% of 200k)
+
+**Library Expansion Prevention**:
+- Maintain discipline: Typical campaign loads 1-3 profiles + 2-4 tropes max
+- Deprecate rarely-used profiles if count exceeds 25
+- Merge similar tropes if total exceeds 20
+- New libraries must justify unique value vs expanding existing
+
+**Validation Requirements**:
+- Token count documented in every new file header
+- Multi-pass optimization (3+ iterations) mandatory
+- 100% information parity validation before commit
+- See SCHEMA_CHANGELOG.md for schema token impact tracking
+
+---
+
 ## System Architecture Summary
 
 The AIDM v2 system achieves production readiness through:
@@ -312,5 +381,6 @@ The AIDM v2 system achieves production readiness through:
 - **JSON Schema Validation**: 8 structured schemas ensure data consistency 
 - **Narrative DNA**: 20 anime profiles + 15 genre trope libraries for authentic storytelling
 - **On-Demand Access**: Dynamic content loading based on session needs
+- **Token Efficiency**: 87k base system (43% of 200k context) with controlled Phase 2.1 growth
 
 All components work together to create a seamless anime RPG experience that adapts to any anime setting while maintaining narrative authenticity.

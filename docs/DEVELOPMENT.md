@@ -251,6 +251,194 @@ Familiarity: 0=UNKNOWN(never heard)→Full research | 1=HEARD→Quick research |
 
 ---
 
+## Module Integration Patterns
+
+### Standard Pattern: Adding New Features
+
+When creating new functionality, follow these integration patterns to ensure compatibility with existing systems.
+
+#### 1. Hooking into Cognitive Engine (Intent Classification)
+
+**Purpose**: Route new command types to appropriate handlers
+
+**Pattern**:
+```markdown
+// In 01_cognitive_engine.md
+
+Add to intent classification table:
+- CRAFTING: "craft [item]", "combine [ingredients]", "forge [weapon]"
+  → Route to Module 14 (Crafting System)
+```
+
+**Checklist**:
+- [ ] Add intent type to cognitive engine classification table
+- [ ] Define clear trigger patterns (keywords, syntax)
+- [ ] Specify which module handles this intent
+- [ ] Update cognitive engine Integration section with new dependency
+
+#### 2. Updating State Manager (Persistent Data)
+
+**Purpose**: Store new data in character/world schemas
+
+**Pattern**:
+```markdown
+// In 03_state_manager.md
+
+Add validation for new data:
+- Check crafting.recipes array exists
+- Validate ingredient quantities ≥ 0
+- Ensure recipe_id is unique
+
+Add to export format:
+- Include character.crafting in session_export_schema
+- Validate crafting state on import
+```
+
+**Checklist**:
+- [ ] Add new fields to appropriate schema (character/world/NPC)
+- [ ] Update schema version (see SCHEMA_CHANGELOG.md)
+- [ ] Add validation rules in Module 03
+- [ ] Include in session export/import
+- [ ] Test state persistence across save/load cycles
+
+#### 3. Creating Memory Threads (Narrative Persistence)
+
+**Purpose**: Record events for future reference and narrative coherence
+
+**Pattern**:
+```markdown
+// In your new module
+
+When significant event occurs:
+1. Create memory thread via Module 02 (Learning Engine)
+2. Choose appropriate category (core/character_state/relationships/quests/world_events/consequences)
+3. Set heat_index based on significance (0-100)
+4. Set decay_rate (none/slow/normal/fast)
+5. Add appropriate flags (immutable/plot_critical/player_initiated)
+
+Example:
+{
+  "thread_id": "mem_crafting_legendary_sword_1",
+  "category": "character_state",
+  "content": {
+    "summary": "Forged Legendary Sword of Fire",
+    "details": "Used dragon scales + mithril ore + phoenix feather. 3-day process."
+  },
+  "heat_index": 75,
+  "decay_rate": "slow",
+  "flags": {"player_initiated": true}
+}
+```
+
+**Checklist**:
+- [ ] Identify what events should create memories
+- [ ] Choose correct category for each memory type
+- [ ] Set appropriate heat_index (higher = more important)
+- [ ] Document in module Integration section
+- [ ] Test memory retrieval after compression
+
+#### 4. Triggering Cascades (Automated Propagation)
+
+**Purpose**: Automatically update related entities when state changes
+
+**Pattern**:
+```markdown
+// In your new module or Module 03 expansion
+
+Define cascade trigger:
+- Event: Recipe mastered
+- Trigger condition: crafting.recipes[recipe_id].mastery_level reaches 5
+- Cascade updates:
+  1. Unlock advanced recipes (dependency check)
+  2. Create memory thread (crafting milestone)
+  3. Grant title/achievement if applicable
+  4. Update NPC reactions (merchants offer rare materials)
+
+Register in CASCADE_SYSTEM_DESIGN.md:
+- Cascade type: "recipe_mastery"
+- Atomic transaction: All updates succeed or rollback
+- Logging: Record all propagated changes
+```
+
+**Checklist**:
+- [ ] Define clear trigger condition
+- [ ] List all entities affected by cascade
+- [ ] Design atomic transaction (all-or-nothing)
+- [ ] Add to CASCADE_SYSTEM_DESIGN.md
+- [ ] Implement rollback on failure
+- [ ] Log cascade execution for debugging
+
+### Cross-Module Communication Template
+
+**When Module A needs data from Module B**:
+
+```markdown
+// In Module A
+
+Integration Points:
+- Reads from Module B: [specific data fields]
+- Writes to Module B: [specific updates]
+- Dependency: Module B must be loaded before Module A processes [action type]
+
+Example:
+Module 14 (Crafting) reads character.skills from Module 03 (State Manager)
+to determine crafting success chance. Writes completed items to 
+character.inventory via Module 03 validation.
+```
+
+**Checklist**:
+- [ ] Document all cross-module dependencies
+- [ ] Specify read vs write operations
+- [ ] Define fallback if dependency unavailable
+- [ ] Update both modules' Integration sections
+- [ ] Test with dependency offline (graceful degradation)
+
+### New Module Skeleton
+
+```markdown
+# Module XX: [System Name]
+
+## Purpose
+[Single sentence describing what this module does]
+
+## Core Responsibilities
+- [Responsibility 1]
+- [Responsibility 2]
+- [Responsibility 3]
+
+## Integration Points
+
+**Dependencies** (requires these modules):
+- Module 01 (Cognitive Engine): Intent classification for [intent type]
+- Module 03 (State Manager): [Data read/write operations]
+- Module 02 (Learning Engine): [Memory creation scenarios]
+
+**Used By** (these modules depend on this):
+- [List modules that call this one]
+
+**Schemas**:
+- Reads: [schema fields consumed]
+- Writes: [schema fields updated]
+
+**Cascades** (see CASCADE_SYSTEM_DESIGN.md):
+- Triggers: [What events in this module trigger cascades]
+- Affected by: [What cascades from other modules affect this module]
+
+## Processing Flow
+[Step-by-step description of how this module operates]
+
+## Key Concepts
+[Detailed explanations of main mechanics]
+
+## Examples
+[Concrete usage examples]
+
+## Error Handling
+[What to do when things go wrong]
+```
+
+---
+
 ## Testing Protocol
 
 ### Before Submitting Changes
