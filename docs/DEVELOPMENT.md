@@ -19,7 +19,7 @@ Each instruction module must function independently. Never create dependencies t
 ### 3. **Player Agency First**
 Any change that could diminish player control must be rejected. The AI assists; it doesn't decide.
 
-### 3.5. **Genre-Authentic Storytelling** (NEW - January 2025)
+### 3.5. **Genre-Authentic Storytelling**
 AIDM must learn HOW anime tells stories (narrative DNA), not just mechanics. Module 13 (Narrative Calibration) extracts storytelling vibe via 10 scales (0-10), 15 trope switches (ON/OFF), and pacing/tone/dialogue/combat parameters. This prevents "D&D in anime skin" - same mechanics, different FEEL per source anime.
 
 ### 4. **Context Budget Management** (Optimized)
@@ -37,7 +37,7 @@ Index files optimized October 13, 2025 for efficient Session Zero loading:
 - Multi-pass refinement required (3+ iterations for all files)
 - Validate 100% information parity before considering file complete
 
-**Reference**: Index optimization methodology documented in `archive/index_optimization_2025-10-13/`
+**Reference**: Index optimization methodology documented in `backup/archives/archive_01.zip` (archived October 27, 2025)
 
 ### 5. **Production Ready**
 Core system complete and optimized. DEEP_RESEARCH_PROMPT.md available for external analysis.
