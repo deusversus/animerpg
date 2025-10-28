@@ -30,9 +30,13 @@
 - ⚠️ Long-term play (10+ sessions) conceptually ready but untested in practice
 - ⚠️ Extreme scale (100+ NPCs/quests) theoretical, needs archiving optimization
 
+**Phase 2.1a Complete (Oct 28, 2025)**:
+- ✅ Quest management system -> `quest_schema.json` with branching, dependencies, automated XP
+- ✅ Faction reputation system -> `faction_schema.json` with tiers, benefits, penalties
+- ✅ Automated cascade system -> Implemented in Module 03 (4 core cascades with atomic transactions)
+- ✅ Documentation consistency fixes (10-schema system, prompt injection defense)
+
 **Known Feature Gaps**:
-- No structured quest management system (tracked via character schema + memory threads, lacks branching/dependencies) -> `quest_schema.json` is now implemented.
-- No faction reputation mechanics (NPC affinity -100 to +100 exists, faction-level player reputation missing) -> `faction_schema.json` is now implemented.
 - No economy/currency system (inventory tracking exists, no transactions/pricing/merchants)
 - No death/resurrection rules (0 HP = defeat mentioned, no dying mechanics/death saves/injury tables)
 - No training/downtime formalization (skill XP from use exists, training montages not structured)
@@ -41,7 +45,6 @@
 
 **Known Technical Gaps**:
 - Schema migration tool missing (version tagging exists, no automated migration for v2.0 → v2.1 compatibility)
-- Manual state cascade updates (city destruction requires DM to update locations/NPCs/factions manually, no automatic propagation)
 - No state archiving for extreme scale (100+ NPCs/quests would overwhelm context without dormant data compression)
 
 ---

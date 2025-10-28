@@ -66,7 +66,10 @@ Soft Cap 20 (mortal max), Hard Cap 25 (requires legendary). Diminishing Returns 
 
 ## Integration
 
-With: State Manager (03) - atomic updates, Combat (08) - XP awards, Narrative (05) - roleplay/quest/discovery XP, Learning (02) - PROGRESSION memories for milestones
+With: State Manager (03) - atomic updates + **automated quest XP via quest_completion cascade**, Combat (08) - XP awards, Narrative (05) - roleplay/quest/discovery XP, Learning (02) - PROGRESSION memories for milestones
+
+**Cascade System**:
+- **Quest Completion XP** (Module 03 cascade): When quest status→"completed", automatically reads quest.rewards.xp, adds to character.progression.current_xp, checks level-up threshold, triggers level-up if met, logs XP gain. **No manual tracking required.**
 
 ## Module Completion Criteria
 
