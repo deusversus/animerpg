@@ -9,13 +9,13 @@
 
 ## Active Work
 
-**Current Focus**: Priority 1 - Production Validation (4 weeks)
+**Current Focus**: Phase 2.1 - Core Systems Development (4-6 months)
 - ✅ Archived deep research reports to backup/archives/archive_01.zip
 - ✅ Updated CONTINUE_HERE.md to reflect current roadmap priorities
-- ⏳ Complete 6 remaining acceptance tests (Priority 1)
-- ⏳ Then proceed to Phase 2.1 Core Systems
+- ✅ Testing shelved (2/8 passed, 6 deferred to post-Phase 2.1)
+- ⏳ Begin Phase 2.1 core systems (Quest, Faction, Economy, Combat)
 
-**Next Task**: Choose and complete one of the 6 remaining acceptance tests (see ROADMAP.md Priority 1)
+**Next Task**: Review ROADMAP.md Phase 2.1a (Architectural fixes) and begin implementation
 
 ---
 
@@ -23,15 +23,17 @@
 
 ## Critical Path
 
-**Must Complete Before Feature Work**:
-1. TEST-002: Multi-Anime Fusion (contradiction resolution)
-2. TEST-003: Session Persistence (20+ turns)
-3. TEST-005: Memory Coherence (long-term)
-4. TEST-006: Error Recovery (edge cases)
-5. TEST-007: Genre Adaptation (consistency)
-6. TEST-008: Research Protocol (hallucination prevention)
+**Testing Status**: SHELVED (deferred to post-Phase 2.1)
+- 2/8 passed (TEST-001 Session Zero ✅, TEST-004 Player Agency ✅)
+- 6/8 remaining tests deferred until after core systems development
 
-**Current Test Status**: 2/8 passed (TEST-001 Session Zero ✅, TEST-004 Player Agency ✅)
+**Current Focus**: Phase 2.1 Core Systems Development
+1. Phase 2.1a: Architectural fixes (schema migration, automated cascades)
+2. Phase 2.1b: Quest Management System
+3. Phase 2.1c: Faction/Reputation System
+4. Phase 2.1d: Economy System
+5. Phase 2.1e: Combat Enhancements
+6. Phase 2.1f: Integration validation
 
 ---
 
@@ -42,7 +44,7 @@
 | **Token Budget** | ~87k base | ✅ 43% of 200k |
 | **Active Load** | ~20-30k | ✅ Tier 1 + selective Tier 2 |
 | **Optimization** | 62.3% reduction | ✅ 142k → 54k modules |
-| **Test Coverage** | 2/8 complete | ⚠️ 75% incomplete |
+| **Test Coverage** | 2/8 complete | ⚠️ Testing shelved (deferred) |
 | **Long-term Validation** | Untested | ⚠️ 10+ session campaigns needed |
 
 ---

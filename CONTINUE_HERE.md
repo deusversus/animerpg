@@ -179,18 +179,15 @@
 ## 🎯 Where to Start
 
 **RIGHT NOW**: 
-1. Review `docs/ROADMAP.md` Priority 1 section
-2. Choose one acceptance test to complete (TEST-002, TEST-003, TEST-005, TEST-006, TEST-007, or TEST-008)
-3. Document results and update validation status
-4. Proceed to next test until all 6 remaining tests complete
+1. Review `docs/ROADMAP.md` Phase 2.1 section
+2. Begin Phase 2.1a: Architectural fixes (schema migration, automated cascades)
+3. Implement Phase 2.1b: Quest Management System
+4. Continue through Phase 2.1c-f (Faction, Economy, Combat, Validation)
 
-**AFTER Priority 1 (Validation)**:
-1. Begin Phase 2.1a: Architectural fixes (schema migration, automated cascades)
-2. Implement Phase 2.1b: Quest Management System
-3. Continue through Phase 2.1c-f (Faction, Economy, Combat, Validation)
+**Testing Deferred**: 6 remaining acceptance tests shelved until after Phase 2.1 feature work complete
 
 **GitHub Repository**: https://github.com/deusversus/animerpg
 
 ---
 
-**CURRENT CONTEXT: v2.0 MVP complete with strong architectural foundation (62.3% token optimization, 20 profiles, 15 genre libraries, 8 schemas, 14 modules). Primary blocker: 6/8 acceptance tests incomplete. Must complete validation (Priority 1) before adding new features (Phase 2.1 systems). See ROADMAP.md for comprehensive guidance with ALL Phase 1-9 tracking details preserved.** 🎯
+**CURRENT CONTEXT: v2.0 MVP complete with strong architectural foundation (62.3% token optimization, 20 profiles, 15 genre libraries, 8 schemas, 14 modules). Testing shelved (2/8 passed, 6 deferred to post-Phase 2.1). Current priority: Phase 2.1 core systems development (Quest, Faction, Economy, Combat). See ROADMAP.md for comprehensive guidance with ALL Phase 1-9 tracking details preserved.** 🎯
