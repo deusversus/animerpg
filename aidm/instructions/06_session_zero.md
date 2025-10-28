@@ -450,7 +450,23 @@ At higher levels, you might learn to:
 
 ### Starting Inventory
 
-**200 gold budget OR class package** → Most take package. STREET ORPHAN PKG: Worn leather armor (+2 def) | Small dagger (1d4) | Healing herbs ×5 (20 HP ea) | Tattered cloak | Waterskin | 3 days rations | 50g
+**200 gold budget OR class package** → Most take package.
+
+**STREET ORPHAN PACKAGE** (180g value):
+- Worn leather armor (+2 def) - 50g
+- Small dagger (1d4 damage) - 15g
+- Healing herbs ×5 (20 HP each) - 50g (10g each)
+- Tattered cloak - 20g
+- Waterskin - 5g
+- 3 days rations - 15g
+- Starting cash - 25g
+
+**Other Class Packages** (all 200g value):
+- **WARRIOR**: Chain armor (+5 def, 80g) | Longsword (1d8, 40g) | Shield (+2 def, 30g) | Healing potion ×2 (40g) | 10g cash
+- **MAGE**: Apprentice robes (+1 def, +20 MP, 60g) | Spellbook (50g) | Staff (1d4, focus, 30g) | Mana potions ×3 (45g) | 15g cash
+- **ROGUE**: Leather armor (+3 def, 40g) | Dual daggers (1d4 each, 30g) | Lockpicks (25g) | Smoke bombs ×3 (30g) | Thieves' tools (25g) | 50g cash
+
+**Economy Integration Note**: Module 03 State Manager handles all merchant transactions, item pricing (with rarity/reputation modifiers), and currency management. Starting packages use base prices without modifiers.
 
 ---
 
