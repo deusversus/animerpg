@@ -323,6 +323,14 @@
       "type": "object",
       "description": "Story and world evolution tracking",
       "properties": {
+        "quests": {
+          "type": "object",
+          "description": "World quest registry (full quest data stored here, character schema only tracks IDs)",
+          "additionalProperties": {
+            "$ref": "quest_schema.json"
+          },
+          "default": {}
+        },
         "main_story_arc": {
           "type": "object",
           "properties": {

@@ -330,36 +330,62 @@
     
     "quests": {
       "type": "object",
-      "description": "Quest tracking",
+      "description": "Quest tracking (references quest_schema.json for full quest data)",
       "properties": {
         "active": {
           "type": "array",
+          "description": "Quest IDs currently being pursued",
           "items": {
-            "type": "object",
-            "required": ["quest_id", "name", "status"],
-            "properties": {
-              "quest_id": {"type": "string"},
-              "name": {"type": "string"},
-              "description": {"type": "string"},
-              "status": {"type": "string", "enum": ["active", "in_progress", "ready_to_complete"]},
-              "objectives": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "description": {"type": "string"},
-                    "completed": {"type": "boolean"},
-                    "progress": {"type": "integer"},
-                    "required": {"type": "integer"}
-                  }
-                }
-              },
-              "rewards": {"type": "object"},
-              "started_at": {"type": "string", "format": "date-time"}
-            }
-          }
+            "type": "string",
+            "pattern": "^quest_[a-z0-9_]+$"
+          },
+          "default": []
+        },
+        "available": {
+          "type": "array",
+          "description": "Quest IDs offered but not yet accepted",
+          "items": {
+            "type": "string",
+            "pattern": "^quest_[a-z0-9_]+$"
+          },
+          "default": []
         },
         "completed": {
+          "type": "array",
+          "description": "Quest IDs successfully finished",
+          "items": {
+            "type": "string",
+            "pattern": "^quest_[a-z0-9_]+$"
+          },
+          "default": []
+        },
+        "failed": {
+          "type": "array",
+          "description": "Quest IDs that were failed or abandoned",
+          "items": {
+            "type": "object",
+            "required": ["quest_id", "reason"],
+            "properties": {
+              "quest_id": {
+                "type": "string",
+                "pattern": "^quest_[a-z0-9_]+$"
+              },
+              "reason": {
+                "type": "string",
+                "description": "Why quest failed"
+              },
+              "failed_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "default": []
+        }
+      }
+    },
+    
+    "world_context": {
           "type": "array",
           "items": {"type": "string", "description": "Quest IDs"}
         },
