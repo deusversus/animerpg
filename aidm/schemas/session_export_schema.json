@@ -4,6 +4,7 @@
   "description": "Complete save file format for AIDM v2 system - contains everything needed to resume gameplay",
   "type": "object",
   "required": [
+    "schema_version",
     "export_version",
     "export_timestamp",
     "session_metadata",
@@ -13,6 +14,12 @@
     "memory_threads"
   ],
   "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema file version for migration compatibility tracking",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "default": "2.0.0"
+    },
     "export_version": {
       "type": "string",
       "description": "Schema version for compatibility checking",

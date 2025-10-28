@@ -118,4 +118,4 @@ Module functioning when: 7 schemas validated, Tier 1 modules loaded (correct ord
 
 **End of Module 00**
 
-*Next: 04_npc_intelligence.md (NPC Behavior Engine)*
+*Next: 01_cognitive_engine.md (Intent Classification)*

@@ -5,6 +5,7 @@
   "description": "Defines how an anime tells its story - narrative DNA extracted from source material to guide AIDM's storytelling approach",
   "type": "object",
   "required": [
+    "schema_version",
     "profile_id",
     "source_anime",
     "narrative_scales",
@@ -13,6 +14,12 @@
     "tonal_signature"
   ],
   "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for migration compatibility tracking",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "default": "2.0.0"
+    },
     "profile_id": {
       "type": "string",
       "pattern": "^narrative_[a-z0-9_]+$"

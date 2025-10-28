@@ -4,6 +4,7 @@
   "description": "Complete world state data structure for AIDM v2 system",
   "type": "object",
   "required": [
+    "schema_version",
     "world_id",
     "name",
     "created_at",
@@ -17,6 +18,12 @@
     "narrative_state"
   ],
   "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for migration compatibility tracking",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "default": "2.0.0"
+    },
     "world_id": {
       "type": "string",
       "description": "Unique identifier for this world",

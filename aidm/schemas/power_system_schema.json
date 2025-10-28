@@ -5,6 +5,7 @@
   "description": "Defines magical/power frameworks for harmonization across multiple anime worlds, including rules, limitations, and interaction mechanics.",
   "type": "object",
   "required": [
+    "schema_version",
     "system_id",
     "system_name",
     "source",
@@ -13,6 +14,12 @@
     "metadata"
   ],
   "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for migration compatibility tracking",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "default": "2.0.0"
+    },
     "system_id": {
       "type": "string",
       "description": "Unique identifier for this power system",

@@ -4,6 +4,7 @@
   "description": "Complete player character data structure for AIDM v2 system",
   "type": "object",
   "required": [
+    "schema_version",
     "character_id",
     "name",
     "created_at",
@@ -19,6 +20,12 @@
     "world_context"
   ],
   "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for migration compatibility tracking",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "default": "2.0.0"
+    },
     "character_id": {
       "type": "string",
       "description": "Unique identifier for this character",

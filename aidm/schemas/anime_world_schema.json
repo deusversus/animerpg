@@ -5,6 +5,7 @@
   "description": "Defines the structure for integrating anime worlds into AIDM, including lore verification, fusion rules, and consistency tracking.",
   "type": "object",
   "required": [
+    "schema_version",
     "world_id",
     "anime_info",
     "integration_status",
@@ -13,6 +14,12 @@
     "metadata"
   ],
   "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for migration compatibility tracking",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "default": "2.0.0"
+    },
     "world_id": {
       "type": "string",
       "description": "Unique identifier for this anime world integration",

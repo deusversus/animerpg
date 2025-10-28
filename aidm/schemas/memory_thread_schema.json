@@ -5,6 +5,7 @@
   "description": "Defines the hierarchical memory organization system for AIDM, including prioritization, compression, and retrieval mechanisms.",
   "type": "object",
   "required": [
+    "schema_version",
     "thread_id",
     "category",
     "content",
@@ -12,6 +13,12 @@
     "metadata"
   ],
   "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for migration compatibility tracking",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "default": "2.0.0"
+    },
     "thread_id": {
       "type": "string",
       "description": "Unique identifier for this memory thread",

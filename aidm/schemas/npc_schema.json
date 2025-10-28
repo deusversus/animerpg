@@ -5,6 +5,7 @@
   "description": "Defines the structure for Non-Player Characters in the AIDM system, including personality, knowledge, relationships, and behavioral patterns.",
   "type": "object",
   "required": [
+    "schema_version",
     "npc_id",
     "core_identity",
     "knowledge",
@@ -14,6 +15,12 @@
     "metadata"
   ],
   "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for migration compatibility tracking",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "default": "2.0.0"
+    },
     "npc_id": {
       "type": "string",
       "description": "Unique identifier for this NPC",
