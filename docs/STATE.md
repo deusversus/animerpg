@@ -1,13 +1,13 @@
 # AIDM v2 Project State
 
-**Last Updated**: 2025-10-27  
+**Last Updated**: 2025-10-28  
 **Current Version**: 2.0 MVP  
 **Status**: Production Ready - Pending test completion  
 **Repository**: deusversus/animerpg (main branch)
 
 ---
 
-**Active Work
+**Active Work**:
 
 **Current Focus**: Phase 2.1 - Core Systems Development (4-6 months)
 - ✅ Archived deep research reports to backup/archives/archive_01.zip
@@ -17,10 +17,11 @@
 - ✅ Created quest_schema.json and faction_schema.json
 - ✅ Updated all documentation for 10-schema system
 - ✅ Phase 2.1d: Economy System implemented (economy_schema.json, Module 03/04 integration)
-- ✅ Token optimization: All 3 new schemas optimized (31.1% reduction, 2,023 tokens saved)
-- ⏳ Continue Phase 2.1e: Combat Enhancements
+- ✅ Token optimization: All 11 schemas optimized (31.1% reduction, 8,991 tokens saved cumulative)
+- ✅ Phase 2.1e: Combat Enhancements implemented (death/resurrection, maneuvers, training, tournaments)
+- ⏳ Continue Phase 2.1f: Validation & Polish
 
-**Next Task**: Review ROADMAP.md Phase 2.1e (Combat Enhancements)
+**Next Task**: Review ROADMAP.md Phase 2.1f (Validation & Polish)
 
 ---
 
@@ -63,7 +64,10 @@
 - Extreme scale (100+ NPCs/quests) theoretical
 
 **Missing Features**:
-- Death/resurrection rules (0 HP = defeat, no dying mechanics)
+- ✅ Death/resurrection rules implemented (0 HP = Downed, death saves, resurrection costs)
+- ✅ Combat maneuvers implemented (grapple, disarm, called shot, aid)
+- ✅ Training system implemented (downtime training, skill XP, montage mechanics)
+- ✅ Tournament framework implemented (bracket management, fatigue, seeding, spectators)
 
 **Completed (Phase 2.1a)**:
 - ✅ Quest management system -> `quest_schema.json` created with full branching/dependencies
@@ -83,7 +87,8 @@
 - 10-13: Error recovery, dice, player agency, narrative calibration (Tier 1/2 support)
 
 **JSON Schemas** (11):
-- character_schema.json, world_state_schema.json, session_export_schema.json
+- character_schema.json (v2.3.0 - added death_saves, injuries, training_progress)
+- world_state_schema.json, session_export_schema.json
 - npc_schema.json, memory_thread_schema.json
 - power_system_schema.json, anime_world_schema.json, narrative_profile_schema.json
 - quest_schema.json, faction_schema.json, economy_schema.json
@@ -99,6 +104,40 @@
 ---
 
 ## Recent Changes
+
+**2025-10-28**: Phase 2.1e Combat Enhancements implementation complete
+- Expanded Module 08 Combat Resolution with Death & Resurrection System (~70 lines)
+  - 0 HP = Downed (not dead), death saves system (3 success = stabilize, 3 fail = dead)
+  - Injury table (7 injury types from Minor Wound to Permanent Scar)
+  - 4 resurrection tiers (Revivify to True Resurrection with escalating costs/penalties)
+  - Anime world variants (senzu beans, Return by Death, willpower, Aqua)
+  - Death narrative protocol (tension-building narration for downed state)
+- Added Combat Maneuvers system to Module 08 (~40 lines)
+  - Grapple (STR vs STR/DEX contest, restrain target)
+  - Disarm (attack at disadvantage, knock weapon away)
+  - Called Shot (-5 penalty for targeted effects: head/arm/leg/eyes/weak point)
+  - Aid (grant ally Advantage on next roll)
+- Added Tournament Framework to Module 08 (~90 lines)
+  - Tournament structure (4-64 participants, bracket types, rules, stakes)
+  - Seeding mechanics (rank by strength, random draw, rigged brackets)
+  - Match flow (pre-match, combat, post-match with crowd reactions)
+  - Between-match fatigue tracking (immediate/short/long rest with penalties)
+  - Bracket management with narrative shortcuts (skip minor matches, montages, timeskips)
+  - Spectator reactions (underdog support, betting subplot, upset shock)
+  - Example: Heaven's Arena from Hunter x Hunter
+- Expanded Module 09 Progression with Downtime Training System (~90 lines)
+  - Training basics (1 week sessions, trainer quality tiers: self-study to master)
+  - Training quality XP rates (50-300 XP/week based on trainer)
+  - Skill point vs training comparison (instant vs gradual advancement)
+  - Training limits (can't exceed trainer level, max 4 weeks before diminishing returns)
+  - Training montage mechanics (narrative shortcuts with 5 beats)
+  - Training costs by skill type (physical/magic/social/knowledge with time/gold)
+  - Anime-style training arcs (Hell Week ×2 XP, Death Training ×3 XP, timeskip montages, hidden masters)
+- Updated character_schema.json to v2.3.0 with new combat/training fields
+  - death_saves object (successes, failures, is_stable)
+  - injuries array (name, effect, duration, acquired_at, treated)
+  - training_progress array (skill_name, weeks_trained, xp_gained, trainer_name, quality, started_at, notes)
+- Updated docs/STATE.md (Phase 2.1e complete, schema v2.3.0, next task Phase 2.1f)
 
 **2025-10-28**: Phase 2.1d Economy System implementation complete
 - Created economy_schema.json (comprehensive multi-currency, merchant, market dynamics system)
