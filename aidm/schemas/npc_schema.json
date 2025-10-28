@@ -2,190 +2,69 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aidm.dev/schemas/npc_schema.json",
   "title": "AIDM NPC Schema",
-  "description": "Defines the structure for Non-Player Characters in the AIDM system, including personality, knowledge, relationships, and behavioral patterns.",
+  "description": "Structure for NPCs: personality, knowledge, relationships, behavior",
   "type": "object",
-  "required": [
-    "schema_version",
-    "npc_id",
-    "core_identity",
-    "knowledge",
-    "behavior",
-    "relationships",
-    "narrative_role",
-    "metadata"
-  ],
+  "required": ["schema_version", "npc_id", "core_identity", "knowledge", "behavior", "relationships", "narrative_role", "metadata"],
   "properties": {
-    "schema_version": {
-      "type": "string",
-      "description": "Schema version for migration compatibility tracking",
-      "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "default": "2.2.0"
-    },
-    "npc_id": {
-      "type": "string",
-      "description": "Unique identifier for this NPC",
-      "pattern": "^npc_[a-z0-9_]+$"
-    },
+    "schema_version": { "type": "string", "description": "Schema version", "pattern": "^\\d+\\.\\d+\\.\\d+$", "default": "2.2.0" },
+    "npc_id": { "type": "string", "description": "Unique ID", "pattern": "^npc_[a-z0-9_]+$" },
     "core_identity": {
       "type": "object",
-      "description": "Immutable characteristics that define who this NPC is",
+      "description": "Immutable characteristics",
       "required": ["name", "age", "race", "occupation", "personality"],
       "properties": {
-        "name": {
-          "type": "string",
-          "description": "NPC's full name"
-        },
-        "aliases": {
-          "type": "array",
-          "description": "Other names, titles, or nicknames",
-          "items": {
-            "type": "string"
-          }
-        },
-        "age": {
-          "type": "integer",
-          "description": "Current age in years",
-          "minimum": 0
-        },
-        "race": {
-          "type": "string",
-          "description": "Species/race (human, elf, demon, etc.)"
-        },
-        "gender": {
-          "type": "string",
-          "description": "Gender identity"
-        },
-        "occupation": {
-          "type": "string",
-          "description": "Primary profession or role in society"
-        },
+        "name": { "type": "string" },
+        "aliases": { "type": "array", "description": "Titles, nicknames", "items": { "type": "string" } },
+        "age": { "type": "integer", "minimum": 0 },
+        "race": { "type": "string", "description": "Species (e.g., human, elf, demon)" },
+        "gender": { "type": "string" },
+        "occupation": { "type": "string" },
         "appearance": {
           "type": "object",
-          "description": "Physical characteristics",
           "properties": {
-            "height": {
-              "type": "string",
-              "description": "Height description (e.g., '5'8\"', 'tall', 'average')"
-            },
-            "build": {
-              "type": "string",
-              "description": "Body type (slim, muscular, stocky, etc.)"
-            },
-            "hair": {
-              "type": "string",
-              "description": "Hair color and style"
-            },
-            "eyes": {
-              "type": "string",
-              "description": "Eye color and notable features"
-            },
-            "distinguishing_features": {
-              "type": "array",
-              "description": "Scars, tattoos, unique traits",
-              "items": {
-                "type": "string"
-              }
-            },
-            "typical_attire": {
-              "type": "string",
-              "description": "Common clothing style"
-            }
+            "height": { "type": "string", "description": "e.g., 5'8\", tall" },
+            "build": { "type": "string", "description": "e.g., slim, muscular" },
+            "hair": { "type": "string" },
+            "eyes": { "type": "string" },
+            "distinguishing_features": { "type": "array", "description": "Scars, tattoos", "items": { "type": "string" } },
+            "typical_attire": { "type": "string" }
           }
         },
         "personality": {
           "type": "object",
-          "description": "Core personality traits and values",
+          "description": "Core traits, values, goals",
           "required": ["traits", "values", "fears"],
           "properties": {
-            "traits": {
-              "type": "array",
-              "description": "Fundamental personality characteristics (brave, cunning, compassionate, etc.)",
-              "items": {
-                "type": "string"
-              },
-              "minItems": 3,
-              "maxItems": 7
-            },
-            "values": {
-              "type": "array",
-              "description": "Core values and beliefs (honor, family, power, knowledge, etc.)",
-              "items": {
-                "type": "string"
-              },
-              "minItems": 2
-            },
-            "fears": {
-              "type": "array",
-              "description": "Deep-seated fears and aversions",
-              "items": {
-                "type": "string"
-              },
-              "minItems": 1
-            },
+            "traits": { "type": "array", "description": "3-7 core traits (e.g., brave, cunning)", "items": { "type": "string" }, "minItems": 3, "maxItems": 7 },
+            "values": { "type": "array", "description": "Core beliefs (e.g., honor, power)", "items": { "type": "string" }, "minItems": 2 },
+            "fears": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
             "goals": {
               "type": "array",
-              "description": "Personal goals and ambitions",
               "items": {
                 "type": "object",
                 "required": ["description", "priority"],
                 "properties": {
-                  "description": {
-                    "type": "string"
-                  },
-                  "priority": {
-                    "type": "string",
-                    "enum": ["critical", "high", "medium", "low"]
-                  },
-                  "public_knowledge": {
-                    "type": "boolean",
-                    "description": "Whether this goal is publicly known"
-                  }
+                  "description": { "type": "string" },
+                  "priority": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+                  "public_knowledge": { "type": "boolean", "description": "Is goal publicly known" }
                 }
               }
             },
-            "quirks": {
-              "type": "array",
-              "description": "Unique mannerisms, speech patterns, or habits",
-              "items": {
-                "type": "string"
-              }
-            }
+            "quirks": { "type": "array", "description": "Mannerisms, speech patterns", "items": { "type": "string" } }
           }
         },
-        "backstory": {
-          "type": "string",
-          "description": "NPC's history and formative experiences"
-        },
+        "backstory": { "type": "string", "description": "History, formative experiences" },
         "secrets": {
           "type": "array",
-          "description": "Hidden information unknown to most (player discovery required)",
+          "description": "Hidden info (player discovery required)",
           "items": {
             "type": "object",
             "required": ["secret", "severity"],
             "properties": {
-              "secret": {
-                "type": "string",
-                "description": "The hidden information"
-              },
-              "severity": {
-                "type": "string",
-                "enum": ["minor", "moderate", "major", "world-changing"],
-                "description": "Impact level if revealed"
-              },
-              "who_knows": {
-                "type": "array",
-                "description": "NPC IDs of those who know this secret",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "discovery_hints": {
-                "type": "array",
-                "description": "Clues that might lead to discovery",
-                "items": {
-                  "type": "string"
-                }
-              }
+              "secret": { "type": "string" },
+              "severity": { "type": "string", "enum": ["minor", "moderate", "major", "world-changing"] },
+              "who_knows": { "type": "array", "description": "NPC IDs aware of secret", "items": { "type": "string" } },
+              "discovery_hints": { "type": "array", "items": { "type": "string" } }
             }
           }
         }
@@ -193,349 +72,164 @@
     },
     "knowledge": {
       "type": "object",
-      "description": "What this NPC knows and can share",
+      "description": "What NPC knows/shares",
       "required": ["known_topics", "expertise_areas"],
       "properties": {
         "known_topics": {
           "type": "array",
-          "description": "General areas of knowledge this NPC possesses",
           "items": {
             "type": "object",
             "required": ["topic", "depth"],
             "properties": {
-              "topic": {
-                "type": "string",
-                "description": "Subject area (local history, magic theory, combat tactics, etc.)"
-              },
-              "depth": {
-                "type": "string",
-                "enum": ["novice", "apprentice", "journeyman", "expert", "master"],
-                "description": "Level of knowledge"
-              },
-              "willing_to_share": {
-                "type": "boolean",
-                "description": "Whether NPC will freely discuss this topic",
-                "default": true
-              },
-              "conditions_to_share": {
-                "type": "string",
-                "description": "Requirements to get NPC to share (affinity threshold, payment, quest completion, etc.)"
-              }
+              "topic": { "type": "string", "description": "e.g., local history, magic theory" },
+              "depth": { "type": "string", "enum": ["novice", "apprentice", "journeyman", "expert", "master"] },
+              "willing_to_share": { "type": "boolean", "default": true },
+              "conditions_to_share": { "type": "string", "description": "Requirements (e.g., affinity≥30, 100g)" }
             }
           }
         },
-        "expertise_areas": {
-          "type": "array",
-          "description": "Areas of specialized expertise",
-          "items": {
-            "type": "string"
-          }
-        },
+        "expertise_areas": { "type": "array", "items": { "type": "string" } },
         "known_locations": {
           "type": "array",
-          "description": "Locations this NPC knows about",
           "items": {
             "type": "object",
             "properties": {
-              "location_id": {
-                "type": "string"
-              },
-              "familiarity": {
-                "type": "string",
-                "enum": ["heard_of", "visited", "frequent", "lives_there", "expert"]
-              },
-              "can_provide_directions": {
-                "type": "boolean",
-                "default": false
-              }
+              "location_id": { "type": "string" },
+              "familiarity": { "type": "string", "enum": ["heard_of", "visited", "frequent", "lives_there", "expert"] },
+              "can_provide_directions": { "type": "boolean", "default": false }
             }
           }
         },
         "known_npcs": {
           "type": "array",
-          "description": "Other NPCs this character knows",
           "items": {
             "type": "object",
             "properties": {
-              "npc_id": {
-                "type": "string"
-              },
-              "relationship": {
-                "type": "string",
-                "description": "How they know each other (friend, rival, mentor, family, etc.)"
-              },
-              "will_introduce": {
-                "type": "boolean",
-                "description": "Whether this NPC will introduce the player"
-              }
+              "npc_id": { "type": "string" },
+              "relationship": { "type": "string", "description": "e.g., friend, rival, mentor" },
+              "will_introduce": { "type": "boolean" }
             }
           }
         },
         "knowledge_boundaries": {
           "type": "object",
-          "description": "AIDM constraints for this NPC's knowledge",
+          "description": "AIDM constraints",
           "properties": {
-            "era_limit": {
-              "type": "string",
-              "description": "NPC cannot know events after this date/era"
-            },
-            "geographic_limit": {
-              "type": "string",
-              "description": "NPC has limited knowledge outside this region"
-            },
-            "prohibited_knowledge": {
-              "type": "array",
-              "description": "Topics NPC explicitly does NOT know",
-              "items": {
-                "type": "string"
-              }
-            }
+            "era_limit": { "type": "string", "description": "Cannot know events after this" },
+            "geographic_limit": { "type": "string", "description": "Limited knowledge outside region" },
+            "prohibited_knowledge": { "type": "array", "description": "Topics NPC does NOT know", "items": { "type": "string" } }
           }
         }
       }
     },
     "behavior": {
       "type": "object",
-      "description": "How this NPC acts and reacts",
+      "description": "Actions, reactions, decisions",
       "required": ["dialogue_style", "reaction_patterns"],
       "properties": {
         "dialogue_style": {
           "type": "object",
-          "description": "Speech patterns and communication style",
           "properties": {
-            "formality": {
-              "type": "string",
-              "enum": ["very_formal", "formal", "neutral", "casual", "very_casual"]
-            },
-            "vocabulary": {
-              "type": "string",
-              "description": "Characteristic word choices, slang, or speech tics"
-            },
-            "tone": {
-              "type": "string",
-              "description": "Typical emotional tone (cheerful, serious, sarcastic, etc.)"
-            },
-            "example_phrases": {
-              "type": "array",
-              "description": "Characteristic expressions this NPC uses",
-              "items": {
-                "type": "string"
-              }
-            }
+            "formality": { "type": "string", "enum": ["very_formal", "formal", "neutral", "casual", "very_casual"] },
+            "vocabulary": { "type": "string", "description": "Word choices, slang, tics" },
+            "tone": { "type": "string", "description": "e.g., cheerful, serious, sarcastic" },
+            "example_phrases": { "type": "array", "items": { "type": "string" } }
           }
         },
         "reaction_patterns": {
           "type": "object",
-          "description": "How NPC typically responds to situations",
           "properties": {
-            "to_strangers": {
-              "type": "string",
-              "enum": ["hostile", "suspicious", "cautious", "neutral", "friendly", "welcoming"]
-            },
-            "to_authority": {
-              "type": "string",
-              "enum": ["rebellious", "defiant", "resistant", "compliant", "respectful", "subservient"]
-            },
-            "to_threats": {
-              "type": "string",
-              "enum": ["aggressive", "defensive", "flight", "freeze", "negotiate", "surrender"]
-            },
-            "to_bribes": {
-              "type": "string",
-              "enum": ["offended", "resistant", "negotiable", "easily_swayed", "greedy"]
-            },
-            "to_flattery": {
-              "type": "string",
-              "enum": ["immune", "suspicious", "indifferent", "appreciative", "vain"]
-            }
+            "to_strangers": { "type": "string", "enum": ["hostile", "suspicious", "cautious", "neutral", "friendly", "welcoming"] },
+            "to_authority": { "type": "string", "enum": ["rebellious", "defiant", "resistant", "compliant", "respectful", "subservient"] },
+            "to_threats": { "type": "string", "enum": ["aggressive", "defensive", "flight", "freeze", "negotiate", "surrender"] },
+            "to_bribes": { "type": "string", "enum": ["offended", "resistant", "negotiable", "easily_swayed", "greedy"] },
+            "to_flattery": { "type": "string", "enum": ["immune", "suspicious", "indifferent", "appreciative", "vain"] }
           }
         },
         "decision_making": {
           "type": "object",
-          "description": "How NPC makes choices",
           "properties": {
-            "primary_motivation": {
-              "type": "string",
-              "description": "What drives their decisions (self-interest, duty, compassion, etc.)"
-            },
-            "risk_tolerance": {
-              "type": "string",
-              "enum": ["reckless", "bold", "moderate", "cautious", "paranoid"]
-            },
-            "moral_alignment": {
-              "type": "string",
-              "description": "Ethical framework (lawful good, chaotic neutral, etc. - optional)"
-            }
+            "primary_motivation": { "type": "string", "description": "e.g., self-interest, duty, compassion" },
+            "risk_tolerance": { "type": "string", "enum": ["reckless", "bold", "moderate", "cautious", "paranoid"] },
+            "moral_alignment": { "type": "string", "description": "e.g., lawful good, chaotic neutral" }
           }
         },
         "combat_behavior": {
           "type": "object",
-          "description": "How NPC acts in combat (if applicable)",
           "properties": {
-            "combat_capable": {
-              "type": "boolean"
-            },
-            "preferred_tactics": {
-              "type": "string",
-              "description": "Fighting style if combat-capable"
-            },
-            "retreat_threshold": {
-              "type": "string",
-              "enum": ["never", "near_death", "half_health", "first_injury", "immediately"],
-              "description": "When NPC will flee combat"
-            }
+            "combat_capable": { "type": "boolean" },
+            "preferred_tactics": { "type": "string" },
+            "retreat_threshold": { "type": "string", "enum": ["never", "near_death", "half_health", "first_injury", "immediately"] }
           }
         }
       }
     },
     "relationships": {
       "type": "object",
-      "description": "NPC's connections to player and other entities",
+      "description": "Connections: player, NPCs, factions",
       "required": ["player_affinity"],
       "properties": {
-        "player_affinity": {
-          "type": "integer",
-          "description": "Current relationship score with player (-100 to +100)",
-          "minimum": -100,
-          "maximum": 100
-        },
+        "player_affinity": { "type": "integer", "description": "Score: -100 to +100", "minimum": -100, "maximum": 100 },
         "affinity_thresholds": {
           "type": "object",
-          "description": "Affinity levels that unlock specific behaviors",
+          "description": "Behavior unlock levels",
           "properties": {
-            "hostile": {
-              "type": "integer",
-              "description": "Below this, NPC is actively hostile",
-              "default": -50
-            },
-            "unfriendly": {
-              "type": "integer",
-              "description": "Below this, NPC is cold/unwilling to help",
-              "default": -20
-            },
-            "neutral": {
-              "type": "integer",
-              "description": "Default starting point",
-              "default": 0
-            },
-            "friendly": {
-              "type": "integer",
-              "description": "Above this, NPC is helpful and warm",
-              "default": 30
-            },
-            "trusted": {
-              "type": "integer",
-              "description": "Above this, NPC shares secrets/offers special help",
-              "default": 60
-            },
-            "devoted": {
-              "type": "integer",
-              "description": "Above this, NPC is ride-or-die loyal",
-              "default": 85
-            }
+            "hostile": { "type": "integer", "description": "<-50: actively hostile", "default": -50 },
+            "unfriendly": { "type": "integer", "description": "<-20: cold, unhelpful", "default": -20 },
+            "neutral": { "type": "integer", "default": 0 },
+            "friendly": { "type": "integer", "description": ">30: helpful, warm", "default": 30 },
+            "trusted": { "type": "integer", "description": ">60: shares secrets", "default": 60 },
+            "devoted": { "type": "integer", "description": ">85: loyal", "default": 85 }
           }
         },
         "affinity_modifiers": {
           "type": "array",
-          "description": "Actions that increase/decrease affinity with this NPC",
           "items": {
             "type": "object",
             "required": ["trigger", "change"],
             "properties": {
-              "trigger": {
-                "type": "string",
-                "description": "Action that triggers this change (e.g., 'helping villagers', 'insulting religion')"
-              },
-              "change": {
-                "type": "integer",
-                "description": "Amount affinity changes (positive or negative)"
-              },
-              "one_time": {
-                "type": "boolean",
-                "description": "Whether this trigger only works once",
-                "default": false
-              }
+              "trigger": { "type": "string", "description": "e.g., helping villagers, insulting religion" },
+              "change": { "type": "integer", "description": "+/- amount" },
+              "one_time": { "type": "boolean", "default": false }
             }
           }
         },
         "interaction_history": {
           "type": "array",
-          "description": "Record of interactions with player",
           "items": {
             "type": "object",
             "required": ["session_number", "event", "affinity_change"],
             "properties": {
-              "session_number": {
-                "type": "integer"
-              },
-              "event": {
-                "type": "string",
-                "description": "What happened in this interaction"
-              },
-              "affinity_change": {
-                "type": "integer",
-                "description": "How much affinity changed"
-              },
-              "memorable": {
-                "type": "boolean",
-                "description": "Whether NPC will reference this event later",
-                "default": false
-              }
+              "session_number": { "type": "integer" },
+              "event": { "type": "string" },
+              "affinity_change": { "type": "integer" },
+              "memorable": { "type": "boolean", "description": "Will NPC reference later", "default": false }
             }
           }
         },
         "faction_affiliations": {
           "type": "array",
-          "description": "Factions this NPC belongs to",
           "items": {
             "type": "object",
             "required": ["faction_id", "role", "loyalty"],
             "properties": {
-              "faction_id": {
-                "type": "string"
-              },
-              "role": {
-                "type": "string",
-                "description": "Position within faction (member, officer, leader, etc.)"
-              },
-              "loyalty": {
-                "type": "integer",
-                "description": "Loyalty to faction (0-100)",
-                "minimum": 0,
-                "maximum": 100
-              },
-              "public_membership": {
-                "type": "boolean",
-                "description": "Whether membership is publicly known"
-              }
+              "faction_id": { "type": "string" },
+              "role": { "type": "string", "description": "e.g., member, officer, leader" },
+              "loyalty": { "type": "integer", "description": "0-100", "minimum": 0, "maximum": 100 },
+              "public_membership": { "type": "boolean" }
             }
           }
         },
         "npc_relationships": {
           "type": "array",
-          "description": "Relationships with other NPCs",
           "items": {
             "type": "object",
             "required": ["npc_id", "relationship_type"],
             "properties": {
-              "npc_id": {
-                "type": "string"
-              },
-              "relationship_type": {
-                "type": "string",
-                "description": "Nature of relationship (friend, rival, mentor, family, lover, enemy, etc.)"
-              },
-              "affinity": {
-                "type": "integer",
-                "description": "How much this NPC likes the other (-100 to +100)",
-                "minimum": -100,
-                "maximum": 100
-              },
-              "secret_relationship": {
-                "type": "boolean",
-                "description": "Whether this relationship is hidden",
-                "default": false
-              }
+              "npc_id": { "type": "string" },
+              "relationship_type": { "type": "string", "description": "e.g., friend, rival, mentor, family" },
+              "affinity": { "type": "integer", "description": "-100 to +100", "minimum": -100, "maximum": 100 },
+              "secret_relationship": { "type": "boolean", "default": false }
             }
           }
         }
@@ -543,125 +237,51 @@
     },
     "narrative_role": {
       "type": "object",
-      "description": "This NPC's function in the story",
+      "description": "Story function",
       "required": ["importance", "purpose"],
       "properties": {
-        "importance": {
-          "type": "string",
-          "enum": ["background", "minor", "recurring", "major", "critical"],
-          "description": "How significant this NPC is to the overall narrative"
-        },
-        "purpose": {
-          "type": "array",
-          "description": "What role(s) this NPC serves",
-          "items": {
-            "type": "string",
-            "enum": [
-              "quest_giver",
-              "mentor",
-              "rival",
-              "antagonist",
-              "ally",
-              "love_interest",
-              "comic_relief",
-              "information_source",
-              "shopkeeper",
-              "skill_trainer",
-              "faction_representative",
-              "plot_catalyst",
-              "worldbuilding",
-              "other"
-            ]
-          }
-        },
-        "associated_quests": {
-          "type": "array",
-          "description": "Quest IDs this NPC is involved in",
-          "items": {
-            "type": "string"
-          }
-        },
+        "importance": { "type": "string", "enum": ["background", "minor", "recurring", "major", "critical"] },
+        "purpose": { "type": "array", "items": { "type": "string", "enum": ["quest_giver", "mentor", "rival", "antagonist", "ally", "love_interest", "comic_relief", "information_source", "shopkeeper", "skill_trainer", "faction_representative", "plot_catalyst", "worldbuilding", "other"] } },
+        "associated_quests": { "type": "array", "items": { "type": "string" } },
         "plot_flags": {
           "type": "array",
-          "description": "Story flags that affect this NPC's availability or behavior",
           "items": {
             "type": "object",
             "properties": {
-              "flag_name": {
-                "type": "string"
-              },
-              "effect": {
-                "type": "string",
-                "description": "What happens when this flag is set"
-              }
+              "flag_name": { "type": "string" },
+              "effect": { "type": "string", "description": "What happens when flag set" }
             }
           }
         },
-        "can_die": {
-          "type": "boolean",
-          "description": "Whether this NPC can be killed (vs plot-protected)"
-        },
-        "death_consequences": {
-          "type": "string",
-          "description": "What happens to story/quests if this NPC dies"
-        }
+        "can_die": { "type": "boolean", "description": "Killable vs plot-protected" },
+        "death_consequences": { "type": "string", "description": "Impact on story/quests" }
       }
     },
     "capabilities": {
       "type": "object",
-      "description": "NPC's abilities and resources (if relevant for interactions)",
+      "description": "Abilities, services, resources",
       "properties": {
-        "power_level": {
-          "type": "integer",
-          "description": "Approximate combat power relative to player (0-100)",
-          "minimum": 0,
-          "maximum": 100
-        },
-        "special_abilities": {
-          "type": "array",
-          "description": "Notable powers or skills",
-          "items": {
-            "type": "string"
-          }
-        },
+        "power_level": { "type": "integer", "description": "Combat power vs player (0-100)", "minimum": 0, "maximum": 100 },
+        "special_abilities": { "type": "array", "items": { "type": "string" } },
         "services_offered": {
           "type": "array",
-          "description": "What this NPC can do for the player",
           "items": {
             "type": "object",
             "properties": {
-              "service": {
-                "type": "string",
-                "description": "Type of service (training, crafting, healing, etc.)"
-              },
-              "cost": {
-                "type": "string",
-                "description": "What it costs (gold, favors, affinity requirement, etc.)"
-              },
-              "availability": {
-                "type": "string",
-                "description": "Conditions under which service is available"
-              }
+              "service": { "type": "string", "description": "e.g., training, crafting, healing" },
+              "cost": { "type": "string", "description": "e.g., 100g, affinity≥50" },
+              "availability": { "type": "string", "description": "Conditions when available" }
             }
           }
         },
         "inventory": {
           "type": "array",
-          "description": "Items this NPC possesses (if relevant)",
           "items": {
             "type": "object",
             "properties": {
-              "item": {
-                "type": "string"
-              },
-              "acquirable": {
-                "type": "boolean",
-                "description": "Whether player can obtain this item"
-              },
-              "acquisition_method": {
-                "type": "string",
-                "description": "How to get it (purchase, gift at high affinity, quest reward, theft, etc.)"
-              }
+              "item": { "type": "string" },
+              "acquirable": { "type": "boolean" },
+              "acquisition_method": { "type": "string", "description": "e.g., purchase, gift, theft" }
             }
           }
         }
@@ -669,63 +289,32 @@
     },
     "current_state": {
       "type": "object",
-      "description": "Dynamic state that changes during gameplay",
+      "description": "Dynamic gameplay state",
       "required": ["location", "activity"],
       "properties": {
-        "location": {
-          "type": "string",
-          "description": "Current location ID"
-        },
-        "activity": {
-          "type": "string",
-          "description": "What NPC is currently doing"
-        },
+        "location": { "type": "string" },
+        "activity": { "type": "string" },
         "schedule": {
           "type": "array",
-          "description": "Time-based routine for this NPC",
           "items": {
             "type": "object",
             "properties": {
-              "time_range": {
-                "type": "string",
-                "description": "When this occurs (e.g., 'morning', '9AM-12PM', 'weekdays')"
-              },
-              "location": {
-                "type": "string"
-              },
-              "activity": {
-                "type": "string"
-              },
-              "availability": {
-                "type": "string",
-                "enum": ["available", "busy", "unavailable"],
-                "description": "Whether player can interact during this time"
-              }
+              "time_range": { "type": "string", "description": "e.g., morning, 9AM-12PM" },
+              "location": { "type": "string" },
+              "activity": { "type": "string" },
+              "availability": { "type": "string", "enum": ["available", "busy", "unavailable"] }
             }
           }
         },
-        "current_mood": {
-          "type": "string",
-          "description": "Temporary emotional state (overrides normal behavior)"
-        },
+        "current_mood": { "type": "string", "description": "Temporary emotional override" },
         "temporary_flags": {
           "type": "array",
-          "description": "Temporary conditions affecting this NPC",
           "items": {
             "type": "object",
             "properties": {
-              "flag": {
-                "type": "string",
-                "description": "Condition name (angry, injured, drunk, celebrating, etc.)"
-              },
-              "expires": {
-                "type": "string",
-                "description": "When this condition ends"
-              },
-              "effect": {
-                "type": "string",
-                "description": "How this affects interactions"
-              }
+              "flag": { "type": "string", "description": "e.g., angry, injured, drunk" },
+              "expires": { "type": "string" },
+              "effect": { "type": "string" }
             }
           }
         }
@@ -733,80 +322,34 @@
     },
     "aidm_directives": {
       "type": "object",
-      "description": "Special instructions for how AIDM should handle this NPC",
+      "description": "AIDM handling instructions",
       "properties": {
-        "reflection_required": {
-          "type": "boolean",
-          "description": "Whether AIDM must reflect on this NPC's personality before every response",
-          "default": false
-        },
-        "consistency_checks": {
-          "type": "array",
-          "description": "Things AIDM must verify before having this NPC act",
-          "items": {
-            "type": "string"
-          }
-        },
-        "evolution_allowed": {
-          "type": "boolean",
-          "description": "Whether this NPC's personality can change over time",
-          "default": true
-        },
+        "reflection_required": { "type": "boolean", "description": "Reflect on personality before every response", "default": false },
+        "consistency_checks": { "type": "array", "description": "Verify before NPC acts", "items": { "type": "string" } },
+        "evolution_allowed": { "type": "boolean", "description": "Can personality change over time", "default": true },
         "evolution_triggers": {
           "type": "array",
-          "description": "Events that could cause personality/goal changes",
           "items": {
             "type": "object",
             "properties": {
-              "trigger": {
-                "type": "string",
-                "description": "Event that causes evolution"
-              },
-              "change": {
-                "type": "string",
-                "description": "How NPC changes"
-              }
+              "trigger": { "type": "string" },
+              "change": { "type": "string" }
             }
           }
         },
-        "protected_elements": {
-          "type": "array",
-          "description": "Aspects of this NPC that should never change",
-          "items": {
-            "type": "string"
-          }
-        }
+        "protected_elements": { "type": "array", "description": "Never change these aspects", "items": { "type": "string" } }
       }
     },
     "metadata": {
       "type": "object",
-      "description": "Meta-information about this NPC definition",
       "required": ["created_date", "version"],
       "properties": {
-        "created_date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "last_modified": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "version": {
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+$"
-        },
-        "source_anime": {
-          "type": "string",
-          "description": "Anime this NPC is inspired by (if applicable)"
-        },
-        "archetype": {
-          "type": "string",
-          "description": "Character archetype (tsundere, kuudere, wise mentor, etc.)"
-        },
-        "design_notes": {
-          "type": "string",
-          "description": "Notes for AIDM development team"
-        }
+        "created_date": { "type": "string", "format": "date-time" },
+        "last_modified": { "type": "string", "format": "date-time" },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "source_anime": { "type": "string", "description": "Inspiration source (if applicable)" },
+        "archetype": { "type": "string", "description": "e.g., tsundere, kuudere, wise mentor" },
+        "design_notes": { "type": "string" }
       }
     }
   }

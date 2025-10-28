@@ -2,333 +2,127 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aidm.dev/schemas/anime_world_schema.json",
   "title": "AIDM Anime World Schema",
-  "description": "Defines the structure for integrating anime worlds into AIDM, including lore verification, fusion rules, and consistency tracking.",
+  "description": "Anime world integration: lore verification, fusion rules, consistency tracking",
   "type": "object",
-  "required": [
-    "schema_version",
-    "world_id",
-    "anime_info",
-    "integration_status",
-    "world_elements",
-    "fusion_rules",
-    "metadata"
-  ],
+  "required": ["schema_version", "world_id", "anime_info", "integration_status", "world_elements", "fusion_rules", "metadata"],
   "properties": {
-    "schema_version": {
-      "type": "string",
-      "description": "Schema version for migration compatibility tracking",
-      "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "default": "2.0.0"
-    },
-    "world_id": {
-      "type": "string",
-      "description": "Unique identifier for this anime world integration",
-      "pattern": "^world_[a-z0-9_]+$"
-    },
+    "schema_version": { "type": "string", "description": "Schema version", "pattern": "^\\d+\\.\\d+\\.\\d+$", "default": "2.0.0" },
+    "world_id": { "type": "string", "description": "Unique ID", "pattern": "^world_[a-z0-9_]+$" },
     "anime_info": {
       "type": "object",
-      "description": "Source anime identification and context",
+      "description": "Source anime identification",
       "required": ["title", "genres"],
       "properties": {
-        "title": {
-          "type": "string",
-          "description": "Official anime title"
-        },
-        "alternate_titles": {
-          "type": "array",
-          "description": "Other names (English, romanized, abbreviated)",
-          "items": {
-            "type": "string"
-          }
-        },
-        "genres": {
-          "type": "array",
-          "description": "Primary genres",
-          "items": {
-            "type": "string",
-            "enum": [
-              "shonen",
-              "seinen",
-              "shojo",
-              "josei",
-              "isekai",
-              "mecha",
-              "slice_of_life",
-              "sports",
-              "romance",
-              "horror",
-              "psychological",
-              "supernatural",
-              "fantasy",
-              "sci_fi",
-              "other"
-            ]
-          },
-          "minItems": 1
-        },
-        "themes": {
-          "type": "array",
-          "description": "Core themes and tones",
-          "items": {
-            "type": "string"
-          }
-        },
-        "target_demographic": {
-          "type": "string",
-          "enum": ["shounen", "seinen", "shoujo", "josei", "kodomo", "general"],
-          "description": "Intended audience"
-        },
-        "content_rating": {
-          "type": "string",
-          "enum": ["G", "PG", "PG-13", "R", "R+", "Rx"],
-          "description": "Maturity level"
-        },
-        "episode_count": {
-          "type": "integer",
-          "description": "Total episodes (or manga chapters if applicable)",
-          "minimum": 1
-        },
-        "status": {
-          "type": "string",
-          "enum": ["ongoing", "completed", "hiatus", "cancelled"],
-          "description": "Production status"
-        },
-        "studio": {
-          "type": "string",
-          "description": "Animation studio or manga publisher"
-        },
-        "release_year": {
-          "type": "integer",
-          "description": "Initial release year",
-          "minimum": 1900
-        }
+        "title": { "type": "string" },
+        "alternate_titles": { "type": "array", "description": "English, romanized, abbreviated", "items": { "type": "string" } },
+        "genres": { "type": "array", "items": { "type": "string", "enum": ["shonen", "seinen", "shojo", "josei", "isekai", "mecha", "slice_of_life", "sports", "romance", "horror", "psychological", "supernatural", "fantasy", "sci_fi", "other"] }, "minItems": 1 },
+        "themes": { "type": "array", "items": { "type": "string" } },
+        "target_demographic": { "type": "string", "enum": ["shounen", "seinen", "shoujo", "josei", "kodomo", "general"] },
+        "content_rating": { "type": "string", "enum": ["G", "PG", "PG-13", "R", "R+", "Rx"] },
+        "episode_count": { "type": "integer", "minimum": 1 },
+        "status": { "type": "string", "enum": ["ongoing", "completed", "hiatus", "cancelled"] },
+        "studio": { "type": "string" },
+        "release_year": { "type": "integer", "minimum": 1900 }
       }
     },
     "integration_status": {
       "type": "object",
-      "description": "State of integration into AIDM campaign",
+      "description": "Campaign integration state",
       "required": ["status", "integration_method"],
       "properties": {
-        "status": {
-          "type": "string",
-          "enum": ["proposed", "researching", "approved", "active", "deprecated"],
-          "description": "Current integration state"
-        },
-        "integration_method": {
-          "type": "string",
-          "enum": ["full_world", "partial_import", "elements_only", "inspiration", "crossover"],
-          "description": "How deeply integrated"
-        },
-        "integration_date": {
-          "type": "string",
-          "format": "date-time",
-          "description": "When this was added to campaign"
-        },
-        "player_awareness": {
-          "type": "string",
-          "enum": ["known", "partially_known", "discovering", "hidden"],
-          "description": "Whether player knows this anime is integrated"
-        },
-        "session_introduced": {
-          "type": "integer",
-          "description": "Which session this was first encountered",
-          "minimum": 0
-        },
-        "approval_source": {
-          "type": "string",
-          "enum": ["player_request", "aidm_suggestion", "session_zero", "dynamic_integration"],
-          "description": "How this was added"
-        }
+        "status": { "type": "string", "enum": ["proposed", "researching", "approved", "active", "deprecated"] },
+        "integration_method": { "type": "string", "enum": ["full_world", "partial_import", "elements_only", "inspiration", "crossover"], "description": "Integration depth" },
+        "integration_date": { "type": "string", "format": "date-time" },
+        "player_awareness": { "type": "string", "enum": ["known", "partially_known", "discovering", "hidden"] },
+        "session_introduced": { "type": "integer", "minimum": 0 },
+        "approval_source": { "type": "string", "enum": ["player_request", "aidm_suggestion", "session_zero", "dynamic_integration"] }
       }
     },
     "world_elements": {
       "type": "object",
-      "description": "Components imported from this anime",
+      "description": "Imported components",
       "properties": {
         "power_systems": {
           "type": "array",
-          "description": "Power/magic systems from this anime",
           "items": {
             "type": "object",
             "required": ["system_id", "import_level"],
             "properties": {
-              "system_id": {
-                "type": "string",
-                "description": "Reference to power_system_schema"
-              },
-              "import_level": {
-                "type": "string",
-                "enum": ["exact", "adapted", "inspired", "reference_only"],
-                "description": "How faithfully imported"
-              },
-              "modifications": {
-                "type": "string",
-                "description": "Changes made for game balance/harmonization"
-              }
+              "system_id": { "type": "string", "description": "Ref to power_system_schema" },
+              "import_level": { "type": "string", "enum": ["exact", "adapted", "inspired", "reference_only"] },
+              "modifications": { "type": "string", "description": "Balance/harmonization changes" }
             }
           }
         },
         "locations": {
           "type": "array",
-          "description": "Places from this anime",
           "items": {
             "type": "object",
             "required": ["name", "location_type"],
             "properties": {
-              "location_id": {
-                "type": "string",
-                "description": "Game world location ID"
-              },
-              "name": {
-                "type": "string",
-                "description": "Canon name from anime"
-              },
-              "location_type": {
-                "type": "string",
-                "enum": ["city", "country", "dimension", "building", "landmark", "region", "realm"]
-              },
-              "description": {
-                "type": "string",
-                "description": "What this location is"
-              },
-              "accessibility": {
-                "type": "string",
-                "enum": ["always_accessible", "quest_locked", "progression_locked", "hidden", "endgame"],
-                "description": "When players can reach this"
-              },
-              "canon_accuracy": {
-                "type": "string",
-                "enum": ["exact", "high", "moderate", "inspired"],
-                "description": "How similar to source material"
-              }
+              "location_id": { "type": "string" },
+              "name": { "type": "string", "description": "Canon name" },
+              "location_type": { "type": "string", "enum": ["city", "country", "dimension", "building", "landmark", "region", "realm"] },
+              "description": { "type": "string" },
+              "accessibility": { "type": "string", "enum": ["always_accessible", "quest_locked", "progression_locked", "hidden", "endgame"] },
+              "canon_accuracy": { "type": "string", "enum": ["exact", "high", "moderate", "inspired"] }
             }
           }
         },
         "npcs": {
           "type": "array",
-          "description": "Characters from this anime",
           "items": {
             "type": "object",
             "required": ["npc_id", "canon_name", "role"],
             "properties": {
-              "npc_id": {
-                "type": "string",
-                "description": "Reference to npc_schema"
-              },
-              "canon_name": {
-                "type": "string",
-                "description": "Name from anime"
-              },
-              "role": {
-                "type": "string",
-                "enum": ["protagonist", "antagonist", "supporting", "cameo", "inspired_by"],
-                "description": "Role in source anime"
-              },
-              "integration_type": {
-                "type": "string",
-                "enum": ["exact_character", "aged_version", "alternate_timeline", "inspired_by", "descendant"],
-                "description": "How this character relates to canon"
-              },
-              "timeline_placement": {
-                "type": "string",
-                "description": "When in anime timeline this character is from"
-              },
-              "personality_accuracy": {
-                "type": "string",
-                "enum": ["exact", "high", "moderate", "reinterpreted"],
-                "description": "How faithful to canon personality"
-              }
+              "npc_id": { "type": "string", "description": "Ref to npc_schema" },
+              "canon_name": { "type": "string" },
+              "role": { "type": "string", "enum": ["protagonist", "antagonist", "supporting", "cameo", "inspired_by"] },
+              "integration_type": { "type": "string", "enum": ["exact_character", "aged_version", "alternate_timeline", "inspired_by", "descendant"] },
+              "timeline_placement": { "type": "string", "description": "When in anime timeline" },
+              "personality_accuracy": { "type": "string", "enum": ["exact", "high", "moderate", "reinterpreted"] }
             }
           }
         },
         "items": {
           "type": "array",
-          "description": "Iconic items/artifacts from this anime",
           "items": {
             "type": "object",
             "required": ["name", "item_type"],
             "properties": {
-              "name": {
-                "type": "string"
-              },
-              "item_type": {
-                "type": "string",
-                "enum": ["weapon", "armor", "artifact", "consumable", "tool", "quest_item"]
-              },
-              "description": {
-                "type": "string"
-              },
-              "power_level": {
-                "type": "string",
-                "enum": ["mundane", "uncommon", "rare", "legendary", "artifact", "unique"],
-                "description": "Item rarity/power"
-              },
-              "obtainable": {
-                "type": "boolean",
-                "description": "Can player acquire this?"
-              },
-              "acquisition_method": {
-                "type": "string",
-                "description": "How to obtain (if possible)"
-              }
+              "name": { "type": "string" },
+              "item_type": { "type": "string", "enum": ["weapon", "armor", "artifact", "consumable", "tool", "quest_item"] },
+              "description": { "type": "string" },
+              "power_level": { "type": "string", "enum": ["mundane", "uncommon", "rare", "legendary", "artifact", "unique"] },
+              "obtainable": { "type": "boolean" },
+              "acquisition_method": { "type": "string" }
             }
           }
         },
         "factions": {
           "type": "array",
-          "description": "Organizations from this anime",
           "items": {
             "type": "object",
             "required": ["faction_id", "name"],
             "properties": {
-              "faction_id": {
-                "type": "string",
-                "description": "Game faction ID"
-              },
-              "name": {
-                "type": "string",
-                "description": "Canon faction name"
-              },
-              "type": {
-                "type": "string",
-                "enum": ["government", "military", "guild", "school", "religion", "criminal", "clan", "corporation", "other"]
-              },
-              "role_in_anime": {
-                "type": "string",
-                "description": "What this faction does in source"
-              },
-              "active_in_campaign": {
-                "type": "boolean",
-                "description": "Whether this faction exists in current timeline"
-              }
+              "faction_id": { "type": "string" },
+              "name": { "type": "string" },
+              "type": { "type": "string", "enum": ["government", "military", "guild", "school", "religion", "criminal", "clan", "corporation", "other"] },
+              "role_in_anime": { "type": "string" },
+              "active_in_campaign": { "type": "boolean" }
             }
           }
         },
         "lore": {
           "type": "array",
-          "description": "Mythology, history, and world-building elements",
           "items": {
             "type": "object",
             "required": ["category", "content"],
             "properties": {
-              "category": {
-                "type": "string",
-                "enum": ["history", "mythology", "cosmology", "rules", "culture", "technology", "other"]
-              },
-              "content": {
-                "type": "string",
-                "description": "The lore itself"
-              },
-              "canon_compliance": {
-                "type": "boolean",
-                "description": "Whether this is exact from source",
-                "default": true
-              },
-              "player_knowledge": {
-                "type": "string",
-                "enum": ["known", "discoverable", "hidden", "forbidden"],
-                "description": "What player knows about this"
-              }
+              "category": { "type": "string", "enum": ["history", "mythology", "cosmology", "rules", "culture", "technology", "other"] },
+              "content": { "type": "string" },
+              "canon_compliance": { "type": "boolean", "default": true },
+              "player_knowledge": { "type": "string", "enum": ["known", "discoverable", "hidden", "forbidden"] }
             }
           }
         }
@@ -336,82 +130,31 @@
     },
     "fusion_rules": {
       "type": "object",
-      "description": "How this anime harmonizes with campaign world",
+      "description": "World harmonization",
       "required": ["fusion_method"],
       "properties": {
-        "fusion_method": {
-          "type": "string",
-          "enum": [
-            "parallel_dimension",
-            "shared_universe",
-            "alternate_timeline",
-            "historical_era",
-            "regional_isolation",
-            "hidden_world",
-            "seamless_integration"
-          ],
-          "description": "How this world coexists with others"
-        },
-        "fusion_explanation": {
-          "type": "string",
-          "description": "In-world justification for fusion"
-        },
-        "access_method": {
-          "type": "string",
-          "description": "How players access this anime's content (portal, travel, always available, etc.)"
-        },
-        "time_synchronization": {
-          "type": "string",
-          "enum": ["synchronized", "time_dilation", "frozen", "independent", "reverse"],
-          "description": "How time flows relative to main campaign"
-        },
+        "fusion_method": { "type": "string", "enum": ["parallel_dimension", "shared_universe", "alternate_timeline", "historical_era", "regional_isolation", "hidden_world", "seamless_integration"] },
+        "fusion_explanation": { "type": "string", "description": "In-world justification" },
+        "access_method": { "type": "string", "description": "e.g., portal, travel, always available" },
+        "time_synchronization": { "type": "string", "enum": ["synchronized", "time_dilation", "frozen", "independent", "reverse"] },
         "cross_contamination": {
           "type": "object",
-          "description": "What can cross between this world and others",
           "properties": {
-            "people": {
-              "type": "boolean",
-              "description": "Can people travel between worlds?"
-            },
-            "items": {
-              "type": "boolean",
-              "description": "Can items be transported?"
-            },
-            "powers": {
-              "type": "boolean",
-              "description": "Do powers work across worlds?"
-            },
-            "knowledge": {
-              "type": "boolean",
-              "description": "Can knowledge transfer?"
-            },
-            "restrictions": {
-              "type": "array",
-              "description": "Specific things that cannot cross",
-              "items": {
-                "type": "string"
-              }
-            }
+            "people": { "type": "boolean", "description": "Can travel between worlds" },
+            "items": { "type": "boolean", "description": "Can transport items" },
+            "powers": { "type": "boolean", "description": "Do powers work across" },
+            "knowledge": { "type": "boolean", "description": "Can knowledge transfer" },
+            "restrictions": { "type": "array", "description": "Cannot cross", "items": { "type": "string" } }
           }
         },
-        "power_scaling_adjustment": {
-          "type": "string",
-          "description": "How to balance this anime's power levels with campaign"
-        },
+        "power_scaling_adjustment": { "type": "string", "description": "Balance with campaign" },
         "contradiction_resolution": {
           "type": "array",
-          "description": "How to handle conflicts with other integrated anime",
           "items": {
             "type": "object",
             "properties": {
-              "conflict": {
-                "type": "string",
-                "description": "What contradicts"
-              },
-              "resolution": {
-                "type": "string",
-                "description": "How it's resolved in-game"
-              }
+              "conflict": { "type": "string" },
+              "resolution": { "type": "string" }
             }
           }
         }
@@ -419,102 +162,40 @@
     },
     "research_verification": {
       "type": "object",
-      "description": "Tracking AIDM's knowledge verification",
+      "description": "AIDM knowledge verification",
       "properties": {
-        "aidm_familiarity": {
-          "type": "string",
-          "enum": ["expert", "familiar", "basic", "unfamiliar", "researched"],
-          "description": "How well AIDM knows this anime"
-        },
-        "research_completed": {
-          "type": "boolean",
-          "description": "Whether AIDM has researched this sufficiently"
-        },
-        "research_sources": {
-          "type": "array",
-          "description": "Where AIDM learned about this anime",
-          "items": {
-            "type": "string"
-          }
-        },
-        "verification_date": {
-          "type": "string",
-          "format": "date-time",
-          "description": "When research was completed"
-        },
-        "known_gaps": {
-          "type": "array",
-          "description": "Aspects AIDM doesn't fully understand",
-          "items": {
-            "type": "string"
-          }
-        },
-        "spoiler_boundary": {
-          "type": "string",
-          "description": "How far into anime story AIDM can reference (episode/chapter)"
-        },
-        "player_knowledge_level": {
-          "type": "string",
-          "enum": ["expert", "seen_it", "familiar", "heard_of", "unfamiliar"],
-          "description": "How well player knows this anime"
-        },
-        "avoid_spoilers": {
-          "type": "boolean",
-          "description": "Whether AIDM should avoid spoiling anime for player",
-          "default": true
-        }
+        "aidm_familiarity": { "type": "string", "enum": ["expert", "familiar", "basic", "unfamiliar", "researched"] },
+        "research_completed": { "type": "boolean" },
+        "research_sources": { "type": "array", "items": { "type": "string" } },
+        "verification_date": { "type": "string", "format": "date-time" },
+        "known_gaps": { "type": "array", "description": "Aspects not fully understood", "items": { "type": "string" } },
+        "spoiler_boundary": { "type": "string", "description": "How far AIDM can reference (ep/ch)" },
+        "player_knowledge_level": { "type": "string", "enum": ["expert", "seen_it", "familiar", "heard_of", "unfamiliar"] },
+        "avoid_spoilers": { "type": "boolean", "default": true }
       }
     },
     "usage_tracking": {
       "type": "object",
-      "description": "How this anime has been used in campaign",
       "properties": {
-        "frequency": {
-          "type": "string",
-          "enum": ["constant", "frequent", "occasional", "rare", "one_time"],
-          "description": "How often this appears"
-        },
-        "prominence": {
-          "type": "string",
-          "enum": ["core", "major", "moderate", "minor", "background"],
-          "description": "How central to campaign"
-        },
-        "player_engagement": {
-          "type": "string",
-          "enum": ["enthusiastic", "positive", "neutral", "negative", "uninterested"],
-          "description": "Player's reaction to this integration"
-        },
+        "frequency": { "type": "string", "enum": ["constant", "frequent", "occasional", "rare", "one_time"] },
+        "prominence": { "type": "string", "enum": ["core", "major", "moderate", "minor", "background"] },
+        "player_engagement": { "type": "string", "enum": ["enthusiastic", "positive", "neutral", "negative", "uninterested"] },
         "first_appearance": {
           "type": "object",
           "properties": {
-            "session": {
-              "type": "integer"
-            },
-            "context": {
-              "type": "string",
-              "description": "How it was introduced"
-            },
-            "player_reaction": {
-              "type": "string"
-            }
+            "session": { "type": "integer" },
+            "context": { "type": "string" },
+            "player_reaction": { "type": "string" }
           }
         },
         "memorable_moments": {
           "type": "array",
-          "description": "Significant uses of this anime in campaign",
           "items": {
             "type": "object",
             "properties": {
-              "session": {
-                "type": "integer"
-              },
-              "description": {
-                "type": "string"
-              },
-              "impact": {
-                "type": "string",
-                "enum": ["minor", "moderate", "major", "pivotal"]
-              }
+              "session": { "type": "integer" },
+              "description": { "type": "string" },
+              "impact": { "type": "string", "enum": ["minor", "moderate", "major", "pivotal"] }
             }
           }
         }
@@ -522,105 +203,41 @@
     },
     "aidm_directives": {
       "type": "object",
-      "description": "Special instructions for AIDM when using this anime",
+      "description": "AIDM usage instructions",
       "properties": {
-        "usage_frequency": {
-          "type": "string",
-          "enum": ["unrestricted", "frequent", "moderate", "sparingly", "special_occasions_only"],
-          "description": "How often AIDM should reference this"
-        },
-        "tone_matching": {
-          "type": "boolean",
-          "description": "Whether to match anime's tone when in its content",
-          "default": true
-        },
-        "canon_strictness": {
-          "type": "string",
-          "enum": ["absolute", "strict", "moderate", "loose", "creative_freedom"],
-          "description": "How faithful to stay to source"
-        },
-        "auto_inject_triggers": {
-          "type": "array",
-          "description": "Conditions that should bring this anime to mind",
-          "items": {
-            "type": "string"
-          }
-        },
-        "prohibited_elements": {
-          "type": "array",
-          "description": "Things from this anime NOT to use",
-          "items": {
-            "type": "string"
-          }
-        },
-        "priority_elements": {
-          "type": "array",
-          "description": "Things from this anime to emphasize",
-          "items": {
-            "type": "string"
-          }
-        },
-        "common_mistakes": {
-          "type": "array",
-          "description": "Errors to avoid when using this anime",
-          "items": {
-            "type": "string"
-          }
-        }
+        "usage_frequency": { "type": "string", "enum": ["unrestricted", "frequent", "moderate", "sparingly", "special_occasions_only"] },
+        "tone_matching": { "type": "boolean", "description": "Match anime tone in its content", "default": true },
+        "canon_strictness": { "type": "string", "enum": ["absolute", "strict", "moderate", "loose", "creative_freedom"] },
+        "auto_inject_triggers": { "type": "array", "description": "Conditions bringing anime to mind", "items": { "type": "string" } },
+        "prohibited_elements": { "type": "array", "description": "NOT to use", "items": { "type": "string" } },
+        "priority_elements": { "type": "array", "description": "To emphasize", "items": { "type": "string" } },
+        "common_mistakes": { "type": "array", "description": "Errors to avoid", "items": { "type": "string" } }
       }
     },
     "consistency_tracking": {
       "type": "object",
-      "description": "Monitoring integration coherence",
       "properties": {
-        "consistency_score": {
-          "type": "integer",
-          "description": "How well integrated (0-100)",
-          "minimum": 0,
-          "maximum": 100
-        },
+        "consistency_score": { "type": "integer", "description": "Integration quality (0-100)", "minimum": 0, "maximum": 100 },
         "inconsistencies": {
           "type": "array",
-          "description": "Detected contradictions or issues",
           "items": {
             "type": "object",
             "properties": {
-              "issue": {
-                "type": "string",
-                "description": "What's inconsistent"
-              },
-              "severity": {
-                "type": "string",
-                "enum": ["minor", "moderate", "major", "critical"]
-              },
-              "resolution_status": {
-                "type": "string",
-                "enum": ["unresolved", "investigating", "resolved", "accepted_as_feature"]
-              },
-              "resolution": {
-                "type": "string",
-                "description": "How it was fixed (if resolved)"
-              }
+              "issue": { "type": "string" },
+              "severity": { "type": "string", "enum": ["minor", "moderate", "major", "critical"] },
+              "resolution_status": { "type": "string", "enum": ["unresolved", "investigating", "resolved", "accepted_as_feature"] },
+              "resolution": { "type": "string" }
             }
           }
         },
         "player_feedback": {
           "type": "array",
-          "description": "Player comments on this integration",
           "items": {
             "type": "object",
             "properties": {
-              "date": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "feedback": {
-                "type": "string"
-              },
-              "action_taken": {
-                "type": "string",
-                "description": "How AIDM responded to feedback"
-              }
+              "date": { "type": "string", "format": "date-time" },
+              "feedback": { "type": "string" },
+              "action_taken": { "type": "string" }
             }
           }
         }
@@ -628,83 +245,35 @@
     },
     "evolution": {
       "type": "object",
-      "description": "How this integration has changed over time",
       "properties": {
-        "original_plan": {
-          "type": "string",
-          "description": "Initial integration concept"
-        },
-        "current_state": {
-          "type": "string",
-          "description": "How it's actually being used"
-        },
+        "original_plan": { "type": "string" },
+        "current_state": { "type": "string" },
         "major_changes": {
           "type": "array",
-          "description": "Significant modifications since integration",
           "items": {
             "type": "object",
             "properties": {
-              "date": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "change": {
-                "type": "string"
-              },
-              "reason": {
-                "type": "string"
-              }
+              "date": { "type": "string", "format": "date-time" },
+              "change": { "type": "string" },
+              "reason": { "type": "string" }
             }
           }
         },
-        "future_plans": {
-          "type": "string",
-          "description": "Planned future use of this anime"
-        }
+        "future_plans": { "type": "string" }
       }
     },
     "metadata": {
       "type": "object",
-      "description": "Meta-information about this integration",
       "required": ["version"],
       "properties": {
-        "version": {
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+$"
-        },
-        "created_date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "last_modified": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "created_by": {
-          "type": "string",
-          "description": "Who added this (player name, AIDM, etc.)"
-        },
-        "integration_complexity": {
-          "type": "string",
-          "enum": ["trivial", "simple", "moderate", "complex", "extreme"],
-          "description": "How difficult to integrate well"
-        },
-        "recommended_familiarity": {
-          "type": "string",
-          "enum": ["none", "basic", "moderate", "complete"],
-          "description": "How well player should know anime for best experience"
-        },
-        "tags": {
-          "type": "array",
-          "description": "Searchable categorization",
-          "items": {
-            "type": "string"
-          }
-        },
-        "notes": {
-          "type": "string",
-          "description": "Additional context or warnings"
-        }
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "created_date": { "type": "string", "format": "date-time" },
+        "last_modified": { "type": "string", "format": "date-time" },
+        "created_by": { "type": "string", "description": "e.g., player name, AIDM" },
+        "integration_complexity": { "type": "string", "enum": ["trivial", "simple", "moderate", "complex", "extreme"] },
+        "recommended_familiarity": { "type": "string", "enum": ["none", "basic", "moderate", "complete"], "description": "Player knowledge for best experience" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "notes": { "type": "string" }
       }
     }
   }

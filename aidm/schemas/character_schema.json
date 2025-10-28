@@ -1,98 +1,34 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AIDM Character Schema",
-  "description": "Complete player character data structure for AIDM v2 system",
+  "description": "Player character data",
   "type": "object",
-  "required": [
-    "schema_version",
-    "character_id",
-    "name",
-    "created_at",
-    "last_updated",
-    "core_identity",
-    "resources",
-    "attributes",
-    "skills",
-    "progression",
-    "inventory",
-    "relationships",
-    "quests",
-    "world_context"
-  ],
+  "required": ["schema_version", "character_id", "name", "created_at", "last_updated", "core_identity", "resources", "attributes", "skills", "progression", "inventory", "relationships", "quests", "world_context"],
   "properties": {
-    "schema_version": {
-      "type": "string",
-      "description": "Schema version for migration compatibility tracking",
-      "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "default": "2.2.0"
-    },
-    "character_id": {
-      "type": "string",
-      "description": "Unique identifier for this character",
-      "pattern": "^char_[a-zA-Z0-9]{16}$"
-    },
-    "name": {
-      "type": "string",
-      "description": "Character's full name",
-      "minLength": 1,
-      "maxLength": 100
-    },
-    "created_at": {
-      "type": "string",
-      "format": "date-time",
-      "description": "ISO 8601 timestamp of character creation"
-    },
-    "last_updated": {
-      "type": "string",
-      "format": "date-time",
-      "description": "ISO 8601 timestamp of last state update"
-    },
+    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "default": "2.2.0" },
+    "character_id": { "type": "string", "pattern": "^char_[a-zA-Z0-9]{16}$" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "last_updated": { "type": "string", "format": "date-time" },
     
     "core_identity": {
       "type": "object",
-      "description": "Immutable character identity and backstory",
       "required": ["origin", "personality", "goals", "appearance"],
       "properties": {
-        "origin": {
-          "type": "string",
-          "description": "Character backstory and how they came to this world",
-          "maxLength": 2000
-        },
-        "personality": {
-          "type": "array",
-          "description": "Core personality traits",
-          "items": {
-            "type": "string",
-            "maxLength": 50
-          },
-          "minItems": 3,
-          "maxItems": 8
-        },
-        "goals": {
-          "type": "array",
-          "description": "Long-term character motivations",
-          "items": {
-            "type": "string",
-            "maxLength": 200
-          },
-          "minItems": 1,
-          "maxItems": 5
-        },
-        "appearance": {
-          "type": "string",
-          "description": "Physical description",
-          "maxLength": 1000
-        },
+        "origin": { "type": "string", "description": "Backstory", "maxLength": 2000 },
+        "personality": { "type": "array", "description": "Core traits", "items": { "type": "string", "maxLength": 50 }, "minItems": 3, "maxItems": 8 },
+        "goals": { "type": "array", "description": "Motivations", "items": { "type": "string", "maxLength": 200 }, "minItems": 1, "maxItems": 5 },
+        "appearance": { "type": "string", "maxLength": 1000 },
         "unique_abilities": {
           "type": "array",
-          "description": "Special powers or traits unique to this character",
+          "description": "Special powers",
           "items": {
             "type": "object",
             "required": ["name", "description"],
             "properties": {
               "name": {"type": "string", "maxLength": 100},
               "description": {"type": "string", "maxLength": 500},
-              "source": {"type": "string", "description": "Anime/origin of this ability"},
+              "source": {"type": "string"},
               "limitations": {"type": "string", "maxLength": 300}
             }
           }
@@ -102,42 +38,14 @@
     
     "resources": {
       "type": "object",
-      "description": "Current resource pools (HP/MP/SP)",
       "required": ["hp", "mp", "sp"],
       "properties": {
-        "hp": {
-          "type": "object",
-          "description": "Health Points",
-          "required": ["current", "maximum"],
-          "properties": {
-            "current": {"type": "integer", "minimum": 0},
-            "maximum": {"type": "integer", "minimum": 1},
-            "temporary": {"type": "integer", "minimum": 0, "default": 0}
-          }
-        },
-        "mp": {
-          "type": "object",
-          "description": "Mana/Magic Points",
-          "required": ["current", "maximum"],
-          "properties": {
-            "current": {"type": "integer", "minimum": 0},
-            "maximum": {"type": "integer", "minimum": 0},
-            "temporary": {"type": "integer", "minimum": 0, "default": 0}
-          }
-        },
-        "sp": {
-          "type": "object",
-          "description": "Stamina Points",
-          "required": ["current", "maximum"],
-          "properties": {
-            "current": {"type": "integer", "minimum": 0},
-            "maximum": {"type": "integer", "minimum": 1},
-            "temporary": {"type": "integer", "minimum": 0, "default": 0}
-          }
-        },
+        "hp": { "type": "object", "required": ["current", "maximum"], "properties": { "current": {"type": "integer", "minimum": 0}, "maximum": {"type": "integer", "minimum": 1}, "temporary": {"type": "integer", "minimum": 0, "default": 0} } },
+        "mp": { "type": "object", "required": ["current", "maximum"], "properties": { "current": {"type": "integer", "minimum": 0}, "maximum": {"type": "integer", "minimum": 0}, "temporary": {"type": "integer", "minimum": 0, "default": 0} } },
+        "sp": { "type": "object", "required": ["current", "maximum"], "properties": { "current": {"type": "integer", "minimum": 0}, "maximum": {"type": "integer", "minimum": 1}, "temporary": {"type": "integer", "minimum": 0, "default": 0} } },
         "conditions": {
           "type": "array",
-          "description": "Active status effects (buffs/debuffs)",
+          "description": "Buffs/debuffs",
           "items": {
             "type": "object",
             "required": ["name", "type", "duration"],
@@ -145,17 +53,8 @@
               "name": {"type": "string"},
               "type": {"type": "string", "enum": ["buff", "debuff", "neutral"]},
               "description": {"type": "string"},
-              "duration": {"type": "integer", "description": "Turns remaining, -1 for permanent"},
-              "effects": {
-                "type": "object",
-                "description": "Mechanical effects",
-                "properties": {
-                  "hp_modifier": {"type": "integer"},
-                  "mp_modifier": {"type": "integer"},
-                  "sp_modifier": {"type": "integer"},
-                  "stat_modifiers": {"type": "object"}
-                }
-              }
+              "duration": {"type": "integer", "description": "Turns (-1=permanent)"},
+              "effects": { "type": "object", "properties": { "hp_modifier": {"type": "integer"}, "mp_modifier": {"type": "integer"}, "sp_modifier": {"type": "integer"}, "stat_modifiers": {"type": "object"} } }
             }
           }
         }
@@ -164,7 +63,6 @@
     
     "attributes": {
       "type": "object",
-      "description": "Core character attributes/stats",
       "properties": {
         "strength": {"type": "integer", "minimum": 1, "maximum": 999},
         "dexterity": {"type": "integer", "minimum": 1, "maximum": 999},
@@ -172,53 +70,32 @@
         "intelligence": {"type": "integer", "minimum": 1, "maximum": 999},
         "wisdom": {"type": "integer", "minimum": 1, "maximum": 999},
         "charisma": {"type": "integer", "minimum": 1, "maximum": 999},
-        "custom_stats": {
-          "type": "object",
-          "description": "Anime-specific attributes (chakra control, ki sensitivity, etc.)",
-          "additionalProperties": {"type": "integer"}
-        }
+        "custom_stats": { "type": "object", "description": "e.g., chakra, ki", "additionalProperties": {"type": "integer"} }
       }
     },
     
     "skills": {
       "type": "array",
-      "description": "Learned skills and techniques",
       "items": {
         "type": "object",
         "required": ["skill_id", "name", "category", "level", "experience"],
         "properties": {
           "skill_id": {"type": "string"},
           "name": {"type": "string"},
-          "category": {
-            "type": "string",
-            "enum": ["physical", "magical", "psionic", "hybrid", "unique"]
-          },
+          "category": { "type": "string", "enum": ["physical", "magical", "psionic", "hybrid", "unique"] },
           "level": {"type": "integer", "minimum": 1, "maximum": 100},
           "experience": {"type": "integer", "minimum": 0},
           "description": {"type": "string", "maxLength": 500},
-          "cost": {
-            "type": "object",
-            "description": "Resource cost to use",
-            "properties": {
-              "hp": {"type": "integer", "minimum": 0},
-              "mp": {"type": "integer", "minimum": 0},
-              "sp": {"type": "integer", "minimum": 0}
-            }
-          },
-          "cooldown": {"type": "integer", "minimum": 0, "description": "Turns before reuse"},
+          "cost": { "type": "object", "properties": { "hp": {"type": "integer", "minimum": 0}, "mp": {"type": "integer", "minimum": 0}, "sp": {"type": "integer", "minimum": 0} } },
+          "cooldown": {"type": "integer", "minimum": 0, "description": "Turns"},
           "current_cooldown": {"type": "integer", "minimum": 0, "default": 0},
-          "mastery_bonuses": {
-            "type": "array",
-            "description": "Bonuses unlocked at mastery levels",
-            "items": {"type": "string"}
-          }
+          "mastery_bonuses": { "type": "array", "items": {"type": "string"} }
         }
       }
     },
     
     "progression": {
       "type": "object",
-      "description": "Character advancement tracking",
       "required": ["level", "experience", "next_level_xp"],
       "properties": {
         "level": {"type": "integer", "minimum": 1, "maximum": 999},
@@ -245,12 +122,10 @@
     
     "inventory": {
       "type": "object",
-      "description": "Items and equipment",
       "required": ["items", "equipped", "currency"],
       "properties": {
         "items": {
           "type": "array",
-          "description": "All carried items",
           "items": {
             "type": "object",
             "required": ["item_id", "name", "quantity"],
@@ -272,10 +147,9 @@
         },
         "equipped": {
           "type": "object",
-          "description": "Currently equipped items",
           "properties": {
-            "weapon_main": {"type": "string", "description": "Item ID of main weapon"},
-            "weapon_off": {"type": "string", "description": "Item ID of off-hand weapon"},
+            "weapon_main": {"type": "string"},
+            "weapon_off": {"type": "string"},
             "armor_head": {"type": "string"},
             "armor_chest": {"type": "string"},
             "armor_hands": {"type": "string"},
@@ -286,19 +160,14 @@
             "accessory_3": {"type": "string"}
           }
         },
-        "currency": {
-          "type": "object",
-          "description": "Money and valuables",
-          "additionalProperties": {"type": "integer", "minimum": 0}
-        },
-        "max_weight": {"type": "number", "minimum": 0, "description": "Carrying capacity"},
+        "currency": { "type": "object", "additionalProperties": {"type": "integer", "minimum": 0} },
+        "max_weight": {"type": "number", "minimum": 0},
         "current_weight": {"type": "number", "minimum": 0}
       }
     },
     
     "relationships": {
       "type": "array",
-      "description": "NPC relationships and affinity",
       "items": {
         "type": "object",
         "required": ["npc_id", "name", "affinity"],
@@ -307,14 +176,9 @@
           "name": {"type": "string"},
           "affinity": {"type": "integer", "minimum": -100, "maximum": 100},
           "relationship_type": {"type": "string", "enum": ["stranger", "acquaintance", "friend", "ally", "rival", "enemy", "romance", "family"]},
-          "flags": {
-            "type": "array",
-            "description": "Relationship-specific story flags",
-            "items": {"type": "string"}
-          },
+          "flags": { "type": "array", "items": {"type": "string"} },
           "shared_history": {
             "type": "array",
-            "description": "Key moments that shaped this relationship",
             "items": {
               "type": "object",
               "properties": {
@@ -330,38 +194,12 @@
     
     "quests": {
       "type": "object",
-      "description": "Quest tracking (references quest_schema.json for full quest data)",
       "properties": {
-        "active": {
-          "type": "array",
-          "description": "Quest IDs currently being pursued",
-          "items": {
-            "type": "string",
-            "pattern": "^quest_[a-z0-9_]+$"
-          },
-          "default": []
-        },
-        "available": {
-          "type": "array",
-          "description": "Quest IDs offered but not yet accepted",
-          "items": {
-            "type": "string",
-            "pattern": "^quest_[a-z0-9_]+$"
-          },
-          "default": []
-        },
-        "completed": {
-          "type": "array",
-          "description": "Quest IDs successfully finished",
-          "items": {
-            "type": "string",
-            "pattern": "^quest_[a-z0-9_]+$"
-          },
-          "default": []
-        },
+        "active": { "type": "array", "items": { "type": "string", "pattern": "^quest_[a-z0-9_]+$" }, "default": [] },
+        "available": { "type": "array", "items": { "type": "string", "pattern": "^quest_[a-z0-9_]+$" }, "default": [] },
+        "completed": { "type": "array", "items": { "type": "string", "pattern": "^quest_[a-z0-9_]+$" }, "default": [] },
         "failed": {
           "type": "array",
-          "description": "Quest IDs that were failed or abandoned",
           "items": {
             "type": "object",
             "required": ["quest_id", "reason"],
@@ -370,10 +208,7 @@
                 "type": "string",
                 "pattern": "^quest_[a-z0-9_]+$"
               },
-              "reason": {
-                "type": "string",
-                "description": "Why quest failed"
-              },
+              "reason": { "type": "string" },
               "failed_at": {
                 "type": "string",
                 "format": "date-time"
@@ -387,27 +222,11 @@
     
     "world_context": {
       "type": "object",
-      "description": "Character's relationship to the world",
       "properties": {
         "current_location": {"type": "string"},
-        "faction_reputations": {
-          "type": "object",
-          "description": "Character's reputation scores with various factions. The key is the faction_id.",
-          "additionalProperties": {
-            "type": "integer",
-            "description": "The character's raw reputation score with the faction."
-          }
-        },
-        "known_locations": {
-          "type": "array",
-          "description": "Discovered locations",
-          "items": {"type": "string"}
-        },
-        "world_state_flags": {
-          "type": "array",
-          "description": "World events triggered or affected by character",
-          "items": {"type": "string"}
-        }
+        "faction_reputations": { "type": "object", "additionalProperties": { "type": "integer" } },
+        "known_locations": { "type": "array", "items": {"type": "string"} },
+        "world_state_flags": { "type": "array", "items": {"type": "string"} }
       }
     }
   }

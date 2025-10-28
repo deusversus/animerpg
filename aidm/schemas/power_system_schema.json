@@ -2,232 +2,87 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aidm.dev/schemas/power_system_schema.json",
   "title": "AIDM Power System Schema",
-  "description": "Defines magical/power frameworks for harmonization across multiple anime worlds, including rules, limitations, and interaction mechanics.",
+  "description": "Magical/power frameworks: rules, limitations, cross-world harmonization",
   "type": "object",
-  "required": [
-    "schema_version",
-    "system_id",
-    "system_name",
-    "source",
-    "core_mechanics",
-    "limitations",
-    "metadata"
-  ],
+  "required": ["schema_version", "system_id", "system_name", "source", "core_mechanics", "limitations", "metadata"],
   "properties": {
-    "schema_version": {
-      "type": "string",
-      "description": "Schema version for migration compatibility tracking",
-      "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "default": "2.0.0"
-    },
-    "system_id": {
-      "type": "string",
-      "description": "Unique identifier for this power system",
-      "pattern": "^power_[a-z0-9_]+$"
-    },
-    "system_name": {
-      "type": "string",
-      "description": "Display name of the power system (Chakra, Magic Circuits, Nen, etc.)"
-    },
+    "schema_version": { "type": "string", "description": "Schema version", "pattern": "^\\d+\\.\\d+\\.\\d+$", "default": "2.0.0" },
+    "system_id": { "type": "string", "description": "Unique ID", "pattern": "^power_[a-z0-9_]+$" },
+    "system_name": { "type": "string", "description": "Display name (e.g., Chakra, Magic Circuits, Nen)" },
     "source": {
       "type": "object",
-      "description": "Origin of this power system",
+      "description": "Power system origin",
       "required": ["type"],
       "properties": {
-        "type": {
-          "type": "string",
-          "enum": ["anime", "original", "hybrid"],
-          "description": "Whether from specific anime, created for AIDM, or fusion"
-        },
-        "anime_name": {
-          "type": "string",
-          "description": "Source anime if applicable"
-        },
-        "anime_genre": {
-          "type": "array",
-          "description": "Genres of source anime",
-          "items": {
-            "type": "string",
-            "enum": ["shonen", "seinen", "isekai", "mecha", "slice_of_life", "sports", "other"]
-          }
-        },
-        "canon_accuracy": {
-          "type": "string",
-          "enum": ["exact", "high", "moderate", "low", "creative_interpretation"],
-          "description": "How faithful to source material"
-        },
-        "fusion_components": {
-          "type": "array",
-          "description": "If hybrid, which systems were combined",
-          "items": {
-            "type": "string"
-          }
-        }
+        "type": { "type": "string", "enum": ["anime", "original", "hybrid"], "description": "From anime/AIDM-created/fusion" },
+        "anime_name": { "type": "string" },
+        "anime_genre": { "type": "array", "items": { "type": "string", "enum": ["shonen", "seinen", "isekai", "mecha", "slice_of_life", "sports", "other"] } },
+        "canon_accuracy": { "type": "string", "enum": ["exact", "high", "moderate", "low", "creative_interpretation"], "description": "Faithfulness to source" },
+        "fusion_components": { "type": "array", "description": "If hybrid, which systems combined", "items": { "type": "string" } }
       }
     },
     "core_mechanics": {
       "type": "object",
-      "description": "How this power system functions",
+      "description": "How system functions",
       "required": ["power_source", "activation_method"],
       "properties": {
         "power_source": {
           "type": "object",
-          "description": "Where power comes from",
           "required": ["origin"],
           "properties": {
-            "origin": {
-              "type": "string",
-              "enum": [
-                "innate",
-                "learned",
-                "inherited",
-                "bestowed",
-                "environmental",
-                "spiritual",
-                "technological",
-                "divine",
-                "demonic",
-                "cosmic"
-              ]
-            },
-            "description": {
-              "type": "string",
-              "description": "Detailed explanation of power source"
-            },
-            "universally_accessible": {
-              "type": "boolean",
-              "description": "Can anyone learn this, or is it restricted?"
-            },
-            "access_requirements": {
-              "type": "array",
-              "description": "What's needed to use this system",
-              "items": {
-                "type": "string"
-              }
-            }
+            "origin": { "type": "string", "enum": ["innate", "learned", "inherited", "bestowed", "environmental", "spiritual", "technological", "divine", "demonic", "cosmic"] },
+            "description": { "type": "string" },
+            "universally_accessible": { "type": "boolean", "description": "Can anyone learn, or restricted" },
+            "access_requirements": { "type": "array", "items": { "type": "string" } }
           }
         },
         "activation_method": {
           "type": "object",
-          "description": "How users trigger their powers",
           "properties": {
-            "mental_component": {
-              "type": "string",
-              "description": "Mental requirements (focus, visualization, emotion, etc.)"
-            },
-            "physical_component": {
-              "type": "string",
-              "description": "Physical requirements (hand signs, movements, postures, etc.)"
-            },
-            "verbal_component": {
-              "type": "string",
-              "description": "Verbal requirements (chants, incantations, keywords, etc.)"
-            },
-            "material_component": {
-              "type": "string",
-              "description": "Material requirements (catalysts, weapons, reagents, etc.)"
-            },
-            "training_time": {
-              "type": "string",
-              "enum": ["instant", "hours", "days", "weeks", "months", "years", "decades"],
-              "description": "How long to learn basic competence"
-            }
+            "mental_component": { "type": "string", "description": "e.g., focus, visualization, emotion" },
+            "physical_component": { "type": "string", "description": "e.g., hand signs, movements, postures" },
+            "verbal_component": { "type": "string", "description": "e.g., chants, incantations, keywords" },
+            "material_component": { "type": "string", "description": "e.g., catalysts, weapons, reagents" },
+            "training_time": { "type": "string", "enum": ["instant", "hours", "days", "weeks", "months", "years", "decades"], "description": "Time to basic competence" }
           }
         },
         "resource_system": {
           "type": "object",
           "description": "Energy/stamina/mana costs",
           "properties": {
-            "resource_name": {
-              "type": "string",
-              "description": "What the resource is called (Mana, Ki, Chakra, Stamina, etc.)"
-            },
-            "resource_pool": {
-              "type": "string",
-              "enum": ["HP", "MP", "SP", "custom"],
-              "description": "Which character resource this consumes"
-            },
-            "custom_resource": {
-              "type": "string",
-              "description": "If custom, define the resource"
-            },
+            "resource_name": { "type": "string", "description": "e.g., Mana, Ki, Chakra, Stamina" },
+            "resource_pool": { "type": "string", "enum": ["HP", "MP", "SP", "custom"] },
+            "custom_resource": { "type": "string", "description": "If custom, define it" },
             "regeneration": {
               "type": "object",
               "properties": {
-                "rate": {
-                  "type": "string",
-                  "description": "How fast resource recovers"
-                },
-                "method": {
-                  "type": "string",
-                  "description": "How to recover (rest, meditation, consumption, etc.)"
-                },
-                "restrictions": {
-                  "type": "array",
-                  "description": "When regeneration can't occur",
-                  "items": {
-                    "type": "string"
-                  }
-                }
+                "rate": { "type": "string" },
+                "method": { "type": "string", "description": "e.g., rest, meditation, consumption" },
+                "restrictions": { "type": "array", "description": "When regen can't occur", "items": { "type": "string" } }
               }
             },
-            "depletion_consequences": {
-              "type": "string",
-              "description": "What happens if resource hits zero"
-            }
+            "depletion_consequences": { "type": "string", "description": "What happens at zero" }
           }
         },
         "power_scaling": {
           "type": "object",
-          "description": "How power grows and is measured",
           "properties": {
-            "measurement_system": {
-              "type": "string",
-              "description": "How power is quantified (levels, tiers, ranks, etc.)"
-            },
-            "progression_method": {
-              "type": "string",
-              "enum": ["training", "combat_experience", "age", "enlightenment", "consumption", "inheritance", "fixed"],
-              "description": "How users get stronger"
-            },
-            "power_ceiling": {
-              "type": "string",
-              "description": "Maximum potential and what determines it"
-            },
-            "breakthrough_mechanics": {
-              "type": "string",
-              "description": "How to surpass limits (if possible)"
-            }
+            "measurement_system": { "type": "string", "description": "e.g., levels, tiers, ranks" },
+            "progression_method": { "type": "string", "enum": ["training", "combat_experience", "age", "enlightenment", "consumption", "inheritance", "fixed"] },
+            "power_ceiling": { "type": "string", "description": "Max potential & determinants" },
+            "breakthrough_mechanics": { "type": "string", "description": "How to surpass limits (if possible)" }
           }
         },
         "ability_categories": {
           "type": "array",
-          "description": "Types of abilities this system enables",
           "items": {
             "type": "object",
             "required": ["category", "examples"],
             "properties": {
-              "category": {
-                "type": "string",
-                "description": "Type of ability (elemental manipulation, enhancement, healing, etc.)"
-              },
-              "examples": {
-                "type": "array",
-                "description": "Specific abilities in this category",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "difficulty": {
-                "type": "string",
-                "enum": ["basic", "intermediate", "advanced", "master", "legendary"],
-                "description": "Skill level required"
-              },
-              "rarity": {
-                "type": "string",
-                "enum": ["common", "uncommon", "rare", "very_rare", "unique"],
-                "description": "How many users can do this"
-              }
+              "category": { "type": "string", "description": "e.g., elemental, enhancement, healing" },
+              "examples": { "type": "array", "items": { "type": "string" } },
+              "difficulty": { "type": "string", "enum": ["basic", "intermediate", "advanced", "master", "legendary"] },
+              "rarity": { "type": "string", "enum": ["common", "uncommon", "rare", "very_rare", "unique"] }
             }
           }
         }
@@ -235,242 +90,118 @@
     },
     "limitations": {
       "type": "object",
-      "description": "Restrictions and weaknesses of this system",
+      "description": "Restrictions & weaknesses",
       "required": ["hard_limits"],
       "properties": {
-        "hard_limits": {
-          "type": "array",
-          "description": "Absolute restrictions that cannot be overcome",
-          "items": {
-            "type": "string"
-          },
-          "minItems": 1
-        },
+        "hard_limits": { "type": "array", "description": "Absolute restrictions (cannot overcome)", "items": { "type": "string" }, "minItems": 1 },
         "soft_limits": {
           "type": "array",
-          "description": "Restrictions that can be overcome with training/items/conditions",
+          "description": "Overcome via training/items/conditions",
           "items": {
             "type": "object",
             "properties": {
-              "limitation": {
-                "type": "string"
-              },
-              "workaround": {
-                "type": "string",
-                "description": "How to bypass this limit"
-              }
+              "limitation": { "type": "string" },
+              "workaround": { "type": "string" }
             }
           }
         },
         "weaknesses": {
           "type": "array",
-          "description": "Things that counter or disable this system",
           "items": {
             "type": "object",
             "properties": {
-              "weakness": {
-                "type": "string",
-                "description": "What counters this system"
-              },
-              "severity": {
-                "type": "string",
-                "enum": ["minor", "moderate", "major", "critical"],
-                "description": "How severe this weakness is"
-              },
-              "mitigation": {
-                "type": "string",
-                "description": "How to reduce vulnerability (if possible)"
-              }
+              "weakness": { "type": "string" },
+              "severity": { "type": "string", "enum": ["minor", "moderate", "major", "critical"] },
+              "mitigation": { "type": "string", "description": "How to reduce (if possible)" }
             }
           }
         },
-        "forbidden_applications": {
-          "type": "array",
-          "description": "Things this system explicitly cannot do",
-          "items": {
-            "type": "string"
-          }
-        },
+        "forbidden_applications": { "type": "array", "description": "Explicitly cannot do", "items": { "type": "string" } },
         "cost_and_risk": {
           "type": "object",
-          "description": "Dangers of using this system",
           "properties": {
-            "overuse_consequences": {
-              "type": "array",
-              "description": "What happens from excessive use",
-              "items": {
-                "type": "string"
-              }
-            },
-            "failure_consequences": {
-              "type": "array",
-              "description": "What happens when abilities fail",
-              "items": {
-                "type": "string"
-              }
-            },
-            "corruption_risk": {
-              "type": "string",
-              "description": "Whether power corrupts users and how"
-            }
+            "overuse_consequences": { "type": "array", "items": { "type": "string" } },
+            "failure_consequences": { "type": "array", "items": { "type": "string" } },
+            "corruption_risk": { "type": "string", "description": "Whether/how power corrupts" }
           }
         }
       }
     },
     "interaction_rules": {
       "type": "object",
-      "description": "How this system interacts with others",
+      "description": "Interaction with other systems",
       "properties": {
         "compatible_systems": {
           "type": "array",
-          "description": "Power systems that work well with this one",
           "items": {
             "type": "object",
             "properties": {
-              "system_id": {
-                "type": "string"
-              },
-              "synergy_type": {
-                "type": "string",
-                "enum": ["enhances", "combines", "complements", "neutral"],
-                "description": "How they interact"
-              },
-              "synergy_description": {
-                "type": "string",
-                "description": "Details of interaction"
-              }
+              "system_id": { "type": "string" },
+              "synergy_type": { "type": "string", "enum": ["enhances", "combines", "complements", "neutral"] },
+              "synergy_description": { "type": "string" }
             }
           }
         },
         "incompatible_systems": {
           "type": "array",
-          "description": "Power systems that clash with this one",
           "items": {
             "type": "object",
             "properties": {
-              "system_id": {
-                "type": "string"
-              },
-              "conflict_type": {
-                "type": "string",
-                "enum": ["cancels", "weakens", "corrupts", "incompatible"],
-                "description": "Nature of conflict"
-              },
-              "conflict_description": {
-                "type": "string"
-              }
+              "system_id": { "type": "string" },
+              "conflict_type": { "type": "string", "enum": ["cancels", "weakens", "corrupts", "incompatible"] },
+              "conflict_description": { "type": "string" }
             }
           }
         },
         "hybrid_potential": {
           "type": "object",
-          "description": "Whether users can combine this with other systems",
           "properties": {
-            "hybridization_possible": {
-              "type": "boolean",
-              "description": "Can this be mixed with other systems?"
-            },
-            "hybridization_difficulty": {
-              "type": "string",
-              "enum": ["trivial", "easy", "moderate", "difficult", "nearly_impossible"],
-              "description": "How hard to learn multiple systems"
-            },
-            "hybrid_examples": {
-              "type": "array",
-              "description": "Known hybrid combinations",
-              "items": {
-                "type": "string"
-              }
-            }
+            "hybridization_possible": { "type": "boolean", "description": "Can mix with other systems" },
+            "hybridization_difficulty": { "type": "string", "enum": ["trivial", "easy", "moderate", "difficult", "nearly_impossible"] },
+            "hybrid_examples": { "type": "array", "items": { "type": "string" } }
           }
         },
-        "power_hierarchy": {
-          "type": "string",
-          "description": "Where this ranks among power systems in-world (cosmology)"
-        }
+        "power_hierarchy": { "type": "string", "description": "Rank among in-world systems (cosmology)" }
       }
     },
     "world_integration": {
       "type": "object",
-      "description": "How this system fits into the game world",
       "properties": {
         "geographic_distribution": {
           "type": "array",
-          "description": "Where this system is practiced",
           "items": {
             "type": "object",
             "properties": {
-              "location": {
-                "type": "string"
-              },
-              "prevalence": {
-                "type": "string",
-                "enum": ["ubiquitous", "common", "uncommon", "rare", "unique"],
-                "description": "How widespread in this location"
-              }
+              "location": { "type": "string" },
+              "prevalence": { "type": "string", "enum": ["ubiquitous", "common", "uncommon", "rare", "unique"] }
             }
           }
         },
         "social_implications": {
           "type": "object",
-          "description": "How society views this power",
           "properties": {
-            "public_perception": {
-              "type": "string",
-              "enum": ["revered", "respected", "accepted", "feared", "outlawed", "unknown"]
-            },
-            "legal_status": {
-              "type": "string",
-              "enum": ["unrestricted", "regulated", "licensed", "restricted", "forbidden"]
-            },
-            "social_impact": {
-              "type": "string",
-              "description": "How this affects society structure"
-            }
+            "public_perception": { "type": "string", "enum": ["revered", "respected", "accepted", "feared", "outlawed", "unknown"] },
+            "legal_status": { "type": "string", "enum": ["unrestricted", "regulated", "licensed", "restricted", "forbidden"] },
+            "social_impact": { "type": "string", "description": "Effect on society structure" }
           }
         },
         "historical_context": {
           "type": "object",
           "properties": {
-            "origin_story": {
-              "type": "string",
-              "description": "How this power came to exist in-world"
-            },
-            "major_events": {
-              "type": "array",
-              "description": "Historical events involving this system",
-              "items": {
-                "type": "string"
-              }
-            },
-            "legendary_users": {
-              "type": "array",
-              "description": "Famous historical practitioners",
-              "items": {
-                "type": "string"
-              }
-            }
+            "origin_story": { "type": "string", "description": "How power came to exist in-world" },
+            "major_events": { "type": "array", "items": { "type": "string" } },
+            "legendary_users": { "type": "array", "items": { "type": "string" } }
           }
         },
         "teaching_institutions": {
           "type": "array",
-          "description": "Where this is taught",
           "items": {
             "type": "object",
             "properties": {
-              "name": {
-                "type": "string"
-              },
-              "location": {
-                "type": "string"
-              },
-              "admission_requirements": {
-                "type": "string"
-              },
-              "specialization": {
-                "type": "string",
-                "description": "What aspect of the system they focus on"
-              }
+              "name": { "type": "string" },
+              "location": { "type": "string" },
+              "admission_requirements": { "type": "string" },
+              "specialization": { "type": "string" }
             }
           }
         }
@@ -478,147 +209,62 @@
     },
     "player_interaction": {
       "type": "object",
-      "description": "How players can engage with this system",
       "properties": {
-        "can_player_learn": {
-          "type": "boolean",
-          "description": "Whether player character can acquire this power"
-        },
+        "can_player_learn": { "type": "boolean", "description": "Can PC acquire this power" },
         "learning_requirements": {
           "type": "array",
-          "description": "What player needs to learn this",
           "items": {
             "type": "object",
             "properties": {
-              "requirement_type": {
-                "type": "string",
-                "enum": ["attribute", "quest", "item", "trainer", "time", "location", "event"]
-              },
-              "requirement_description": {
-                "type": "string"
-              },
-              "optional": {
-                "type": "boolean",
-                "description": "Whether this requirement can be bypassed"
-              }
+              "requirement_type": { "type": "string", "enum": ["attribute", "quest", "item", "trainer", "time", "location", "event"] },
+              "requirement_description": { "type": "string" },
+              "optional": { "type": "boolean", "description": "Can bypass this" }
             }
           }
         },
         "integration_with_mechanics": {
           "type": "object",
-          "description": "How this maps to game systems",
           "properties": {
-            "skill_category": {
-              "type": "string",
-              "enum": ["physical", "magical", "psionic", "hybrid", "unique"],
-              "description": "Which skill category abilities fall under"
-            },
+            "skill_category": { "type": "string", "enum": ["physical", "magical", "psionic", "hybrid", "unique"] },
             "attribute_dependencies": {
               "type": "array",
-              "description": "Which character attributes affect this",
               "items": {
                 "type": "object",
                 "properties": {
-                  "attribute": {
-                    "type": "string",
-                    "description": "Attribute name (INT, WIS, custom, etc.)"
-                  },
-                  "impact": {
-                    "type": "string",
-                    "description": "How this attribute affects power"
-                  }
+                  "attribute": { "type": "string", "description": "e.g., INT, WIS, custom" },
+                  "impact": { "type": "string" }
                 }
               }
             },
-            "progression_curve": {
-              "type": "string",
-              "description": "How power grows (linear, exponential, tiered, etc.)"
-            }
+            "progression_curve": { "type": "string", "description": "e.g., linear, exponential, tiered" }
           }
         }
       }
     },
     "aidm_directives": {
       "type": "object",
-      "description": "Special instructions for AIDM when using this system",
+      "description": "AIDM usage instructions",
       "properties": {
-        "enforcement_strictness": {
-          "type": "string",
-          "enum": ["absolute", "strict", "moderate", "flexible", "narrative_driven"],
-          "description": "How rigidly to enforce system rules"
-        },
-        "balance_priority": {
-          "type": "string",
-          "enum": ["canon_accuracy", "game_balance", "player_fun", "narrative_impact"],
-          "description": "What matters most when conflicts arise"
-        },
-        "auto_explain": {
-          "type": "boolean",
-          "description": "Whether AIDM should explain mechanics when first encountered",
-          "default": true
-        },
-        "research_required": {
-          "type": "boolean",
-          "description": "Whether AIDM must verify anime source before using",
-          "default": false
-        },
-        "common_mistakes": {
-          "type": "array",
-          "description": "Errors AIDM should avoid when using this system",
-          "items": {
-            "type": "string"
-          }
-        },
-        "narrative_hooks": {
-          "type": "array",
-          "description": "Story opportunities this system creates",
-          "items": {
-            "type": "string"
-          }
-        }
+        "enforcement_strictness": { "type": "string", "enum": ["absolute", "strict", "moderate", "flexible", "narrative_driven"], "description": "How rigidly enforce rules" },
+        "balance_priority": { "type": "string", "enum": ["canon_accuracy", "game_balance", "player_fun", "narrative_impact"], "description": "What matters most in conflicts" },
+        "auto_explain": { "type": "boolean", "description": "Explain mechanics when first encountered", "default": true },
+        "research_required": { "type": "boolean", "description": "Must verify anime source before using", "default": false },
+        "common_mistakes": { "type": "array", "description": "Errors to avoid", "items": { "type": "string" } },
+        "narrative_hooks": { "type": "array", "description": "Story opportunities this creates", "items": { "type": "string" } }
       }
     },
     "metadata": {
       "type": "object",
-      "description": "Meta-information about this power system definition",
       "required": ["version"],
       "properties": {
-        "version": {
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+$"
-        },
-        "created_date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "last_modified": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "created_by": {
-          "type": "string",
-          "description": "Who defined this system (AIDM team, player, etc.)"
-        },
-        "playtest_status": {
-          "type": "string",
-          "enum": ["untested", "alpha", "beta", "stable", "deprecated"],
-          "description": "How well-tested this system is"
-        },
-        "balance_notes": {
-          "type": "string",
-          "description": "Notes on game balance considerations"
-        },
-        "design_philosophy": {
-          "type": "string",
-          "description": "Why this system was designed this way"
-        },
-        "tags": {
-          "type": "array",
-          "description": "Searchable tags for categorization",
-          "items": {
-            "type": "string"
-          }
-        }
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "created_date": { "type": "string", "format": "date-time" },
+        "last_modified": { "type": "string", "format": "date-time" },
+        "created_by": { "type": "string", "description": "e.g., AIDM team, player" },
+        "playtest_status": { "type": "string", "enum": ["untested", "alpha", "beta", "stable", "deprecated"] },
+        "balance_notes": { "type": "string" },
+        "design_philosophy": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } }
       }
     }
   }
