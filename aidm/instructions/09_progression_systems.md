@@ -64,118 +64,33 @@ At L10, choose secondary class (Warrior/Mage/Rogue/Paladin/Monk). Starts L1, lev
 
 Soft Cap 20 (mortal max), Hard Cap 25 (requires legendary). Diminishing Returns after 18: 18→19 costs 2 pts, 19→20 costs 3 pts, 20→21+ costs 4 pts + special quest/item
 
-## Downtime Training System
+## Downtime Training
 
-**Purpose**: Allow characters to advance skills during downtime (travel, rest, off-screen periods) without relying solely on active use.
+**Session**: 1 week practice → Skill XP(quality-based) | Requires: Downtime(no quests/combat/travel), trainer or self-study, cost(gold/resources)
 
-### Training Basics
+**Quality**: Self-study(50 XP/wk, free) | Competent(100 XP/wk, 50g/wk, skill≥+2) | Expert(200 XP/wk, 200g/wk, skill≥+5) | Master(300 XP/wk, 500g/wk+quest, skill Lv10)
 
-**Training Session**: 1 week (in-game time) of dedicated practice
-- **Requirements**: Downtime period (no active quests/combat/travel), trainer (NPC expert or self-study), cost (gold for trainer or resources)
-- **Outcome**: Skill XP based on training quality
+**Skill Point vs Training**: 1 pt=instant level | Training=gradual XP(slower, cheaper) | **Limits**: Can't train above trainer level | Max 4wk/skill(-50% XP after) | Downtime only
 
-**Training Quality**:
-- **Self-Study** (no trainer): +50 skill XP/week (slow but free)
-- **Competent Trainer** (skill level ≥ target skill + 2): +100 skill XP/week (50 gold/week)
-- **Expert Trainer** (skill level ≥ target skill + 5): +200 skill XP/week (200 gold/week)
-- **Master Trainer** (skill level 10): +300 skill XP/week (500 gold/week + quest hook)
+### Training Montage
 
-**Skill Point Conversion** (alternative to XP grinding):
-- Spend **1 skill point** = Instant skill level-up (no XP required)
-- Spend **downtime training** = Accumulate skill XP (slower but free/cheap)
+**Setup**: Declare goal+duration("3wk Sword w/master") → **Calc**: Quality×weeks(200×3=600 XP,600g) → **Apply**: Add XP, check level → **Narrate**: 2-3 beats(struggle→breakthrough→mastery) → **Cost**: Deduct gold
 
-**Training Limits**:
-- **Cannot train skills above trainer's level** (need better trainer to advance further)
-- **Maximum 4 weeks training per skill** before diminishing returns (-50% XP after week 4)
-- **Cannot train during active adventures** (downtime only)
+**Ex**(Sword L2→3, has 150/400): Train 3wk Expert(200 XP/wk,200g/wk) → 150+600=750 XP → Lvl up!(used 250, 500 remain) → Continue?(500/700 for L4, 2 more wk?) → "D1:Takeshi DISARMS.'Grip!' W1:Block improves. W2:Clean strike-GRINS. W3:Spar-HOLD OWN. [Sword L3!Riposte]"
 
-### Training Montage Mechanics
+**Beats**(use 2-3): 1)Struggle("Muscles SCREAM") 2)Repetition("Days blur") 3)Breakthrough("CLICKS-natural") 4)Test("Full force.PARRY.Nods") 5)Mastery("Blade=extension")
 
-**Narrative Shortcut** for training arcs (anime-style):
+### Costs by Type
 
-**Setup**: Player declares training goal + duration
-- "I spend 3 weeks training Swordsmanship with the retired master."
-- "During the month-long voyage, I practice Elemental Magic every day."
+**Physical**(Sword/Athletics/Stealth): 50-200g/wk, 1-4wk/lv | **Magic**(Elemental/Necro/Enchant): 100-500g/wk, 2-6wk/lv | **Social**(Persuade/Deceive/Perform): 25-100g/wk, 1-3wk/lv | **Knowledge**(History/Medicine/Arcana): 50-300g/wk, 2-8wk/lv
 
-**Resolution**:
-1. **Calculate Total XP**: Training quality × weeks (e.g., 100 XP/week × 3 weeks = 300 XP)
-2. **Apply to Skill**: Add XP to skill, check for level-up
-3. **Narrate Montage**: Describe training progression (struggles → breakthroughs → mastery)
-4. **Cost**: Deduct gold (trainer fees) or resources (materials consumed)
+### Anime Training Arcs
 
-**Example Montage** (Swordsmanship L2→L3, needs 400 XP, has 150/400):
-- **Declare**: "I train with Master Takeshi for 3 weeks." (Expert trainer: 200 XP/week, 200 gold/week)
-- **Calculate**: 200 XP × 3 weeks = 600 XP, 200 gold × 3 weeks = 600 gold
-- **Apply**: 150 + 600 = 750 XP → Level up! (used 250 XP for L2→L3, 500 XP remaining)
-- **Continue?**: "500 XP toward L3→L4 (need 700). Train 2 more weeks?" OR "Stop here, save gold."
-- **Narrate**: "Day 1: Takeshi DISARMS you instantly. 'Grip too loose!' Week 1: Blocking improves. Week 2: First clean strike. Takeshi GRINS. Week 3: Sparring match—you HOLD YOUR OWN. [Swordsmanship L3! NEW: Riposte (counterattack on parry)]"
+**Hell Week**(Naruto): 1wk×2 XP, consequence exhaustion 3d(-2 phys), narrate "Push beyond.Collapse.Wake.Push.Burns..." | **Death Train**(DBZ): 1wk×3 XP(gravity/deadly terrain/superior foe), consequence CON DC15 or Minor Wound+exhaust 1wk, narrate "100×gravity CRUSHES.Agony.REFUSE quit..." | **Timeskip**(Generic): Months/years→multiple levels(1/mo), use when story needs time passage, narrate "MONTAGE:Seasons change.Stronger.Sweat/blood/fail→mastery" | **Hidden Master**(Kung Fu Panda): 1wk×5 XP(500), cost quest(no gold, trial), narrate "Insane methods.Water.Wood.Meditate...slowly understand"
 
-**Montage Narrative Beats** (use 2-3):
-1. **Initial Struggle**: "You can barely keep up. Every muscle SCREAMS."
-2. **Repetition**: "Days blur into nights. Same drills, over and over."
-3. **Breakthrough Moment**: "Something CLICKS. Your form feels... natural."
-4. **Final Test**: "Takeshi attacks full force. You PARRY—perfect form. He nods."
-5. **Mastery Moment**: "The blade feels like an extension of your arm now."
+### Integration
 
-### Training Costs by Skill Type
-
-**Physical Skills** (Swordsmanship, Athletics, Stealth):
-- **Cost**: 50-200 gold/week (trainer fees, equipment wear)
-- **Time**: 1-4 weeks per level (physical muscle memory)
-
-**Magic Skills** (Elemental Magic, Necromancy, Enchanting):
-- **Cost**: 100-500 gold/week (reagents, spell components, arcane texts)
-- **Time**: 2-6 weeks per level (complex theory + practice)
-
-**Social Skills** (Persuasion, Deception, Performance):
-- **Cost**: 25-100 gold/week (etiquette lessons, practice venues)
-- **Time**: 1-3 weeks per level (practical application)
-
-**Knowledge Skills** (History, Medicine, Arcana):
-- **Cost**: 50-300 gold/week (books, tutors, research materials)
-- **Time**: 2-8 weeks per level (dense study material)
-
-### Anime-Style Training Arcs
-
-**Common Tropes** (integrate narratively):
-
-**Hell Week** (Naruto):
-- 1 week of extreme training = 2 weeks normal training XP (×2 multiplier)
-- **Consequence**: Exhaustion debuff for 3 days after (-2 to physical rolls)
-- **Narration**: "You push beyond limits. Collapse. Wake. Push again. Every fiber burns..."
-
-**Death Training** (Dragon Ball):
-- Train in extreme environment (gravity chamber, deadly terrain, against superior opponent)
-- 1 week extreme = 3 weeks normal XP (×3 multiplier)
-- **Consequence**: Injury risk (roll CON save DC 15 or gain Minor Wound), exhaustion for 1 week
-- **Narration**: "100× gravity CRUSHES you. Every step is agony. But you REFUSE to quit..."
-
-**Timeskip Montage** (Generic):
-- Compress months/years of training into narrative moment
-- Award multiple skill levels at once (1 level per month of downtime)
-- **Use When**: Story requires time passage (e.g., "3 years later...")
-- **Narration**: "MONTAGE: Seasons change. You grow stronger. Years of sweat, blood, failure... then mastery."
-
-**Hidden Master** (Kung Fu Panda):
-- Train with legendary NPC (skill level 10, unique teaching method)
-- 1 week = 500 skill XP (×5 normal)
-- **Cost**: Complete quest for master (no gold, but difficult trial)
-- **Narration**: "The master's methods seem insane. Carry water. Chop wood. Meditate. But slowly... you understand."
-
-### Integration with Progression System
-
-**Skill Point vs Training**:
-- **Skill Point**: Instant level-up (reward for character level, no time/gold cost)
-- **Training**: Gradual XP gain (time + gold cost, but unlimited if you have resources)
-
-**Combined Approach** (recommended):
-- Use skill points for **immediate power-ups** (combat skills needed NOW)
-- Use training for **long-term development** (non-urgent skills, downtime periods)
-
-**Example** (Aria L6, has 2 skill points, wants to improve Healing + Persuasion):
-- **Immediate Need**: Spends 1 skill point → Life Transfer L2→L3 (needed for next dungeon)
-- **Downtime**: Trains Persuasion during 2-week travel (self-study: 50 XP/week × 2 = 100 XP)
-- **Future Plan**: Saves 1 skill point for emergency, continues Persuasion training when safe
+**Skill Pt vs Train**: Pt=instant(free) | Train=gradual(time+gold, unlimited) | **Approach**: Pts for urgent(combat NOW), training for long-term(downtime) | **Ex**: Aria L6, 2pts → Spend 1pt:Life Transfer L2→3(dungeon soon) + Train Persuade 2wk travel(50×2=100 XP) + Save 1pt emergency
 
 ## Integration
 

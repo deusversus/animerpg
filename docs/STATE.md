@@ -105,39 +105,22 @@
 
 ## Recent Changes
 
-**2025-10-28**: Phase 2.1e Combat Enhancements implementation complete
-- Expanded Module 08 Combat Resolution with Death & Resurrection System (~70 lines)
-  - 0 HP = Downed (not dead), death saves system (3 success = stabilize, 3 fail = dead)
-  - Injury table (7 injury types from Minor Wound to Permanent Scar)
-  - 4 resurrection tiers (Revivify to True Resurrection with escalating costs/penalties)
-  - Anime world variants (senzu beans, Return by Death, willpower, Aqua)
-  - Death narrative protocol (tension-building narration for downed state)
-- Added Combat Maneuvers system to Module 08 (~40 lines)
-  - Grapple (STR vs STR/DEX contest, restrain target)
-  - Disarm (attack at disadvantage, knock weapon away)
-  - Called Shot (-5 penalty for targeted effects: head/arm/leg/eyes/weak point)
-  - Aid (grant ally Advantage on next roll)
-- Added Tournament Framework to Module 08 (~90 lines)
-  - Tournament structure (4-64 participants, bracket types, rules, stakes)
-  - Seeding mechanics (rank by strength, random draw, rigged brackets)
-  - Match flow (pre-match, combat, post-match with crowd reactions)
-  - Between-match fatigue tracking (immediate/short/long rest with penalties)
-  - Bracket management with narrative shortcuts (skip minor matches, montages, timeskips)
-  - Spectator reactions (underdog support, betting subplot, upset shock)
-  - Example: Heaven's Arena from Hunter x Hunter
-- Expanded Module 09 Progression with Downtime Training System (~90 lines)
-  - Training basics (1 week sessions, trainer quality tiers: self-study to master)
-  - Training quality XP rates (50-300 XP/week based on trainer)
-  - Skill point vs training comparison (instant vs gradual advancement)
-  - Training limits (can't exceed trainer level, max 4 weeks before diminishing returns)
-  - Training montage mechanics (narrative shortcuts with 5 beats)
-  - Training costs by skill type (physical/magic/social/knowledge with time/gold)
-  - Anime-style training arcs (Hell Week ×2 XP, Death Training ×3 XP, timeskip montages, hidden masters)
-- Updated character_schema.json to v2.3.0 with new combat/training fields
-  - death_saves object (successes, failures, is_stable)
-  - injuries array (name, effect, duration, acquired_at, treated)
-  - training_progress array (skill_name, weeks_trained, xp_gained, trainer_name, quality, started_at, notes)
-- Updated docs/STATE.md (Phase 2.1e complete, schema v2.3.0, next task Phase 2.1f)
+**2025-10-28**: Phase 2.1e Combat Enhancements implementation complete (OPTIMIZED)
+- Expanded Module 08 Combat Resolution (~200 lines, 36.6% token optimization)
+  - Death & Resurrection System: 0 HP=Downed, death saves(3✓=stable|3✗=DEAD), injury table(7 types), 4 resurrection tiers(Revivify→True Res), anime variants(senzu/Return by Death/willpower/Aqua), death narration
+  - Combat Maneuvers: Grapple(STR contest), Disarm(disadv atk), Called Shot(-5 for effects), Aid(grant Advantage)
+  - Tournament Framework: Structure(4-64 participants), seeding, match flow(pre/combat/post), fatigue tracking(3 tiers), bracket mgmt, spectators+betting, ex Heaven's Arena
+- Expanded Module 09 Progression (~90 lines, 31.6% token optimization)
+  - Downtime Training: 1wk sessions, 4 quality tiers(self-study 50 XP to master 300 XP), costs by skill type, training montage mechanics(5 narrative beats)
+  - Anime training arcs: Hell Week(×2 XP), Death Train(×3 XP), Timeskip(multi-level), Hidden Master(×5 XP)
+  - Integration: Skill pt vs training comparison, combined approach
+- Updated character_schema.json to v2.3.0 (death_saves, injuries, training_progress)
+- **Token Impact (OPTIMIZED)**:
+  - Module 08: +200 lines but optimized 2745→1740 words (36.6% reduction) = Net +265 tokens vs baseline
+  - Module 09: +90 lines but optimized 1955→1337 words (31.6% reduction) = Net +87 tokens vs baseline  
+  - character_schema.json: +40 lines (~273 tokens)
+  - **Total Phase 2.1e addition: ~625 tokens (vs 2,675 unoptimized = 76.6% optimization)**
+  - New base estimate: ~90.1k (45.1% of 200k context)
 
 **2025-10-28**: Phase 2.1d Economy System implementation complete
 - Created economy_schema.json (comprehensive multi-currency, merchant, market dynamics system)
