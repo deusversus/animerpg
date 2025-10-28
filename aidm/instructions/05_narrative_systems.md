@@ -22,7 +22,7 @@ CORRECT: "Marcus. 45. CEO. Died working late. Heart stopped. Woke 15 years old. 
 
 **Weave Mechanics**: WRONG: "Attack. Roll 1d20+5=19. Damage 9. HP 22→13." (interrupts) | CORRECT: "Blade flashes. [1d20+5=19 HIT!] Bites shoulder. Howling. [9dmg. HP 22→13]" (woven)
 
-**Show Don't Tell**: WRONG: "Library. Knowledge. Secrets. You feel reverent." (tells feelings) | CORRECT: "Dust, light shafts, parchment smell, unknown languages. Librarian: 'Most never find this.'" (shows, implies)
+**Show Don't Tell**: WRONG: "Library. Knowledge. Secrets. You feel reverent." (tells feelings
 
 **Pacing**: DETAIL (major locations, important NPCs, combat, discoveries, emotions) | SUMMARIZE (familiar travel, routine shopping/training, rest, non-critical dialogue)
 
@@ -160,15 +160,60 @@ Long-term arc: Political intrigue, overthrowing corrupt nobles
 
 ---
 
+### Faction-Based Narrative Generation
+
+**Purpose**: To use the faction system as a primary driver for emergent quests, political intrigue, and world-changing events. Factions have goals, resources, and relationships that create a dynamic political landscape.
+
+#### Faction Goal System
+
+- **Source of Conflict**: Each faction in `world_state.factions` has a list of `goals`. The pursuit of these goals is the primary source of conflict and quests.
+- **Goal Types**:
+    - **Territorial Expansion**: Faction wants to control a new location. (Generates quests: "Clear out monsters," "Sabotage rival faction's outpost," "Win hearts and minds of locals.")
+    - **Resource Acquisition**: Faction needs a specific magical artifact or material. (Generates quests: "Dungeon delve," "Heist from a rival," "Negotiate with a neutral party.")
+    - **Ideological Supremacy**: Faction wants to convert populace or eliminate a rival belief system. (Generates quests: "Protect a shrine," "Distribute propaganda," "Debate a rival leader.")
+    - **Power Consolidation**: Faction seeks to weaken a rival. (Generates quests: "Assassinate a key member," "Disrupt a supply line," "Expose a scandal.")
+
+**Quest Generation Workflow**:
+1. Periodically, the State Manager (Module 03) reviews the goals of active factions.
+2. It identifies a goal that is currently actionable (e.g., a rival faction is weak, a new resource has been discovered).
+3. It passes the goal and context to the Narrative System (Module 05).
+4. Module 05 generates a quest hook related to the goal, tailored to the player's location, reputation, and skills.
+5. The quest is offered to the player via an NPC affiliated with the faction.
+
+#### Reputation-Gated Quests
+
+- A character's reputation with a faction (`character.world_context.faction_reputations`) acts as a gate for faction-specific quests.
+- **Neutral or Below**: Only generic, low-risk quests are offered (e.g., "Kill 10 rats," "Deliver a package").
+- **Liked**: Faction offers quests that align with their public goals and require some trust (e.g., "Patrol our borders," "Investigate a problem for us").
+- **Honored**: Faction offers high-stakes, secret, or morally ambiguous quests. The character is trusted to act in the faction's best interest (e.g., "Infiltrate our rival," "Eliminate a threat to our power," "Represent us in a critical negotiation").
+- **Hated**: The faction may generate quests *against* the player, such as bounties or assassination attempts.
+
+#### Dynamic World Events
+
+- **Faction vs. Faction**: When two factions with `status: "hostile"` or `status: "at_war"` have conflicting goals, the system can trigger a world event.
+    - **Example**: The Crimson Vanguard wants to control the Silverstream Mine, and the Azure Serpents also want it. This can trigger a "Border Skirmish" event, creating a new dynamic location with active combat, new quests ("Turn the tide of battle"), and opportunities for the player to influence the outcome.
+- **Faction Power Shifts**: If a player's actions significantly help or hinder a faction, it can trigger a "Faction Power Shift" cascade.
+    - **Effects**: The faction might gain or lose territory, their NPCs might become richer or poorer, and their relationship with other factions might change, creating new narrative threads.
+
+#### Integrating with Foreshadowing
+
+- **NPC Dialogue**: A guard from the Crimson Vanguard might complain about the Azure Serpents encroaching on their territory long before any formal conflict breaks out.
+- **Environmental Storytelling**: The player might find a dead Crimson Vanguard scout near an Azure Serpent outpost, with a note detailing their reconnaissance mission.
+- **Rumors**: Tavern patrons might whisper about rising tensions or a faction stockpiling weapons.
+
+This proactive approach makes the world feel alive and ensures that when a faction-related quest or conflict begins, it feels like the natural culmination of events the player has been witnessing.
+
+---
+
 ## Integration with Other Modules
 
 Narrative Systems coordinates with:
 
-- **NPC Intelligence (04)**: NPCs drive story through goals and relationships
-- **Learning Engine (02)**: Story beats become QUEST and WORLD_EVENT memories
-- **State Manager (03)**: Consequences update world_state permanently
-- **Cognitive Engine (01)**: Detects player's narrative intent vs. mechanical actions
-- **Progression Systems (09)**: Narrative milestones trigger XP/advancement
+- **NPC Intelligence (04)**: NPCs drive story through goals and relationships. Faction alignment and reputation heavily influence NPC disposition.
+- **Learning Engine (02)**: Story beats become QUEST and WORLD_EVENT memories. Faction-related events are flagged for long-term impact.
+- **State Manager (03)**: Consequences update `world_state` permanently, including faction power levels, territory, and relationships.
+- **Cognitive Engine (01)**: Detects player's narrative intent (e.g., siding with a faction) vs. mechanical actions.
+- **Progression Systems (09)**: Narrative milestones, including completing major faction quests, trigger XP/advancement.
 
 ---
 
