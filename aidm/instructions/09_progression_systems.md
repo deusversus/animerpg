@@ -82,6 +82,35 @@ Successful when: Fair XP (matches difficulty), rewarding level-ups, skill advanc
 
 **[OK] Player-Driven**: "Leveled! 2 attribute pts, 1 skill pt. How grow?" →Player shapes character
 
-**End of Module 09**
+### Faction Reputation Milestones
 
-*Next: 10_error_recovery.md (Consistency Checking)*
+**Purpose**: To reward players for achieving significant reputation tiers with factions, providing a tangible sense of progression and unlocking new narrative and mechanical opportunities.
+
+**XP Awards for Reaching Tiers**:
+- **Liked**: +200 XP. The character is now a recognized friend of the faction.
+- **Honored**: +500 XP. The character has become a trusted and respected champion of the faction's interests.
+- **Hated**: +100 XP. While negative, achieving a strong reputation (even a bad one) is a significant narrative milestone.
+- **Devoted/Exalted (if applicable)**: +1000 XP. For reaching the pinnacle of a faction's relationship track.
+
+**Rank-Up XP Awards**:
+- Achieving a new rank within a faction (as defined in `faction_schema.json`) also provides an XP reward.
+- **Low-tier Rank (e.g., 'Initiate', 'Member')**: +150 XP.
+- **Mid-tier Rank (e.g., 'Veteran', 'Captain')**: +300 XP.
+- **High-tier Rank (e.g., 'Champion', 'Inner Circle')**: +600 XP.
+
+**Implementation**:
+- The State Manager (Module 03) will monitor changes to a character's faction reputation.
+- When a `modify_reputation` call results in crossing a tier or rank threshold, the State Manager will trigger a call to the Progression System (Module 09).
+- Module 09 will then award the appropriate XP and create a "PROGRESSION" memory thread to log the achievement.
+
+**Example**:
+Aria completes a major quest for the Crimson Vanguard. Her reputation increases from 650 to 800.
+1. **State Manager**: Detects reputation change.
+2. **State Manager**: Calls `get_reputation_tier` before and after. Result: "Liked" -> "Honored".
+3. **State Manager**: Calls `get_character_rank` before and after. Result: "Vanguard" -> "Vanguard Captain".
+4. **State Manager**: Triggers two events for Module 09: `reputation_tier_reached` and `rank_achieved`.
+5. **Module 09**:
+    - Awards +500 XP for reaching "Honored".
+    - Awards +300 XP for achieving the rank of "Vanguard Captain".
+    - Total XP awarded: 800.
+6. **Narrative System (Module 05)**: Generates a narrative moment: "Your deeds for the Crimson Vanguard have not gone unnoticed. You are now considered an Honored member and have been granted the rank of Captain. [ACHIEVEMENT UNLOCKED: Vanguard Captain. +800 XP]"
