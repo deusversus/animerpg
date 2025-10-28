@@ -114,6 +114,36 @@
 
 ---
 
+## Version 2.3.0 (2025-10-28)
+
+**Status**: Current (Phase 2.1e - Combat Enhancements Complete)
+
+### character_schema.json
+
+**Modified**:
+- Added `death_saves` object to `resources` section:
+  - `successes`: integer (0-3), default 0 - successful death saves accumulated
+  - `failures`: integer (0-3), default 0 - failed death saves accumulated
+  - `is_stable`: boolean, default false - whether character stabilized at 0 HP
+- Added `injuries` array to `resources` section:
+  - Each injury object contains: `name` (string, e.g., "Minor Wound", "Broken Bone"), `effect` (string, mechanical penalty description), `duration_remaining` (string, e.g., "until long rest", "3 days", "permanent"), `acquired_at` (date-time), `treated` (boolean, default false)
+  - Tracks lasting consequences from death/resurrection or combat injuries
+- Added `training_progress` array to `progression` section:
+  - Each training record contains: `skill_name` (string), `weeks_trained` (integer ≥0), `total_xp_gained` (integer ≥0), `trainer_name` (string, NPC or "self-study"), `trainer_quality` (enum: self-study|competent|expert|master), `started_at` (date-time), `notes` (string, max 500 chars)
+  - Tracks downtime training sessions for skill progression
+
+**Impact**:
+- ✅ Backward compatible (all new fields optional with defaults)
+- ✅ No migration required for existing character saves
+- ⚠️ New characters SHOULD initialize death_saves/injuries/training_progress arrays
+- 📝 Module 08 (Combat Resolution) uses death_saves + injuries for death/resurrection system
+- 📝 Module 09 (Progression Systems) uses training_progress for downtime training tracking
+- 📝 Module 03 (State Manager) validates death save bounds (0-3) and injury duration logic
+
+**Rationale**: Phase 2.1e requirement - implement death/resurrection mechanics (0 HP = downed, death saves, injury table, resurrection tiers), combat maneuvers, tournament framework, and downtime training system. These fields support persistent tracking of character mortality state and skill training outside of active adventuring.
+
+---
+
 ## Version 2.2.0 (2025-10-28)
 
 **Status**: In Development (Phase 2.1c - Faction & Reputation System)
@@ -366,7 +396,7 @@ Before incrementing any schema version:
 
 | Schema | Version | Last Updated | Status |
 |--------|---------|--------------|--------|
-| character_schema.json | 2.2.0 | 2025-10-28 | Modified (faction reputation) |
+| character_schema.json | 2.3.0 | 2025-10-28 | Modified (combat enhancements) |
 | world_state_schema.json | 2.2.0 | 2025-10-28 | Modified (faction registry) |
 | faction_schema.json | 2.2.0 | 2025-10-28 | NEW |
 | quest_schema.json | 2.1.0 | 2025-10-27 | Stable |
