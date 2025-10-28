@@ -277,6 +277,173 @@ ERROR: Pre-made profile file missing
 
 ---
 
+## Quest Management System
+
+**Purpose**: Centralized quest state tracking with branching, dependencies, automated XP rewards, and cascade integration. All quests stored in `world_state.narrative_state.quests`, characters reference by ID only.
+
+### Quest CRUD Operations
+
+**create_quest(quest_data)**:
+- Validate against quest_schema.json
+- Generate quest_id if not provided (pattern: `quest_[random]`)
+- Set metadata.created_at timestamp
+- Add to world_state.narrative_state.quests
+- If auto-offer: Add quest_id to character.quests.available
+- Create memory thread (category: quests, heat: 40-60 based on importance)
+
+**accept_quest(character_id, quest_id)**:
+- Validate quest exists and status="available"
+- Move quest_id from character.quests.available → character.quests.active
+- Update quest status: "available" → "active"
+- Set quest.metadata.accepted_at timestamp
+- Add event to quest.metadata.event_log
+- Create memory thread (category: quests, heat: 50, "Accepted [quest title]")
+
+**update_quest_objective(quest_id, objective_id, progress)**:
+- Validate quest exists, objective exists
+- Check objective.dependencies (all completed?)
+- If dependency incomplete: Reject with "Must complete [dependency] first"
+- Update objective.progress (or set completed=true if no progress tracking)
+- If objective has mutually_exclusive_with: Block those objectives
+- Check if all required objectives completed:
+  - If yes: Update quest status → "ready_to_complete"
+  - Add event to quest.metadata.event_log
+- Validate quest hasn't exceeded time_limit
+- Check fail_conditions triggered by update (e.g., item_lost)
+
+**complete_quest(quest_id, character_id)**:
+- Validate quest status="ready_to_complete" (all required objectives done)
+- Move quest_id: character.quests.active → character.quests.completed
+- Update quest status → "completed"
+- Set quest.metadata.completed_at timestamp
+- **Automated Rewards Distribution**:
+  - XP: Add quest.rewards.xp to character.progression.current_xp
+  - Items: Add quest.rewards.items[] to character.inventory
+  - Currency: Add quest.rewards.currency{} to character.inventory.currency
+  - Reputation: Update character.faction_reputation per quest.rewards.reputation
+  - Skills: Unlock quest.rewards.skills[] in character.skills.available_skills
+- **Quest Chain Activation**:
+  - For each quest_id in quest.rewards.unlocks[]:
+    - Create or activate child quest
+    - Add to character.quests.available
+- **Cascade Trigger**: Create "quest_completion" cascade (see CASCADE_SYSTEM_DESIGN.md)
+  - Update NPCs with associated_quests
+  - Check world impact (faction power, location changes)
+  - Create memory thread (category: quests, heat: 60-80, "Completed [title]")
+- Add event to quest.metadata.event_log
+
+**fail_quest(quest_id, character_id, reason)**:
+- Validate quest exists and not already completed/failed
+- Move quest_id: character.quests.active → character.quests.failed[]
+- Add failure object: {quest_id, reason, failed_at}
+- Update quest status → "failed"
+- Set quest.metadata.failed_at timestamp
+- Set quest.metadata.failure_reason
+- Create memory thread (category: quests, heat: 50-70, "Failed [title]: [reason]")
+- Add event to quest.metadata.event_log
+
+**check_fail_conditions(quest_id)**:
+- Called automatically by cascades (NPC death, location destruction, etc.)
+- For each condition in quest.fail_conditions[]:
+  - Evaluate condition_type:
+    - npc_death: Check if parameters.npc_id is dead
+    - time_expired: Check current time > quest.time_limit
+    - location_destroyed: Check if parameters.location_id destroyed
+    - item_lost: Check if parameters.item_id not in inventory
+    - reputation_threshold: Check faction reputation below threshold
+    - custom: Evaluate custom logic
+  - If condition TRUE: fail_quest(quest_id, reason=condition.description)
+
+### Quest Dependency Resolution
+
+**Objective Dependencies**:
+- Before unlocking objective: Check all objective.dependencies[] completed
+- If incomplete: Keep objective hidden (if hidden=true) or show as locked
+- Example: "Objective 2 (Defeat Boss) requires Objective 1 (Find Weakness) to complete first"
+
+**Quest Chain Dependencies**:
+- quest.branching.parent_quest: This quest unlocks after parent completes
+- quest.branching.child_quests[]: These quests unlock when this completes
+- Stored in quest.rewards.unlocks[] for automation
+
+**Mutually Exclusive Objectives**:
+- When objective A completed: All objectives in A.mutually_exclusive_with[] become impossible
+- Mark blocked objectives with "BLOCKED BY [objective A]" in quest log
+- Example: "Save villagers" vs "Retrieve artifact" - can't do both
+
+### Quest Branching System
+
+**Choice-Based Branching**:
+- quest.branching.choices[] defines decision points
+- When player makes choice:
+  - Unlock objectives in choice.unlocks_objectives[]
+  - Block objectives in choice.blocks_objectives[]
+  - Apply choice.reputation_impact to factions
+  - Add choice to quest.metadata.event_log
+
+**Dynamic Quest Paths**:
+- Objectives can unlock different quest outcomes
+- Example: Quest "Investigate Murder"
+  - Objective A: Accuse noble → Unlocks "Political Intrigue" child quest
+  - Objective B: Accuse commoner → Unlocks "Street Justice" child quest
+  - Mutually exclusive outcomes based on player choice
+
+### Automated XP Integration
+
+**On Quest Completion** (Module 09 Coordination):
+- Read quest.rewards.xp
+- Apply difficulty multiplier if needed (epic quest = 1.5x base XP)
+- Add to character.progression.current_xp
+- Add XP log entry: {source: "quest", quest_id, amount, timestamp}
+- Check level up threshold: If current_xp ≥ next_level_xp → Trigger level up cascade
+- **No manual XP tracking required** - fully automated
+
+### Quest Compression (Memory Management)
+
+**When to Compress** (10+ active quests):
+- Bundle related quests (same faction, same location)
+- Summarize completed/failed quests from 5+ sessions ago
+- Maintain active quests in full detail
+- Store compressed data in memory threads (category: quests, heat: 20-30)
+
+**Compression Logic**:
+- Active quests: Never compress (full detail always)
+- Recent completed (last 3 sessions): Keep full quest object
+- Old completed (5+ sessions): Summarize to: {quest_id, title, completion_date, key_rewards}
+- Failed quests: Always compress to: {quest_id, title, failure_reason, failed_date}
+
+### Time-Limited Quests
+
+**Deadline Tracking**:
+- quest.time_limit (ISO 8601 timestamp)
+- Check on every world.temporal.current_time update
+- If current_time > time_limit: Trigger fail_condition "time_expired"
+
+**Narrative Warnings** (Module 05 Coordination):
+- 75% time remaining: No warning
+- 50% time remaining: Subtle narrative mention
+- 25% time remaining: Explicit warning ("Quest will fail in X hours")
+- 10% time remaining: Urgent warning ("URGENT: Quest deadline approaching!")
+
+### Quest Generation Integration (Module 05)
+
+**Procedural Quest Creation**:
+- NPC has need/goal → Generate quest via Module 05
+- Use genre trope libraries for quest templates:
+  - Isekai: Guild quests, fetch quests, monster hunts
+  - Shonen: Tournament arcs, training challenges, rival battles
+  - Seinen: Political intrigue, moral dilemmas, investigations
+- Faction reputation tiers unlock faction-specific quests
+- World events generate dynamic quests (disaster relief, faction conflicts)
+
+**Quest Template Structure**:
+- Define quest skeleton in genre trope files
+- Fill variables: [NPC name], [location], [item], [enemy], [reward]
+- Create quest object using create_quest()
+- Auto-assign to appropriate characters based on context
+
+---
+
 ## Session Export/Import (Save System)
 
 **Export (Save)**: Collect State (character+world+NPCs+memories+**narrative_profile**)→Generate Metadata (version, session_id, campaign, sessions, playtime, date, save_point)→Compress (memories<20 heat, distant events, old quests)→Checksum (hash for validation)→Create session_export_schema.json (metadata+character+**narrative_profile**+world+npcs+memories+recent_narrative+system_state)→Save File (campaign_session_N_YYYY-MM-DD.json in ./saves/, keep last 3 backups). **CRITICAL**: Pre-made profiles export ID only (lightweight), generated profiles export FULL data (scales/tropes/scaffolding, no file reference).

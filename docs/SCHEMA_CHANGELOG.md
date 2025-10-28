@@ -114,30 +114,90 @@
 
 ---
 
-## Planned Changes (Phase 2.1)
+## Version 2.1.0 (2025-10-27)
+
+**Status**: In Development (Phase 2.1b - Quest Management System)
+
+### quest_schema.json (NEW)
+
+**Added**:
+- Complete quest schema with structured objectives, branching paths, dependencies, time limits
+- Objective system: progress tracking, required/optional flags, hidden objectives, mutual exclusivity
+- Branching system: choice-based paths, parent-child quest chains, unlockable quests
+- Reward system: XP, items, currency, reputation, skills, quest unlocks
+- Fail conditions: NPC death, time expiration, location destruction, item loss, reputation thresholds
+- Quest categories: main, side, faction, personal, daily, event, tutorial
+- Difficulty tiers: trivial, easy, moderate, hard, epic, legendary
+- Metadata: complete lifecycle tracking with timestamps and event logs
+
+**Impact**:
+- ✅ New schema (not breaking existing data)
+- 📝 Must update Module 03 (State Manager) to handle quest CRUD operations
+- 📝 Must update Module 05 (Narrative Systems) for quest generation
+- 📝 Must update Module 09 (Progression) for automated XP awards
+- 📝 Add quest validation to Module 00 startup checks
+- 📝 Include in session_export_schema.json
+
+**Rationale**: Phase 2.1b requirement - structured quest management with branching, dependencies, and automated tracking. Replaces informal quest arrays in character schema with full quest objects stored in world state.
+
+### character_schema.json
+
+**Modified**:
+- Changed `quests` object from embedded quest data to ID-only references
+- Old: Full quest objects with objectives/rewards/status stored in character schema
+- New: Arrays of quest_ids (available/active/completed/failed) referencing world_state.narrative_state.quests
+- Failed quests now store failure reason and timestamp
+
+**Impact**:
+- ⚠️ BREAKING CHANGE for existing saves with active quests
+- Migration required: Extract quest data from character schema → Create quest objects in world_state → Replace with IDs
+- Reduces character schema bloat (quests stored once in world, referenced by all characters)
+- Enables multi-character campaigns (multiple PCs can share quest state)
+
+**Migration Path**:
+1. Read character.quests.active array (old format with embedded data)
+2. For each quest: Create quest object in world_state.narrative_state.quests using quest_schema.json
+3. Replace character.quests.active with array of quest_ids
+4. Update character schema_version to 2.1.0
+
+### world_state_schema.json
+
+**Modified**:
+- Added `narrative_state.quests` object (master quest registry)
+- Structure: `{ "quest_id": <quest_schema.json object> }`
+- All quest data stored here, characters only reference IDs
+
+**Impact**:
+- ✅ Backward compatible (new optional field)
+- Centralizes quest data for easier management
+- Enables quest sharing across multiple characters
+- Supports DM-controlled quest progression (change state, all PCs see update)
+
+**Rationale**: Single source of truth for quest state. Character schema tracks "which quests this PC has" while world schema defines "what those quests are".
+
+---
+
+## Planned Changes (Phase 2.1 Continued)
 
 ### Version 2.1.0 (Target: Q4 2025)
 
 #### character_schema.json
 
-**Additions** (MINOR):
-- `quests` object enhancement:
-  - Add `quest_tree` array for parent-child relationships
-  - Add `dependencies` array for prerequisite tracking
-  - Add `branches` object for conditional paths
-  - Add `time_limits` for deadline tracking
+**Additions** (MINOR - already partially implemented above):
+- ~~`quests` object enhancement~~ ✅ DONE (ID-based references)
 - `faction_reputation` object:
   - Add faction_id → reputation_score mapping
   - Add faction_standing enum (enemy/neutral/ally/champion)
 - Economy integration:
-  - Add `wallet` object with multi-currency support
-  - Add `transaction_history` array
+  - Expand `currency` object with multi-currency support
+  - Add `transaction_history` array (optional, for tracking)
 
-**Impact**: All additions are optional with graceful degradation. Existing quests continue working as simple objective arrays.
+**Impact**: Faction and economy additions are optional. Quest changes already applied (breaking change handled via migration).
 
 #### world_state_schema.json
 
-**Additions** (MINOR):
+**Additions** (MINOR - partially implemented above):
+- ~~`narrative_state.quests`~~ ✅ DONE (master quest registry)
 - `factions` enhancement:
   - Add `territory` array of controlled locations
   - Add `power_score` calculation
@@ -147,6 +207,10 @@
   - Add `merchant_npcs` references
 
 **Impact**: Optional enhancements. Existing faction tracking via world_events continues working.
+
+---
+
+## Version 2.0.0 (2025-10-27)
 
 #### npc_schema.json
 
@@ -236,8 +300,9 @@ Before incrementing any schema version:
 
 | Schema | Version | Last Updated | Status |
 |--------|---------|--------------|--------|
-| character_schema.json | 2.0.0 | 2025-10-27 | Stable |
-| world_state_schema.json | 2.0.0 | 2025-10-27 | Stable |
+| character_schema.json | 2.1.0 | 2025-10-27 | Modified (quest references) |
+| world_state_schema.json | 2.1.0 | 2025-10-27 | Modified (quest registry) |
+| quest_schema.json | 2.1.0 | 2025-10-27 | NEW |
 | npc_schema.json | 2.0.0 | 2025-10-27 | Stable |
 | memory_thread_schema.json | 2.0.0 | 2025-10-27 | Stable |
 | narrative_profile_schema.json | 2.0.0 | 2025-10-27 | Stable |
