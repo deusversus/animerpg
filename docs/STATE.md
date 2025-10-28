@@ -17,6 +17,7 @@
 - ✅ Created quest_schema.json and faction_schema.json
 - ✅ Updated all documentation for 10-schema system
 - ✅ Phase 2.1d: Economy System implemented (economy_schema.json, Module 03/04 integration)
+- ✅ Token optimization: All 3 new schemas optimized (31.1% reduction, 2,023 tokens saved)
 - ⏳ Continue Phase 2.1e: Combat Enhancements
 
 **Next Task**: Review ROADMAP.md Phase 2.1e (Combat Enhancements)
@@ -45,9 +46,10 @@
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| **Token Budget** | ~87k base | ✅ 43% of 200k |
+| **Token Budget** | ~89.5k base | ✅ 44.75% of 200k |
 | **Active Load** | ~20-30k | ✅ Tier 1 + selective Tier 2 |
-| **Optimization** | 62.3% reduction | ✅ 142k → 54k modules |
+| **Module Optimization** | 62.3% reduction | ✅ 142k → 54k modules |
+| **Schema Optimization** | 31.1% reduction | ✅ New schemas: 6.5k → 4.5k |
 | **Test Coverage** | 2/8 complete | ⚠️ Testing shelved (deferred) |
 | **Long-term Validation** | Untested | ⚠️ 10+ session campaigns needed |
 
@@ -92,7 +94,7 @@
 - 5 power system libraries (mana, ki, soul, psionic, tiers)
 - 3 common mechanics (stats, leveling, skills)
 
-**Total**: 14 modules (~54k) + 11 schemas (~40k estimated) + 40+ libraries (selective load)
+**Total**: 14 modules (~54k) + 11 schemas (~35.5k estimated) + 40+ libraries (selective load)
 
 ---
 
