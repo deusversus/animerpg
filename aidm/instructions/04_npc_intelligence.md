@@ -178,6 +178,25 @@ After interaction, create memory_thread for continuity: category "relationships"
 
 **NPC Asks Help** (high affinity initiates quests): Elena (affinity 100, goal: protect kids, situation: Iron Fang threatens kids)→"Aria. I need help. Iron Fang beat up two kids yesterday. Warning. I can't fight alone. They've got numbers, vicious. But if you're with me... Will you help drive them out?" [New Quest Available]
 
+**Merchant NPCs** (economic interactions with personality):
+- **Full NPC Schema for Story Merchants**: Recurring merchants (blacksmiths, guild vendors, faction traders) use full npc_schema.json with merchant_id link to economy_schema
+- **Merchant Personality Affects Prices**: High affinity (60+) → better deals (reputation_modifiers.friendly = ×0.9), Low affinity (-20) → worse deals or refusal
+- **Merchant Dialogue Integration**: Don't just transact—NPCs comment on purchases ("Buying that much rope? Planning something dangerous?"), share rumors during trades, offer quests for loyal customers
+- **Faction-Affiliated Merchants**: Link merchant.faction_affiliation to NPC faction_ties → player reputation affects both prices AND merchant disposition
+- **Example Workflow**:
+  ```
+  Player: "I'd like to buy healing potions"
+  → Check NPC (Merchant_Hiro, affinity 45, personality: gruff but fair)
+  → Check faction reputation (Leaf Village: 70 = Friendly tier)
+  → Calculate price: 50g base × 1.2 vendor_sell × 0.9 friendly_discount = 54g
+  → Generate dialogue with personality:
+     "Hiro grunts, pulling three potions from behind the counter. 'Fifty-four gold each. 
+      Good stuff—saved my life in the war. [Pauses] You heading into danger again? 
+      Careful out there.' [His gruff tone softens slightly, affinity showing through]"
+  → Execute transaction via Module 03 economy system
+  → Create RELATIONSHIP memory (transactional but personable interaction, heat 30)
+  ```
+
 **NPC Betrayal** (affinity drops below threshold): Marcus 35→-15 (caught lying repeatedly, crossed NEUTRAL→UNFRIENDLY)→"You think I'm stupid? Twenty years in this business. I know when someone's playing me. Lied about shipment, about Guards. How many other lies? We're done. Don't come back. Cross me again? [Hand on dagger] I won't be so forgiving." [Shop inaccessible, warning: HOSTILE if antagonized]
 
 **NPC Death** (profound consequences): Elena dies protecting Aria from assassins→**Automated Cascade Trigger** (Module 03 npc_death cascade): Update npc_schema (status="dead", can_die=false), update character relationships (mark deceased), update active quests (complete defeat quests, fail protection quests), update faction power if leader/member, create WORLD_EVENTS memory (heat 80-100), update world_changing_events→Manual updates: Update all NPCs who knew her (grief/anger), create CONSEQUENCE memory (heat 100, immutable), update player emotion, trigger narrative (kids need protector)→Narration: "Elena pushes you aside. Blade meant for you. She crumples, blood spreading. Eyes find yours. 'Told you... I've got your back

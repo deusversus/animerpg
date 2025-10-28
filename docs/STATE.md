@@ -7,7 +7,7 @@
 
 ---
 
-## Active Work
+**Active Work
 
 **Current Focus**: Phase 2.1 - Core Systems Development (4-6 months)
 - ✅ Archived deep research reports to backup/archives/archive_01.zip
@@ -16,9 +16,10 @@
 - ✅ Phase 2.1a: Cascade System implemented in Module 03
 - ✅ Created quest_schema.json and faction_schema.json
 - ✅ Updated all documentation for 10-schema system
-- ⏳ Continue Phase 2.1 core systems (Economy, Combat Enhancements)
+- ✅ Phase 2.1d: Economy System implemented (economy_schema.json, Module 03/04 integration)
+- ⏳ Continue Phase 2.1e: Combat Enhancements
 
-**Next Task**: Review ROADMAP.md Phase 2.1b-e (remaining core systems)
+**Next Task**: Review ROADMAP.md Phase 2.1e (Combat Enhancements)
 
 ---
 
@@ -60,9 +61,7 @@
 - Extreme scale (100+ NPCs/quests) theoretical
 
 **Missing Features**:
-- Economy/currency system (inventory exists, no transactions)
 - Death/resurrection rules (0 HP = defeat, no dying mechanics)
-- Schema migration automation (version tagging exists, no scripts)
 
 **Completed (Phase 2.1a)**:
 - ✅ Quest management system -> `quest_schema.json` created with full branching/dependencies
@@ -81,11 +80,11 @@
 - 04-09: NPCs, narrative, session zero, anime, combat, progression (Tier 2 gameplay)
 - 10-13: Error recovery, dice, player agency, narrative calibration (Tier 1/2 support)
 
-**JSON Schemas** (10):
+**JSON Schemas** (11):
 - character_schema.json, world_state_schema.json, session_export_schema.json
 - npc_schema.json, memory_thread_schema.json
 - power_system_schema.json, anime_world_schema.json, narrative_profile_schema.json
-- quest_schema.json, faction_schema.json
+- quest_schema.json, faction_schema.json, economy_schema.json
 
 **Libraries**:
 - 20 narrative profiles (Naruto, HxH, AoT, Death Note, etc.)
@@ -93,11 +92,28 @@
 - 5 power system libraries (mana, ki, soul, psionic, tiers)
 - 3 common mechanics (stats, leveling, skills)
 
-**Total**: 14 modules (~54k) + 10 schemas (~37k estimated) + 40+ libraries (selective load)
+**Total**: 14 modules (~54k) + 11 schemas (~40k estimated) + 40+ libraries (selective load)
 
 ---
 
 ## Recent Changes
+
+**2025-10-28**: Phase 2.1d Economy System implementation complete
+- Created economy_schema.json (comprehensive multi-currency, merchant, market dynamics system)
+- Expanded Module 03 State Manager with Economy & Transaction System (~250 lines)
+  - Currency management (get/modify/convert with multi-currency support)
+  - Item pricing calculation (10-step modifier process: base → rarity → vendor rate → faction reputation → merchant personality → region → supply/demand → global modifiers → caps → final)
+  - Merchant operations (buy/sell/services with atomic transactions, rollback on failure)
+  - Merchant inventory management (restock schedules, add/remove items)
+  - Market dynamics (supply/demand updates, global economic events: war, inflation, embargo, prosperity)
+  - Transaction logging for debugging/review
+  - Faction reputation price modifiers
+  - Economy state validation
+- Updated Module 04 NPC Intelligence with merchant personality integration (pricing affected by traits, faction affiliation, reputation)
+- Updated Module 00 System Initialization (11 required schemas)
+- Updated CORE_AIDM_INSTRUCTIONS.md (11 schemas)
+- Updated ARCHITECTURE.md (11 schemas)
+- Updated STATE.md (economy system complete, schema count updated)
 
 **2025-10-28**: Phase 2.1a implementation complete
 - Implemented Automated Cascade System in Module 03 State Manager
@@ -151,7 +167,7 @@
 
 **Core System**:
 - `/aidm/instructions/` - 14 instruction modules
-- `/aidm/schemas/` - 8 JSON schemas
+- `/aidm/schemas/` - 11 JSON schemas
 - `/aidm/libraries/` - Narrative profiles, tropes, mechanics
 
 **Development**:

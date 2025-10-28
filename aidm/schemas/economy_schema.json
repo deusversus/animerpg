@@ -1,0 +1,361 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "economy_schema.json",
+  "title": "Economy Schema",
+  "description": "Defines item pricing, merchant inventories, transaction system, and market dynamics for AIDM v2",
+  "type": "object",
+  "required": ["schema_version", "currency_systems", "item_prices", "merchants", "market_dynamics"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for migration compatibility",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "default": "2.2.0"
+    },
+    
+    "currency_systems": {
+      "type": "object",
+      "description": "Define all currencies used in the world",
+      "required": ["primary_currency", "currencies"],
+      "properties": {
+        "primary_currency": {
+          "type": "string",
+          "description": "Main currency used for transactions (e.g., 'gold', 'yen', 'credits')"
+        },
+        "currencies": {
+          "type": "object",
+          "description": "All available currencies with their properties",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["name", "abbreviation", "base_value"],
+            "properties": {
+              "name": {"type": "string", "description": "Full currency name"},
+              "abbreviation": {"type": "string", "maxLength": 5},
+              "base_value": {
+                "type": "number",
+                "description": "Value relative to primary currency (1.0 = equal, 0.1 = 10x less valuable)"
+              },
+              "symbol": {"type": "string", "maxLength": 3},
+              "subdivisions": {
+                "type": "array",
+                "description": "Smaller currency units (e.g., copper, silver for gold)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {"type": "string"},
+                    "conversion_rate": {"type": "number", "description": "How many of this unit = 1 main unit"}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "exchange_rates": {
+          "type": "object",
+          "description": "Cross-currency conversion rates",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {"type": "number"}
+          }
+        }
+      }
+    },
+    
+    "item_prices": {
+      "type": "object",
+      "description": "Base prices for all items in the game",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["base_price", "currency", "category"],
+        "properties": {
+          "base_price": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Default price before modifiers"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency type for this price"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["weapon", "armor", "consumable", "quest", "material", "misc", "service"]
+          },
+          "rarity_multiplier": {
+            "type": "object",
+            "description": "Price multipliers based on item rarity",
+            "properties": {
+              "common": {"type": "number", "default": 1.0},
+              "uncommon": {"type": "number", "default": 3.0},
+              "rare": {"type": "number", "default": 10.0},
+              "epic": {"type": "number", "default": 50.0},
+              "legendary": {"type": "number", "default": 500.0},
+              "artifact": {"type": "number", "default": 5000.0}
+            }
+          },
+          "vendor_buy_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0.4,
+            "description": "What vendors pay when buying from player (40% of base price default)"
+          },
+          "vendor_sell_rate": {
+            "type": "number",
+            "minimum": 1,
+            "default": 1.2,
+            "description": "What vendors charge when selling to player (120% of base price default)"
+          },
+          "min_price": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Floor price (never goes below this)"
+          },
+          "max_price": {
+            "type": "number",
+            "description": "Ceiling price (never goes above this)"
+          },
+          "quest_item": {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, cannot be sold to vendors"
+          }
+        }
+      }
+    },
+    
+    "merchants": {
+      "type": "object",
+      "description": "NPC merchants and their inventories",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["merchant_id", "name", "merchant_type", "inventory", "currencies_accepted"],
+        "properties": {
+          "merchant_id": {"type": "string"},
+          "name": {"type": "string"},
+          "npc_id": {
+            "type": "string",
+            "description": "Link to full NPC data in npc_schema if this merchant has personality/relationships"
+          },
+          "merchant_type": {
+            "type": "string",
+            "enum": ["general_store", "blacksmith", "apothecary", "magic_shop", "fence", "guild_vendor", "traveling_merchant", "specialty"]
+          },
+          "location": {
+            "type": "string",
+            "description": "Where this merchant operates (location_id)"
+          },
+          "schedule": {
+            "type": "object",
+            "description": "When merchant is available",
+            "properties": {
+              "days": {"type": "array", "items": {"type": "string"}},
+              "hours": {"type": "string", "description": "e.g., '08:00-18:00'"},
+              "special_conditions": {"type": "string"}
+            }
+          },
+          "inventory": {
+            "type": "object",
+            "description": "Items this merchant sells",
+            "required": ["items", "restock_rate"],
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["item_id", "stock", "price_modifier"],
+                  "properties": {
+                    "item_id": {"type": "string"},
+                    "stock": {
+                      "type": "integer",
+                      "minimum": -1,
+                      "description": "-1 = infinite, 0+ = limited stock"
+                    },
+                    "price_modifier": {
+                      "type": "number",
+                      "default": 1.0,
+                      "description": "Merchant-specific price adjustment (0.8 = 20% discount, 1.5 = 50% markup)"
+                    },
+                    "required_reputation": {
+                      "type": "object",
+                      "description": "Faction reputation required to purchase",
+                      "properties": {
+                        "faction_id": {"type": "string"},
+                        "min_reputation": {"type": "integer"}
+                      }
+                    },
+                    "required_quest": {
+                      "type": "string",
+                      "description": "Quest that must be completed to unlock this item"
+                    }
+                  }
+                }
+              },
+              "restock_rate": {
+                "type": "string",
+                "enum": ["daily", "weekly", "monthly", "on_visit", "never"],
+                "description": "How often inventory refreshes"
+              },
+              "last_restock": {
+                "type": "string",
+                "format": "date-time",
+                "description": "When inventory was last restocked"
+              }
+            }
+          },
+          "currencies_accepted": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Which currencies this merchant accepts"
+          },
+          "faction_affiliation": {
+            "type": "string",
+            "description": "Faction this merchant belongs to (affects prices based on player reputation)"
+          },
+          "reputation_modifiers": {
+            "type": "object",
+            "description": "Price adjustments based on player faction reputation",
+            "properties": {
+              "hostile": {"type": "number", "default": 2.0, "description": "2x markup if hostile"},
+              "unfriendly": {"type": "number", "default": 1.5},
+              "neutral": {"type": "number", "default": 1.0},
+              "friendly": {"type": "number", "default": 0.9},
+              "allied": {"type": "number", "default": 0.75},
+              "revered": {"type": "number", "default": 0.6, "description": "40% discount if revered"}
+            }
+          },
+          "special_services": {
+            "type": "array",
+            "description": "Non-item services (repairs, enchantments, training)",
+            "items": {
+              "type": "object",
+              "properties": {
+                "service_id": {"type": "string"},
+                "name": {"type": "string"},
+                "description": {"type": "string"},
+                "base_price": {"type": "number"},
+                "currency": {"type": "string"},
+                "requirements": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    },
+    
+    "market_dynamics": {
+      "type": "object",
+      "description": "Dynamic pricing and supply/demand mechanics",
+      "properties": {
+        "global_modifiers": {
+          "type": "object",
+          "description": "World-wide economic factors",
+          "properties": {
+            "inflation_rate": {
+              "type": "number",
+              "default": 1.0,
+              "description": "Global price multiplier (1.0 = normal, 1.2 = 20% inflation)"
+            },
+            "war_economy": {
+              "type": "boolean",
+              "default": false,
+              "description": "If true, weapons/armor cost more, consumables scarce"
+            },
+            "trade_embargo": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Locations with blocked trade routes"
+            }
+          }
+        },
+        "supply_demand": {
+          "type": "object",
+          "description": "Per-item or per-category supply/demand tracking",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "availability": {
+                "type": "string",
+                "enum": ["abundant", "common", "normal", "scarce", "rare", "unavailable"],
+                "default": "normal"
+              },
+              "price_modifier": {
+                "type": "number",
+                "description": "Multiplier: abundant=0.6, common=0.8, normal=1.0, scarce=1.5, rare=2.5, unavailable=999"
+              },
+              "demand_trend": {
+                "type": "string",
+                "enum": ["falling", "stable", "rising"],
+                "description": "Direction prices are moving"
+              },
+              "affected_by": {
+                "type": "string",
+                "description": "World event causing this change (e.g., 'dragon attack on mines')"
+              }
+            }
+          }
+        },
+        "regional_prices": {
+          "type": "object",
+          "description": "Location-specific price modifiers",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "location_id": {"type": "string"},
+              "price_modifier": {
+                "type": "number",
+                "description": "Location-wide price adjustment (remote villages = 1.3x, major cities = 0.9x)"
+              },
+              "specialty_goods": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Items cheaper here due to local production"
+              },
+              "imported_goods": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Items more expensive due to import costs"
+              }
+            }
+          }
+        }
+      }
+    },
+    
+    "transaction_log": {
+      "type": "array",
+      "description": "History of all economic transactions (for debugging and player review)",
+      "items": {
+        "type": "object",
+        "required": ["transaction_id", "timestamp", "type", "character_id"],
+        "properties": {
+          "transaction_id": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "type": {
+            "type": "string",
+            "enum": ["buy", "sell", "trade", "quest_reward", "loot", "gift", "theft", "tax", "service"]
+          },
+          "character_id": {"type": "string"},
+          "merchant_id": {"type": "string", "description": "If applicable"},
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item_id": {"type": "string"},
+                "quantity": {"type": "integer"},
+                "unit_price": {"type": "number"},
+                "currency": {"type": "string"}
+              }
+            }
+          },
+          "total_amount": {"type": "number"},
+          "currency": {"type": "string"},
+          "player_balance_before": {"type": "number"},
+          "player_balance_after": {"type": "number"},
+          "notes": {"type": "string", "description": "Context for the transaction"}
+        }
+      }
+    }
+  }
+}

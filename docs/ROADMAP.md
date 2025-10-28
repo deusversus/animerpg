@@ -787,28 +787,28 @@
 
 ---
 
-### Phase 2.1d: Economy System (2 weeks)
+### Phase 2.1d: Economy System ✅ COMPLETE
 
-**economy_schema.json**
-```json
-{
-  "currencies": {
-    "gold": "number",
-    "gems": "number"
-  },
-  "prices": {
-    "item_id": "number"
-  },
-  "transactions": [],
-  "market_conditions": {}
-}
-```
+**economy_schema.json** ✅
+- Multi-currency system with exchange rates and subdivisions
+- Item pricing with base prices, rarity multipliers, vendor rates, price caps
+- Merchant system: inventories, schedules, faction affiliations, reputation modifiers, services
+- Market dynamics: supply/demand tracking, regional prices, global economic modifiers
+- Transaction logging for debugging and review
 
-**Module Updates**
-- Expand Module 03: Currency transactions
-- Expand Module 04: Merchant NPCs
-- Add item pricing tables
-- Add buying/selling mechanics
+**Module Updates** ✅
+- Module 03: Full Economy & Transaction System
+  - Currency management (get_currency_balance, modify_currency, convert_currency)
+  - Item pricing calculation (10-step modifier process)
+  - Merchant operations (buy_from_merchant, sell_to_merchant, purchase_service)
+  - Merchant inventory management (restock schedules, add/remove items)
+  - Market dynamics (supply/demand updates, global economic events)
+  - Transaction logging with rollback on failure
+  - Faction reputation price modifiers
+  - Economy state validation
+- Module 04: Merchant NPC personality integration (pricing affected by traits, dialogue during transactions)
+- Module 00: Updated required schemas (11 total)
+- CORE_AIDM_INSTRUCTIONS: Updated schema list
 
 ### Phase 2.1e: Combat Enhancements (3 weeks)
 

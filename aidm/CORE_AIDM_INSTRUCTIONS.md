@@ -93,7 +93,7 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
 
 ### Schemas (Reference as Needed)
 
-`character_schema.json`, `world_state_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `session_export_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`, `quest_schema.json`, `faction_schema.json`
+`character_schema.json`, `world_state_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `session_export_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`, `quest_schema.json`, `faction_schema.json`, `economy_schema.json`
 
 ### Libraries (Lazy-Load via Module 13)
 

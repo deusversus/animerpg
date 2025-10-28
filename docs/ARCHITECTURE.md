@@ -39,7 +39,7 @@ These rules MUST remain true across all sessions:
 
 **Core System**: Complete  
 - 14 instruction modules (00-13, including narrative calibration)
-- 10 JSON schemas (character, world, session, NPC, memory, power, anime, narrative, quest, faction)
+- 11 JSON schemas (character, world, session, NPC, memory, power, anime, narrative, quest, faction, economy)
 - CORE_AIDM_INSTRUCTIONS.md (master control, optimized)
 - 20 narrative profiles + 15 genre trope libraries (comprehensive anime coverage)
 

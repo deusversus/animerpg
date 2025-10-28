@@ -810,6 +810,406 @@ Manual mode: AIDM asks before executing
 
 ---
 
+## Economy & Transaction System
+
+**Purpose**: Manage currency, item pricing, merchant inventories, and player transactions with dynamic market conditions and faction-based pricing.
+
+### Currency Management
+
+**get_currency_balance(character_id, currency_type)**:
+- Retrieve current balance from character.inventory.currency
+- If currency_type not tracked, return 0
+- Support multiple currencies (gold, gems, faction tokens, etc.)
+
+**modify_currency(character_id, currency_type, amount, reason)**:
+- Validate amount (positive for gain, negative for spend)
+- Check sufficient funds if spending (current_balance >= |amount|)
+- Update character.inventory.currency[currency_type]
+- Create transaction_log entry
+- Create memory thread if significant (ECONOMIC category, heat based on amount)
+- If amount negative: Return success/failure based on funds available
+
+**convert_currency(character_id, from_currency, to_currency, amount)**:
+- Lookup exchange rate from economy_schema.currency_systems.exchange_rates
+- Calculate converted_amount = amount × exchange_rate
+- Deduct from_currency, add to_currency
+- Log transaction
+
+### Item Pricing System
+
+**calculate_item_price(item_id, merchant_id, transaction_type, quantity)**:
+```
+Purpose: Calculate final price for item considering all modifiers
+
+Steps:
+1. Get base_price from economy_schema.item_prices[item_id]
+2. Apply rarity_multiplier (if item has rarity field)
+3. Apply vendor_buy_rate or vendor_sell_rate based on transaction_type
+4. Apply merchant price_modifier (from merchant inventory)
+5. Apply faction reputation modifier:
+   - Get character faction_reputation for merchant's faction_affiliation
+   - Get reputation tier (hostile/unfriendly/neutral/friendly/allied/revered)
+   - Apply merchant.reputation_modifiers[tier]
+6. Apply location regional_prices modifier
+7. Apply market_dynamics supply_demand modifier
+8. Apply global_modifiers (inflation, war economy)
+9. Clamp to min_price and max_price
+10. Multiply by quantity
+11. Round to nearest currency unit
+
+Example: Potion (base 50g, common rarity)
+- Base: 50g
+- Vendor sell rate: ×1.2 = 60g
+- Merchant markup: ×1.1 = 66g
+- Player Allied reputation: ×0.75 = 49.5g
+- Scarce supply: ×1.5 = 74.25g
+- Final: 74g for 1 potion
+```
+
+**get_item_availability(item_id, merchant_id)**:
+- Check merchant.inventory.items for item_id
+- Return stock count (-1 = infinite, 0 = out of stock, 1+ = limited)
+- Check required_reputation (player must meet faction requirement)
+- Check required_quest (must be completed)
+- Return availability object: {in_stock: bool, stock_count: int, locked: bool, reason: string}
+
+### Merchant Operations
+
+**buy_from_merchant(character_id, merchant_id, item_id, quantity)**:
+```
+1. VALIDATION
+   - Merchant exists and is available (schedule check)
+   - Item in merchant inventory
+   - Check stock (if limited: stock >= quantity)
+   - Check reputation requirements
+   - Check quest requirements
+   - Calculate total_price = calculate_item_price(item_id, merchant_id, "buy", quantity)
+   - Check player has sufficient funds
+
+2. ATOMIC TRANSACTION
+   Begin transaction:
+   a) Deduct currency from character.inventory.currency
+   b) Add items to character.inventory.items (or stack if stackable)
+   c) Update merchant stock (if limited: stock -= quantity)
+   d) Create transaction_log entry
+   e) Update character.inventory.current_weight
+   
+   If any step fails → Rollback all changes
+
+3. POST-TRANSACTION
+   - Create memory thread (ECONOMIC, heat 30-50)
+   - Update merchant last_interaction timestamp
+   - Trigger market_dynamics update (if bulk purchase affects supply)
+   - Return success with receipt
+
+Example:
+Player buys 5 Health Potions from Merchant_Gregor
+- Price per potion: 74g (after all modifiers)
+- Total: 370g
+- Player gold: 850g → 480g
+- Inventory: +5 Health Potions
+- Merchant stock: 20 → 15
+- Transaction logged
+```
+
+**sell_to_merchant(character_id, merchant_id, item_id, quantity)**:
+```
+1. VALIDATION
+   - Merchant exists and accepts this item category
+   - Player has item in inventory (quantity available)
+   - Check if quest_item (cannot sell)
+   - Calculate total_price = calculate_item_price(item_id, merchant_id, "sell", quantity)
+   - Merchant has sufficient funds (optional: merchants can have limited gold)
+
+2. ATOMIC TRANSACTION
+   Begin transaction:
+   a) Remove items from character.inventory.items
+   b) Add currency to character.inventory.currency
+   c) Add items to merchant inventory (if merchant restocks)
+   d) Create transaction_log entry
+   e) Update character.inventory.current_weight
+   
+   If any step fails → Rollback all changes
+
+3. POST-TRANSACTION
+   - Create memory thread if significant sale
+   - Update market_dynamics (selling large quantities increases supply)
+   - Return success with receipt
+
+Example:
+Player sells 10 Wolf Pelts to Merchant_Elena
+- Price per pelt: 12g (40% of 30g base, vendor_buy_rate)
+- Total: 120g
+- Player gold: 480g → 600g
+- Inventory: -10 Wolf Pelts, weight reduced
+- Transaction logged
+```
+
+**purchase_service(character_id, merchant_id, service_id)**:
+```
+Services: weapon repair, armor enhancement, skill training, teleportation
+
+1. VALIDATION
+   - Service exists in merchant.special_services
+   - Check requirements (level, quest completion, reputation)
+   - Calculate service_price (base_price + modifiers)
+   - Check player funds
+
+2. ATOMIC TRANSACTION
+   Begin transaction:
+   a) Deduct currency
+   b) Apply service effect (repair item durability, add enchantment, unlock skill)
+   c) Create transaction_log entry
+   d) Update affected schemas (item stats, character skills, etc.)
+   
+   If any step fails → Rollback
+
+3. POST-TRANSACTION
+   - Create memory thread (ECONOMIC + effect category)
+   - Return success with effect description
+
+Example:
+Player pays 200g for weapon repair service
+- Sword durability: 35% → 100%
+- Player gold: 600g → 400g
+- Memory: "Repaired Katana at Blacksmith Hiro for 200g"
+```
+
+### Merchant Inventory Management
+
+**restock_merchant(merchant_id)**:
+```
+Triggered by:
+- Time-based (daily/weekly/monthly based on restock_rate)
+- On player visit (if restock_rate = "on_visit")
+- World events (faction victory unlocks rare items)
+
+Process:
+1. Check time since last_restock
+2. If restock_rate period elapsed:
+   a) Reset stock counts to default for all items
+   b) Potentially add new random items (if merchant_type = "traveling_merchant")
+   c) Update last_restock timestamp
+   d) Apply market_dynamics (war economy might remove certain items)
+3. Return updated inventory
+```
+
+**add_merchant_item(merchant_id, item_id, stock, price_modifier, requirements)**:
+- Add new item to merchant.inventory.items
+- Used for dynamic quest rewards (blacksmith gains legendary sword schematic)
+- Used for world events (traveling merchant arrives with rare goods)
+
+**remove_merchant_item(merchant_id, item_id)**:
+- Remove item from merchant inventory
+- Used for one-time sales or quest-locked items
+
+### Market Dynamics System
+
+**update_supply_demand(item_category, change_reason)**:
+```
+Triggered by:
+- Player bulk purchases/sales (10+ items of same type)
+- World events (dragon destroys iron mine → metal scarce)
+- Faction conflicts (war → weapons/armor in demand)
+- Seasonal changes (winter → food prices rise)
+
+Process:
+1. Determine affected items (category-wide or specific item_id)
+2. Update availability level:
+   - Bulk buy → availability decreases (common → scarce)
+   - Bulk sell → availability increases (scarce → common)
+   - World event → manual set based on narrative
+3. Update price_modifier:
+   - abundant: ×0.6
+   - common: ×0.8
+   - normal: ×1.0
+   - scarce: ×1.5
+   - rare: ×2.5
+   - unavailable: cannot purchase
+4. Set demand_trend (falling/stable/rising)
+5. Record affected_by reason
+6. Create ECONOMIC memory thread (heat 50-70)
+
+Example:
+Dragon destroys iron mines:
+- Item category: "metal" (weapons, armor, tools)
+- Availability: normal → scarce
+- Price modifier: ×1.5
+- Demand trend: rising
+- Affected by: "Dragon attack on Ironpeak Mines"
+- All metal items now 50% more expensive
+```
+
+**apply_global_economic_event(event_type, duration)**:
+```
+Event types:
+- war_economy: weapons/armor ×1.3, consumables scarce
+- trade_embargo: specific locations have ×2.0 prices
+- inflation: all prices ×1.2
+- deflation: all prices ×0.8
+- resource_boom: specific category ×0.5
+
+Process:
+1. Update economy_schema.market_dynamics.global_modifiers
+2. Set event duration (permanent or temporary)
+3. Apply modifier to ALL relevant transactions
+4. Create high-heat ECONOMIC memory (heat 80-90)
+5. Notify player via narrative
+
+Example:
+War declared between Leaf Village and Hidden Mist:
+- war_economy: true
+- Weapons/armor: +30% price
+- Healing potions: scarce (×1.5)
+- Duration: until war ends (world event resolution)
+```
+
+### Transaction Logging
+
+**log_transaction(transaction_data)**:
+```
+Every economic interaction creates a log entry:
+
+Fields:
+- transaction_id: Auto-generated unique ID
+- timestamp: ISO 8601 datetime
+- type: buy/sell/trade/quest_reward/loot/gift/theft/service
+- character_id: Player who made transaction
+- merchant_id: If applicable
+- items: Array of {item_id, quantity, unit_price, currency}
+- total_amount: Final price paid/received
+- currency: Type of currency used
+- player_balance_before: Gold before transaction
+- player_balance_after: Gold after transaction
+- notes: Contextual information
+
+Purpose:
+- Debugging (verify economy balance)
+- Player review (check transaction history via meta-command)
+- Anti-exploit (detect rapid buy/sell loops)
+- Narrative (track player wealth accumulation)
+
+Storage:
+- Recent 100 transactions in active state
+- Older transactions compressed to summary in memory threads
+```
+
+### Faction Reputation Impact on Prices
+
+**calculate_faction_price_modifier(character_id, merchant_id)**:
+```
+1. Get merchant.faction_affiliation
+2. If no affiliation → return 1.0 (no modifier)
+3. Get character.faction_reputation[faction_id]
+4. Determine reputation_tier from faction_schema:
+   - hostile: < -50
+   - unfriendly: -50 to -10
+   - neutral: -10 to +10
+   - friendly: +10 to +50
+   - allied: +50 to +90
+   - revered: > +90
+5. Get merchant.reputation_modifiers[tier]
+6. Return modifier (hostile = ×2.0, revered = ×0.6)
+
+Integration with Faction System:
+- Completing faction quests → reputation increase → better prices
+- Betraying faction → reputation decrease → worse prices (or banned)
+- Faction wars → enemy faction merchants refuse service
+```
+
+### Economy Integration with Other Systems
+
+**Quest Rewards**:
+```
+When quest completed (Module 03 quest_completion cascade):
+- Read quest.rewards.currency
+- Call modify_currency(character_id, currency_type, amount, "quest_reward")
+- Log transaction with type="quest_reward"
+- No merchant involved (direct world reward)
+```
+
+**Loot System**:
+```
+After combat victory:
+- Generate loot table based on enemy type/level
+- Add items to character.inventory.items
+- Add currency from enemy drops
+- Log transaction with type="loot"
+- Create memory thread (ECONOMIC + COMBAT, heat 40-60)
+```
+
+**NPC Gifts/Theft**:
+```
+NPC gives player item due to high affinity:
+- Call modify_currency or add item directly
+- Log transaction with type="gift"
+- Create RELATIONSHIP memory thread
+
+Player steals from merchant/NPC:
+- Check stealth roll success (Module 08 or Module 11)
+- If success: Transfer item, log type="theft"
+- If caught: Trigger faction reputation loss, possible combat
+- Create CONSEQUENCE memory (heat 70-90)
+```
+
+### Economy State Validation
+
+**Validate Economy State**:
+```
+Check on every transaction and during save/load:
+
+1. Currency consistency:
+   - All currency values >= 0
+   - No negative balances unless debt system implemented
+   
+2. Inventory weight:
+   - current_weight <= max_weight
+   - Recalculate if discrepancy found
+   
+3. Item duplication:
+   - No duplicate item_ids unless stackable
+   - Verify equipped items exist in inventory
+   
+4. Merchant stock:
+   - Stock counts >= -1 (infinite) or >= 0 (limited)
+   - No negative stock
+   
+5. Price sanity:
+   - Final prices >= min_price
+   - Final prices <= max_price (if set)
+   - No free items unless intentional (base_price = 0)
+   
+6. Transaction log integrity:
+   - Balance changes match transaction amounts
+   - No orphaned merchant references
+
+If validation fails:
+- Log error with details
+- Attempt auto-correction (recalculate weight, reset negative stock to 0)
+- If critical: Rollback to last valid state
+- Notify player if manual intervention needed
+```
+
+### Common Economy Mistakes
+
+**[NO] Arbitrary Prices**: "Sword costs 5 million gold" (no way to earn that much) → Broken economy
+
+**[OK] Scaled Pricing**: "Sword 500g (affordable with 3-4 quests)" → Balanced progression
+
+**[NO] Infinite Merchant Gold**: Player sells 1000 items, merchant never runs out of money → Exploitable
+
+**[OK] Limited Merchant Funds**: "Merchant has 5000g. Cannot buy more until restock" → Realistic
+
+**[NO] Ignoring Faction Reputation**: Player hostile to faction, merchant still sells at normal price → Inconsistent
+
+**[OK] Reputation-Based Pricing**: "Hostile to Leaf Village: blacksmith charges 2x price or refuses service" → Immersive
+
+**[NO] Static Prices**: Dragon destroys mines, iron still costs same as before → No world reactivity
+
+**[OK] Dynamic Market**: "Iron mine destroyed: metal items now scarce (×1.5 price)" → Living world
+
+---
+
 ## Faction & Reputation Management
 
 **Purpose**: To manage faction data, track character reputation, and handle reputation-based mechanics like rank progression and access control.
