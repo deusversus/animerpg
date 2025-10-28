@@ -24,7 +24,7 @@
       "type": "string",
       "description": "Schema version for migration compatibility tracking",
       "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "default": "2.1.0"
+      "default": "2.2.0"
     },
     "character_id": {
       "type": "string",
@@ -386,38 +386,16 @@
     },
     
     "world_context": {
-          "type": "array",
-          "items": {"type": "string", "description": "Quest IDs"}
-        },
-        "failed": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "quest_id": {"type": "string"},
-              "reason": {"type": "string"},
-              "failed_at": {"type": "string", "format": "date-time"}
-            }
-          }
-        }
-      }
-    },
-    
-    "world_context": {
       "type": "object",
       "description": "Character's relationship to the world",
       "properties": {
         "current_location": {"type": "string"},
         "faction_reputations": {
           "type": "object",
-          "description": "Standing with various factions",
+          "description": "Character's reputation scores with various factions. The key is the faction_id.",
           "additionalProperties": {
-            "type": "object",
-            "properties": {
-              "reputation": {"type": "integer", "minimum": -100, "maximum": 100},
-              "rank": {"type": "string"},
-              "flags": {"type": "array", "items": {"type": "string"}}
-            }
+            "type": "integer",
+            "description": "The character's raw reputation score with the faction."
           }
         },
         "known_locations": {

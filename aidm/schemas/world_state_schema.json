@@ -22,7 +22,7 @@
       "type": "string",
       "description": "Schema version for migration compatibility tracking",
       "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "default": "2.1.0"
+      "default": "2.2.0"
     },
     "world_id": {
       "type": "string",
@@ -154,68 +154,10 @@
     },
     
     "factions": {
-      "type": "array",
-      "description": "Political and social organizations",
-      "items": {
-        "type": "object",
-        "required": ["faction_id", "name", "type", "power_level", "goals"],
-        "properties": {
-          "faction_id": {"type": "string"},
-          "name": {"type": "string"},
-          "type": {
-            "type": "string",
-            "enum": ["government", "military", "religious", "criminal", "merchant", "guild", "rebel", "clan", "cult", "academic"]
-          },
-          "power_level": {"type": "integer", "minimum": 0, "maximum": 100},
-          "territory": {
-            "type": "array",
-            "items": {"type": "string", "description": "Location IDs"}
-          },
-          "goals": {
-            "type": "array",
-            "description": "Current faction objectives",
-            "items": {
-              "type": "object",
-              "properties": {
-                "description": {"type": "string"},
-                "priority": {"type": "string", "enum": ["low", "medium", "high", "critical"]},
-                "progress": {"type": "integer", "minimum": 0, "maximum": 100}
-              }
-            }
-          },
-          "relationships": {
-            "type": "object",
-            "description": "Relations with other factions",
-            "additionalProperties": {
-              "type": "object",
-              "properties": {
-                "affinity": {"type": "integer", "minimum": -100, "maximum": 100},
-                "status": {"type": "string", "enum": ["allied", "friendly", "neutral", "tense", "hostile", "at_war"]}
-              }
-            }
-          },
-          "resources": {
-            "type": "object",
-            "properties": {
-              "wealth": {"type": "integer", "minimum": 0},
-              "military_strength": {"type": "integer", "minimum": 0},
-              "influence": {"type": "integer", "minimum": 0},
-              "magical_power": {"type": "integer", "minimum": 0}
-            }
-          },
-          "recent_actions": {
-            "type": "array",
-            "description": "Recent faction activities",
-            "items": {
-              "type": "object",
-              "properties": {
-                "action": {"type": "string"},
-                "timestamp": {"type": "string", "format": "date-time"},
-                "outcome": {"type": "string"}
-              }
-            }
-          }
-        }
+      "type": "object",
+      "description": "Master registry of all factions in the world. The key is the faction_id.",
+      "additionalProperties": {
+        "$ref": "faction_schema.json"
       }
     },
     

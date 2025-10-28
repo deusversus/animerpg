@@ -499,3 +499,59 @@ Coordinates with: Cognitive (01) - validates action prereqs, Learning (02) - sto
 **End of Module 03**
 
 *Next: 06_session_zero.md (Character Creation)*
+
+---
+
+## Faction & Reputation Management
+
+**Purpose**: To manage faction data, track character reputation, and handle reputation-based mechanics like rank progression and access control.
+
+#### Faction CRUD Operations
+
+**create_faction(faction_data)**:
+- Validates `faction_data` against `faction_schema.json`.
+- Generates a `faction_id` if one is not provided.
+- Adds the new faction object to `world_state.factions`.
+- Creates a memory thread (Category: Factions, Heat: 60) announcing the new faction.
+
+**update_faction(faction_id, updates)**:
+- Validates that the faction exists in `world_state.factions`.
+- Applies the `updates` to the faction object.
+- Triggers a "faction_change" cascade if significant properties (e.g., `ideology`, `allies`, `enemies`) are altered.
+- Creates a memory thread detailing the changes.
+
+**delete_faction(faction_id)**:
+- Removes the faction from `world_state.factions`.
+- Triggers a "faction_dissolved" cascade, affecting all member NPCs and player characters with reputation.
+- Creates a high-heat memory thread (Category: Factions, Heat: 80) announcing the dissolution.
+
+#### Reputation Management
+
+**get_reputation(character_id, faction_id)**:
+- Retrieves the raw integer score from `character.world_context.faction_reputations[faction_id]`.
+- Returns 0 if no reputation is recorded.
+
+**modify_reputation(character_id, faction_id, amount)**:
+- Fetches the current reputation score.
+- Adds the `amount` to the score.
+- Clamps the new score within a global min/max if applicable (e.g., -1000 to 1000).
+- Updates the value in `character.world_context.faction_reputations`.
+- Checks if the change results in a new rank or reputation tier and creates a memory if it does.
+
+**get_reputation_tier(faction_id, reputation_score)**:
+- Fetches the `reputation_tiers` object from the specified `faction_schema.json`.
+- Compares the `reputation_score` against the `min` and `max` of each tier (hated, disliked, neutral, liked, honored).
+- Returns the string name of the matching tier (e.g., "liked").
+
+**get_character_rank(faction_id, reputation_score)**:
+- Fetches the `ranks` array from the `faction_schema.json`.
+- Iterates through the ranks from highest `min_reputation` to lowest.
+- Returns the `title` of the first rank where `reputation_score >= min_reputation`.
+- Returns a default title (e.g., "Outsider") if no rank is achieved.
+
+#### Integration with Other Systems
+
+- **NPC Intelligence (Module 04)**: An NPC's disposition towards a character is influenced by `(NPC_affinity * 0.6) + (Faction_Reputation * 0.4)`. If the NPC's faction is an enemy of the character's allied faction, a negative modifier is applied.
+- **Quest System (Module 05/03)**: Certain quests require a minimum reputation tier to become available. Completing quests for a faction is the primary way to gain reputation.
+- **Narrative Systems (Module 05)**: Faction conflicts, power shifts, and story arcs are driven by the data in `world_state.factions`.
+- **Cascade System**: Changes to faction reputation or faction status (e.g., declaring war) trigger cascades that can alter NPC behavior, available quests, and location access.

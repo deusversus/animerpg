@@ -114,6 +114,72 @@
 
 ---
 
+## Version 2.2.0 (2025-10-28)
+
+**Status**: In Development (Phase 2.1c - Faction & Reputation System)
+
+### faction_schema.json (NEW)
+
+**Added**:
+- New schema to define a faction's structure, including its ideology, membership, ranks, and reputation system.
+- `faction_id`, `name`, `description`, `ideology` for core identity.
+- `allies` and `enemies` arrays for inter-faction relationships.
+- `membership` object detailing recruitment policy and member list.
+- `ranks` array to define hierarchical progression within the faction.
+- `reputation_tiers` object to define reputation levels (e.g., Hated, Neutral, Honored).
+
+**Impact**:
+- ✅ New schema, no breaking changes to existing data.
+- 📝 Requires integration into `world_state_schema.json` as the master faction registry.
+- 📝 Requires integration into `character_schema.json` to track player reputation with factions.
+- 📝 Module 04 (NPC Intelligence) will need to be updated to use faction data for disposition and behavior.
+- 📝 Module 03 (State Manager) will need to handle faction data in world state updates.
+
+**Rationale**: Phase 2.1c requirement. Establishes a formal, structured system for factions and reputation, moving beyond simple flags or relationship scores.
+
+### character_schema.json
+
+**Modified**:
+- Refactored `world_context.faction_reputations` from a complex object to a simple key-value store.
+- **Old**: `faction_id -> { reputation: int, rank: string, flags: [] }`
+- **New**: `faction_id -> integer` (raw reputation score).
+- The character's rank is now derived by comparing their raw score against the `ranks` and `reputation_tiers` defined in the main `faction_schema.json`.
+
+**Impact**:
+- ⚠️ **BREAKING CHANGE** for character saves.
+- **Migration Required**: A script will be needed to read the old `reputation` integer from the nested object and move it to be the direct value of the `faction_id` key. The `rank` and `flags` will be discarded, as they are now derived data.
+- Simplifies the character schema significantly.
+- Enforces a single source of truth for faction rank and status definitions.
+
+**Migration Path**:
+1. For each character, iterate through `world_context.faction_reputations`.
+2. Create a new `faction_reputations` object.
+3. For each `faction_id` in the old object, copy the `reputation` value to the new object: `new_reputations[faction_id] = old_reputations[faction_id].reputation`.
+4. Replace the old `faction_reputations` object with the new one.
+5. Update `schema_version` to "2.2.0".
+
+### world_state_schema.json
+
+**Modified**:
+- Refactored the `factions` property from an array of objects to a single object serving as a master registry.
+- **Old**: An array `[]` of faction objects.
+- **New**: An object `{}` where each key is a `faction_id` and the value is a full faction object (`$ref: "faction_schema.json"`).
+
+**Impact**:
+- ⚠️ **BREAKING CHANGE** for world state saves.
+- **Migration Required**: A script must convert the array of factions into an object, using each faction's `faction_id` as the key.
+- Improves lookup performance (O(1) vs O(n)).
+- Aligns the faction data structure with the pattern already established for quests.
+
+**Migration Path**:
+1. Read the `factions` array from the world state.
+2. Create a new empty `factions` object.
+3. Iterate through the array, and for each faction, set `new_factions[faction.faction_id] = faction`.
+4. Replace the old `factions` array with the new object.
+5. Update `schema_version` to "2.2.0".
+
+---
+
 ## Version 2.1.0 (2025-10-27)
 
 **Status**: In Development (Phase 2.1b - Quest Management System)
@@ -300,9 +366,10 @@ Before incrementing any schema version:
 
 | Schema | Version | Last Updated | Status |
 |--------|---------|--------------|--------|
-| character_schema.json | 2.1.0 | 2025-10-27 | Modified (quest references) |
-| world_state_schema.json | 2.1.0 | 2025-10-27 | Modified (quest registry) |
-| quest_schema.json | 2.1.0 | 2025-10-27 | NEW |
+| character_schema.json | 2.2.0 | 2025-10-28 | Modified (faction reputation) |
+| world_state_schema.json | 2.2.0 | 2025-10-28 | Modified (faction registry) |
+| faction_schema.json | 2.2.0 | 2025-10-28 | NEW |
+| quest_schema.json | 2.1.0 | 2025-10-27 | Stable |
 | npc_schema.json | 2.0.0 | 2025-10-27 | Stable |
 | memory_thread_schema.json | 2.0.0 | 2025-10-27 | Stable |
 | narrative_profile_schema.json | 2.0.0 | 2025-10-27 | Stable |
