@@ -31,8 +31,8 @@
 - ⚠️ Extreme scale (100+ NPCs/quests) theoretical, needs archiving optimization
 
 **Known Feature Gaps**:
-- No structured quest management system (tracked via character schema + memory threads, lacks branching/dependencies)
-- No faction reputation mechanics (NPC affinity -100 to +100 exists, faction-level player reputation missing)
+- No structured quest management system (tracked via character schema + memory threads, lacks branching/dependencies) -> `quest_schema.json` is now implemented.
+- No faction reputation mechanics (NPC affinity -100 to +100 exists, faction-level player reputation missing) -> `faction_schema.json` is now implemented.
 - No economy/currency system (inventory tracking exists, no transactions/pricing/merchants)
 - No death/resurrection rules (0 HP = defeat mentioned, no dying mechanics/death saves/injury tables)
 - No training/downtime formalization (skill XP from use exists, training montages not structured)

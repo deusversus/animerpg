@@ -502,6 +502,314 @@ Coordinates with: Cognitive (01) - validates action prereqs, Learning (02) - sto
 
 ---
 
+## Automated Cascade System
+
+**Purpose**: Automatically propagate state changes across related entities to maintain consistency and reduce manual update burden. See `docs/CASCADE_SYSTEM_DESIGN.md` for full architectural details.
+
+### Cascade Registry
+
+**Defined Cascades**:
+1. **npc_death**: NPC HP → 0 triggers updates to NPC schema, character relationships, quests, factions, and memory
+2. **location_destruction**: Location status → "destroyed" triggers NPC displacement, faction territory loss, quest failures, event cancellations
+3. **quest_completion**: Quest status → "completed" triggers XP award, dependency unlocks, rewards distribution, NPC affinity updates
+4. **faction_power_shift**: Faction power changes ≥15 points triggers NPC behavior updates, rival faction reactions, political landscape recalculation
+
+### Cascade Execution Engine
+
+**execute_cascade(trigger_type, context)**:
+```
+Purpose: Execute cascade based on trigger type with atomic transaction semantics
+Args:
+  - trigger_type: One of [npc_death, location_destruction, quest_completion, faction_power_shift]
+  - context: Dict with trigger-specific data (npc_id, location_id, quest_id, faction_id, etc.)
+Returns: CascadeResult with success/failure status and update log
+
+Process:
+1. PRE-VALIDATION
+   - Validate current state is consistent before cascade
+   - Check cascade depth limit (max 3 levels to prevent infinite loops)
+   - Check cascade count per turn (max 5 to prevent performance issues)
+   
+2. BUILD EXECUTION PLAN
+   - Call build_cascade_plan(trigger_type, context)
+   - Generate list of all required updates across schemas
+   - Validate no circular dependencies
+   
+3. ATOMIC EXECUTION
+   - Begin transaction (all-or-nothing semantics)
+   - For each update in plan:
+     * Apply update to appropriate schema
+     * Validate update succeeded
+   - If any update fails → Rollback entire transaction
+   
+4. POST-VALIDATION
+   - Validate new state is consistent
+   - Check no constraint violations introduced
+   - If invalid → Rollback transaction
+   
+5. LOGGING & NOTIFICATION
+   - Log cascade execution (type, context, updates, timestamp, success/failure)
+   - Create memory thread for significant cascades
+   - Notify player of cascade effects (transparency)
+   
+6. RETURN RESULT
+   - Success: Return CascadeResult(success=true, updates=plan.updates)
+   - Failure: Return CascadeResult(success=false, error=error_message)
+```
+
+**build_cascade_plan(trigger_type, context)**:
+```
+Purpose: Build list of all updates required for this cascade type
+
+NPC_DEATH cascade plan:
+1. Update npc_schema:
+   - Set status = "dead"
+   - Set can_die = false (prevent re-death)
+   - Add death_timestamp
+   - Preserve all other fields (for memory/relationships)
+
+2. Update character_schema.relationships:
+   - Find all entries with npc_id
+   - Set status = "deceased"
+   - DO NOT remove (preserve for narrative)
+   - Add death_note field with cause of death
+
+3. Update character_schema.quests:
+   - Scan all active quests for associated_npcs containing npc_id
+   - Defeat/kill quests → Mark complete, award XP
+   - Protection/escort quests → Mark failed with reason
+   - Neutral quests → Add complication flag
+
+4. Update world_state_schema.factions:
+   - IF NPC has faction_role = "leader":
+     * Reduce faction power by 15-25%
+     * Add faction_event: "Leadership Lost"
+     * Trigger succession if defined
+   - IF NPC has faction_role = "member":
+     * Reduce faction power by 1-5%
+   - Update faction.members array (remove npc_id)
+
+5. Create memory_thread:
+   - category: "world_events"
+   - summary: "[NPC name] died [cause]"
+   - heat_index: 80-100 (based on NPC importance)
+   - flags.plot_critical: true (if NPC had plot_critical flag)
+   - immutable: true
+
+6. Update world_state_schema.world_changing_events:
+   - Add event log entry with ripple effects
+
+7. Log cascade execution
+
+LOCATION_DESTRUCTION cascade plan:
+1. Update world_state_schema.locations:
+   - Set status = "destroyed"
+   - Set accessible = false
+   - Preserve description (for historical reference)
+   - Add destruction_cause, destruction_timestamp
+
+2. Update all NPCs with current_location = location_id:
+   - Set current_location = "displaced" OR nearest safe location
+   - Add displaced flag
+   - Create NPC-specific memory of displacement
+
+3. Update world_state_schema.factions:
+   - IF location was faction territory:
+     * Remove from faction.controlled_territories
+     * Reduce faction power by 10-30% (based on strategic importance)
+     * Add faction_event: "Territory Lost"
+   - Update rival factions (may gain territory/power)
+
+4. Update character_schema.quests:
+   - Scan for quests with quest_location = location_id
+   - Mark as failed OR add complication (location rebuilt/changed)
+   - Offer alternative quest paths if available
+
+5. Update world_state_schema.special_events:
+   - Cancel events scheduled at destroyed location
+   - Create refugee crisis event if civilian_population > 0
+
+6. Create memory_thread:
+   - category: "world_events"
+   - summary: "[Location] destroyed by [cause]"
+   - heat_index: 90-100
+   - flags.plot_critical: true
+   - immutable: true
+
+7. Create ripple effect memories (economic/political/social impact)
+
+8. Log cascade execution
+
+QUEST_COMPLETION cascade plan:
+1. Move quest from active → completed in character_schema.quests
+
+2. Award XP automatically:
+   - Read quest.rewards.xp
+   - Add to character_schema.progression.current_xp
+   - Trigger level up check (cascade into level up if threshold met)
+   - Log XP gain in progression.xp_log
+
+3. Update NPCs with associated_quests containing quest_id:
+   - Mark quest as resolved in NPC's quest_involvement
+   - Adjust affinity based on outcome (+20 success, -10 betrayal)
+
+4. Check quest dependencies:
+   - Scan quest_tree for child quests
+   - Unlock child quests if prerequisites met
+   - Add to character_schema.quests.available_quests
+
+5. Update world_state if quest has world_impact flag:
+   - Faction power adjustments
+   - Location status changes
+   - Political landscape shifts
+
+6. Create memory_thread:
+   - category: "quests"
+   - summary: "Completed [quest name]"
+   - heat_index: Based on significance (40-80)
+   - flags.player_initiated: true
+
+7. Distribute rewards automatically:
+   - Items → character_schema.inventory
+   - Currency → character_schema.wallet
+   - Skills → character_schema.skills.available_skills
+   - Reputation → faction_reputation updates
+
+8. Log cascade execution
+
+FACTION_POWER_SHIFT cascade plan:
+1. Update world_state_schema.factions:
+   - Recalculate power_score
+   - Update faction_standing (dominant/major/minor/failing)
+   - Adjust controlled_territories if applicable
+
+2. Update affiliated NPCs:
+   - Scan all NPCs with faction_affiliation = faction_id
+   - Adjust behavior based on faction strength:
+     * Dominant faction → NPCs more confident/aggressive
+     * Failing faction → NPCs desperate/defensive
+   - Update NPC dialogue_tone based on faction morale
+
+3. Update rival factions:
+   - If faction gains power → rivals lose influence
+   - Update faction.relationships (standings between factions)
+   - Trigger political events (alliances/conflicts)
+
+4. Update player faction_reputation:
+   - IF player involved in faction power shift:
+     * Adjust character_schema.faction_reputation
+     * May trigger faction quests (recruitment, betrayal, alliance)
+
+5. Create memory_thread:
+   - category: "world_events"
+   - summary: "[Faction] power shifted [direction] due to [cause]"
+   - heat_index: 60-90
+   - flags: Include political_impact flag
+
+6. Update world_state.political_landscape:
+   - Recalculate faction dominance rankings
+   - Trigger special events if power balance tips
+   - Update trade routes, safe zones based on faction control
+
+7. Log cascade execution
+```
+
+### Cascade Triggers
+
+**Automatic Trigger Points**:
+- **After ANY schema update**: State Manager validates then checks trigger registry
+- **During SAVE operation**: Ensure consistent state before export
+- **During LOAD operation**: Repair inconsistencies if detected
+
+**Trigger Detection**:
+```
+1. Read affected schema field
+2. Check against cascade registry for matches:
+   - NPC HP → 0 AND can_die=true → Trigger npc_death cascade
+   - Location status → "destroyed" → Trigger location_destruction cascade
+   - Quest status → "completed" → Trigger quest_completion cascade
+   - Faction power change ≥ 15 → Trigger faction_power_shift cascade
+3. If match found → Execute cascade
+4. If no match → Normal update flow
+```
+
+### Cascade Safety Mechanisms
+
+**Throttling**:
+- Maximum 5 cascades per turn (prevent infinite loops)
+- Cascade depth limit: 3 levels (prevent chaining explosions)
+- If exceeded → Log warning, halt cascades, alert AIDM
+
+**Circular Dependency Prevention**:
+- Track cascade call stack
+- Detect circular patterns (e.g., Faction shift → NPC death → Faction shift)
+- Block circular cascades, log warning
+
+**Error Handling**:
+```
+IF cascade fails:
+- Log error with full context (trigger type, what failed, why)
+- Revert ALL changes from this cascade (atomic rollback)
+- Alert AIDM to notify player: "State update encountered an issue, please report"
+- Continue gameplay (degraded mode - manual updates required)
+- DO NOT crash session
+
+IF cascade partially succeeds:
+- Should never happen (atomic execution prevents)
+- If detected → Treat as total failure, rollback, log critical error
+```
+
+### Player Transparency
+
+**Cascade Notifications**:
+```
+Always show cascade effects to player for transparency:
+
+Example: "Zabuza's death caused:
+  - Leaf Village power +10
+  - Quest 'Defeat Zabuza' complete (+500 XP)
+  - 3 relationships updated (Naruto, Sakura, Kakashi)"
+
+Format: "[Event] → [Consequence 1], [Consequence 2], [Consequence 3]"
+```
+
+**Cascade Opt-Out** (Advanced):
+```
+Advanced players can disable auto-cascades via meta-command:
+META: /cascade auto off
+
+Manual mode: AIDM asks before executing
+"This would trigger cascades: [list of updates]. Proceed? (yes/no)"
+```
+
+### Performance Considerations
+
+**Cascade Execution Time**:
+- Simple cascades (quest completion): <1 second
+- Complex cascades (location destruction): 2-5 seconds
+- Maximum acceptable: 10 seconds
+
+**Optimization Strategies**:
+- Lazy evaluation: Only compute necessary updates
+- Batch similar updates: Update all NPCs in one pass
+- Cache validation results: Don't re-validate same constraints
+
+### Integration with Other Modules
+
+**Coordinates with**:
+- **Module 02 (Learning Engine)**: Creates memory threads for cascade events
+- **Module 04 (NPC Intelligence)**: Updates NPC behavior/affinity during cascades
+- **Module 05 (Narrative Systems)**: Generates narrative consequences from cascades
+- **Module 09 (Progression)**: Handles XP awards and level-ups from quest cascades
+
+**Cascade → Memory Thread Mapping**:
+- NPC death → WORLD_EVENTS (heat 80-100)
+- Location destruction → WORLD_EVENTS (heat 90-100)
+- Quest completion → QUESTS (heat 40-80)
+- Faction shift → WORLD_EVENTS (heat 60-90)
+
+---
+
 ## Faction & Reputation Management
 
 **Purpose**: To manage faction data, track character reputation, and handle reputation-based mechanics like rank progression and access control.

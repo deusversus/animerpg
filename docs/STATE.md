@@ -57,8 +57,8 @@
 - Extreme scale (100+ NPCs/quests) theoretical
 
 **Missing Features**:
-- Quest management system (informal via memory only)
-- Faction reputation mechanics (NPC affinity exists, faction-level missing)
+- Quest management system (informal via memory only) -> `quest_schema.json` created.
+- Faction reputation mechanics (NPC affinity exists, faction-level missing) -> `faction_schema.json` created.
 - Economy/currency system (inventory exists, no transactions)
 - Death/resurrection rules (0 HP = defeat, no dying mechanics)
 - Schema migration automation (version tagging exists, no scripts)
@@ -80,10 +80,11 @@
 - 04-09: NPCs, narrative, session zero, anime, combat, progression (Tier 2 gameplay)
 - 10-13: Error recovery, dice, player agency, narrative calibration (Tier 1/2 support)
 
-**JSON Schemas** (8):
+**JSON Schemas** (10):
 - character_schema.json, world_state_schema.json, session_export_schema.json
 - npc_schema.json, memory_thread_schema.json
 - power_system_schema.json, anime_world_schema.json, narrative_profile_schema.json
+- quest_schema.json, faction_schema.json
 
 **Libraries**:
 - 20 narrative profiles (Naruto, HxH, AoT, Death Note, etc.)

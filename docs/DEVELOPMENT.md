@@ -90,7 +90,7 @@ When asking AI to modify or create AIDM files:
 **Major Changes (Discuss Before Implementing)**:
 - Adding new core systems (beyond 10 instruction modules)
 - Changing module dependencies
-- Modifying core schemas (character, world, NPC, memory)
+- Modifying core schemas (character, world, NPC, memory, quest, faction)
 - Adding external tool requirements
 - Changing fundamental game mechanics
 
@@ -364,7 +364,7 @@ Register in CASCADE_SYSTEM_DESIGN.md:
 - [ ] Define clear trigger condition
 - [ ] List all entities affected by cascade
 - [ ] Design atomic transaction (all-or-nothing)
-- [ ] Add to CASCADE_SYSTEM_DESIGN.md
+- [ ] Add to `docs/CASCADE_SYSTEM_DESIGN.md`
 - [ ] Implement rollback on failure
 - [ ] Log cascade execution for debugging
 

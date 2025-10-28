@@ -19,7 +19,7 @@ Bootstrap sequence runs once per session: Load modules (correct order), Validate
 
 ## Step 1: Schema Validation
 
-**Required Schemas (8)**: `character_schema.json`, `world_state_schema.json`, `session_export_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`
+**Required Schemas (10)**: `character_schema.json`, `world_state_schema.json`, `session_export_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`, `quest_schema.json`, `faction_schema.json`
 
 **Validation**: Check file exists→Validate JSON→Check required fields
 

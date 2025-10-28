@@ -39,7 +39,7 @@ These rules MUST remain true across all sessions:
 
 **Core System**: Complete  
 - 14 instruction modules (00-13, including narrative calibration)
-- 8 JSON schemas (character, world, session, NPC, memory, power, anime, narrative)
+- 10 JSON schemas (character, world, session, NPC, memory, power, anime, narrative, quest, faction)
 - CORE_AIDM_INSTRUCTIONS.md (master control, optimized)
 - 20 narrative profiles + 15 genre trope libraries (comprehensive anime coverage)
 
@@ -209,7 +209,7 @@ AIDM v2 runs entirely within an LLM conversation. There is no server, no databas
 - `aidm/instructions/12_player_agency.md`: The Sacred Rule enforcement
 - `aidm/instructions/13_narrative_calibration.md`: Narrative DNA extraction and application
 
-**Schema Files (8 files in `/aidm/schemas/`)**
+**Schema Files (10 files in `/aidm/schemas/`)**
 - `aidm/schemas/character_schema.json`: Player character structure
 - `aidm/schemas/world_state_schema.json`: World and environment data
 - `aidm/schemas/npc_schema.json`: NPC data structure
@@ -218,6 +218,8 @@ AIDM v2 runs entirely within an LLM conversation. There is no server, no databas
 - `aidm/schemas/power_system_schema.json`: Power framework definition
 - `aidm/schemas/anime_world_schema.json`: Anime world generation
 - `aidm/schemas/narrative_profile_schema.json`: Narrative DNA structure (10 scales, 15 tropes, pacing/tone/dialogue/combat)
+- `aidm/schemas/quest_schema.json`: Defines structure for quests, objectives, and branching logic
+- `aidm/schemas/faction_schema.json`: Defines structure for faction reputation and relationships
 
 **Library Files (25 files in `/aidm/libraries/`)**
 
@@ -300,7 +302,7 @@ Redesigned from 4 narrow categories (chakra/mana/ki/unique) to 5 universal frame
 - **Plus Power Scaling Library**: Handles OP characters (Tier 1-5 framework, ensemble cast pivot, growth models)
 - **Design Philosophy**: Embrace power fantasy, not restrict it
 
-**Total: 46 files (5 docs + 2 core + 14 instructions + 8 schemas + 25 libraries)**
+**Total: 48 files (5 docs + 2 core + 14 instructions + 10 schemas + 25 libraries)**
 
 ---
 
@@ -378,7 +380,7 @@ Redesigned from 4 narrow categories (chakra/mana/ki/unique) to 5 universal frame
 The AIDM v2 system achieves production readiness through:
 - **Modular Design**: 14 instruction modules for specific cognitive functions
 - **Optimized Loading**: Index files reduce Session Zero load by 36.2% while maintaining 100% information parity
-- **JSON Schema Validation**: 8 structured schemas ensure data consistency 
+- **JSON Schema Validation**: 10 structured schemas ensure data consistency 
 - **Narrative DNA**: 20 anime profiles + 15 genre trope libraries for authentic storytelling
 - **On-Demand Access**: Dynamic content loading based on session needs
 - **Token Efficiency**: 87k base system (43% of 200k context) with controlled Phase 2.1 growth
