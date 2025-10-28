@@ -130,6 +130,30 @@ When mechanical scaffolding changes (XP model, growth model, stat framework shif
 
 **Rule**: NARRATIVE_STYLE memories track HOW campaign feels, ensuring tone consistency across sessions. Applied adjustments fade (compress) after 3-5 sessions, but permanent record remains in narrative_profile.adjustments_log.
 
+### 8. FACTION_DYNAMICS (Political & Social Changes)
+**Heat Decay**: Slow | **Base**: 40-80 | **Compression**: Summarize minor shifts, never compress declarations of war or major power changes.
+
+**Contents**:
+- **Faction Creation/Dissolution**: `world_state.factions` adds or removes a major faction.
+- **Reputation Tier Changes**: Character's reputation with a faction crosses a major threshold (e.g., Neutral -> Liked, Liked -> Honored).
+- **Rank Progression**: Character achieves a new rank within a faction.
+- **Inter-Faction Relations**: Two factions declare war, form an alliance, or have a major shift in their relationship status.
+- **Territory Changes**: A faction gains or loses control of a significant location.
+- **Leadership Changes**: A new leader takes control of a faction.
+
+**Memory Creation Trigger**:
+- Generated automatically by the State Manager (Module 03) whenever a significant faction-related event occurs.
+- `create_faction`, `modify_reputation`, `update_faction` calls in the State Manager will spawn these memories.
+
+**Example Memories**:
+- `{"category":"faction_dynamics", "summary":"Reached 'Honored' with Crimson Vanguard", "details":"After completing the 'Silverstream Mine' quest, reputation increased from 650 to 800, crossing the 'Honored' threshold.", "heat_index":{"current_score":75, "base_score":70, "decay_rate":"slow"}, "flags":{"plot_critical":true}}`
+- `{"category":"faction_dynamics", "summary":"Crimson Vanguard and Azure Serpents at war", "details":"Following the conflict at Silverstream Mine, the two factions have officially declared war. Travel between their territories is now hazardous.", "heat_index":{"current_score":90, "base_score":85, "decay_rate":"slow"}, "flags":{"immutable":true, "plot_critical":true}}`
+
+**Integration**:
+- These memories are critical for the Narrative System (Module 05) to generate relevant faction-based quests and world events.
+- The NPC Intelligence (Module 04) uses these memories to inform an NPC's disposition and dialogue regarding political events.
+- High-heat FACTION_DYNAMICS memories are loaded into context when the player interacts with a member of the involved factions or enters their territory.
+
 ## Heat Index System
 
 **Heat** = memory activity/awareness. Higher heat = more influence on decisions.
