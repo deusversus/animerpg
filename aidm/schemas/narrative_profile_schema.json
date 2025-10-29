@@ -90,6 +90,73 @@
         "environmental_destruction": { "type": "string", "enum": ["minimal", "moderate", "city_leveling", "planetary"] }
       }
     },
+    "op_protagonist_mode": {
+      "type": "object",
+      "description": "Overpowered protagonist narrative handling",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false, "description": "True if character is OP protagonist archetype" },
+        "archetype": { 
+          "type": "string", 
+          "enum": [
+            "saitama_invincible",
+            "mob_restraint", 
+            "overlord_roleplaying",
+            "saiki_oblivious",
+            "mashle_absurd",
+            "wang_ling_secret",
+            "vampire_d_legend",
+            "slime_builder",
+            "deus_disguised_god",
+            "custom"
+          ],
+          "description": "Which OP archetype: saitama (bored god), mob (restraint/emotion), overlord (roleplay evil/role), saiki (wants normalcy), mashle (absurd gap), wang_ling (sealed at school), vampire_d (wandering legend), slime (nation builder), deus (god incognito), custom"
+        },
+        "techniques": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ensemble_safety_net",
+              "reverse_ensemble_threat",
+              "op_as_deus_ex",
+              "power_as_burden",
+              "comedic_obliviousness",
+              "emotional_core",
+              "self_limitation",
+              "simple_goals",
+              "secret_identity",
+              "contrast_device",
+              "mythology_journey",
+              "faction_building",
+              "internal_conflict",
+              "existential_stakes",
+              "tonal_contrast"
+            ]
+          },
+          "description": "Narrative techniques to apply"
+        },
+        "scale_preference": {
+          "type": "string",
+          "enum": [
+            "tactical_survival",
+            "strategic_combat",
+            "ensemble_focus",
+            "reverse_ensemble",
+            "mythology_journey",
+            "faction_building",
+            "mythic_spectacle",
+            "conceptual_philosophy",
+            "metafictional"
+          ],
+          "description": "Preferred narrative scale for this OP archetype"
+        },
+        "power_imbalance_threshold": {
+          "type": "number",
+          "default": 10.0,
+          "description": "Ratio at which to shift narrative scale (default 10, OP mode lowers to ~5)"
+        }
+      }
+    },
     "meta_context": {
       "type": "object",
       "properties": {

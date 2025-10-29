@@ -269,6 +269,65 @@
         "known_locations": { "type": "array", "items": {"type": "string"} },
         "world_state_flags": { "type": "array", "items": {"type": "string"} }
       }
+    },
+    
+    "narrative_context": {
+      "type": "object",
+      "description": "Narrative framing for this character",
+      "properties": {
+        "op_protagonist": {
+          "type": "boolean",
+          "default": false,
+          "description": "True if character is overpowered protagonist (Saitama/Mob/Overlord/etc archetype)"
+        },
+        "op_archetype": {
+          "type": "string",
+          "enum": [
+            "saitama_invincible",
+            "mob_restraint",
+            "overlord_roleplaying",
+            "saiki_oblivious",
+            "mashle_absurd",
+            "wang_ling_secret",
+            "vampire_d_legend",
+            "slime_builder",
+            "deus_disguised_god",
+            "custom",
+            null
+          ],
+          "description": "If OP, which archetype model to follow"
+        },
+        "power_tier": {
+          "type": "string",
+          "description": "VS Battles Wiki tier (e.g., '6-C', '5-B', '2-B') for power scaling reference"
+        },
+        "narrative_scale": {
+          "type": "string",
+          "enum": [
+            "tactical_survival",
+            "strategic_combat",
+            "ensemble_focus",
+            "reverse_ensemble",
+            "mythology_journey",
+            "faction_building",
+            "mythic_spectacle",
+            "conceptual_philosophy",
+            "metafictional"
+          ],
+          "description": "Current narrative scale being used"
+        },
+        "power_imbalance_context": {
+          "type": "object",
+          "description": "Context modifiers affecting effective power",
+          "properties": {
+            "environmental_constraint": { "type": "number", "description": "Multiplier (e.g., 0.1 = Frieza on planet)" },
+            "secret_identity": { "type": "boolean", "description": "True if hiding power (Deus F-rank, Wang Ling)" },
+            "self_imposed_limiter": { "type": "boolean", "description": "True if deliberately limiting (Saiki gear, sealed god)" },
+            "mentor_role": { "type": "boolean", "description": "True if protecting/teaching others (Gojo, All Might)" },
+            "political_constraints": { "type": "boolean", "description": "True if governing/managing (Overlord, Slime)" }
+          }
+        }
+      }
     }
   }
 }
