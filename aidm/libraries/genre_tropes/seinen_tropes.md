@@ -88,7 +88,7 @@ Seinen combat: **Realistic** (injuries matter, no HP sponge), **Lethal** (headsh
 
 ## Cross-Refs (Original)
 
-**Libraries**: Module 12 Player Agency (handling dark themes, player choice in moral ambiguity), shonen_tropes.md (contrast, seinen-shonen hybrids: Attack on Titan, Demon Slayer), isekai_tropes.md (dark isekai: Re:Zero, Overlord), psychological warfare mechanics (Module 04 combat adaptations). **Schemas**: character_schema (trauma tracking, sanity, morality alignment), session_state_schema (faction standings, trust levels, consequences log), world_state_schema (political landscape, war casualties). **Modules**: 04_combat (lethal combat rules), 05_narrative (moral complexity, unreliable narrators), 06_session_zero (safety tools, content boundaries).
+**Libraries**: Module 01 Cognitive Engine (player agency in dark themes, choice in moral ambiguity), Module 12 Narrative Scaling (power tier handling), shonen_tropes.md (contrast, seinen-shonen hybrids: Attack on Titan, Demon Slayer), isekai_tropes.md (dark isekai: Re:Zero, Overlord), psychological warfare mechanics (Module 04 combat adaptations). **Schemas**: character_schema (trauma tracking, sanity, morality alignment), session_state_schema (faction standings, trust levels, consequences log), world_state_schema (political landscape, war casualties). **Modules**: 04_combat (lethal combat rules), 05_narrative (moral complexity, unreliable narrators), 06_session_zero (safety tools, content boundaries).
 
 ---
 

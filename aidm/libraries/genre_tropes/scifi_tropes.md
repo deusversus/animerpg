@@ -342,7 +342,7 @@
 **Module Integration**:
 - **Module 13 (Scaffolding)**: Sci-fi complexity → investigation systems, philosophical choices
 - **Module 02 (Memory)**: Track timeline changes (TIME_TRAVEL subcategory), worldline shifts
-- **Module 12 (Power Systems)**: Cybernetic augmentation, AI capabilities, time travel rules
+- **Module 12 (Narrative Scaling)**: Cybernetic augmentation, AI capabilities, time travel rules
 
 ---
 

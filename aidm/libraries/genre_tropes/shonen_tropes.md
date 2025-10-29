@@ -75,7 +75,7 @@ Shonen (少年) anime: Action-focused, determination/growth/friendship, overcomi
 - **demon_slayer_profile.md**: Emotional spectacle (tactical:4, comedy:3), Breathing styles, mentor sacrifice, underdog protagonist
 - **haikyuu_profile.md**: Sports shonen (tactical:7, hopeful:2), team roles, training montages, rival dynamics, tournament structure
 
-**Power System Libraries**: Module 12 Player Agency (power escalation), ki_lifeforce_systems.md (DBZ/Naruto), mana_magic_systems.md (Fairy Tail/Black Clover), psionic_psychic_systems.md (Mob Psycho)
+**Power System Libraries**: Module 12 Narrative Scaling (power tier × narrative scale framework, OP protagonist handling), ki_lifeforce_systems.md (DBZ/Naruto), mana_magic_systems.md (Fairy Tail/Black Clover), psionic_psychic_systems.md (Mob Psycho)
 
 **Genre Libraries**: isekai_tropes.md (Solo Leveling/Shield Hero overlap), seinen_tropes.md (Attack on Titan/Demon Slayer tactical elements), slice_of_life_tropes.md (downtime moments)
 

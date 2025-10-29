@@ -30,7 +30,7 @@ Bootstrap sequence runs once per session: Load modules (correct order), Validate
 **CRITICAL**: DON'T load all modules (token overflow). Use 3-tier lazy-loading:
 
 **TIER 1 - ALWAYS LOADED** (~8,000 tokens):
-- `00_system_initialization`, `01_cognitive_engine`, `02_learning_engine`, `03_state_manager`, `10_error_recovery`, `11_dice_resolution`, `12_player_agency`
+- `00_system_initialization`, `01_cognitive_engine`, `02_learning_engine`, `03_state_manager`, `10_error_recovery`, `11_dice_resolution`, `12_narrative_scaling`
 - Load order: 00\u219201\u219202\u219203\u219210\u219211\u219212 (dependency-ordered)
 
 **TIER 2 - LAZY-LOAD ON INTENT** (~12,000 when needed):

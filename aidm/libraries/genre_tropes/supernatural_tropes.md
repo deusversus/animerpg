@@ -334,7 +334,7 @@
 **Module Integration**:
 - **Module 13 (Scaffolding)**: Psychic powers → esper stat system, spirit sight mechanics
 - **Module 02 (Memory)**: Track spirit contracts, yokai relationships (SUPERNATURAL subcategory)
-- **Module 12 (Power Systems)**: Psychic scaling, curse mechanics, exorcism rituals
+- **Module 12 (Narrative Scaling)**: Psychic scaling, curse mechanics, exorcism rituals
 
 ---
 
