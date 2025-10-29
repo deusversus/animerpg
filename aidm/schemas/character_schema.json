@@ -5,7 +5,7 @@
   "type": "object",
   "required": ["schema_version", "character_id", "name", "created_at", "last_updated", "core_identity", "resources", "attributes", "skills", "progression", "inventory", "relationships", "quests", "world_context"],
   "properties": {
-    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "default": "2.3.0" },
+    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "default": "2.4.0" },
     "character_id": { "type": "string", "pattern": "^char_[a-zA-Z0-9]{16}$" },
     "name": { "type": "string", "minLength": 1, "maxLength": 100 },
     "created_at": { "type": "string", "format": "date-time" },
@@ -301,7 +301,7 @@
           "type": "string",
           "description": "VS Battles Wiki tier (e.g., '6-C', '5-B', '2-B') for power scaling reference"
         },
-        "narrative_scale": {
+        "current_scale": {
           "type": "string",
           "enum": [
             "tactical_survival",
@@ -314,7 +314,27 @@
             "conceptual_philosophy",
             "metafictional"
           ],
-          "description": "Current narrative scale being used"
+          "description": "Current narrative scale being used (actively updated by Module 12)"
+        },
+        "progression_model": {
+          "type": "string",
+          "enum": ["modest", "accelerated", "instant_op"],
+          "description": "How fast character gains power: modest (slow grind), accelerated (isekai spikes), instant_op (already maxed)"
+        },
+        "scale_shift_history": {
+          "type": "array",
+          "description": "Record of narrative scale shifts (for pacing/continuity)",
+          "items": {
+            "type": "object",
+            "required": ["session", "old_scale", "new_scale", "trigger"],
+            "properties": {
+              "session": { "type": "integer" },
+              "old_scale": { "type": "string" },
+              "new_scale": { "type": "string" },
+              "trigger": { "type": "string", "description": "What caused shift (e.g., 'Tier 9→8 breakthrough', 'Epic quest complete')" },
+              "ceremony_used": { "type": "boolean", "description": "True if scale shift ceremony was narrated" }
+            }
+          }
         },
         "power_imbalance_context": {
           "type": "object",

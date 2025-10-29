@@ -6,7 +6,7 @@
   "type": "object",
   "required": ["schema_version", "npc_id", "core_identity", "knowledge", "behavior", "relationships", "narrative_role", "metadata"],
   "properties": {
-    "schema_version": { "type": "string", "description": "Schema version", "pattern": "^\\d+\\.\\d+\\.\\d+$", "default": "2.2.0" },
+    "schema_version": { "type": "string", "description": "Schema version", "pattern": "^\\d+\\.\\d+\\.\\d+$", "default": "2.3.0" },
     "npc_id": { "type": "string", "description": "Unique ID", "pattern": "^npc_[a-z0-9_]+$" },
     "core_identity": {
       "type": "object",
@@ -315,6 +315,73 @@
               "flag": { "type": "string", "description": "e.g., angry, injured, drunk" },
               "expires": { "type": "string" },
               "effect": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "ensemble_context": {
+      "type": "object",
+      "description": "Ensemble cast management data (Module 05)",
+      "properties": {
+        "archetype": {
+          "type": "string",
+          "enum": [
+            "struggler",
+            "heart",
+            "skeptic",
+            "dependent",
+            "equal",
+            "observer",
+            "rival",
+            null
+          ],
+          "description": "Ensemble role: struggler (growth journey), heart (emotional core), skeptic (questions PC), dependent (needs PC help), equal (peer threat), observer (witness), rival (competitive), null (not in ensemble)"
+        },
+        "growth_stage": {
+          "type": "string",
+          "enum": ["introduction", "bonding", "challenge", "growth", "mastery", null],
+          "description": "Where NPC is in their arc. null if not tracked."
+        },
+        "spotlight_sessions": {
+          "type": "array",
+          "description": "Sessions where NPC had significant focus (for rotation tracking)",
+          "items": { "type": "integer" }
+        },
+        "spotlight_total": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total spotlight time accumulated (0-1 scale, cumulative)"
+        },
+        "last_spotlight_session": {
+          "type": "integer",
+          "description": "Most recent session with spotlight"
+        },
+        "milestone_history": {
+          "type": "array",
+          "description": "Growth milestones achieved",
+          "items": {
+            "type": "object",
+            "required": ["stage", "session", "event"],
+            "properties": {
+              "stage": { "type": "string" },
+              "session": { "type": "integer" },
+              "event": { "type": "string", "description": "What happened" },
+              "affinity_change": { "type": "integer" }
+            }
+          }
+        },
+        "subplot_arcs": {
+          "type": "array",
+          "description": "NPC-driven story arcs",
+          "items": {
+            "type": "object",
+            "required": ["arc_name", "status"],
+            "properties": {
+              "arc_name": { "type": "string" },
+              "status": { "type": "string", "enum": ["planned", "active", "paused", "resolved"] },
+              "sessions_active": { "type": "integer" },
+              "related_npcs": { "type": "array", "items": { "type": "string" } }
             }
           }
         }

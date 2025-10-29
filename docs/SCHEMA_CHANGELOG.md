@@ -114,6 +114,99 @@
 
 ---
 
+## Version 2.4.0 (2025-01-XX)
+
+**Status**: Current (Integration Plan - Narrative Scaling & Ensemble Management)
+
+### character_schema.json
+
+**Modified**:
+- Renamed `narrative_context.narrative_scale` → `narrative_context.current_scale`
+- Added `narrative_context.progression_model` enum: `["modest", "accelerated", "instant_op"]`
+  - `modest`: Slow grind, training required, 1 level per arc
+  - `accelerated`: Fast isekai-style power spikes
+  - `instant_op`: Already maxed power, no mechanical growth
+- Added `narrative_context.scale_shift_history` array:
+  - Tracks narrative scale transitions with: `session`, `old_scale`, `new_scale`, `trigger`, `ceremony_used` (boolean)
+  - Enables continuity validation and pacing tracking
+  
+**Impact**:
+- ⚠️ MINOR BREAKING CHANGE: Field rename requires update
+- **Migration Required**: Rename `narrative_scale` → `current_scale` in existing character saves
+- ✅ New fields backward compatible (arrays default to empty, progression_model optional)
+- 📝 Module 12 (Narrative Scaling) actively updates `current_scale` and appends to `scale_shift_history`
+- 📝 Module 01 (Cognitive Engine) validates progression rate against `progression_model`
+- 📝 Module 06 (Session Zero) sets initial `progression_model` based on player preference
+
+**Rationale**: Integration Plan Phase 2 - power tier progression with scale shifts. The `current_scale` rename emphasizes dynamic updates by Module 12. The `progression_model` enables coherence validation (prevents "modest grind" character gaining 5 levels in one session). The `scale_shift_history` provides memory for ceremonies and prevents frequent scale whiplash.
+
+**Migration Path**:
+1. For each character, check if `narrative_context.narrative_scale` exists
+2. If exists: copy value to `narrative_context.current_scale`, delete `narrative_scale`
+3. If missing: set `current_scale` to default based on power tier (Module 12 logic)
+4. Initialize `scale_shift_history` as empty array `[]`
+5. Update `schema_version` to "2.4.0"
+
+---
+
+## Version 2.3.0 (2025-01-XX)
+
+**Status**: Current (Integration Plan - Ensemble Cast Management)
+
+### npc_schema.json
+
+**Modified**:
+- Added `ensemble_context` object after `current_state`:
+  - `archetype` enum: `["struggler", "heart", "skeptic", "dependent", "equal", "observer", "rival", null]`
+    - Defines NPC's role in ensemble cast
+    - `null` if NPC not part of ensemble
+  - `growth_stage` enum: `["introduction", "bonding", "challenge", "growth", "mastery", null]`
+    - Tracks 5-stage character arc progression
+    - `null` if not tracked
+  - `spotlight_sessions` array (integers): Sessions where NPC had significant focus
+  - `spotlight_total` number (≥0): Cumulative spotlight time (0-1 scale)
+  - `last_spotlight_session` integer: Most recent spotlight session number
+  - `milestone_history` array: Growth milestones with `stage`, `session`, `event`, `affinity_change`
+  - `subplot_arcs` array: NPC-driven story arcs with `arc_name`, `status`, `sessions_active`, `related_npcs`
+
+**Impact**:
+- ✅ Backward compatible (entire `ensemble_context` object optional, archetype/growth_stage allow null)
+- ✅ No migration required for existing NPCs
+- ⚠️ NPCs in ensemble casts SHOULD populate `ensemble_context` fields
+- 📝 Module 04 (NPC Intelligence) assigns archetypes and manages spotlight tracking
+- 📝 Module 05 (Narrative Systems) implements Ensemble Cast Manager using this data
+- 📝 Module 12 (Narrative Scaling) checks ensemble archetypes for tension generation
+- 📝 Module 01 (Cognitive Engine) validates archetype consistency in coherence check
+
+**Rationale**: Integration Plan Phase 4 - complete ensemble cast manager. NPCs in OP protagonist campaigns need structured growth arcs and spotlight rotation to prevent "PC does everything" syndrome. The archetype system provides narrative templates (Struggler grows, Heart bonds, Skeptic questions, etc.) while growth stages track progression. Spotlight metrics enable balance checking at session end.
+
+---
+
+## Version 2.1.0 (2025-01-XX)
+
+**Status**: Current (Integration Plan - Tension Preferences)
+
+### narrative_profile_schema.json
+
+**Modified**:
+- Added `tension_preferences` object after `op_protagonist_mode`:
+  - `social_tension` boolean (default true): Enable social conflicts (secret identity, power reveal, faction politics)
+  - `existential_tension` boolean (default true): Enable existential stakes (boredom, purpose, loneliness)
+  - `structural_tension` boolean (default true): Enable structural challenges (time limits, puzzles, restrictions)
+  - `preferred_categories` array: Prioritize these tension types (enum: `["social", "existential", "structural"]`)
+
+**Impact**:
+- ✅ Backward compatible (all fields optional with sensible defaults)
+- ✅ No migration required for existing narrative profiles
+- ⚠️ New narrative profiles SHOULD configure tension preferences during Session Zero
+- 📝 Module 06 (Session Zero) asks player about tension preferences and populates this object
+- 📝 Module 12 (Narrative Scaling) uses preferences to filter non-combat tension generation
+- 📝 Module 13 (OP Detection) sets default preferences based on detected OP archetype
+
+**Rationale**: Integration Plan Phase 3 - non-combat tension for high power imbalance. When PC is overpowered, combat is trivial but tension still needed. Players should control which non-combat stakes resonate (some love social drama, others prefer existential philosophy, etc.). Preferences stored in narrative profile since they're storytelling DNA, not per-character.
+
+---
+
 ## Version 2.3.0 (2025-10-28)
 
 **Status**: Current (Phase 2.1e - Combat Enhancements Complete)
@@ -396,13 +489,13 @@ Before incrementing any schema version:
 
 | Schema | Version | Last Updated | Status |
 |--------|---------|--------------|--------|
-| character_schema.json | 2.3.0 | 2025-10-28 | Modified (combat enhancements) |
+| character_schema.json | 2.4.0 | 2025-01-XX | Modified (narrative scaling) |
+| narrative_profile_schema.json | 2.1.0 | 2025-01-XX | Modified (tension prefs) |
+| npc_schema.json | 2.3.0 | 2025-01-XX | Modified (ensemble) |
 | world_state_schema.json | 2.2.0 | 2025-10-28 | Modified (faction registry) |
 | faction_schema.json | 2.2.0 | 2025-10-28 | NEW |
 | quest_schema.json | 2.1.0 | 2025-10-27 | Stable |
-| npc_schema.json | 2.0.0 | 2025-10-27 | Stable |
 | memory_thread_schema.json | 2.0.0 | 2025-10-27 | Stable |
-| narrative_profile_schema.json | 2.0.0 | 2025-10-27 | Stable |
 | anime_world_schema.json | 2.0.0 | 2025-10-27 | Stable |
 | power_system_schema.json | 2.0.0 | 2025-10-27 | Stable |
 | session_export_schema.json | 2.0.0 | 2025-10-27 | Stable |
