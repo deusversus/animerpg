@@ -45,7 +45,7 @@
 ---
 
 ## Cross-Reference
-**Related**: leveling_curves.md (stat growth over levels), skill_taxonomies.md (skills tied to stats), power_scaling_narrative.md (high-stat tier 20+), power system libraries (system-specific stat variations). **Schemas**: character_schema.json (stat storage), session_state_schema.json (temporary modifiers), power_system_schema.json (power stat integration). **Modules**: 06_session_zero.md (stat allocation creation), 08_combat_resolution.md (stat-based combat), 09_progression_systems.md (stat increases level-up), 11_dice_resolution.md (stat modifier rolls).
+**Related**: leveling_curves.md (stat growth over levels), skill_taxonomies.md (skills tied to stats), power system libraries (system-specific stat variations). **Schemas**: character_schema.json (stat storage), session_state_schema.json (temporary modifiers), power_system_schema.json (power stat integration). **Modules**: 06_session_zero.md (stat allocation creation), 08_combat_resolution.md (stat-based combat), 09_progression_systems.md (stat increases level-up), 11_dice_resolution.md (stat modifier rolls), 12_narrative_scaling.md (high-tier narrative techniques).
 
 ---
 

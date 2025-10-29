@@ -49,7 +49,7 @@
 ---
 
 ## Cross-Reference
-**Related**: stat_frameworks.md (stats increase on level-up), skill_taxonomies.md (skills unlocked via levels), power_scaling_narrative.md (level tiers 1-10/11-20/21+), genre trope libraries (genre progression patterns). **Schemas**: character_schema.json (level/XP/progression), session_state_schema.json (session XP awards), world_state_schema.json (campaign curve settings). **Modules**: 09_progression_systems.md (full rules), 06_session_zero.md (starting level), 08_combat_resolution.md (combat XP).
+**Related**: stat_frameworks.md (stats increase on level-up), skill_taxonomies.md (skills unlocked via levels), genre trope libraries (genre progression patterns). **Schemas**: character_schema.json (level/XP/progression), session_state_schema.json (session XP awards), world_state_schema.json (campaign curve settings). **Modules**: 09_progression_systems.md (full rules), 06_session_zero.md (starting level), 08_combat_resolution.md (combat XP), 12_narrative_scaling.md (growth models, tier-based narrative scaling).
 
 ---
 
