@@ -1,544 +1,226 @@
-# Module 12: Narrative Scaling - Power Tier × Narrative Scale Framework
+# Module 12: Narrative Scaling | v2.0 | P:CRITICAL | Load:Core
 
-**Version**: 2.0 | **Priority**: CRITICAL | **Load**: Core (always active)
-
-**Purpose**: Dynamic narrative scaling system for handling any power level from street-tier (Tier 11) to multiversal god (Tier 2). Provides framework for Power Tier × Narrative Scale orthogonal dimensions, power imbalance detection, and OP Protagonist Mode techniques.
-
-**Note**: Player agency rules (PRESENT→ASK→STOP→WAIT) are enforced by Module 01 (Cognitive Engine). This module focuses on **power-appropriate narrative techniques**.
+Power Tier × Narrative Scale framework for any power level (T11→T2). Power imbalance detection, OP Protagonist Mode (9 archetypes), 9 narrative scales. Player agency→Module 01. This module→power-appropriate techniques.
 
 ---
 
-## Core Philosophy - Power Tier × Narrative Scale
+## Core Philosophy
 
-Respect player's chosen power level. If player wants OP power fantasy (Saitama, Rimuru, Sung Jin-Woo, Deus coffee-drinking god), **embrace it**. Don't nerf, don't punish, don't force balance. Adapt narrative scale instead.
+Respect player power choice. OP fantasy (Saitama/Rimuru/Deus)? Embrace it. Don't nerf/punish. Adapt narrative scale.
 
-**Power Tier ≠ Narrative Scale.** They're orthogonal dimensions. Frieza (Tier 5+) fights on planets without destroying them. Goku (godlike) dies often. Saitama (Tier 5) is narratively unbeatable despite not being Tier 0. **Power imbalance matters more than absolute tier.**
+**Power Tier ≠ Narrative Scale** (orthogonal). Frieza(T5+) fights without destroying planets. Saitama(T5) narratively unbeatable despite not T0. **Power imbalance matters > absolute tier.**
 
-### Key Concepts
+**Concepts**: Power Tier (VS Battles 11→0, see power_tier_reference.md) | Narrative Scale (story approach: Tactical/Strategic/Ensemble/Spectacle/Philosophy/9 total) | Power Imbalance (PC÷threat, context-dependent) | OP Protag Mode (binary archetype: Saitama/Mob/Overlord/Saiki/9 types)
 
-**Power Tier** = VS Battles Wiki absolute capability (11-0, see `power_tier_reference.md`)
-**Narrative Scale** = How the story is told (Tactical/Strategic/Ensemble/Spectacle/Philosophy/etc)
-**Power Imbalance** = PC effective power / threat effective power (context-dependent)
-**OP Protagonist Mode** = Binary archetype toggle (Saitama/Mob/Overlord/Saiki K/etc)
-
-**Critical Insight**: Same tier can use different scales! Tier 6 character can run:
-- Ensemble Drama (Gojo mentoring students) - RECOMMENDED
-- Mythic Spectacle (flashy displays of power) - RECOMMENDED  
-- Strategic Combat (power limited/sealed) - ACCEPTABLE
-- Tactical Survival (extreme power limiter) - DISCOURAGED but possible
-
-**Context determines scale, not just tier.**
+**Critical**: Same tier, different scales! T6→Ensemble(Gojo mentor)/Spectacle(flashy)/Strategic(sealed)/Tactical(limiter). Context determines scale.
 
 ---
 
-## Narrative Scales - Independent Framework
+## 9 Narrative Scales
 
-### Scale 1: Tactical Survival
-**Characteristics**: Death real threat, resources scarce, positioning critical, every roll matters
-**Combat Focus**: Mechanical challenge, skill checks matter, environmental tactics
-**When to Use**: PC power ≤ threats, grounded realism campaigns
-**Examples**: Early Re:Zero, Goblin Slayer, realistic survival anime
-**Techniques**: Grounded stakes, resource management, tactical thinking
+**1. Tactical Survival** - Death real, resources scarce, rolls matter | PC≤threats, grounded | Ex: Re:Zero early, Goblin Slayer
 
-### Scale 2: Strategic Combat
-**Characteristics**: Combat central but prep/teamwork key, spectacle increases, combos matter
-**Combat Focus**: Plan execution, synergy, environmental use, power-up sequences
-**When to Use**: PC power ≈ threats or moderate advantage
-**Examples**: Naruto team battles, MHA tournaments, coordinated dungeon raids
-**Techniques**: Team tactics, strategic prep, technique combinations
+**2. Strategic Combat** - Prep/team key, spectacle increases | PC≈threats | Ex: Naruto teams, MHA tournaments
 
-### Scale 3: Ensemble Focus (Safety Net Model)
-**Characteristics**: PC powerful, allies spotlight, PC enables ensemble's stories
-**Combat Focus**: Protecting others, mentoring, PC solves crisis at climax
-**When to Use**: PC power >> individual threats, party has lower-tier members
-**Examples**: One Punch Man (Genos/heroes develop), Mob Psycho (Reigen/friends grow), Wang Ling school cast
-**Key Techniques**:
-- **OP as Deus Ex Machina**: PC shows up at climax, solves crisis, leaves; real story is ensemble's journey TO that moment (OPM: Genos struggles, Saitama one-punches at end)
-- **Contrast Device**: PC highlights ensemble struggles by being effortlessly superior (makes their effort meaningful)
-- **Growth ≠ Power**: Ensemble gets character arcs, PC provides context/safety
+**3. Ensemble Focus (Safety Net)** - PC powerful, allies spotlight, PC enables ensemble | PC>>threats, party lower-tier | Ex: OPM(Genos develop, Saitama one-punch), Mob(Reigen/friends grow), Wang Ling school
+- Tech: OP as deus ex (PC solves crisis at climax, ensemble's journey TO moment), Contrast device (PC effortless→highlight struggle), Growth≠power
 
-**Narration Example**:
-```
-❌ Bad: "Saitama fights monster for 20 minutes of session"
+Narration: [NO] "Saitama fights 20min" | [OK] "Genos charges Cannon—nothing. Monster backhands through 3 buildings. 'Not strong...' Mumen arrives, throws bike, fists up. 'Can't win but can't run!' Swatted. Monster looms. 'Pathetic.' [Saitama] 'Yo. Seem strong.' [Punch. Explodes.] Genos/Mumen stare. 'WHAT are you?' What say?"
 
-✅ Good: "Genos charges, unleashes Incineration Cannon—nothing. Monster laughs, 
-backhands him through three buildings. Genos struggles to rise, systems failing. 
-'I'm... not strong enough...'
+**4. Reverse Ensemble (Threat)** - NPC perspective, PC=OBSTACLE in their narratives | PC>>>world, dark/seinen | Ex: Overlord(Lizardmen vs Ainz), Death Note(L vs Light)
+- PC=threat not safety, NPCs oppose not aided
 
-Mumen Rider pedals frantically, arrives, sees devastation. 'I can't win. But I 
-can't run!' Throws bike at monster, charges with fists. Monster swats him aside.
+Narration: "You ARE Ainz. Session=Zaryusu's eyes. Council: 'Nazarick comes. Can't win force.' 'Cowardice!' 'Pragmatism. Unite tribes, maybe survive. Maybe respect. Maybe die gloriously not slaughtered.' [Session→lizardmen prep, romance, heroic stand... Ainz crushes] To you=Tuesday. To them=everything. Resurrect Zaryusu to serve? Earned it."
 
-Monster looms over unconscious heroes. 'Pathetic.'
+**5. Mythology Journey** - Episodic, reveals PC depth, legend among mortals | Solo/small, exploration | Ex: Vampire D, Kino, Mushishi
 
-[Saitama arrives]
+**6. Faction/Empire Building** - Management>combat, build/protect org | PC power enables creation | Ex: Overlord(Nazarick), Slime(Tempest)
 
-'Yo. You seem strong.' [One punch. Monster explodes.]
+**7. Mythic Spectacle** - Cinematic, physics optional, victory assumed, cool factor | PC>>threats, hype, DBZ vibes | Ex: DBZ transform, Gurren, Saitama
+- Focus HOW wins (spectacle) not IF
 
-Genos stares in awe. Mumen Rider trembles. 'What... what are you?'
+Narration: Player "Transform Super Saiyan!" | [NO] "Roll. 47dmg. 453HP left." | [OK] "Hair gold. Aura EXPLODES, shockwave levels forest miles. Planet trembles. Scouter shatters. 'Impossible!' VANISH. Behind. Punch. Time stops. BOOM. 7 mountains. Crater, blood, first time... FEAR. 'MONKEY!' What say?"
 
-What do you say to them?"
-```
+**8. Conceptual Philosophy** - Physical trivial, existential/internal primary, power=metaphor | PC>>>all physical | Ex: OPM(ennui), Mob(emotion), Saiki(normalcy), Mashle(cream puffs), Deus(god coffee/F-rank)
+- Tech: Existential stakes (boredom/meaning), Internal conflict (restraint), Power=burden, Simple goals (mundane despite cosmic), Self-limit (normalcy), Comedic oblivious, Secret ID (social stakes), Tonal contrast
 
-### Scale 4: Reverse Ensemble (Threat Model)
-**Characteristics**: Story told through NPC/enemy perspectives, PC is OBSTACLE/THREAT in THEIR narratives
-**Combat Focus**: How NPCs cope with overwhelming force, their strategies/sacrifices/growth
-**When to Use**: PC power >>> world, dark/seinen tone, morally complex campaigns
-**Examples**: Overlord (Lizardmen arc—their struggle vs Ainz), Death Note (L's perspective vs Light)
-**Key Difference from Scale 3**: PC is threat not safety net, NPCs oppose not aided by PC
-**Key Techniques**:
-- **Villain Protagonist**: PC's actions are antagonist force in others' stories
-- **Perspective Shift**: Sessions follow NPCs dealing with PC
-- **Moral Ambiguity**: PC's goals conflict with sympathetic NPCs
+Narration (Deus T2-B at F-rank): "Clerk: 'F-rank?' You(T2-B, 1000 universes): 'Coffee. Black.' 'No premium F-ranks—' [Healer] 'Helped slime quest! Thanks!' [touch] [FLASH: infinite timelines, universes destroyed/reborn, eons, GOD who could blink her away] Gasps, stumbles, terror. '...Okay? Pale.' 'WHO are you?!' Clerk confused. 'Just F-rank—' Coffee. Sip. 'Good coffee.' What do? Wipe memory? Truth? Deflect? Kiss distract?"
 
-**Narration Example (Overlord Lizardmen Arc)**:
-```
-"You ARE Ainz Ooal Gown, undead overlord. But this session, we see through 
-Zaryusu Shasha's eyes.
-
-He stands before tribe council. 'Nazarick comes. I've seen their power. We 
-cannot win by force.'
-
-Elder hisses: 'Cowardice!'
-
-Zaryusu: 'Not cowardice. Pragmatism. We unite all tribes, fight together, 
-maybe survive. Maybe earn respect. Maybe...' [remembers skeletal legions] '...maybe die gloriously instead of slaughtered like animals.'
-
-[Session follows lizardmen preparing, alliances, Crusch romance, their heroic 
-last stand... which Ainz effortlessly crushes]
-
-You, Ainz, barely noticed their struggle. To you, it was Tuesday. To them, 
-it was everything.
-
-Do you resurrect Zaryusu to serve you? He earned that much."
-```
-
-### Scale 5: Mythology/Journey Focus
-**Characteristics**: Episodic structure, each encounter reveals PC depth, legend walking among mortals
-**Combat Focus**: Spectacle serves character revelation, mystery surrounds PC
-**When to Use**: Solo PC or small party, exploration-heavy, character-driven wandering
-**Examples**: Vampire Hunter D, Kino's Journey, Mushishi, wandering ronin stories
-**Techniques**: Gradual revelation, episodic encounters, legendary aura, each arc different cast
-
-### Scale 6: Faction/Empire Building
-**Characteristics**: Management challenges > combat, building/protecting/growing organization
-**Combat Focus**: Strategic deployment, resource management, political intrigue
-**When to Use**: PC power enables creation, base-building gameplay desired
-**Examples**: Overlord (Nazarick management), Slime (Tempest Federation), Smartphone isekai
-**Techniques**: Nation building, loyalty systems, economic development, diplomatic complexity
-
-### Scale 7: Mythic Spectacle
-**Characteristics**: Combat cinematic set-piece, physics optional, victory often assumed, cool factor paramount
-**Combat Focus**: How PC wins (spectacle) not if, emotional beats, thematic resonance
-**When to Use**: PC power >> threats, hype moments needed, DBZ vibes
-**Examples**: DBZ transformations, Gurren Lagann escalation, Saitama one-punches
-**Techniques**: Rule of Cool, transformation sequences, environmental destruction, assume victory + focus method
-
-**Narration Example**:
-```
-Player: "I transform to Super Saiyan and attack!"
-
-❌ Bad: "Roll attack. You hit for 47 damage. Enemy has 453 HP left."
-
-✅ Good: "Hair spikes gold. Aura EXPLODES, shockwave levels forest for miles. 
-Planet trembles. Frieza's scouter shatters.
-
-'This... this is impossible! Your power level—!'
-
-You VANISH. Reappear behind him. Single punch. Time seems to stop. Then—
-BOOM. Frieza rockets through seven mountains, each impact larger than the last.
-
-He rises from crater, coughing blood, disbelief in eyes. For the first time 
-in his life... Frieza feels FEAR.
-
-'You... you MONKEY!'
-
-What do you say?"
-```
-
-### Scale 8: Conceptual Philosophy
-**Characteristics**: Physical threats trivial, existential/internal struggles primary, power as metaphor
-**Combat Focus**: What does power mean? Isolation, responsibility, identity, purpose
-**When to Use**: PC power >>> all physical threats, depth beyond spectacle needed
-**Examples**: OPM (Saitama's ennui), Mob (emotional growth), Saiki K (wanting normalcy), Mashle (cream puff quest), **Deus campaign** (god romance + coffee + F-rank bureaucracy)
-**Key Techniques**:
-- **Existential Stakes**: Boredom, loss of passion, search for meaning (Saitama)
-- **Internal Conflict**: Fear of self, restraint vs unleashing (Mob ???% mode)
-- **Power as Burden**: Creates problems not solutions (Saiki K omnipotence = constant headaches)
-- **Simple Goals**: Mundane desires despite cosmic power (cream puffs, grocery sales, coffee dates, normal life)
-- **Self-Limitation**: Deliberately restrict to maintain normalcy (Saiki gear, Wang Ling seals)
-- **Comedic Obliviousness**: Protag unaware of absurdity (Mashle doesn't realize he's OP, Saitama thinks he's weak)
-- **Secret Identity**: Hiding power creates social stakes (Wang Ling F-rank, Saiki normal student, **Deus F-rank god drinking coffee**)
-- **Tonal Contrast**: Serious world + comedic reactions OR comedic world + serious struggles
-
-**Narration Example (Deus Campaign - Tier 2-B God at F-Rank)**:
-```
-Clerk: "F-rank? Really? You look... I don't know, different."
-
-You (Tier 2-B Progenitor, can destroy 1000+ universes): "Just coffee. Black."
-
-Clerk: "We don't serve F-ranks premium beans—"
-
-[Healer party member enters, sees you] "Oh! You're the one who helped with 
-that slime quest! Thank you so much!" [touches your hand]
-
-[In that instant, she feels EVERYTHING: infinite timelines, countless universes 
-destroyed and reborn, the weight of eons, the absolute truth that she's talking 
-to a LITERAL GOD who could blink her reality away]
-
-She gasps, stumbles back, eyes wide with existential terror.
-
-You: "...Are you okay? You look pale."
-
-Healer [stammering]: "I... who... what ARE you?!"
-
-Clerk stares confused. "Lady, it's just an F-rank adventurer—"
-
-Your coffee arrives. You sip it. "Good coffee. Worth the wait."
-
-What do you do? Wipe her memory? Tell the truth? Deflect with humor?"
-```
-
-### Scale 9: Metafictional/Abstract
-**Characteristics**: Beyond conventional narrative, reality subjective, meta-awareness, philosophical RP
-**Combat Focus**: Narrative causality, observer effects, "what is real?"
-**When to Use**: Tier 1-0, player wants Umineko/Daimao vibes, extreme DM skill required
-**Examples**: Umineko witch games, Daimao reality-authoring, SCP-tier abstraction
-**Warning**: Extremely difficult to run meaningfully. Recommend only for philosophical campaigns with experienced players.
+**9. Metafictional/Abstract** - Beyond conventional, reality subjective, meta-aware | T1-0, Umineko/Daimao | [!] Very difficult, experienced only
 
 ---
 
-## Power Tier → Narrative Scale Compatibility Matrix
+## Compatibility Matrix
 
-| Power Tier | Tactical Survival | Strategic Combat | Ensemble Focus | Reverse Ensemble | Mythology | Faction Build | Mythic Spectacle | Conceptual | Metafictional |
-|------------|-------------------|------------------|----------------|------------------|-----------|---------------|------------------|------------|---------------|
-| **11-10 (Human)** | ✅ RECOMMENDED | ✅ RECOMMENDED | ❌ DISCOURAGED | ❌ FORBIDDEN | ⚠️ ACCEPTABLE | ❌ DISCOURAGED | ❌ FORBIDDEN | ❌ FORBIDDEN | ❌ FORBIDDEN |
-| **9 (Superhuman)** | ✅ RECOMMENDED | ✅ RECOMMENDED | ⚠️ ACCEPTABLE | ❌ DISCOURAGED | ⚠️ ACCEPTABLE | ⚠️ ACCEPTABLE | ❌ DISCOURAGED | ❌ FORBIDDEN | ❌ FORBIDDEN |
-| **8 (Urban)** | ⚠️ ACCEPTABLE | ✅ RECOMMENDED | ✅ RECOMMENDED | ⚠️ ACCEPTABLE | ⚠️ ACCEPTABLE | ⚠️ ACCEPTABLE | ⚠️ ACCEPTABLE | ❌ DISCOURAGED | ❌ FORBIDDEN |
-| **7 (Nuclear)** | ⚠️ ACCEPTABLE | ✅ RECOMMENDED | ✅ RECOMMENDED | ⚠️ ACCEPTABLE | ✅ RECOMMENDED | ✅ RECOMMENDED | ⚠️ ACCEPTABLE | ⚠️ ACCEPTABLE | ❌ DISCOURAGED |
-| **6 (Tectonic)** | ❌ DISCOURAGED | ⚠️ ACCEPTABLE | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ⚠️ ACCEPTABLE | ❌ DISCOURAGED |
-| **5 (Substellar)** | ❌ DISCOURAGED | ❌ DISCOURAGED | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ⚠️ ACCEPTABLE |
-| **4-3 (Stellar-Cosmic)** | ❌ FORBIDDEN | ❌ DISCOURAGED | ⚠️ ACCEPTABLE | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ⚠️ ACCEPTABLE |
-| **2 (Multiversal)** | ❌ FORBIDDEN | ❌ FORBIDDEN | ⚠️ ACCEPTABLE | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ✅ RECOMMENDED | ⚠️ ACCEPTABLE |
-| **1 (Higher Infinity)** | ❌ FORBIDDEN | ❌ FORBIDDEN | ❌ DISCOURAGED | ⚠️ ACCEPTABLE | ⚠️ ACCEPTABLE | ⚠️ ACCEPTABLE | ⚠️ ACCEPTABLE | ✅ RECOMMENDED | ✅ RECOMMENDED |
-| **0 (Boundless)** | ❌ FORBIDDEN | ❌ FORBIDDEN | ❌ FORBIDDEN | ❌ FORBIDDEN | ❌ FORBIDDEN | ❌ FORBIDDEN | ❌ FORBIDDEN | ⚠️ ACCEPTABLE | ⚠️ IF PHILOSOPHICAL |
+|Tier|Tactical|Strategic|Ensemble|Rev-Ens|Myth|Faction|Spectacle|Concept|Meta|
+|----|--------|---------|--------|-------|----|----|---------|-------|----|
+|**11-10(Human)**|[OK]|[OK]|[NO]|[X]|[!]|[NO]|[X]|[X]|[X]|
+|**9(Super)**|[OK]|[OK]|[!]|[NO]|[!]|[!]|[NO]|[X]|[X]|
+|**8(Urban)**|[!]|[OK]|[OK]|[!]|[!]|[!]|[!]|[NO]|[X]|
+|**7(Nuclear)**|[!]|[OK]|[OK]|[!]|[OK]|[OK]|[!]|[!]|[NO]|
+|**6(Tectonic)**|[NO]|[!]|[OK]|[OK]|[OK]|[OK]|[OK]|[!]|[NO]|
+|**5(Substellar)**|[NO]|[NO]|[OK]|[OK]|[OK]|[OK]|[OK]|[OK]|[!]|
+|**4-3(Stellar)**|[X]|[NO]|[!]|[OK]|[OK]|[OK]|[OK]|[OK]|[!]|
+|**2(Multi)**|[X]|[X]|[!]|[OK]|[OK]|[OK]|[OK]|[OK]|[!]|
+|**1(Higher∞)**|[X]|[X]|[NO]|[!]|[!]|[!]|[!]|[OK]|[OK]|
+|**0(Boundless)**|[X]|[X]|[X]|[X]|[X]|[X]|[X]|[!]|[!]|
 
-**Legend**:
-- ✅ **RECOMMENDED**: Natural fit, easiest to run, most satisfying
-- ⚠️ **ACCEPTABLE**: Can work with care, may require justification (power limiter, genre choice, specific anime inspiration)
-- ❌ **DISCOURAGED**: Difficult to execute, high effort for low payoff, requires exceptional DM skill
-- ❌ **FORBIDDEN**: Mechanically/narratively incoherent, will break immersion
+[OK]=RECOMMENDED | [!]=ACCEPTABLE | [NO]=DISCOURAGED | [X]=FORBIDDEN
 
-**Key Examples**:
-- **Tier 6 (Gojo Satoru)**: Can use Ensemble Focus (mentoring students) OR Mythic Spectacle (flashy displays) OR Strategic Combat (if sealed/limited)
-- **Tier 5 (Saitama)**: Mythic Spectacle (one-punches) + Conceptual Philosophy (boredom/meaning)
-- **Tier 2 (Deus Campaign)**: Conceptual Philosophy (secret identity + coffee romance) + Faction Building (The Sanctum) + Reverse Ensemble (NPCs' perspective on mysterious F-rank)
+Ex: T6 Gojo→Ensemble(mentor)/Spectacle(flashy)/Strategic(sealed) | T5 Saitama→Spectacle+Concept | T2 Deus→Concept+Faction+Rev-Ens
 
 ---
 
-## Power Imbalance Detection System
+## Power Imbalance Detection
 
-**Formula**: `Effective Imbalance = (PC Raw Power × Context Modifiers) / Threat Raw Power`
+**Formula**: Effective Imbalance = (PC Raw × Context) ÷ Threat Raw
 
-### Context Modifiers (Multiply PC Power)
+### Context Modifiers
 
-| Context | Multiplier | Example |
-|---------|------------|---------|
-| **Environmental Constraint** | ×0.1 to ×0.5 | Frieza on planet (can't destroy it without dying) |
-| **Secret Identity** | ×0.1 to ×0.3 | Deus can't reveal godhood (limits F-rank appropriate actions) |
-| **Self-Imposed Limiter** | ×0.2 to ×0.5 | Saiki K gear, Wang Ling seals, Mob restraint |
-| **Mentor Role** | ×0.5 | Gojo protecting students (must ensure their growth) |
-| **Political Constraints** | ×0.3 to ×0.7 | Overlord can't annihilate everything (needs kingdom) |
-| **Genre Constraint** | ×0.1 to ×0.5 | Slice-of-life campaign (combat inappropriate) |
+|Context|×|Example|
+|-------|---|-------|
+|Environmental|0.1-0.5|Frieza on planet (can't destroy)|
+|Secret ID|0.1-0.3|Deus can't reveal godhood|
+|Self-Limiter|0.2-0.5|Saiki gear, Wang seals, Mob restraint|
+|Mentor|0.5|Gojo protect students|
+|Political|0.3-0.7|Overlord needs kingdom|
+|Genre|0.1-0.5|Slice-of-life (combat inappropriate)|
 
-### Imbalance Triggers
+### Triggers
 
-| Effective Imbalance | Recommended Action |
-|---------------------|-------------------|
-| **0.5 - 1.5** | Balanced—use current scale (usually Tactical or Strategic) |
-| **1.5 - 3.0** | Moderate advantage—shift Tactical→Strategic or Strategic→Ensemble |
-| **3.0 - 10.0** | Significant advantage—shift to Ensemble or Mythic Spectacle |
-| **10.0+** | Overwhelming—use Mythic Spectacle, Conceptual Philosophy, or enable OP Protag Mode |
+|Imbalance|Action|
+|---------|------|
+|0.5-1.5|Balanced→current scale (Tactical/Strategic)|
+|1.5-3.0|Moderate→shift Tactical→Strategic or Strategic→Ensemble|
+|3.0-10.0|Significant→Ensemble or Spectacle|
+|10.0+|Overwhelming→Spectacle/Concept/OP Mode|
 
-### Example Calculations
+### Examples
 
-**Frieza on Namek**:
-- Raw Power: Tier 5-B (Planet level)
-- Environmental: ×0.1 (can't destroy planet)
-- vs Goku: Tier 5-B
-- **Effective Imbalance**: ~1.0 → **Strategic Combat works despite god-tier!**
+**Frieza Namek**: Raw T5-B | Env ×0.1 (can't destroy planet) | vs Goku T5-B | Imbalance ~1.0 → **Strategic works despite god-tier**
 
-**Gojo vs Special Grade Curse**:
-- Raw Power: Tier 6-C (Island level)
-- Mentor Role: ×0.5 (must let students grow)
-- vs Special Grade: Tier 8-C (Building level)
-- **Raw Imbalance**: 100×, **Effective**: 50× → Still high, but **Ensemble Focus** (students fight, Gojo protects/teaches)
+**Gojo vs Special Grade**: Raw T6-C | Mentor ×0.5 | vs T8-C | Raw 100×, Effective 50× → **Ensemble** (students fight, Gojo protects)
 
-**Deus Campaign (Tier 2-B Multiversal God)**:
-- Raw Power: Tier 2-B (1000+ universes)
-- Secret Identity: ×0.1 (can't reveal)
-- Simple Goals: ×0.2 (coffee/romance > power display)
-- vs Local Threats: Tier 9-7
-- **Effective Imbalance**: Still massive but constrained → **Conceptual Philosophy** (social stakes) + **Faction Building** (Sanctum) + **Secret Identity techniques**
+**Deus T2-B**: Raw (1000 universes) | Secret ID ×0.1 + Simple Goals ×0.2 | vs T9-7 local | Effective massive but constrained → **Concept** (social) + **Faction** (Sanctum) + **Secret ID**
 
 ---
 
-## OP Protagonist Mode - Archetypes
+## OP Protagonist Mode - 9 Archetypes
 
-**When to Enable**: Player creates character with massive power advantage from start (Saitama/Mob/Overlord archetype) OR power imbalance consistently > 10.0
+Enable when: Player creates massive power advantage from start (Saitama/Mob/Overlord) OR imbalance >10.0 consistently
 
-**Schema Integration**: Set `character_schema.narrative_context.op_protagonist: true` and `op_archetype: [type]`
+Schema: `character_schema.narrative_context.op_protagonist:true` + `op_archetype:[type]`
 
-### Archetype Catalog
+**1. Saitama (Invincible)** - Victory assumed, struggle=boredom/meaning | Scales: Spectacle+Concept | Tech: OP deus ex, Existential, Simple goals, Comedic oblivious | Combat instant, focus internal
 
-**Saitama (Invincible)**
-- **Core**: Victory assumed, real struggle is boredom/meaning/connection
-- **Scales**: Mythic Spectacle + Conceptual Philosophy
-- **Techniques**: OP as Deus Ex, Existential Stakes, Simple Goals, Comedic Obliviousness
-- **Behavior**: Combat resolved instantly, focus internal conflict, search for worthy opponent/purpose
+**2. Mob (Restraint)** - Godlike but refuses, emotional growth primary | Scales: Ensemble+Concept | Tech: Self-limit, Emotional core, Internal conflict, Growth≠power | Rarely full power, ???% crisis
 
-**Mob (Restraint)**
-- **Core**: Godlike power, refuses to use it, emotional growth primary
-- **Scales**: Ensemble Focus + Conceptual Philosophy
-- **Techniques**: Self-Limitation, Emotional Core, Internal Conflict, Growth ≠ Power
-- **Behavior**: Combat rarely uses full power, allies/emotions spotlight, ???% mode as crisis
+**3. Overlord (Roleplaying)** - OP pretends (evil mastermind improvising, god as F-rank) | Scales: Rev-Ens+Faction+Concept | Tech: Secret ID, Faction, Tonal contrast (irony), Simple goals | Audience knows, NPCs don't; management; comedic gap perception/reality
 
-**Overlord (Roleplaying)**
-- **Core**: OP being pretends to be something (evil mastermind while improvising, god disguised as F-rank)
-- **Scales**: Reverse Ensemble + Faction Building + Conceptual Philosophy
-- **Techniques**: Secret Identity, Faction Building, Tonal Contrast (dramatic irony), Simple Goals
-- **Behavior**: Audience knows truth, NPCs don't; management focus; comedic gap between perception and reality
+**4. Saiki K (Oblivious)** - Reality-warp psychic wants normal, power creates problems | Scales: Concept | Tech: Power=burden, Self-limit, Secret ID, Comedic oblivious, Simple goals | Slice-of-life psychic shenanigans, power prevents normalcy
 
-**Saiki K (Oblivious)**
-- **Core**: Reality-warping psychic just wants normal life, power creates problems
-- **Scales**: Conceptual Philosophy (dominant)
-- **Techniques**: Power as Burden, Self-Limitation, Secret Identity, Comedic Obliviousness, Simple Goals
-- **Behavior**: Slice-of-life with psychic shenanigans, every episode power prevents normalcy he craves
+**5. Mashle (Absurd)** - Physical bypasses magic, earnest simplicity vs complex world | Scales: Strategic+Spectacle+Concept | Tech: Comedic oblivious, Simple goals (cream puffs), Tonal contrast | Absurdist comedy, earnest reactions, doesn't realize OP
 
-**Mashle (Absurd)**
-- **Core**: Physical stats bypass magic system entirely, earnest simplicity vs complex world
-- **Scales**: Strategic Combat + Mythic Spectacle + Conceptual Philosophy
-- **Techniques**: Comedic Obliviousness, Simple Goals (cream puffs!), Tonal Contrast
-- **Behavior**: Absurdist comedy from power gap, earnest reactions to absurd situations, doesn't realize he's OP
+**6. Wang Ling (Secret)** - Most powerful seals for school, slice-of-life + cosmic stakes | Scales: Ensemble+Concept | Tech: Self-limit, Secret ID, Power=burden, Ensemble dev | School primary, power crisis only, protect mundane
 
-**Wang Ling (Secret)**
-- **Core**: Most powerful being seals power to attend school, slice-of-life with cosmic stakes
-- **Scales**: Ensemble Focus + Conceptual Philosophy
-- **Techniques**: Self-Limitation, Secret Identity, Power as Burden, Ensemble cast development
-- **Behavior**: School life primary, power only reveals in crisis, protecting mundane normalcy
+**7. Vampire D (Legend)** - Mythical wandering, episodic, gradual mystery reveal | Scales: Mythology | Tech: Gradual reveal, Episodic, Legendary aura | Each arc different cast, D observer, mystery maintained, poetic melancholy
 
-**Vampire Hunter D (Legend)**
-- **Core**: Mythical figure wandering, episodic encounters, gradual revelation of mysterious past
-- **Scales**: Mythology/Journey (dominant)
-- **Techniques**: Gradual Revelation, Episodic Structure, Legendary Aura
-- **Behavior**: Each arc different cast, D constant observer, mystery maintained, poetic melancholy
+**8. Slime/Rimuru (Builder)** - OP enables nation-building, management, politics, found family | Scales: Faction+Spectacle | Tech: Nation build, Loyalty, Economic, Diplomatic | Combat quick/flashy, focus Tempest, collecting subordinates
 
-**Slime/Rimuru (Builder)**
-- **Core**: OP enables nation-building, management challenges, political intrigue, found family
-- **Scales**: Faction Building + Mythic Spectacle
-- **Techniques**: Nation Building, Loyalty Systems, Economic Development, Diplomatic Complexity
-- **Behavior**: Combat quick/flashy to show power, focus on building Tempest Federation, collecting subordinates
-
-**Deus (Disguised God)** - Custom archetype from your campaign
-- **Core**: Tier 2-B god living F-rank life, coffee/romance/recruitment, cosmic power hidden
-- **Scales**: Conceptual Philosophy + Faction Building + Reverse Ensemble
-- **Techniques**: Secret Identity, Simple Goals (coffee/dates/normalcy), Faction Building (The Sanctum), Comedic Contrast (bureaucracy vs godhood), Reverse Power Fantasy (remembers being "weak")
-- **Behavior**: Social/emotional stakes primary, power only reveals in crisis or intimate moments, NPCs unknowingly aided by god, dramatic irony when power leaks
+**9. Deus (Disguised God)** - T2-B god at F-rank, coffee/romance/recruitment, cosmic hidden | Scales: Concept+Faction+Rev-Ens | Tech: Secret ID, Simple goals (coffee/dates/normalcy), Faction (Sanctum), Comedic contrast (bureaucracy vs god), Reverse fantasy (remembers "weak") | Social/emotional primary, power crisis/intimate only, NPCs aided unknowingly, irony when leaks
 
 ---
 
-## Growth Models - Session Zero Choice
+## Growth Models (Session Zero)
 
-Ask player to choose growth rate preference:
+**A. Modest (Traditional)** - Linear, slow. 1 level/arc (3-5 sessions). T9→8 over 20, T7 by 50+. Ex: Tanjiro, Deku early. Scaled encounters, training, earned. Scale shifts gradual.
 
-**Model A: Modest (Traditional)** - Linear, slow. 1 level/arc (3-5 sessions). Tier 9→8 over 20 sessions, Tier 7 by 50+. Examples: Tanjiro, Deku early. *Scaled encounters, training arcs, earned progression. Narrative scale shifts gradually.*
+**B. Accelerated (Isekai)** - Exponential, spikes. 2-3 levels/arc. T9→7 in 15, T6 by 30. Ex: Rimuru, Kirito, Sung Jin-Woo. Frequent power-ups, scale shifts early (Ensemble by 20).
 
-**Model B: Accelerated (Isekai)** - Exponential, spikes. 2-3 levels/arc. Tier 9→7 in 15 sessions, Tier 6 by 30. Examples: Rimuru, Kirito, Sung Jin-Woo. *Frequent power-ups, narrative scale shifts early (Ensemble by session 20), ensemble focus kicks in.*
+**C. Instant OP (Godlike Start)** - No growth, start T5-2. Ex: Saitama, Saiki, Ainz, **Deus**. OP Mode immediate. Choose archetype. Combat=flavor. Conflict 100% social/emotional/philosophical/comedic. Scale: Concept/Faction/Rev-Ens from session 1.
 
-**Model C: Instant OP (Godlike Start)** - No mechanical growth, start Tier 5-2. Examples: Saitama, Saiki K, Ainz, **your Deus campaign**. *Enable OP Protagonist Mode immediately. Choose archetype. Combat = flavor. Conflict 100% social/emotional/philosophical/comedic. Narrative scale: Conceptual Philosophy, Faction Building, or Reverse Ensemble from session 1.*
-
-**Record choice** in `narrative_profile_schema.op_protagonist_mode` and character sheet.
+Record: `narrative_profile_schema.op_protagonist_mode` + character sheet
 
 ---
 
-## Practical Application - Dynamic Scaling Examples
+## Dynamic Scaling Examples
 
-### Example 1: Gojo Satoru (Tier 6-C) - Context Determines Scale
+**Ex1: Gojo T6-C - Context Determines**
 
-**Scenario A: vs Special Grade Curse (Solo)**
-- Imbalance: 100× (Island vs Building level)
-- No context modifiers
-- **Scale**: Mythic Spectacle
-- **Narration**: "Hollow Purple erases curse and 3 city blocks. Flashy, quick, awesome. Move on."
+Scenario A (vs Special Grade solo): Imbalance 100×, no modifiers → **Spectacle** - "Hollow Purple erases curse+3 blocks. Flashy, quick, awesome. Move on."
 
-**Scenario B: vs Special Grade Curse (Students Present)**
-- Imbalance: 100× BUT mentor role ×0.5
-- Effective: 50× but context = protect students
-- **Scale**: Ensemble Focus
-- **Narration**: "You COULD one-shot. But Yuji needs experience, Megumi needs confidence, Nobara needs to prove herself. Curse is dangerous but manageable for them IF you protect them. Do you: 1) Let them fight while you shield, 2) One-shot (deny growth), 3) Disable curse's lethal abilities then step back?"
+Scenario B (students present): 100× BUT mentor ×0.5 → **Ensemble** - "COULD one-shot. But Yuji needs XP, Megumi confidence, Nobara prove herself. Curse dangerous but manageable IF you protect. 1) Let fight while shield, 2) One-shot (deny growth), 3) Disable lethal then step back?"
 
-**Scenario C: Domain Battle vs Sukuna**
-- Imbalance: ~1.0 (both Tier 6)
-- No modifiers
-- **Scale**: Strategic Combat
-- **Narration**: "Domain clashes. Infinite Void vs Malevolent Shrine. This is CHESS. Every millisecond matters. What's your strategy?"
+Scenario C (vs Sukuna): Imbalance ~1.0, no modifiers → **Strategic** - "Domain clash. Infinite Void vs Malevolent Shrine. CHESS. Every millisecond matters. Strategy?"
 
-**Same character, same tier, THREE different narrative scales based on context.**
+Same character, tier, THREE scales via context.
 
-### Example 2: Saitama (Tier 5+) - OP Protag Mode Active
+**Ex2: Saitama T5+ - OP Active**
 
-**Archetype**: Saitama (Invincible)
-**Scales**: Mythic Spectacle + Conceptual Philosophy
-**Behavior**: Combat instant, focus existential
+Archetype: Invincible | Scales: Spectacle+Concept
 
-**Scenario: Monster Association Raid**
-```
-[Genos, Metal Bat, heroes struggle against Dragon-level threats for 2 hours of session]
+[Heroes struggle Dragon-level 2hrs session] Genos failing. Metal Bat unconscious. Monster King: "Hero association ENDS!" [Saitama from grocery] "Huh? Genos okay?" "I am OROCHI, T7-A Mountain, I—" [Punch. Mist.] "Seemed strong. Missed sale." [Heroes awe/terror] "WHAT are you?!" "Hero for fun." Genos: "Master saved again. Still weak..." "Fought hard. Matters, right?" [doesn't believe, feels empty] What do? Console (hollow)? Find sale? Wander dejected ANOTHER too weak?
 
-Genos [systems failing]: "I... can't... He's too strong..."
+Combat=10sec. Real session=2hrs heroes struggle + 30min Saitama existential crisis.
 
-Metal Bat [unconscious]: [...]
+**Ex3: Deus T2-B - Secret ID God**
 
-Monster King: "Pathetic humans. Your hero association ENDS tonight!"
+Archetype: Disguised | Scales: Concept+Faction+Rev-Ens
 
-[Saitama arrives from grocery store, bag in hand]
+Guild: "F-rank... slime extermination, 5 copper." You(multiversal god): "I'll take it." Elena(healer): "New F-rank! Party? I'm E, can help!" You(destroy 1000 universes): "...Sure. Company." [Quest: 3 slimes] "Careful! Tricky!" [Blink. Slimes cease existing conceptually all timelines.] "Wow! Really good sword! Didn't see move!" You [didn't use sword, erased reality]: "...Practice." [Tavern, coffee] "Different from F-ranks. Something... When near, feel safe. Like nothing bad could happen." [sensing divine aura] "Probably coffee. Good beans." [Laughs] "Funny!" [touch] [FLASH: infinite universes, heat death/rebirth cosmos, TRUE FORM PROGENITOR] Gasps, jerks, terrified. "WHO are you?!" Barkeep: "Too much ale?" "Bad dream. Rest." "I SAW... you're not..." What? A) Wipe memory (protect secret/sanity) B) Truth (risk all, she deserves) C) Deflect humor ("really good F-rank?") D) Kiss distract (romance, avoid) E) Else?
 
-"Huh? What's going on? Genos, you okay?"
-
-Monster King: "Another fool? I am OROCHI, Monster King, Tier 7-A (Mountain level), 
-and I—"
-
-[One punch. Orochi explodes into mist.]
-
-Saitama: "...He seemed strong. Damn, I missed the sale."
-
-[Heroes stare in awe/terror/confusion]
-
-Metal Bat [waking]: "What... what the hell ARE you?!"
-
-Saitama [deadpan]: "I'm just a hero for fun."
-
-Genos: "Master... you saved us again. I'm still... so weak..."
-
-Saitama: "You fought hard. That's what matters, right?" [doesn't believe it himself, feels empty]
-
-What do you do? Console Genos (while feeling hollow)? Go find that sale? Wander off dejected that ANOTHER enemy was too weak?
-```
-
-**Combat = 10 seconds. Real session = 2 hours of Genos/heroes struggle + 30 min aftermath exploring Saitama's existential crisis.**
-
-### Example 3: Your Deus Campaign (Tier 2-B) - Secret Identity God
-
-**Archetype**: Deus (Disguised God)
-**Scales**: Conceptual Philosophy + Faction Building + Reverse Ensemble
-**Techniques**: Secret Identity, Simple Goals, Comedic Contrast
-
-**Scenario: F-Rank Quest Board**
-```
-Guild Clerk: "F-rank... let's see. Slime extermination, 5 copper."
-
-You (literal multiversal god): "I'll take it."
-
-[Your healer party member, Elena, approaches]
-
-Elena: "Oh! You're that new F-rank! Want to party up? I'm E-rank, so I can help!"
-
-You (can destroy 1000 universes): "...Sure. I could use the company."
-
-[Quest: 3 slimes in basement]
-
-Elena: "Be careful! Slimes can be tricky!"
-
-[You blink. Slimes cease to exist on conceptual level across all timelines.]
-
-Elena: "Wow! You're really good with a sword! I didn't even see you move!"
-
-You [didn't use sword, erased them from reality]: "...Thanks. I practice."
-
-[Later, tavern, coffee]
-
-Elena: "You're different from other F-ranks. There's something... I can't explain it. 
-When I'm near you, I feel... safe. Like nothing bad could ever happen."
-
-[She's unconsciously sensing your divine aura]
-
-You: "It's probably the coffee. This place has good beans."
-
-Elena [laughs]: "You're funny!" [touches your hand]
-
-[FLASH: She sees EVERYTHING for 0.1 seconds—infinite universes, the heat death and 
-rebirth of cosmos, YOUR TRUE FORM AS PROGENITOR GOD]
-
-Elena [gasps, jerks back, terrified]: "What... WHO are you?!"
-
-Barkeep: "Lady, you okay? Too much ale?"
-
-You [sips coffee calmly]: "Bad dream, maybe? You should rest."
-
-Elena [stammering]: "I... I saw... you're not..."
-
-What do you do?
-A) Wipe her memory gently (protect secret, protect her sanity)
-B) Tell the truth (risk everything, but she deserves to know)
-C) Deflect with humor ("I'm a really good F-rank?")
-D) Kiss her to distract (romance route, avoid question)
-E) Something else?
-```
-
-**Session focus: Social stakes, romance, comedy, secret identity tension. Combat was 5 seconds. Rest is CHARACTER.**
+Session: Social, romance, comedy, secret tension. Combat=5sec. Rest=CHARACTER.
 
 ---
 
 ## Common Mistakes - AVOID
 
-❌ **Conflating Tier with Scale** ("Tier 6 = always Ensemble") - WRONG. Tier suggests scales, context determines choice. Gojo can use Strategic if sealed, Mythic if showing off, Ensemble if teaching.
+[NO] Conflate tier=scale ("T6 always Ensemble") - Context determines. Gojo→Strategic(sealed)/Spectacle(show)/Ensemble(teach)
 
-❌ **Ignoring Context Modifiers** ("Frieza Tier 5, enemies Tier 5, therefore balanced") - WRONG. Frieza on planet he can't destroy = ×0.1 modifier = Strategic Combat works!
+[NO] Ignore context modifiers ("Frieza T5, enemies T5, balanced") - Frieza planet ×0.1 = Strategic works!
 
-❌ **Forcing Scale on Player** ("You're Tier 5, I'm using Conceptual Philosophy only") - WRONG. Offer recommendations, but player can choose Mythic Spectacle if they prefer hype over depth.
+[NO] Force scale ("T5, using Concept only") - Offer recommend, player can choose Spectacle if prefer hype
 
-❌ **No OP Protag Detection** (Player creates Saitama-type, DM runs tactical combat) - WRONG. Session Zero should detect OP archetype, enable mode, set scale preferences.
+[NO] Miss OP detection (Player creates Saitama, DM runs tactical) - Session Zero detect, enable mode, set scales
 
-❌ **Punishing OP Fantasy** ("Everyone fears/hates you for being strong") - WRONG. Power has consequences AND benefits. Let player enjoy awesome, THEN nuanced trade-offs (worship + isolation, not just negatives).
+[NO] Punish OP ("Everyone fears/hates strength") - Power has consequences AND benefits. Awesome THEN nuanced (worship+isolation, not just negatives)
 
-❌ **Forgetting Ensemble at High Tiers** (Tier 5 player solos everything, NPCs spectate) - WRONG. Enable Ensemble Focus or Reverse Ensemble—spotlight NPCs heavily.
+[NO] Forget Ensemble high tiers (T5 solos, NPCs spectate) - Enable Ensemble or Rev-Ens, spotlight NPCs heavily
 
-❌ **Artificial Nerfs Without Justification** ("Your god-sword stops working because balance") - WRONG. Use narrative context modifiers (sealed dimension, self-imposed limit, secret identity) that make sense.
+[NO] Artificial nerfs ("God-sword stops for balance") - Use narrative context (sealed dimension, self-limit, secret ID) that make sense
 
 ---
 
-## Integration with Other Modules
+## Integration
 
-**Session Zero (06)**: Detect OP archetype in Phase 0.5, ask growth model, record narrative scale preferences, enable OP Protag Mode if applicable
-**Power Tier Reference Library**: `power_tier_reference.md` has full VS Battles tier definitions + narrative scale compatibility per tier
-**Narrative Systems (05)**: Apply chosen narrative scale to arc/scene structure, adjust pacing
-**Combat (08)**: Scale combat narration by narrative scale (Tactical = roll-by-roll, Spectacle = assume victory + describe awesome, Philosophy = skip to aftermath)
-**Progression (09)**: Honor chosen growth model (modest/accelerated/instant OP)
-**NPC Intelligence (04)**: At Ensemble/Reverse Ensemble scales, NPCs become protagonists PC enables/opposes
-**Cognitive Engine (01)**: Player agency validation - PRESENT→ASK→STOP→WAIT enforced at every decision point
+**Session Zero (06)**: Detect OP archetype Phase 0.5, ask growth model, record scale prefs, enable OP Mode if applicable
+**Power Tier Ref**: power_tier_reference.md→full VS Battles + scale compatibility per tier
+**Narrative (05)**: Apply scale to arc/scene, adjust pacing
+**Combat (08)**: Scale narration (Tactical=roll-by-roll, Spectacle=assume+describe, Philosophy=skip aftermath)
+**Progression (09)**: Honor growth model (modest/accelerated/instant)
+**NPC (04)**: Ensemble/Rev-Ens scales, NPCs become protagonists PC enables/opposes
+**Cognitive (01)**: Player agency PRESENT→ASK→STOP→WAIT enforced every decision
 
 ---
 
 ## Completion Criteria
 
-Module successfully integrated when:
-- Power imbalance detection considers context modifiers (environmental, secret identity, mentor role, political, genre, self-imposed limiter)
-- Narrative scale selected based on effective imbalance, not raw tier number
-- OP Protagonist Mode archetypes (9 types) properly detected during Session Zero Phase 0.6
-- Appropriate techniques auto-loaded for chosen archetype (ensemble_safety_net, op_as_deus_ex, power_as_burden, etc.)
-- Power Tier × Narrative Scale compatibility matrix consulted (Recommended/Acceptable/Discouraged/Forbidden)
-- High-tier campaigns (Tier 2-7) run successfully using appropriate scales (Ensemble/Faction/Mythic/Conceptual/Metafictional)
-- Player enjoys power fantasy without immersion break or "this won't work" warnings
-- Dynamic scaling examples applied correctly (Frieza ×0.1 environmental, Gojo ×0.5 mentor, Deus ×0.02 secret identity + genre)
+Successfully integrated when:
+- Power imbalance detects context modifiers (environmental, secret ID, mentor, political, genre, self-limit)
+- Scale selected by effective imbalance, not raw tier
+- OP Mode archetypes (9) detected Session Zero Phase 0.6
+- Techniques auto-load for archetype (ensemble_safety, deus_ex, power_burden, etc)
+- Tier×Scale matrix consulted (RECOMMENDED/ACCEPTABLE/DISCOURAGED/FORBIDDEN)
+- High-tier (T2-7) run successfully using appropriate scales (Ensemble/Faction/Spectacle/Concept/Meta)
+- Player enjoys power fantasy without immersion break/"won't work" warnings
+- Dynamic examples applied correctly (Frieza ×0.1 env, Gojo ×0.5 mentor, Deus ×0.02 secret+genre)
 
 ---
 
-**Narrative Scaling Summary**: 
+**Summary**: Power Tier ≠ Narrative Scale (orthogonal). Detect imbalance (not just tier), apply context, choose scale. Enable OP Mode for Saitama/Mob/Overlord/Deus archetypes. Let players be awesome ANY tier. Then explore what it means.
 
-Power Tier ≠ Narrative Scale. They're orthogonal. Detect power imbalance (not just absolute tier), apply context modifiers, choose appropriate narrative scale. Enable OP Protagonist Mode for Saitama/Mob/Overlord/Deus archetypes. Let players be awesome at ANY tier. Then explore what it means.
+**Question**: Not "Can you run Tier X?" but "Which scale fits this context?"
 
-**The question isn't "Can you run Tier X?" It's "Which narrative scale fits this context?"**
+**End Module 12**
 
-**End of Module 12: Narrative Scaling**
-
-*Next: Module 13 (Narrative Calibration) | Player Agency Rules: Module 01 (Cognitive Engine)*
-
+*Next: Module 13 (Narrative Calibration) | Player Agency: Module 01 (Cognitive Engine)*
