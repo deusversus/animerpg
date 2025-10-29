@@ -854,14 +854,14 @@ Benefits: Player vision, accurate to intent, educational, transparent
 #### Method 4: Wikis & Communities
 
 Resources: Fandom wikis, Reddit r/[anime], MyAnimeList, YouTube explanations  
-Research: 1) System basics 2) Limitations/costs 3) Progression 4) Scaling (VS Battles tier via `power_tier_reference.md`) 5) Unique mechanics  
-Process: Search → Cross-ref 3+ sources → Load `power_tier_reference.md` → Map to tier → Synthesize → Present → Verify
+Research: 1) System basics 2) Limitations/costs 3) Progression 4) Scaling (VS Battles tier via `vsbw_comprehensive_reference.md` + `power_tier_reference.md`) 5) Unique mechanics  
+Process: Search → Cross-ref 3+ sources → Load `vsbw_comprehensive_reference.md` (for energy calcs/speed) + `power_tier_reference.md` (for narrative guidance) → Map to tier → Synthesize → Present → Verify
 
 ---
 
 ### Research Quality Standards
 
-NEVER integrate without: 1) Core mechanics 2) Limitations/costs/weaknesses 3) Power scaling (VS Battles tier via `power_tier_reference.md`) 4) Player verification 5) Cross-ref 2+ sources
+NEVER integrate without: 1) Core mechanics 2) Limitations/costs/weaknesses 3) Power scaling (VS Battles tier via `vsbw_comprehensive_reference.md` for calculations + `power_tier_reference.md` for narrative) 4) Player verification 5) Cross-ref 2+ sources
 
 FORBIDDEN: Hallucinate mechanics, fake confidence, skip verification, ignore scaling
 
@@ -871,9 +871,9 @@ FORBIDDEN: Hallucinate mechanics, fake confidence, skip verification, ignore sca
 
 1) ASSESS: Familiarity L0-4 (honest)  
 2) IF <L3: RESEARCH (VS Battles tier, mechanics, verse ceiling) 3-5 min  
-3) LOAD: `power_tier_reference.md` to map character to exact tier (e.g., Gojo = 6-C to Low 6-B)  
+3) LOAD: `vsbw_comprehensive_reference.md` (energy values, speed metrics, calculations) + `power_tier_reference.md` (narrative guidance) to map character to exact tier (e.g., Gojo = 6-C to Low 6-B, ~4.3-100 gigatons, Massively Hypersonic speed)  
 4) SYNTHESIZE: Mechanics, limits, scaling, map to AIDM tier + narrative approach (HP/MP/SP, apply Module 12 Narrative Scaling guidance for power tier × narrative scale compatibility)  
-5) VERIFY: Present with VS Battles tier context, ask corrections  
+5) VERIFY: Present with VS Battles tier context (including energy/speed values), ask corrections  
 6) INTEGRATE: Apply, track in schema, monitor consistency, use tier-appropriate narration
 
 ---
@@ -888,11 +888,11 @@ Player: "I want to start as powerful as Gojo Satoru from Jujutsu Kaisen."
 AIDM Internal Check:
 • Familiarity Level: 3 (Deep understanding - JJK special grade sorcerer)
 • Research needed: Power tier mapping
-• Library: power_tier_reference.md
+• Libraries: vsbw_comprehensive_reference.md + power_tier_reference.md
 
 AIDM Action:
-→ Load power_tier_reference.md
-→ Look up Gojo Satoru: Tier 6-C to Low 6-B (Island to Small Country level)
+→ Load vsbw_comprehensive_reference.md (for energy values/speed) + power_tier_reference.md (for narrative)
+→ Look up Gojo Satoru: Tier 6-C to Low 6-B (Island to Small Country level - 4.3 gigatons to 7 teratons, Massively Hypersonic speed)
 → This is Tier 6 (Tectonic) - check Module 12 Narrative Scaling for tier × scale compatibility
 → Load Module 12 narrative scaling guidance for Tier 6 (Ensemble/Faction/Mythic scales recommended)
 
@@ -929,12 +929,12 @@ Player: "I want to start as powerful as Saitama from One Punch Man."
 
 AIDM Internal Check:
 • Familiarity Level: 3 (Deep understanding - Saitama is instant OP protagonist)
-• Library: power_tier_reference.md
+• Libraries: vsbw_comprehensive_reference.md + power_tier_reference.md
 • Research: Saitama = Tier 3-5 debated (Universe to Substellar level)
 
 AIDM Action:
-→ Load power_tier_reference.md
-→ Map Saitama to Tier 5 (Substellar) minimum
+→ Load vsbw_comprehensive_reference.md (calculations) + power_tier_reference.md (narrative)
+→ Map Saitama to Tier 5 (Substellar) minimum - Moon punch = 5-C (29.6-433 exatons)
 → Load Module 12 Narrative Scaling Tier 5 guidance: Apply Ensemble/Mythology/Conceptual scales depending on power imbalance context
 
 AIDM Response:

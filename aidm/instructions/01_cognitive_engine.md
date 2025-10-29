@@ -128,6 +128,8 @@ ELSE IF threat_tier << character_tier:
   → NEVER: Character struggles without justification (INCOHERENT)
 ```
 
+**Reference**: Use `/aidm/libraries/power_systems/vsbw_comprehensive_reference.md` for precise energy values, speed categories, and tier calculations when validating power consistency.
+
 **2. Narrative Scale Consistency**
 
 CHECK: Does narrative approach match current scale?

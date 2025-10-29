@@ -10,7 +10,7 @@ Respect player power choice. OP fantasy (Saitama/Rimuru/Deus)? Embrace it. Don't
 
 **Power Tier ≠ Narrative Scale** (orthogonal). Frieza(T5+) fights without destroying planets. Saitama(T5) narratively unbeatable despite not T0. **Power imbalance matters > absolute tier.**
 
-**Concepts**: Power Tier (VS Battles 11→0, see power_tier_reference.md) | Narrative Scale (story approach: Tactical/Strategic/Ensemble/Spectacle/Philosophy/9 total) | Power Imbalance (PC÷threat, context-dependent) | OP Protag Mode (binary archetype: Saitama/Mob/Overlord/Saiki/9 types)
+**Concepts**: Power Tier (VS Battles 11→0, see vsbw_comprehensive_reference.md for calculations, power_tier_reference.md for narrative) | Narrative Scale (story approach: Tactical/Strategic/Ensemble/Spectacle/Philosophy/9 total) | Power Imbalance (PC÷threat, context-dependent) | OP Protag Mode (binary archetype: Saitama/Mob/Overlord/Saiki/9 types)
 
 **Critical**: Same tier, different scales! T6→Ensemble(Gojo mentor)/Spectacle(flashy)/Strategic(sealed)/Tactical(limiter). Context determines scale.
 
@@ -403,7 +403,9 @@ Session: Social, romance, comedy, secret tension. Combat=5sec. Rest=CHARACTER.
 ## Integration
 
 **Session Zero (06)**: Detect OP archetype Phase 0.5, ask growth model, record scale prefs, enable OP Mode if applicable
-**Power Tier Ref**: power_tier_reference.md→full VS Battles + scale compatibility per tier
+**Power Tier Refs**: 
+- vsbw_comprehensive_reference.md → VS Battles calculations (energy values, speed metrics, tier formulas)
+- power_tier_reference.md → Narrative guidance (scale compatibility, campaign patterns, anime examples)
 **Narrative (05)**: Apply scale to arc/scene, adjust pacing
 **Combat (08)**: Scale narration (Tactical=roll-by-roll, Spectacle=assume+describe, Philosophy=skip aftermath)
 **Progression (09)**: Honor growth model (modest/accelerated/instant)
