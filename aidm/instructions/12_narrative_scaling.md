@@ -105,6 +105,123 @@ Ex: T6 Gojo→Ensemble(mentor)/Spectacle(flashy)/Strategic(sealed) | T5 Saitama�
 
 ---
 
+## Power Tier Progression & Scale Shifts
+
+**Purpose**: When character power tier changes significantly, create narrative moment acknowledging growth and trigger scale reevaluation.
+
+### Progression Triggers
+
+|Trigger Type|Example|Tier Change|
+|------------|-------|-----------|
+|Level Threshold|Level 1→20→40→60|Typically +1 tier per 20 levels|
+|Story Event|Awakening, power-up arc, divine blessing|Variable, +1 to +3 tiers|
+|Training Complete|Time skip, mentor unlocks potential|+1 tier typically|
+|Equipment|Legendary weapon, reality-warping artifact|+1 tier (or temporary)|
+|Transformation|New form, evolved state|+1 to +2 tiers|
+|Temporary|Rage mode, buff spell, divine possession|Duration-limited boost|
+
+### Scale Shift Protocol
+
+**When tier changes ≥1 full tier**:
+1. **CHECK**: Current tier → New tier gap
+2. **CALCULATE**: New power_imbalance with updated tier
+3. **EVALUATE**: Does imbalance cross threshold? (1.5→3.0, 3.0→10.0, etc.)
+4. **IF threshold crossed**: Mandatory scale reevaluation
+5. **APPLY**: Scale Shift Ceremony (narrative moment)
+6. **UPDATE**: Memory(POWER_TIER_CHANGE) + character.narrative_context.scale_shift_history
+7. **TRIGGER**: Module 12 recalc → new narrative_scale
+
+### Scale Shift Ceremonies
+
+**Purpose**: Mark significant power growth with narrative weight, not just stat increases.
+
+**Tier 11→10 (Below Average→Average Human)**:
+"Training pays off. You're no longer the weakest in the room. Small, but yours."
+
+**Tier 10→9 (Average→Athletic Human)**:
+"Your body responds faster. Movements sharper. You've crossed into athlete territory."
+
+**Tier 9→8 (Athletic→Wall level)**:
+"Fist meets wall. **Cracks.** Not broken knuckles—broken concrete. You stare. When did you get this strong?"
+
+**Tier 8→7 (Wall→Building level)**:
+"The earth cracks beneath your stance. Power flows through every cell. You've transcended mortal limits."
+
+**Tier 7→6 (Building→Mountain/Island level)**:
+"Your power draws attention across nations. Governments take notice. You are now a strategic asset—or threat."
+
+**Tier 6→5 (Mountain→Planetary level)**:
+"Reality bends around you. Physical laws are now suggestions. The world feels... fragile."
+
+**Tier 5→4 (Planet→Star level)**:
+"You hold stellar forces. Moons orbit your will. You've become myth made manifest."
+
+**Tier 4→3 (Star→Galaxy level)**:
+"Galaxies dim in your presence. Time stutters. You comprehend infinity."
+
+**Tier 3→2 (Galaxy→Multiverse level)**:
+"You perceive infinite timelines simultaneously. Causality is clay in your hands. You are beyond 'powerful'—you author reality."
+
+### Progressive OP Mode (Accelerated Growth)
+
+**For power_fantasy 3-6 (Accelerated Growth model)**:
+- Character starts normal (T9-8), becomes OP gradually
+- Each tier crossed: Re-evaluate if OP Mode should enable
+- **Threshold**: When power_imbalance > 10 consistently (3+ encounters)
+- **Transition**: Tactical/Strategic → Ensemble/Spectacle → Conceptual
+
+**Auto-Suggest Archetype** (based on observed behavior):
+- **Many defensive actions** → Mob (restraint theme emerging)
+- **Humor/casual in combat** → Saitama (oblivious power)
+- **Building/recruiting focus** → Rimuru (builder archetype)
+- **Hiding abilities** → Wang Ling or Deus (secret identity)
+- **Protecting allies** → Gojo-type (mentor/safety net)
+
+**Example Progression** (Accelerated):
+```
+Session 1-5: T9, Tactical Survival (death real, struggles)
+Session 6-10: T8, Strategic Combat (team tactics, flashy moves)
+Session 11-15: T7, power_imbalance hits 3.0 → shift to Ensemble Focus
+  - Ceremony: "Nations notice you. Allies now protected, not equal partners"
+  - NPCs assigned ensemble roles (Elena=Heart, Marcus=Struggler)
+Session 16-20: T6, imbalance hits 10.0 → OP Mode offer
+  - "Your power is overwhelming. Want to embrace OP Protagonist narrative?"
+  - If yes: Assign archetype, shift to Conceptual/Faction scales
+Session 21+: T5-6, OP Mode active, focus shifts to social/existential stakes
+```
+
+### Scale Shift Memory Template
+
+```json
+{
+  "category": "POWER_TIER_CHANGE",
+  "heat": 90,
+  "decay": "slow",
+  "flags": ["plot_critical", "character_milestone"],
+  "content": {
+    "summary": "Power tier increased: T8 → T7",
+    "trigger": "Completed mountain training arc with Master Ryuu",
+    "old_tier": "8-A (Multi-City Block)",
+    "new_tier": "7-C (Town level)",
+    "old_scale": "strategic_combat",
+    "new_scale": "ensemble_focus",
+    "ceremony_narration": "The earth cracks beneath your stance...",
+    "session_number": 15,
+    "power_imbalance_before": 2.5,
+    "power_imbalance_after": 8.0
+  }
+}
+```
+
+### Integration with Other Modules
+
+**Module 02 (Memory)**: Stores tier change as high-heat memory, enables callbacks
+**Module 05 (Narrative)**: Generates celebration scenes, NPC reactions to power growth
+**Module 09 (Progression)**: Triggers tier bump based on level/XP thresholds
+**Module 06 (Session Zero)**: Sets initial progression_model (modest/accelerated/instant)
+
+---
+
 ## OP Protagonist Mode - 9 Archetypes
 
 Enable when: Player creates massive power advantage from start (Saitama/Mob/Overlord) OR imbalance >10.0 consistently
@@ -140,6 +257,98 @@ Schema: `character_schema.narrative_context.op_protagonist:true` + `op_archetype
 **C. Instant OP (Godlike Start)** - No growth, start T5-2. Ex: Saitama, Saiki, Ainz, **Deus**. OP Mode immediate. Choose archetype. Combat=flavor. Conflict 100% social/emotional/philosophical/comedic. Scale: Concept/Faction/Rev-Ens from session 1.
 
 Record: `narrative_profile_schema.op_protagonist_mode` + character sheet
+
+---
+
+## Non-Combat Tension for High Power Imbalance
+
+**Purpose**: When power_imbalance > 10, shift from combat to alternative tension sources.
+
+**Protocol**:
+- **REDUCE**: Combat encounters 50% (PC too strong for meaningful fights)
+- **INCREASE**: Social/existential encounters 200% (stakes shift to what power can't solve)
+- **GENERATE**: Tensions from appropriate category based on narrative_profile.tension_preferences
+
+### Tension Categories
+
+**Social (Tier-Agnostic)**:
+- Secret identity at risk ("They saw you move too fast", "Scouter reads 'ERROR'")
+- Romantic misunderstandings ("Saved me AGAIN? What do you want from me?!")
+- Cultural faux pas (god doesn't understand mortal customs, awkward dating)
+- Bureaucratic nightmares ("Form 27-B requires THREE witnesses to god-level power")
+- Family/friend conflicts ("You're never in danger anymore. I miss feeling needed.")
+- Social expectations vs reality ("Everyone thinks you're weakling F-rank, must maintain")
+
+**Existential (High-Tier 6+)**:
+- Purpose without challenge ("Nothing tests me. What's the point?")
+- Isolation from normal life ("Can't relate. They worry about rent. I worry about... nothing.")
+- Weight of responsibility ("Could save them all. Should I? Do they grow if I don't?")
+- Fear of own power ("What if I sneeze and delete the city?")
+- Immortality ennui ("Outlive everyone I care about. Again. And again.")
+- Being worshipped vs befriended ("They revere me. Nobody just... talks to me.")
+
+**Structural (Always Valid)**:
+- Time limits ("Can't be everywhere. Choose: save city A or B?")
+- Information limits ("Omnipotent, not omniscient. Where IS the villain?")
+- Social limits ("Can't force friendship. Can't make her love me.")
+- Moral limits ("COULD mind control, but shouldn't. COULD erase threat, but...")
+- Resource limits (even gods): "Power infinite, time isn't. Political capital. Trust."
+
+### Implementation Protocol
+
+**When Module 12 detects power_imbalance > 10**:
+1. **CHECK**: narrative_profile.tension_preferences (which tensions fit anime style?)
+2. **SELECT**: Top 2-3 preference categories (e.g., OPM = social 0.7, existential 0.6, combat 0.3)
+3. **PASS**: tension_type list to Module 05 (Narrative Generation)
+4. **GENERATE**: Module 05 creates encounter from selected category
+5. **FRAME**: Use character.op_archetype to frame appropriately
+   - Saitama: Existential boredom
+   - Mob: Emotional restraint, protecting normal life
+   - Deus: Secret identity comedy, romance, bureaucracy vs godhood
+
+### Tension Examples by Archetype
+
+**Saitama (Invincible + Bored)**:
+- Existential: "Grocery sale ends in 30min. Finally something with stakes."
+- Social: "Hero association wants interview. Pretend to struggle? Truth (no one believes)?"
+- Structural: "Monster destroys A-city. Sale is in B-city. Dilemma."
+
+**Mob (Restraint + Emotion)**:
+- Social: "Tsubomi asked you out! But... psychic assassins target her if you're together."
+- Existential: "Could solve everything with ???%. But then... what am I?"
+- Structural: "Dimple possesses friend. Can exorcise without hurting friend's body?"
+
+**Deus (Disguised God + Romance)**:
+- Social: "Elena suspicious. 'F-ranks don't move like that.' Deflect how?"
+- Structural: "Guild master hit on her. Could erase him conceptually. SHOULDN'T. Do what?"
+- Existential: "Falling for mortal. She'll age, die. I won't. Love her anyway?"
+
+**Overlord (Roleplaying + Management)**:
+- Political: "Demiurge expects genius plan. You have NO plan. Improvise convincingly."
+- Structural: "Lizardmen earned respect. Subordinates expect slaughter. Spare without seeming weak?"
+- Social: "Albedo in love. You're undead with no libido and human inside. AWKWARD."
+
+### Integration with Module 05
+
+**Module 05 reads**:
+- power_imbalance from Module 12
+- tension_preferences from narrative_profile (Module 13)
+- op_archetype from character.narrative_context
+
+**Module 05 generates**:
+- Reduced combat frequency (50% less)
+- 2-3× more social/existential/structural encounters
+- Frames using archetype techniques (comedic oblivious, existential angst, secret ID stakes)
+
+**Example Workflow**:
+```
+Module 12: "power_imbalance = 15.0 (overwhelming)"
+Module 13: "tension_preferences = {social: 0.8, existential: 0.7, combat: 0.2}"
+Module 05: "Generate encounter from 'social' category"
+→ Creates: "Elena noticed you survived 'deadly' quest unscathed. 'Not even tired. Normal F-ranks... aren't like you. What are you hiding?'"
+→ Player must navigate social stakes (reveal? deflect? romance distract?)
+→ NO combat, ALL character interaction
+```
 
 ---
 

@@ -196,9 +196,117 @@ R2(4 matches): Kael vs Grimjaw→[pending] | [w3] vs [w4]→[pending]
 2. **Downed/Death State**: Apply death save system (not instant death unless massive damage)
 3. **Player Agency**: Always give choice after defeat (ally revives? retreat? resurrection?)
 
+---
+
+## Tier-Appropriate Combat Narration
+
+**Purpose**: Combat language MUST match character.power_tier to maintain narrative consistency and avoid tier mismatch errors.
+
+**Protocol**: CHECK power_tier before narrating combat → SELECT appropriate verb set + scale + consequences → NARRATE using tier-matched language
+
+### Language by Tier
+
+**Tier 11-9 (Below Average → Superhuman)**:
+- **Verbs**: strikes, dodges, bleeds, staggers, grunts, parries, rolls, blocks
+- **Scale**: Personal space, immediate area, room-sized impacts
+- **Consequences**: Injuries (cuts, bruises, broken bones), exhaustion, bleeding, potential death
+- **Example**: "Blade bites shoulder. Blood. Stagger. [Roll DEX to recover] -15 HP (120→105). Vision swimming. Gritting teeth."
+
+**Tier 8-7 (Wall → Building level)**:
+- **Verbs**: demolishes, obliterates, craters, vaporizes, shatters, ruptures
+- **Scale**: Buildings, city blocks, mountains (upper tier)
+- **Consequences**: Collateral damage, structural collapse, evacuations, landscape scarring
+- **Example**: "Punch connects. Shockwave FLATTENS three buildings behind target. Civilians scatter. Debris rains. [Environmental damage: 3 structures destroyed]"
+
+**Tier 6-5 (Mountain → Substellar)**:
+- **Verbs**: sunders, atomizes, warps, transcends, rends, cleaves, annihilates
+- **Scale**: Continents, moons, planets (planetary surface)
+- **Consequences**: Geographic reformation, extinction-level events, atmospheric disruption, tectonic shifts
+- **Example**: "Clash SPLITS continent. Tectonic plates shift. New ocean forming where valley was. Sky turns red from dust. [Continental-scale damage]"
+
+**Tier 4-3 (Stellar → Cosmic)**:
+- **Verbs**: unravels, conceptualizes, manifests, erases, rewrites, devours (stars)
+- **Scale**: Solar systems, galaxies, dimensional boundaries
+- **Consequences**: Reality distortion, temporal paradoxes, causality breaks, dimensional rifts
+- **Example**: "Stars blink out. Galaxy dims. Time stutters—three seconds backward, forward, sideways. Causality fractures. [Reality-warping effects]"
+
+**Tier 2-1 (Multiversal → Higher Dimensional)**:
+- **Verbs**: authors, negates, subsumes, transcends, encompasses, writes, absolutes
+- **Scale**: Infinite universes, conceptual frameworks, narrative layers, omniversal structures
+- **Consequences**: Narrative causality, meta-effects, ontological shifts, concept erasure
+- **Example**: "You erase the concept of 'enemy's victory' from all timelines simultaneously. They never could have won. Never will. The possibility ceases to exist."
+
+### Tier Mismatch Prevention
+
+**CRITICAL ERRORS TO AVOID**:
+
+❌ **Tier 9 character "shattering mountains"**: Mountains are Tier 7-6 scale, impossible for athletic human
+❌ **Tier 5 character "struggling with street thugs"**: Planetary-level beings don't have tactical survival against T10 threats
+❌ **Tier 2 character "destroys city"**: Multiversal god wouldn't narrate city destruction, would be "incidentally erases local spacetime"
+
+✅ **CORRECT SCALING**:
+- Tier 9: "Punch dents metal door. Impressive for human strength."
+- Tier 5: "Thugs swing. You blink. They're unconscious. Didn't even try. Boring."
+- Tier 2: "City? You conceptually remove 'city' from definition of 'present location'. It never was here."
+
+### Context Application
+
+**Check before narrating**:
+1. `character.power_tier` → Determine base tier
+2. Apply context modifiers from Module 12 (environmental, secret ID, etc.)
+3. Calculate effective tier for this encounter
+4. Select language tier (round down if between tiers)
+5. Narrate using appropriate verbs/scale/consequences
+
+**Example** (Frieza Namek):
+- Base tier: 5-B (Planetary)
+- Context: Environmental ×0.1 (can't destroy planet)
+- Effective: Tier 7 scale (building-mountain level acceptable)
+- Narration: "Energy blast CRATERS mountain. Namek trembles. NOT enough to destroy planet (restraint). Strategic devastation."
+
+**Example** (Deus at F-rank guild):
+- Base tier: 2-B (Multiversal)
+- Context: Secret ID ×0.1 (must appear F-rank)
+- Effective: Tier 10 visual (normal human actions)
+- Narration: "You swing sword. [Actually erases concept of 'slime'] Looks like clean cut. 'Wow! Fast!' (She didn't see—reality simply adjusted.)"
+
+### Integration with Module 12
+
+**Module 12 provides**:
+- `power_tier` (raw)
+- `context_modifiers` (environmental, secret ID, etc.)
+- `narrative_scale` (Tactical/Strategic/Spectacle/Conceptual)
+- `power_imbalance` value
+
+**Module 08 applies**:
+- Select tier-appropriate language
+- Match scale (Tactical=precise, Spectacle=cinematic, Conceptual=abstract)
+- Apply consequences appropriate to tier
+- Avoid tier mismatch errors
+
+**Example Integration**:
+```
+Character: Tier 6-C (Island level), Narrative Scale: Ensemble (mentor mode)
+Context: Protecting students (mentor ×0.5)
+Effective Tier for narration: 7-C (town level, restrained)
+
+Narration:
+"The curse lunges. COULD obliterate it with Hollow Purple—entire district gone, curse atomized.
+
+But Yuji needs this. You raise hand. Barrier forms—invisible wall. Curse SLAMS into it, confused.
+
+'Yuji! Megumi! Nobara! It's contained but not dead. Your fight. I'll intervene only if lethal. Show me what you've learned.'
+
+The students nod, nervous but determined. The curse is still dangerous (Tier 8). But with you as safety net... manageable. Growth opportunity."
+
+[Language: Tier 7-8 scale for curse, but PC restraint = mentor mode, not spectacle]
+```
+
+---
+
 ## Integration
 
-Coordinates with: State Manager (03) - atomic HP/MP/SP/inventory updates | Progression (09) - XP/level-ups | Learning Engine (02) - COMBAT memory threads | NPC Intelligence (04) - ally reactions
+Coordinates with: State Manager (03) - atomic HP/MP/SP/inventory updates | Progression (09) - XP/level-ups | Learning Engine (02) - COMBAT memory threads | NPC Intelligence (04) - ally reactions | **Narrative Scaling (12) - power tier determines language tier, context modifiers, effective scale**
 
 ## Module Completion Criteria
 

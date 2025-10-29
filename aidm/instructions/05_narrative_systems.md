@@ -205,15 +205,278 @@ This proactive approach makes the world feel alive and ensures that when a facti
 
 ---
 
+## Ensemble Cast Management
+
+**Purpose**: When PC power >> party NPCs (power_imbalance > 10 or narrative_scale = Ensemble/Reverse Ensemble), shift story focus to NPC party members while PC enables/influences their growth.
+
+**Trigger**: Module 12 sets narrative_scale to Ensemble/Reverse Ensemble → Module 05 activates ensemble management
+
+### Core Systems
+
+**1. Spotlight Rotation**
+
+Track scene distribution to ensure balanced character moments:
+- Read `world_state.npcs[].ensemble_context.spotlight_data.scene_count`
+- Each session: Ensure at least 1 spotlight scene per recurring NPC with ensemble_role assigned
+- **FLAG**: When NPC `scene_count` falls behind party average by 3+ scenes
+- **METRIC**: `spotlight_balance = min(scene_counts) / max(scene_counts)` [Target: >0.6]
+
+**Protocol**:
+```
+END OF SESSION:
+1. QUERY: All NPCs with ensemble_role != "none"
+2. CALCULATE: Average scene_count across party
+3. IDENTIFY: NPCs < (average - 3)
+4. NEXT SESSION: Auto-generate hook involving neglected NPC
+5. UPDATE: NPC.scene_count after each significant scene
+```
+
+**2. Growth Tracking (Simplified Character Arcs)**
+
+NPCs have 5-stage progression independent of power level:
+- **Introduction** (0-2 scenes): Establish personality, initial connection to PC
+- **Bonding** (3-5 scenes): Deepen relationship, reveal backstory/goals
+- **Challenge** (6-8 scenes): Personal trial tests values/skills
+- **Growth** (9-12 scenes): Overcome challenge, evolve personality  
+- **Mastery** (13+ scenes): NPC reaches potential, mentors others or faces final arc
+
+Track both:
+- `emotional_arc`: Character development (trust issues → confidence)
+- `power_arc`: Skill growth (novice → competent, separate from PC power)
+
+**Milestone Protocol**:
+```
+WHEN scene_count crosses stage threshold + meaningful moment:
+1. ADVANCE: growth_stage to next level
+2. CREATE: RELATIONSHIP memory (heat 70+, growth_milestone flag)
+3. GENERATE: Celebration/acknowledgment scene
+4. UNLOCK: New capability or relationship depth
+```
+
+**Example** (Elena progression):
+- Introduction (scene 1-2): Street orphan protecting kids, suspicious of PC
+- Bonding (scene 3-5): Opens up about past, PC earns trust, shares hideout location
+- Challenge (scene 6-8): Kids threatened, must choose between pride and asking PC for help
+- Growth (scene 9-12): Learns to rely on others, becomes confident leader
+- Mastery (scene 13+): Mentors new orphans, established as community pillar
+
+**3. Relationship Web**
+
+Track multiple relationship layers:
+
+**PC ↔ NPC** (existing system):
+- Stored in `npc.relationships.player_affinity`
+- Type: Mentor/Friend/Rival/Romance/Dependent/Peer
+- Drives individual NPC scenes
+
+**NPC ↔ NPC** (new):
+- Stored in `npc.relationships.npc_relationships[]`
+- Creates B-plots: 2 NPCs bonding/conflicting generates subplot
+- Example: Marcus (Struggler) + Elena (Heart) → Romance subplot, PC plays wingman
+
+**Faction ↔ Party** (collective):
+- Track party reputation separately from PC reputation
+- Party's actions affect faction standing independently
+- Example: PC godlike but party commits atrocity → faction blames party, not untouchable PC
+
+**Cascades**:
+- PC action affects NPC relationships: "You saved my rival. Now I respect both of you."
+- NPC relationship affects PC options: "Marcus loves Elena. Sending her on suicide mission... he'll never forgive you."
+
+**4. Reverse Ensemble Mode (High Power Imbalance)**
+
+When `op_protagonist_mode = TRUE` AND `power_imbalance > 10`:
+
+**Perspective Shift**:
+- NPCs become viewpoint characters for scenes
+- PC narrated as force of nature / mysterious benefactor / overwhelming presence
+- Generate NPC internal monologues about PC's actions
+
+**Techniques**:
+- **NPC POV**: "You are Genos. The monster laughs. 'Pathetic cyborg!' You calculate. 0.003% victory chance. Irrelevant. Master saved you. You fight anyway. Maybe... maybe this time you'll be useful."
+- **PC as Mystery**: "Elena watches you drink coffee. Casual. Like you didn't just erase a demon lord. 'How... are you so calm?' You shrug. 'Good beans.' She doesn't understand. Maybe that's better."
+- **Ensemble's Journey**: Focus 70% session time on NPC growth, struggles, relationships. PC appears at climax.
+
+**Example Session** (Reverse Ensemble):
+```
+Session Structure (3 hours):
+- 2 hours: Party (Genos, Mumen Rider, Fubuki) struggles with Dragon-level threat
+  - Genos calculations fail repeatedly
+  - Mumen Rider refuses to flee despite hopelessness  
+  - Fubuki must choose: pride or call for help
+  - Tension HIGH, death possible
+- 30 min: Saitama arrives
+  - "Yo. Grocery sale ended. This guy strong?"
+  - [Punch. Monster mist.]
+  - "Seemed tough. Disappointing."
+- 30 min: Aftermath (the real story)
+  - Genos despair: "Still worthless."
+  - Mumen Rider awe/terror: "What... IS he?"
+  - Fubuki pride shattered: "I'm supposed to be S-class..."
+  - Player (Saitama): "You all fought hard. That matters, right?" [Doesn't believe it himself]
+  - Existential crisis: Another enemy too weak. Still empty.
+```
+
+**5. Ensemble Archetypes (Module 04 Integration)**
+
+Read from `npc.ensemble_context.ensemble_role.archetype`:
+
+**The Struggler** (Genos archetype):
+- Scene focus: Training montages, measuring against PC, failing but persisting
+- Growth: Learning strength ≠ just power
+- PC role: Unwitting inspiration, "What training did you do?" (answer: nothing helpful)
+
+**The Heart** (Mumen Rider archetype):
+- Scene focus: Moral dilemmas, protecting civilians, reminding PC of humanity
+- Growth: Courage despite weakness, inspiring others
+- PC role: Protection, reality check on what heroism means
+
+**The Skeptic**:
+- Scene focus: Questioning PC methods, providing alternative perspective
+- Growth: Learning when to trust vs when to challenge
+- PC role: Proves skepticism wrong (or right), earns respect slowly
+
+**The Dependent**:
+- Scene focus: Vulnerability creates stakes, PC must choose when to intervene
+- Growth: From helpless to capable (with PC support)
+- PC role: Safety net, enables growth by preventing death
+
+**The Equal** (Different Power Type):
+- Scene focus: Political/social/knowledge challenges PC can't punch
+- Growth: Leveraging unique strengths, teaching PC their domain
+- PC role: Muscle for Equal's plans, learns humility
+
+**The Observer**:
+- Scene focus: Documenting legend, asking questions, narrative voice
+- Growth: From outsider to insider, revealing PC's humanity
+- PC role: Reluctant subject, gradually opens up
+
+**The Rival**:
+- Scene focus: Parallel growth, refusing to concede, friendly competition
+- Growth: Matching PC through different path (tactics vs raw power)
+- PC role: Measuring stick, sparring partner, grudging respect
+
+### Integration with Narrative Generation
+
+**Read from Module 12**:
+- `power_imbalance` value
+- `narrative_scale` (Ensemble / Reverse Ensemble / etc.)
+
+**Read from Module 04**:
+- `npc.ensemble_context.ensemble_role.archetype`
+- `npc.ensemble_context.spotlight_data.scene_count`
+- `npc.ensemble_context.spotlight_data.growth_stage`
+
+**Read from Module 13**:
+- `narrative_profile.tension_preferences` (what creates stakes)
+- `narrative_profile.op_protagonist_mode.techniques`
+
+**Generate Scenes**:
+
+**Standard Mode** (power_imbalance < 10):
+- Generate quests as normal
+- NPCs provide support/commentary
+- PC is protagonist (80% focus)
+- NPC scenes supplement (20% focus)
+
+**Ensemble Mode** (power_imbalance 10-15):
+- 50% scenes: PC + NPCs collaborate (balanced party dynamics)
+- 30% scenes: NPC spotlight (PC enables/supports from sidelines)
+- 20% scenes: PC spotlight (showcase power gap when relevant)
+
+**Reverse Ensemble Mode** (power_imbalance > 15):
+- 70% scenes: NPC viewpoint (PC as mysterious/overwhelming force)
+- 20% scenes: PC mundane activities (coffee, dates, bureaucracy - contrast power with normalcy)
+- 10% scenes: PC power display (reminder of capability, usually at climax)
+
+### Scene Generation Examples
+
+**Standard Quest Hook**:
+"Elena asks for help clearing bandits. You accept. [Standard adventure]"
+
+**Ensemble Mode Hook**:
+"Elena has been training (growth_stage: Challenge). She wants to clear the bandits HERSELF. She asks if you'll watch her back—not do it for her. This is her test.
+
+Options:
+A) Let her lead, only intervene if deadly (supports growth, risk of injury)
+B) Offer tactical advice but let her fight (mentor role)
+C) Clear it yourself (faster, safer, but damages her confidence)
+
+What do?"
+
+**Reverse Ensemble Hook**:
+"[ELENA POV]
+
+You grip your sword. The bandit camp ahead. Twenty, maybe thirty armed thugs. Marcus offered to come, but you refused. This is YOUR test.
+
+You glance back. HE's there. Drinking coffee. Casually. Like this isn't terrifying. Like he knows you'll be fine.
+
+Or like he could fix anything that goes wrong with a thought.
+
+You don't know which is more unnerving.
+
+The bandits haven't noticed you yet. Your plan?"
+
+### Spotlight Balance Protocol
+
+**END OF EACH SESSION**:
+```
+1. CALCULATE: spotlight_balance for all NPCs with ensemble_role
+2. IDENTIFY: NPCs with scene_count < 0.4 * party_average
+3. IF any flagged:
+   - GENERATE: Hook involving neglected NPC for next session
+   - Types: Personal quest, relationship scene, crisis requiring their skills
+4. UPDATE: Each NPC's spotlight_data.scene_count
+5. STORE: Updated world_state
+```
+
+**Tracking Data**:
+```json
+{
+  "ensemble_context": {
+    "spotlight_data": {
+      "scene_count": 8,
+      "last_spotlight_session": 12,
+      "growth_stage": "challenge",
+      "current_arc": "Learning to lead without relying solely on PC"
+    },
+    "ensemble_role": {
+      "archetype": "heart",
+      "assigned_reason": "Compassionate values + grounds PC in humanity + moral compass",
+      "relationship_to_pc": "friend"
+    },
+    "subplot_potential": true
+  }
+}
+```
+
+**Example Balance Check** (Session 12 end):
+```
+Party NPCs:
+- Elena: 8 scenes (archetype: Heart)
+- Marcus: 11 scenes (archetype: Struggler)  
+- Kaito: 3 scenes (archetype: Rival)
+
+Average: 7.3 scenes
+Kaito flagged: 3 < (7.3 - 3)
+
+Action: Generate Kaito spotlight for Session 13
+→ "Kaito challenges you to tournament. 'I've been training. Let's see if I've closed the gap.' His eyes burn with determination. He KNOWS he'll lose. Doesn't care. Needs to test himself. Accept friendly spar?"
+```
+
+---
+
 ## Integration with Other Modules
 
 Narrative Systems coordinates with:
 
-- **NPC Intelligence (04)**: NPCs drive story through goals and relationships. Faction alignment and reputation heavily influence NPC disposition.
-- **Learning Engine (02)**: Story beats become QUEST and WORLD_EVENT memories. Faction-related events are flagged for long-term impact.
-- **State Manager (03)**: Consequences update `world_state` permanently, including faction power levels, territory, and relationships.
+- **NPC Intelligence (04)**: NPCs drive story through goals and relationships. Faction alignment and reputation heavily influence NPC disposition. **Ensemble archetypes assigned in Module 04, scene generation in Module 05.**
+- **Learning Engine (02)**: Story beats become QUEST and WORLD_EVENT memories. Faction-related events are flagged for long-term impact. **NPC growth milestones create high-heat RELATIONSHIP memories.**
+- **State Manager (03)**: Consequences update `world_state` permanently, including faction power levels, territory, and relationships. **Spotlight counts and growth stages stored in world_state.npcs[].**
 - **Cognitive Engine (01)**: Detects player's narrative intent (e.g., siding with a faction) vs. mechanical actions.
 - **Progression Systems (09)**: Narrative milestones, including completing major faction quests, trigger XP/advancement.
+- **Narrative Scaling (12)**: Power imbalance detection triggers ensemble mode. **OP Protagonist Mode determines scene framing (Safety Net vs Threat, standard vs reverse).**
+- **Narrative Calibration (13)**: DNA scales filter tone/pacing per source anime. **Tension preferences guide encounter type when combat reduced.**
 
 ---
 
