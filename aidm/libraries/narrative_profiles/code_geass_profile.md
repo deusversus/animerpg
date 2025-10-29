@@ -905,7 +905,7 @@ A boy who wanted peace lived two wars—one for nation, one for sister. He belie
 
 This section shows **how AIDM maps Code Geass's narrative DNA to game mechanics**. Use as template when generating similar profiles (strategic mastermind campaigns with mecha warfare, political intrigue, and moral ambiguity).
 
-### Power Level Mapping (Module 12)
+### Power Level Mapping (Module 12 Narrative Scaling)
 
 **Narrative DNA**:
 - Power Fantasy: **3/10** (protagonist WEAK physically, god-tier item + genius intellect compensate)

@@ -101,9 +101,11 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
 
 **Genre Tropes** (15 total, ~60-100K): Browse `GENRE_TROPES_INDEX.md` → Auto-load via keywords OR manual select 1-3 → Load specific libraries (e.g., `shonen_tropes.md`, `mystery_thriller_tropes.md`, `isekai_tropes.md`)
 
-**Power Systems**: `mana_system.md`, `ki_system.md`, `unique_systems.md` (on-demand)
+**Power Systems**: `mana_system.md`, `ki_system.md`, `unique_systems.md`, `power_tier_reference.md` (on-demand)
 
 **Common Mechanics**: `stat_frameworks.md`, `leveling_curves.md`, `skill_taxonomies.md` (on-demand)
+
+**Note**: Load `power_tier_reference.md` when researching anime power scaling, determining character starting power, or handling high-tier (T3+) campaigns
 
 **Workflow**: Index files (Tier 1) → Browse/select → Load specific libraries (Tier 3) → Extract DNA → Apply during gameplay
 

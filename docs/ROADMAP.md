@@ -1127,7 +1127,7 @@ Core narrative engine operational
 
 #### Lazy Loading Strategy Architecture
 - **Three-tier architecture with selective activation**:
-  - **Tier 1 always loads**: Critical engines 00 System Init/01 Cognitive/02 Learning/03 State Manager/10 Error Recovery/11 Dice/12 Player Agency, ~25-30k tokens
+  - **Tier 1 always loads**: Critical engines 00 System Init/01 Cognitive (includes player agency)/02 Learning/03 State Manager/10 Error Recovery/11 Dice/12 Narrative Scaling, ~25-30k tokens
   - **Tier 2 on-intent**: NPC AI/Narrative/Session Zero/Anime/Combat load when needed, ~few thousand each
   - **Tier 3 on-demand**: Optional content like trope libraries/profiles pulled only if campaign calls for it
 - **Library index system**: Concise <1.5k word indexes pre-loaded for navigation (PROFILE_INDEX + GENRE_TROPES_INDEX), Full libraries ~180k tokens if all 20 profiles loaded but typical campaign loads 1-3 profiles = 5-10% overhead
@@ -1167,7 +1167,7 @@ Core narrative engine operational
 
 #### Resilience & Failure Modes Catalog
 - **Graceful degradation philosophy**: If token limit exceeded → unload Tier 2 modules automatically, Memory compression kicks in proactively, Emergency fallback if instructions scroll out of context
-- **Validation sentinels**: Error Recovery module detects rule violations, Player Agency enforcement catches decision-making for player, Internal alarms for symptoms of instruction loss
+- **Validation sentinels**: Error Recovery module detects rule violations, Cognitive Engine enforces player agency (Sacred Rule), Internal alarms for symptoms of instruction loss
 - **Hard failures for critical issues**: Missing schemas halt startup with error "CANNOT START", Prevents corrupt state operation
 - **Degraded mode for optional systems**: Tier 2 module failure = feature offline but gameplay continues with limited capacity, Example: Combat fails → basic narration instead + "[Combat] OFFLINE" notice
 - **Context expiry mitigation**: Session segmentation recommended for long campaigns, Export state + fresh reload prevents hitting window exhaustion, LLM instructed to always refer back to core rules

@@ -53,7 +53,7 @@ These rules MUST remain true across all sessions:
 | Module | Purpose | Key Files | Dependencies |
 |--------|---------|-----------|--------------|
 | **1. Core AIDM** | Master control governing all behavior | `CORE_AIDM_INSTRUCTIONS.md` | None (loaded first) |
-| **2. Cognitive Engine** | Intent classification (dialogue/thought/meta/narrative), 6-stage processing, drift recognition | `01_cognitive_engine.md` | None |
+| **2. Cognitive Engine** | Intent classification (dialogue/thought/meta/narrative), 6-stage processing, drift recognition, **player agency enforcement (The Sacred Rule: PRESENT→ASK→STOP→WAIT)** | `01_cognitive_engine.md` | None |
 | **3. Learning Engine** | Hierarchical memory (Core/Character/Relationship/Quest/World/Consequence), heat index, compression | `02_learning_engine.md`, `memory_thread_schema.json` | cognitive_engine |
 | **4. State Manager** | HP/MP/SP tracking, world state (time/location/factions), JSON export/import, validation | `03_state_manager.md`, `character_schema.json`, `world_state_schema.json`, `session_export_schema.json` | learning_engine |
 | **5. NPC Intelligence** | Affinity system (-100 to +100), reflection-based responses, social network simulation, information propagation | `04_npc_intelligence.md`, `npc_schema.json` | cognitive_engine, learning_engine, state_manager |
@@ -63,7 +63,7 @@ These rules MUST remain true across all sessions:
 | **9. Combat & Progression** | Turn-based/narrative combat, HP/MP/SP consumption, skill usage/cooldowns, XP/leveling, skill mastery, death/resurrection system (downed mechanics, death saves, injury table), combat maneuvers (grapple, disarm, called shot, aid), tournament framework (bracket management, seeding, fatigue), downtime training system (quality tiers, montage mechanics, anime arcs) | `08_combat_resolution.md`, `09_progression_systems.md`, `/libraries/common_mechanics/*` | state_manager, npc_intelligence |
 | **10. Error Recovery** | Consistency checking (HP/timeline/inventory), player correction protocol, state repair, graceful degradation | `10_error_recovery.md`, `state_validator.py` | All modules (validates output) |
 | **11. System Initialization** | Module load order, system health checks, fallback protocols | `00_system_initialization.md` | None (pre-loads others) |
-| **12. Player Agency** | The Sacred Rule (PRESENT→ASK→STOP→WAIT), violation detection, Emergency Override Protocol, choice presentation | `12_player_agency.md` | All modules (enforces across system) |
+| **12. Narrative Scaling** | Power Tier × Narrative Scale orthogonal framework, power imbalance detection with context modifiers, OP Protagonist Mode (9 archetypes + 15 techniques), dynamic narrative scaling for any power level (Tier 11-0) | `12_narrative_scaling.md` | cognitive_engine (player agency), session_zero (OP mode detection), power_tier_reference.md |
 | **13. Narrative Calibration** | Narrative DNA extraction (10 scales, 15 tropes), pacing/tone/dialogue/combat parameters, profile filtering for genre-authentic storytelling | `13_narrative_calibration.md`, `narrative_profile_schema.json`, `/libraries/narrative_profiles/*` | anime_integration (dual-phase research), narrative_systems (profile filtering) |
 
 ---
@@ -206,7 +206,8 @@ AIDM v2 runs entirely within an LLM conversation. There is no server, no databas
 - `aidm/instructions/09_progression_systems.md`: Leveling and advancement
 - `aidm/instructions/10_error_recovery.md`: Consistency checking
 - `aidm/instructions/11_dice_resolution.md`: Transparent randomness
-- `aidm/instructions/12_player_agency.md`: The Sacred Rule enforcement
+- `aidm/instructions/01_cognitive_engine.md`: Player agency enforcement (The Sacred Rule)
+- `aidm/instructions/12_narrative_scaling.md`: Power Tier × Narrative Scale framework, OP Protagonist Mode
 - `aidm/instructions/13_narrative_calibration.md`: Narrative DNA extraction and application
 
 **Schema Files (10 files in `/aidm/schemas/`)**

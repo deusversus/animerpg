@@ -199,7 +199,7 @@
 
 3. Apply mechanical scaffolding:
    - Set XP model in Module 09
-   - Set power level model in Module 12
+   - Set power level model in Module 12 Narrative Scaling
    - Configure combat narration in Module 08
    - Select power systems from libraries
 

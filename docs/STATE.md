@@ -84,7 +84,7 @@
 **Instruction Modules** (14):
 - 00-03: System init, cognitive engine, learning, state manager (Tier 1 core)
 - 04-09: NPCs, narrative, session zero, anime, combat, progression (Tier 2 gameplay)
-- 10-13: Error recovery, dice, player agency, narrative calibration (Tier 1/2 support)
+- 10-13: Error recovery, dice, narrative scaling, narrative calibration (Tier 1/2 support)
 
 **JSON Schemas** (11):
 - character_schema.json (v2.3.0 - added death_saves, injuries, training_progress)

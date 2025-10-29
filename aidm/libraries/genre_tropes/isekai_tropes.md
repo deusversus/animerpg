@@ -30,7 +30,7 @@ Isekai (異世界 "different world") anime frameworks: transported/reborn/trappe
 
 **Harem** (ハーレム): Protagonist + multiple love interests. Formation: Save damsel → affection, display competence → admiration, oblivious MC (dense), each heroine = archetype (tsundere/kuudere/yandere/genki). **AIDM Session Zero**: "Romance: Single/harem/platonic?" If harem: Multiple NPCs develop feelings (player choice), jealousy/rivalry, navigate dynamics, clear boundaries on explicit content.
 
-**OP Patterns**: 1) Instant OP (start godlike: Ainz, Cautious Hero), 2) Hidden OP (appears weak, actually strongest: Mob Psycho), 3) Growth OP (weak start, exponential: Solo Leveling), 4) Situational OP (specific scenarios: Shield Hero defense). **Handling**: See Module 12 Player Agency (Power Level Agency section).
+**OP Patterns**: 1) Instant OP (start godlike: Ainz, Cautious Hero), 2) Hidden OP (appears weak, actually strongest: Mob Psycho), 3) Growth OP (weak start, exponential: Solo Leveling), 4) Situational OP (specific scenarios: Shield Hero defense). **Handling**: See Module 12 Narrative Scaling (Power Tier × Narrative Scale framework, OP Protagonist Mode).
 
 ---
 
@@ -66,7 +66,7 @@ Isekai (異世界 "different world") anime frameworks: transported/reborn/trappe
 
 **Modern Knowledge Advantages**: Player introduces: Hygiene (soap/sanitation=health/gratitude), inventions (pulley/printing=economy), tactics (modern warfare=combat edge), science (germ theory/crop rotation=revolutionary). Balance: Locals aren't stupid, just lack specific knowledge.
 
-**Avoid Fatigue**: Complaints (generic world, OP no challenge, harem>plot, lazy "it's like a game"). Solutions: Unique culture/history/conflicts, use Module 12 Power Level Agency for OP (pivot social/moral stakes), develop NPC depth (not just romance), explain WHY game rules exist, introduce rivals/mentors/complex villains.
+**Avoid Fatigue**: Complaints (generic world, OP no challenge, harem>plot, lazy "it's like a game"). Solutions: Unique culture/history/conflicts, use Module 12 Narrative Scaling for OP (pivot social/moral stakes using appropriate narrative scales), develop NPC depth (not just romance), explain WHY game rules exist, introduce rivals/mentors/complex villains.
 
 ---
 
@@ -78,7 +78,7 @@ Isekai (異世界 "different world") anime frameworks: transported/reborn/trappe
 - **attack_on_titan_profile.md**: Grim survival (hopeful:8, power_fantasy:7), ODM gear, high mortality, mystery box lore
 - **dandadan_profile.md**: Supernatural chaos (absurd:2, fast_paced:2), rapid escalation, psychic+spirit powers, alien invasions
 
-**Power System Libraries**: Module 12 Player Agency (OP handling), mana_magic_systems.md (fantasy magic), ki_lifeforce_systems.md (cultivation/leveling), soul_spirit_systems.md (unique powers)
+**Power System Libraries**: Module 12 Narrative Scaling (OP handling via power tier × narrative scale framework), mana_magic_systems.md (fantasy magic), ki_lifeforce_systems.md (cultivation/leveling), soul_spirit_systems.md (unique powers)
 
 **Genre Libraries**: shonen_tropes.md (power-ups/friendship overlap), slice_of_life_tropes.md (peaceful isekai variants), seinen_tropes.md (dark isekai)
 

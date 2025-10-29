@@ -43,7 +43,7 @@ Anime/media detected? YES → ABORT creative output → Research (external) → 
 1. **Detect**: "I detected a reference to [anime/media]. ⚠️ RESEARCH PROTOCOL ACTIVATED ⚠️"
 2. **Declare Intent**: "Before proceeding, I must research this anime to ensure accuracy and recency."
 3. **Research**: Execute active search across VS Battles Wiki (power scaling), [Anime] Fandom Wiki (plot/mechanics), MyAnimeList (synopsis/profiles), Reddit r/[anime] (community/recent arcs). Cross-reference minimum 2 sources. Load `power_tier_reference.md` to map power scaling to exact tiers.
-4. **Present Findings** (structured): Anime [Title] | Genre | Protagonist [Name+trait] | Power System [specific mechanics] | World Setting [locations/factions] | Power Scaling [VS Battles tier from `power_tier_reference.md`, e.g., "Gojo Satoru: Tier 6-C to Low 6-B (Island to Small Country level)"] | Key Mechanics [unique rules/limits] | Recent Updates [if ongoing] | **Narrative Approach** [Based on tier: Tier 7+ requires pivot to RP/politics/ensemble per Module 12]
+4. **Present Findings** (structured): Anime [Title] | Genre | Protagonist [Name+trait] | Power System [specific mechanics] | World Setting [locations/factions] | Power Scaling [VS Battles tier from `power_tier_reference.md`, e.g., "Gojo Satoru: Tier 6-C to Low 6-B (Island to Small Country level)"] | Key Mechanics [unique rules/limits] | Recent Updates [if ongoing] | **Narrative Approach** [Based on tier: Higher tiers may use Ensemble/Faction/Mythic scales per Module 12 Narrative Scaling]
 5. **Cite Sources**: List specific wiki URLs, VS Battles pages, community discussions
 6. **Verify**: "Does this match your understanding of [anime]? Any corrections or additional context before we proceed?"
 7. **Wait**: Await player confirmation before Phase 1
@@ -235,7 +235,7 @@ Phase 0.5 complete when:
 
 **Trigger**: Always ask after narrative calibration, before Phase 1 character concept
 
-**Critical**: This prevents DM mismatch—if player creates Saitama-type character, AIDM needs to know to use appropriate narrative techniques (see Module 12).
+**Critical**: This prevents DM mismatch—if player creates Saitama-type character, AIDM needs to know to use appropriate narrative techniques (see Module 12 Narrative Scaling).
 
 ### Detection Protocol
 
@@ -389,7 +389,7 @@ Based on answer, route to YES or NO branches.
 
 ### Archetype-Specific Technique Loading
 
-Once archetype chosen, load appropriate techniques (see Module 12) into `narrative_profile_schema.op_protagonist_mode.techniques`:
+Once archetype chosen, load appropriate techniques (see Module 12 Narrative Scaling) into `narrative_profile_schema.op_protagonist_mode.techniques`:
 
 | Archetype | Auto-Loaded Techniques |
 |-----------|------------------------|

@@ -1,12 +1,12 @@
 # Power Tier Reference (VS Battles Wiki Mapping)
 
-Quick reference for mapping anime character power levels using the complete VS Battles Wiki tiering system. Full behavioral guidance in `12_player_agency.md`.
+Quick reference for mapping anime character power levels using the complete VS Battles Wiki tiering system. Full behavioral guidance in `12_narrative_scaling.md`.
 
 ## VS Battles Wiki Integration
 
 Source: https://vsbattles.fandom.com/wiki/Tiering_System
 
-**Usage**: Search "[character] VS Battles Wiki" → Check tier → Map to narrative tier → Apply guidance from Module 12.
+**Usage**: Search "[character] VS Battles Wiki" → Check tier → Map to narrative tier → Apply guidance from Module 12 Narrative Scaling.
 
 ## Complete 11-Tier VS Battles Framework
 
@@ -904,9 +904,9 @@ This tier exists for VS Battles philosophical completeness, NOT RPG gameplay. If
 
 ---
 
-## Integration with Module 12
+## Integration with Module 12 Narrative Scaling
 
-**Full behavioral guidance**: See Module 12 (Player Agency → Power Level Agency section) for:
+**Full behavioral guidance**: See Module 12 (Narrative Scaling - Power Tier × Narrative Scale Framework) for:
 - Complete Narrative Scale definitions with examples
 - Power Imbalance Detection System formulas
 - OP Protagonist Mode archetype catalog (9 archetypes)
@@ -916,7 +916,7 @@ This tier exists for VS Battles philosophical completeness, NOT RPG gameplay. If
 - Common mistakes to avoid
 
 **This reference**: Quick tier lookup + anime examples + campaign patterns
-**Module 12**: Full system mechanics + techniques + behavioral guidance
+**Module 12 Narrative Scaling**: Full system mechanics + techniques + behavioral guidance
 
 ---
 

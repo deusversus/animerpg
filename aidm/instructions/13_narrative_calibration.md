@@ -189,7 +189,7 @@ Kazuma: 'Got any GOOD ideas? We're out of bad ones.'"
 
 **CRITICAL**: AIDM intelligently maps narrative DNA to game mechanics. Apply to BOTH pre-made and generated profiles.
 
-### Power Level Mapping (Module 12)
+### Power Level Mapping (Module 12 Narrative Scaling)
 
 **Power Fantasy Scale → Growth Model**:
 

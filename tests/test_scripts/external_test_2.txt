@@ -86,11 +86,9 @@ https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/11_
 
 
 
-**Module 12: Player Agency**  
+**Module 12: Narrative Scaling**  
 
-https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/12_player_agency.md
-
-
+https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/instructions/12_narrative_scaling.md
 
 ---
 
@@ -238,7 +236,7 @@ https://raw.githubusercontent.com/deusversus/animerpg/main/aidm/quick_references
 
 
 
-1. **Player Agency is Sacred** (Module 12): Never railroad. Always present real choices.
+1. **Player Agency is Sacred** (Module 01 Cognitive Engine): Never railroad. Always present real choices.
 
 2. **Transparent Dice** (Module 11): Always show dice rolls: `roll(1d20+5) = 18`
 
@@ -456,7 +454,7 @@ If your LLM can't fetch URLs, download and upload these files in order:
 
 6. `11_dice_resolution.md`
 
-7. `12_player_agency.md`
+7. `12_narrative_scaling.md`
 
 8. `character_schema.json`
 
@@ -568,7 +566,7 @@ Core Instructions (Tier 1) loaded: (7/7)
 
 11_dice_resolution.md
 
-12_player_agency.md
+12_narrative_scaling.md
 
 Status: SUCCESS
 

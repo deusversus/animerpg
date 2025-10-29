@@ -117,8 +117,8 @@ When mechanical scaffolding changes (XP model, growth model, stat framework shif
 **Actions**:
 1. Create: NARRATIVE_STYLE / SCAFFOLDING_UPDATE
 2. Set heat: 80 (high importance), decay: -3/session (slow, persist long)
-3. Metadata: `{"category":"narrative_style","subcategory":"scaffolding_update","heat":80,"decay_rate":-3,"component":"xp_model","old_value":"Standard 600-900","new_value":"High 1K-1.5K","reason":"switched from balanced to power fantasy","session":1,"cascades":["Module 09 progression","Module 12 growth model"]}`
-4. Update mechanical systems (Module 09, Module 12)
+3. Metadata: `{"category":"narrative_style","subcategory":"scaffolding_update","heat":80,"decay_rate":-3,"component":"xp_model","old_value":"Standard 600-900","new_value":"High 1K-1.5K","reason":"switched from balanced to power fantasy","session":1,"cascades":["Module 09 progression","Module 12 narrative scaling"]}`
+4. Update mechanical systems (Module 09, Module 12 Narrative Scaling)
 5. Log in character_schema.narrative_profile.adjustments_log
 
 **Integration**: Before narrative generation (Module 05/06), check NARRATIVE_STYLE heat>60. Apply active adjustments to tone/pacing/combat narration style. Module 13 (Narrative Calibration) creates these memories when profiles load/change.

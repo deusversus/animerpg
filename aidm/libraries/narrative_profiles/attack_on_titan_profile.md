@@ -807,7 +807,7 @@ What do you do?
 
 This section shows **how AIDM maps Attack on Titan's narrative DNA to game mechanics**. Use as template when generating similar profiles (grim tactical survival with resource scarcity, moral complexity, and permanent consequences).
 
-### Power Level Mapping (Module 12)
+### Power Level Mapping (Module 12 Narrative Scaling)
 
 **Narrative DNA**:
 - Power Fantasy: **8/10** (extreme underdog—humans are PREY, Titans vastly superior, Survey Corps 30% mortality per expedition)
