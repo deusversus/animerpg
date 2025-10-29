@@ -507,7 +507,43 @@ Before submitting any narrative response, verify:
 
 ## Integration
 
-**NPC (04)**: NPCs drive story | **Learning (02)**: Story → QUEST/WORLD_EVENT memories | **State (03)**: Consequences update world | **Cognitive (01)**: Detects narrative vs mechanical intent | **Progression (09)**: Milestones → XP
+**NPC (04)**: NPCs drive story | **Learning (02)**: Story → QUEST/WORLD_EVENT memories | **State (03)**: Consequences update world | **Cognitive (01)**: Detects narrative vs mechanical intent | **Progression (09)**: Milestones → XP | **Narrative Scaling (12)**: Power tier determines narrative approach (Tactical Survival for low-tier, Ensemble/Mythology for high-tier), OP protagonist mode applies techniques | **Narrative Calibration (13)**: DNA scales filter tone/pacing per source anime
+
+### Power-Appropriate Narrative Generation
+
+**CRITICAL**: Narrative approach adapts to power tier (Module 12 Narrative Scaling):
+
+**Low-Tier (Tiers 10-8, Street to Wall level)**:
+- Use Tactical Survival / Strategic Combat scales
+- Threats genuinely dangerous, death possible
+- Resource management critical (HP/MP/SP matter)
+- Combat mechanics emphasized
+- *Examples*: Early MHA, Attack on Titan humans, low-level isekai
+
+**Mid-Tier (Tiers 7-5, Building to Substellar)**:
+- Shift to Ensemble Focus / Strategic Combat scales
+- PC enables allies, mentor role possible
+- Environmental/political constraints create stakes
+- Combat shifts toward spectacle with meaningful choices
+- *Examples*: Mid-series shonen (Naruto chunin+), quirk-enhanced heroes, demon slayers
+
+**High-Tier (Tiers 4-2, Planetary to Multiversal)**:
+- Apply Mythology/Faction Building/Conceptual Philosophy scales
+- Combat assumes PC can win, focus on method/cost/consequences
+- Spotlight NPCs as protagonists PC enables/opposes (Ensemble)
+- Social/moral/existential stakes primary
+- OP Protagonist Mode techniques apply (see Module 12)
+- *Examples*: Late DBZ/DBS, Overlord, Mob Psycho, One Punch Man, user's Deus campaign
+
+**Detection**: Check character_schema.narrative_context.power_tier and narrative_profile_schema.op_protagonist_mode → Apply appropriate scale → Generate narrative matching power context
+
+**Example** (Same scene, different tiers):
+
+**Tier 10 (Below Average Human)**: "Thug swings bat. Roll DEX to dodge. [Fail] Cracks ribs. -25 HP (50→25). Gasping, vision swimming. He raises bat again. You're outmatched. Fight, flee, or negotiate?" [Threat is real, death possible]
+
+**Tier 5 (Substellar - Saitama equivalent)**: "Thug swings bat. You catch it mid-swing without looking. Splinters. He stumbles back, terrified. 'M-monster!' Crowd stares. Merchant whispers 'adventurer guild material.' You're not threatened, but how you handle this matters. Intimidate? Gentle deflection? Comedic one-liner?" [Combat trivial, social stakes matter]
+
+**Tier 2 (Multiversal - Deus equivalent)**: "Thug swings bat. Reality flickers. For 0.3 seconds, Elena sees: infinite timelines where bat connects, fails, phases through, ignites, becomes flower. Your F-rank guild card glows faintly. Bat stops 1mm from shoulder—frozen by unconscious barrier. Thug can't move. Elena: 'What... was that?' Secret identity at risk. Reveal power? Erase memory? Play it off?" [Combat non-existent, existential/social stakes]
 
 ## Completion Criteria
 

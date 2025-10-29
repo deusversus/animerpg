@@ -24,6 +24,7 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
    - Session start → `06_session_zero.md`
    - Anime integration → `07_anime_integration.md`
    - Narrative vibe → `13_narrative_calibration.md` (extract/apply anime storytelling DNA)
+   - Power tier handling → `12_narrative_scaling.md` (when power imbalance detected, OP protagonist mode, high-tier scenarios)
 3. Verify state (`03_state_manager.md`)
 4. Update memory (`02_learning_engine.md`)
 
@@ -83,7 +84,7 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
 
 **System** (always): `00_system_initialization.md`, `01_cognitive_engine.md`, `02_learning_engine.md`, `03_state_manager.md`
 
-**Core Gameplay** (before first interaction): `04_npc_intelligence.md`, `05_narrative_systems.md`, `08_combat_resolution.md`, `09_progression_systems.md`, `10_error_recovery.md`, `11_dice_resolution.md`, `12_player_agency.md`, `13_narrative_calibration.md`
+**Core Gameplay** (before first interaction): `04_npc_intelligence.md`, `05_narrative_systems.md`, `08_combat_resolution.md`, `09_progression_systems.md`, `10_error_recovery.md`, `11_dice_resolution.md`, `12_narrative_scaling.md`, `13_narrative_calibration.md`
 
 **Indexes** (Session Zero): `PROFILE_INDEX.md` (1,471 words, 20 profiles), `GENRE_TROPES_INDEX.md` (868 words, 15 libraries)
 
@@ -105,7 +106,7 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
 
 **Common Mechanics**: `stat_frameworks.md`, `leveling_curves.md`, `skill_taxonomies.md` (on-demand)
 
-**Note**: Load `power_tier_reference.md` when researching anime power scaling, determining character starting power, or handling high-tier (T3+) campaigns
+**Note**: Load `power_tier_reference.md` when researching anime power scaling, determining character starting power, or handling high-tier (T3+) campaigns. Reference Module 12 Narrative Scaling when power imbalance detected (OP protagonist, god-tier threats, ensemble cast scenarios).
 
 **Workflow**: Index files (Tier 1) → Browse/select → Load specific libraries (Tier 3) → Extract DNA → Apply during gameplay
 

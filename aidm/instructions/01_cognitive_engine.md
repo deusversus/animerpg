@@ -409,13 +409,49 @@ Narrative profiles add minimal overhead:
 **Success Criteria**:
 
 Narrative profile integration working when:
-- ✅ Profile scales visibly affect tone/pacing/complexity
+- ✅ Profile DNA scales (Module 13) visibly affect tone/pacing/complexity
 - ✅ Enabled tropes trigger appropriate genre library patterns
-- ✅ Mechanical scaffolding correctly configures Module 09/12/08
+- ✅ Mechanical scaffolding correctly configures Module 09 (XP model), Module 12 (growth model), Module 08 (combat style)
+- ✅ Module 12 narrative scaling framework applies power-appropriate storytelling (Tactical/Ensemble/Conceptual scales based on power tier + context)
+- ✅ OP Protagonist Mode (Module 12) correctly detected during Session Zero → Techniques auto-loaded → Memory created (Module 02) → Applied during narrative generation (Module 05)
 - ✅ Mid-campaign adjustments apply immediately (next response)
 - ✅ Generated profiles persist properly (full data in state)
 - ✅ Genre libraries referenced as templates (not rigid rules)
 - ✅ Player feedback creates NARRATIVE_STYLE memories
+
+### Cognitive Engine → Narrative Scaling Workflow
+
+**How Module 12 integrates with response generation**:
+
+1. **Intent Classification** (Module 01) → Determines if situation involves combat/power display
+2. **Memory Check** (Module 02) → Retrieves CHARACTER_STATE memories for power tier, OP protagonist mode, narrative scale context
+3. **Profile Check** (Module 13) → Retrieves active narrative profile DNA scales (power_fantasy_vs_struggle, etc.)
+4. **Power Context Detection** (Module 12 trigger):
+   - Check `character_schema.narrative_context.power_tier` (e.g., "Tier 6-C")
+   - Check `character_schema.narrative_context.op_protagonist` (boolean)
+   - Check `narrative_profile_schema.op_protagonist_mode.enabled` (boolean)
+   - Calculate power imbalance if threat present (PC power / threat power × context modifiers)
+5. **Narrative Scale Selection** (Module 12):
+   - IF power_imbalance < 1.5 → Tactical Survival / Strategic Combat
+   - IF 1.5-10 → Strategic Combat / Ensemble Focus (depending on allies present)
+   - IF 10-50 → Ensemble Focus / Mythology Journey
+   - IF 50+ → Conceptual Philosophy / Metafictional (OP protagonist techniques apply)
+   - IF OP Mode enabled → Apply archetype-specific techniques (ensemble_safety_net, op_as_deus_ex, comedic_obliviousness, etc.)
+6. **Narrative Generation** (Module 05):
+   - Generate narrative filtered through Module 13 DNA scales (tone/pacing)
+   - Apply Module 12 narrative scale (power-appropriate approach)
+   - Use appropriate techniques from Module 12 if OP Mode
+7. **Memory Update** (Module 02):
+   - If power tier changed during scene → Create CHARACTER_STATE memory
+   - If narrative scale shifted → Update narrative_scale_context memory
+   - If OP technique used → Track for consistency
+
+**Example** (Tier 2-B OP protagonist, Deus archetype):
+- Memory check: OP_PROTAGONIST_MODE enabled, archetype=Deus, techniques=[secret_identity, simple_goals, comedic_obliviousness, op_as_deus_ex]
+- Profile check: power_fantasy=2 (OP), grounded_vs_absurd=7 (somewhat absurd allowed)
+- Power context: Tier 2-B × secret_identity(×0.1) × simple_goals(×0.2) = effective imbalance ~0.02 → Conceptual Philosophy scale
+- Narrative generation: Coffee shop scene with Elena, 80% mundane dialogue, 15% power leaks (hand touch → universes visible), 5% dramatic irony
+- Memory update: Track secret_identity context active, heat=60
 
 ## Performance Checklist
 

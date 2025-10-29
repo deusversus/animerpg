@@ -48,9 +48,27 @@ When player establishes world rule (patterns: "Clarification:", "Actually,", "In
 ### 2. CHARACTER_STATE (Mutable)
 **Heat Decay**: Normal | **Base**: 40-80 | **Compression**: When superseded
 
-**Contents**: Level ups, skills learned, attribute changes, status effects, equipment changes, significant resource updates
+**Contents**: Level ups, skills learned, attribute changes, status effects, equipment changes, significant resource updates, **power tier changes**, **narrative scale shifts**, **OP protagonist mode activations**
 
-**Compression**: When stat changes again, compress previous value into "progression history" summary.
+**Power Tier Tracking** (Module 12 integration):
+- When power tier changes (e.g., T1 → T2 via leveling/training arc), create CHARACTER_STATE memory
+- Metadata: `{"category":"character_state","subcategory":"power_tier_change","old_tier":"Tier X","new_tier":"Tier Y","trigger":"<leveling/awakening/transformation>","narrative_scale_shift":"<old_scale> → <new_scale>","session":<number>}`
+- Heat: 70-80 (significant progression), slow decay
+- Triggers Module 12 narrative scale reassessment (e.g., Tactical → Strategic, Strategic → Ensemble)
+
+**OP Protagonist Mode** (Module 12 integration):
+- When OP protagonist mode enabled during Session Zero Phase 0.6, create CHARACTER_STATE memory
+- Metadata: `{"category":"character_state","subcategory":"op_protagonist_mode","enabled":true,"archetype":"<Saitama|Mob|Overlord|etc>","techniques":["ensemble_safety_net","op_as_deus_ex"...],"scale_preference":"<Ensemble|Conceptual|etc>","session":0}`
+- Heat: 90 (immutable session setting), no decay
+- Flags: immutable=true (never changes mid-campaign without player consent)
+
+**Narrative Scale Context** (Module 12 integration):
+- When power imbalance context changes (e.g., environmental constraint, secret identity, mentor role), create CHARACTER_STATE memory
+- Metadata: `{"category":"character_state","subcategory":"narrative_scale_context","active_scale":"<scale_name>","context_modifiers":{"environmental":0.1,"secret_identity":true},"effective_imbalance":<number>,"session":<number>}`
+- Heat: 60 (context-dependent), normal decay when context ends
+- Triggers appropriate narrative techniques per Module 12
+
+**Compression**: When stat changes again, compress previous value into "progression history" summary. Power tier changes preserved as milestones.
 
 ### 3. RELATIONSHIPS (NPC Interaction History)
 **Heat Decay**: Slow | **Base**: 30-70 | **Compression**: Summarize old, keep recent + milestones

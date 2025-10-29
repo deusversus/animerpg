@@ -32,7 +32,7 @@
 
 When AIDM researches an anime (Module 07), it ALSO extracts:
 
-**10 Narrative Scales** (0-10):
+**10 Narrative DNA Scales** (0-10, defines tone/pacing):
 1. **Introspection vs Action**: 0=pure action (DBZ) | 10=psychology (Evangelion)
 2. **Comedy vs Drama**: 0=gag comedy (Gintama) | 10=tragedy (AoT)
 3. **Simple vs Complex**: 0=straightforward | 10=puzzle box (Steins;Gate)
@@ -43,6 +43,8 @@ When AIDM researches an anime (Module 07), it ALSO extracts:
 8. **Grounded vs Absurd**: 0=realistic | 10=surreal (FLCL, DanDaDan)
 9. **Tactical vs Instinctive**: 0=gut | 10=chess (Death Note)
 10. **Hopeful vs Cynical**: 0=optimistic (Naruto) | 10=dark (Berserk)
+
+**Note**: These are **narrative DNA scales** (how anime tells stories). Different from **Module 12 narrative scales** (power-appropriate storytelling modes like Tactical Survival, Ensemble Focus, Mythic Spectacle, etc). Module 13 = tone/pacing calibration, Module 12 = power tier × narrative approach framework.
 
 **15 Trope Switches** (ON/OFF): Fourth wall breaks | Inner monologue | Visual metaphor | Rapid tonal shifts | Tournament arcs | Power of friendship | Tragic backstories | Escalating threats | Slice-of-life | Mystery box | Unreliable narrator | Existential philosophy | Rule of cool | Mundane→epic | Tragic hero
 
@@ -191,20 +193,29 @@ Kazuma: 'Got any GOOD ideas? We're out of bad ones.'"
 
 ### Power Level Mapping (Module 12 Narrative Scaling)
 
-**Power Fantasy Scale → Growth Model**:
+**INTEGRATION**: Module 13 DNA scales + Module 12 power framework work together:
+- **Module 13**: Determines tone/pacing via Power Fantasy scale (0-10) → Maps to growth model
+- **Module 12**: Provides power tier × narrative scale framework, OP protagonist techniques, power imbalance detection
+- **Workflow**: Module 13 sets growth model → Module 12 applies appropriate narrative scale dynamically based on context
+
+**Power Fantasy Scale → Growth Model** (Module 13 → Module 12):
 
 **0-2 (OP protagonist)**: Instant OP model  
-- Start Tier 5 (cosmic), narrative pivot from session 1 (internal conflict/philosophy)  
-- Combat assumes victory, spotlight NPCs/allies  
+- Start Tier 5+ (cosmic/substellar), Module 12 narrative scaling from session 1
+- Enable OP Protagonist Mode (archetype selection in Session Zero Phase 0.6)
+- Module 12 applies: Ensemble/Mythology/Conceptual scales depending on power imbalance
+- Combat assumes victory, spotlight NPCs/allies per Module 12 techniques
 - *Examples*: Overlord, One Punch Man, Slime isekai
 
 **3-6 (Balanced)**: Accelerated model  
 - Start T1 → T3 by session 15, standard growth with faster pivot  
+- Module 12 dynamically adjusts narrative scale as power grows (Tactical → Strategic → Ensemble)
 - Combat scales with player  
 - *Examples*: Naruto, Demon Slayer, MHA
 
 **7-10 (Underdog)**: Modest model  
-- Start T1, slow (T2 by session 20), death possible, struggle emphasized  
+- Start T1, slow (T2 by session 20), death possible, struggle emphasized
+- Module 12 uses Tactical Survival scale predominantly, Strategic when prepared
 - *Examples*: Re:Zero, AoT, HxH early arcs
 
 ### Progression Pacing (Module 09)
