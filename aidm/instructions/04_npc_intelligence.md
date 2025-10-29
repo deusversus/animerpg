@@ -49,6 +49,11 @@
 
 **Schema Key Fields**: npc_id, core_identity (name, personality: traits/values/fears/goals), knowledge (known_topics with depth, known_npcs, knowledge_boundaries: prohibited), behavior (dialogue_style: formality/vocabulary/tone, reaction_patterns), relationships (player_affinity -100 to +100, thresholds: hostile -60, unfriendly -20, neutral 0, friendly 30, trusted 60, devoted 90), current_state (location, activity, schedule)
 
+**Ensemble Support Fields** (for recurring NPCs):
+- ensemble_context.spotlight_data: scene_count (appearances), last_spotlight_session, growth_stage (Introduction→Bonding→Challenge→Growth→Mastery), current_arc (personal storyline)
+- ensemble_context.ensemble_role: archetype (Struggler/Heart/Skeptic/Dependent/Equal/Observer/Rival), assigned_reason, relationship_to_pc
+- ensemble_context.subplot_potential: boolean (can NPC relationships create B-plots)
+
 **Schema Benefits**:
 - ✅ Affinity tracking (relationship evolution over campaign)
 - ✅ Personality consistency (traits/values/fears persist)
@@ -58,6 +63,7 @@
 - ✅ Schedules (NPCs have lives, aren't always available)
 - ✅ Secrets (discovery mechanics, plot reveals)
 - ✅ Evolution triggers (personality can change based on events)
+- ✅ Ensemble management (spotlight balancing, growth arcs, archetype roles)
 
 ## Step 2: Affinity & Disposition System
 
@@ -199,4 +205,114 @@ After interaction, create memory_thread for continuity: category "relationships"
 
 **NPC Betrayal** (affinity drops below threshold): Marcus 35→-15 (caught lying repeatedly, crossed NEUTRAL→UNFRIENDLY)→"You think I'm stupid? Twenty years in this business. I know when someone's playing me. Lied about shipment, about Guards. How many other lies? We're done. Don't come back. Cross me again? [Hand on dagger] I won't be so forgiving." [Shop inaccessible, warning: HOSTILE if antagonized]
 
-**NPC Death** (profound consequences): Elena dies protecting Aria from assassins→**Automated Cascade Trigger** (Module 03 npc_death cascade): Update npc_schema (status="dead", can_die=false), update character relationships (mark deceased), update active quests (complete defeat quests, fail protection quests), update faction power if leader/member, create WORLD_EVENTS memory (heat 80-100), update world_changing_events→Manual updates: Update all NPCs who knew her (grief/anger), create CONSEQUENCE memory (heat 100, immutable), update player emotion, trigger narrative (kids need protector)→Narration: "Elena pushes you aside. Blade meant for you. She crumples, blood spreading. Eyes find yours. 'Told you... I've got your back
+**NPC Death** (profound consequences): Elena dies protecting Aria from assassins→**Automated Cascade Trigger** (Module 03 npc_death cascade): Update npc_schema (status="dead", can_die=false), update character relationships (mark deceased), update active quests (complete defeat quests, fail protection quests), update faction power if leader/member, create WORLD_EVENTS memory (heat 80-100), update world_changing_events→Manual updates: Update all NPCs who knew her (grief/anger), create CONSEQUENCE memory (heat 100, immutable), update player emotion, trigger narrative (kids need protector)→Narration: "Elena pushes you aside. Blade meant for you. She crumples, blood spreading. Eyes find yours. 'Told you... I've got your back..."
+
+---
+
+## Ensemble Cast Management (Module 05 Integration)
+
+**Purpose**: For recurring NPCs, assign ensemble roles and track spotlight for balanced narrative when PC power >> NPC power.
+
+### Ensemble Archetype Assignment
+
+**When to Assign**: After 2-3 significant interactions with recurring NPC AND character.narrative_context.op_protagonist = true OR power_imbalance > 10
+
+**Archetype Options**:
+1. **Struggler** (Genos archetype): Tries to keep up with PC, measures self against PC's strength, drives own growth through competition
+   - Assign if: NPC has combat focus + high determination + respects PC's power
+   - Example: "Marcus trains daily, pushing himself harder each time he sees you effortlessly handle threats"
+
+2. **Heart** (Mumen Rider archetype): Moral compass, reminds PC of humanity, grounds narrative in emotion
+   - Assign if: NPC has protective/compassionate values + high affinity + represents "normal people"
+   - Example: "Elena doesn't care how strong you are. She cares if you're eating properly and not getting reckless"
+
+3. **Skeptic**: Questions PC's methods, provides narrative tension, prevents easy solutions
+   - Assign if: NPC has independent thinking + moderate affinity + challenges PC
+   - Example: "Gregor narrows eyes. 'Just because you CAN solve it with force doesn't mean you SHOULD'"
+
+4. **Dependent**: Needs PC protection, creates stakes through vulnerability
+   - Assign if: NPC is low-power + high affinity + PC has protective relationship
+   - Example: "The kids look to you whenever danger appears, absolute faith you'll keep them safe"
+
+5. **Equal** (Different Power Type): Has social/political/knowledge power PC lacks, can't be solved with strength
+   - Assign if: NPC has high-tier non-combat power + challenges PC in different domain
+   - Example: "Guild Master controls information networks. Your strength means nothing in her political games"
+
+6. **Observer**: Documents PC's legend, provides narration, creates mythos
+   - Assign if: NPC is storyteller/historian/journalist + witnesses PC's actions
+   - Example: "Valen the chronicler scribbles furiously: 'And then, impossibly, they simply...'"
+
+7. **Rival**: Refuses to accept power gap, drives own parallel growth, creates friendly competition
+   - Assign if: NPC is competitive + skilled + won't concede PC's superiority
+   - Example: "Kaito grins. 'So you're stronger. For now. Watch me catch up'"
+
+**Assignment Protocol**:
+```
+1. CHECK: Is NPC recurring (importance: recurring/major/critical)?
+2. CHECK: Is PC overpowered (op_protagonist = true OR power_imbalance > 10)?
+3. ANALYZE: NPC personality traits + values + goals + PC relationship
+4. SELECT: Best-fit archetype from above
+5. STORE: ensemble_context.ensemble_role.archetype + assigned_reason
+6. INITIALIZE: spotlight_data.scene_count = 0, growth_stage = "introduction"
+7. NOTIFY: Module 05 (NPC available for ensemble scenes)
+```
+
+**Example Assignment** (Elena):
+```json
+"ensemble_context": {
+  "ensemble_role": {
+    "archetype": "heart",
+    "assigned_reason": "Protective values + high affinity (100) + represents street-level humanity PC protects",
+    "relationship_to_pc": "friend"
+  },
+  "spotlight_data": {
+    "scene_count": 0,
+    "growth_stage": "bonding",
+    "current_arc": "Learning that strength isn't just physical—her compassion is power too"
+  },
+  "subplot_potential": true
+}
+```
+
+### Spotlight Tracking
+
+**After Each Significant Scene** (Module 05 calls this):
+```
+1. INCREMENT: ensemble_context.spotlight_data.scene_count += 1
+2. UPDATE: ensemble_context.spotlight_data.last_spotlight_session = current_session
+3. CHECK: Growth stage progression (see below)
+4. STORE: Updated NPC to world_state
+```
+
+**Growth Stage Progression**:
+- **Introduction** (0-2 scenes): Establish personality, connection to PC
+- **Bonding** (3-5 scenes): Deepen relationship, reveal backstory/goals
+- **Challenge** (6-8 scenes): Personal trial, test values/skills
+- **Growth** (9-12 scenes): Overcome challenge, evolve personality
+- **Mastery** (13+ scenes): NPC reaches potential, mentor others or face final arc
+
+**Progression Triggers**:
+- Scene count reaches threshold + meaningful character moment = advance stage
+- Create RELATIONSHIP memory (heat 70+) with growth_milestone flag
+- Module 05 generates celebration/acknowledgment scene
+
+### Integration with Module 05
+
+**Module 05 reads**:
+- ensemble_context.ensemble_role.archetype → Frame scenes appropriately
+- ensemble_context.spotlight_data.scene_count → Balance screen time
+- ensemble_context.spotlight_data.growth_stage → Generate arc-appropriate scenes
+
+**Module 04 provides**:
+- NPC personality + goals → Scene motivation
+- Affinity level → Scene tone
+- Archetype assignment → Scene framing
+
+**Example Flow**:
+```
+Module 05: "Need scene, check ensemble balance"
+→ Query NPCs with lowest scene_count
+→ Find Elena (scene_count: 3, archetype: "heart", growth_stage: "bonding")
+→ Generate scene: Elena invites PC to kids' birthday party (grounds PC in normalcy)
+→ After scene: Module 04 updates Elena.scene_count = 4
+→ Create memory: RELATIONSHIP (heat 65, bonding moment)

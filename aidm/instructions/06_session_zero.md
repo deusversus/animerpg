@@ -176,6 +176,11 @@ Load default profile (moderate values across all scales).
 - Backstory (Phase 2) matches drama level (comedy profile = lighter backstory, drama profile = tragic)
 - Powers (Phase 3) explained according to profile (HxH = exhaustive, Konosuba = mocked)
 - Opening scene (Phase 5) uses profile's dialogue/combat style
+- **EXECUTE Module 13**: Interpret narrative profile DNA scales
+  - RECORD: power_fantasy_rating (0-10) → world_state.narrative_calibration
+  - DETERMINE: growth_model (modest/accelerated/instant/static) → character.progression_model
+  - VALIDATE: Tension preferences align with character concept
+  - CREATE: Memory (NARRATIVE_PROFILE_LOADED, heat=70, session=0)
 
 **Example: Hunter x Hunter Profile Loaded**
 
@@ -312,6 +317,12 @@ Which number, or describe custom?"
 - `archetype: [chosen_type]`
 - `scale_preference: [appropriate_scale]` (e.g., Saitama = mythic_spectacle + conceptual_philosophy)
 - `power_imbalance_threshold: 5.0` (lower than default 10.0, triggers earlier)
+
+**EXECUTE Module 12**: Determine initial narrative scale
+- Input: power_tier (from Phase 0.3), op_mode=true, op_archetype, starting_context
+- Output: narrative_scale (likely Ensemble/Reverse Ensemble/Mythology/Conceptual)
+- STORE: character.narrative_context.current_scale
+- CREATE: Memory(NARRATIVE_SCALE, heat=60, decay=normal, content="Initial scale: [scale_name]")
 
 **Set Expectations**:
 ```

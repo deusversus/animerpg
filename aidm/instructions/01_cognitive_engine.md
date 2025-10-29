@@ -8,6 +8,27 @@ Decision-making core: Classify input → Determine response → Activate systems
 
 ---
 
+## Module Dependencies & Call Flow
+
+**CHARACTER CREATION** (Session Zero):
+- 06.Phase0.1-0.2 → Player concept gathering
+- 06.Phase0.3 → [Module 07 if anime character] → Power tier + abilities
+- 06.Phase0.4 → Build character schema
+- 06.Phase0.5 → Select narrative profile → **Module 13** (interpret DNA scales)
+- 06.Phase0.6 → OP Protagonist check → **Module 12** (determine initial narrative scale)
+- Result: character_schema + narrative_profile + initial_scale
+
+**RUNTIME NARRATIVE** (All Sessions):
+- 01 (Intent) → 02 (Memory retrieval) → 13 (DNA: tone/pacing/themes) → 12 (Scale: power-appropriate techniques) → 05 (Generate narrative) → 01 (Respond)
+
+**MODULE REQUIREMENTS**:
+- Module 13 REQUIRES: narrative_profile (from 06/07)
+- Module 12 REQUIRES: power_tier, op_mode (from 06)
+- Module 05 REQUIRES: constraints (from 12+13)
+- Module 01 ORCHESTRATES: all runtime calls
+
+---
+
 ## Critical Behavior Rules
 
 ### Rule 1: ALWAYS Comprehend Fully Before Responding
