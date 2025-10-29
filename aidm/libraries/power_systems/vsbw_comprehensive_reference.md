@@ -980,9 +980,199 @@ MODULE 12 guides:
 
 ---
 
+## AIDM Integration Guide
+
+### How AIDM Uses This Reference
+
+**This Document's Role**: CALCULATION FOUNDATION - Provides precise energy values, speed metrics, and tier definitions for determining character power levels.
+
+**Companion References**:
+- `power_tier_reference.md` - NARRATIVE GUIDANCE (how to run each tier, campaign patterns, OP archetypes)
+- Module 12 - EXECUTION (behavioral techniques for power-appropriate narration)
+
+**Three-Step Workflow**: CALCULATE (this doc) → CLASSIFY (power_tier_reference) → NARRATE (Module 12)
+
+---
+
+### Complete Workflow Example: Gojo Satoru Integration
+
+**Player Request**: "I want to play Gojo Satoru from Jujutsu Kaisen."
+
+#### Step 1: CALCULATE (This Document)
+
+**Module 07 Research**:
+```
+Feat Analysis:
+- Infinite Void: Spatial manipulation, domain-scale reality warping
+- Hollow Purple: Massive energy output, spatial deletion
+- Limitless: Infinite distance manipulation, effectively untouchable
+
+Energy Calculation:
+- Domain Expansion affects ~200m radius
+- Hollow Purple destruction feats suggest island-scale energy
+- Speed feats: Massively Hypersonic combat/reaction
+
+VS Battles Tier Assignment:
+- Attack Potency: 6-C to Low 6-B (Island to Small Country level)
+  * 6-C: 4.3-100 gigatons TNT
+  * Low 6-B: 1-7 teratons TNT
+- Speed: Massively Hypersonic (Mach 100-1000, ~34,300-343,000 m/s)
+- Durability: Low 6-B (Infinity makes conventional durability irrelevant)
+- Range: Hundreds of Meters (Domain Expansion ~200m radius)
+- Striking Strength: Island to Small Country Class
+```
+
+**Output**: "Tier 6-C to Low 6-B, Massively Hypersonic speed"
+
+---
+
+#### Step 2: CLASSIFY (power_tier_reference.md)
+
+**Load power_tier_reference.md for narrative guidance**:
+```
+Tier 6: Tectonic/Planetary Surface
+
+Recommended Narrative Scales:
+- Ensemble Focus (mentor role - canonical for Gojo)
+- Mythology Journey (legendary status among sorcerers)
+- Faction Building (political implications of strongest sorcerer)
+
+Power Imbalance Analysis:
+- Base: 50-100× advantage over regular curses/sorcerers
+- Context Modifiers:
+  * Mentor Role: ×0.5 (deliberately holds back to teach)
+  * Sealed (Prison Realm): ×0.1 (removed from play)
+
+OP Protagonist Archetype: DEUS
+- Secret god maintaining mundane teacher appearance
+- Social stakes primary (student relationships, jujutsu politics)
+- Tonal contrast (casual/playful demeanor, cosmic power)
+- Power reveals in dramatic moments (Domain Expansion showcases)
+
+Campaign Pattern: Ensemble Catalyst
+- PC enables student growth
+- Spotlight students' struggles and development
+- PC intervenes at climax when students truly endangered
+```
+
+**Output**: "Ensemble Focus scale, Deus archetype, Mentor context modifier active"
+
+---
+
+#### Step 3: NARRATE (Module 12)
+
+**Module 12 applies scale-specific techniques**:
+```
+Narrative Scale: ENSEMBLE FOCUS (Safety Net)
+
+Active Techniques:
+- Deus Ex: Gojo solves crisis at climax after students' struggle
+- Contrast Device: Gojo's effortless power highlights students' challenges
+- Growth≠Power: Students develop through challenges Gojo could trivialize
+- Mentor Restraint: Deliberate non-intervention for teaching purposes
+
+Session Example:
+- Special Grade curse appears (Tier 8-C, trivial for Gojo)
+- Narrative focus: Yuji, Nobara, Megumi strategize and struggle
+- Combat narration:
+  
+  "Yuji charges—grabbed mid-air, slammed into rubble. Coughs blood.
+   Nobara's nails—deflected, curse laughs. Megumi summons—crushed.
+   
+   [Behind students, Gojo leans against wall, eating mochi]
+   
+   'SENSEI! HELP!'
+   
+   [Tilts blindfold down, one eye visible, smiling]
+   'You've got this! Remember Tuesday's lesson about cursed energy flow?'
+   
+   [Curse lunges at Nobara—]
+   
+   What do you do?
+   A) Let them handle it (winnable but hard-fought)
+   B) Give a hint about the weakness
+   C) Step in (emergency only - student in mortal danger)"
+
+Combat (when Gojo DOES fight):
+- Switch to Mythic Spectacle narration
+- Victory assumed, focus on style/impact
+- "You raise one hand. 'Domain Expansion: Infinite Void.'
+   
+   Reality SHATTERS. Geometric patterns explode outward, space inverts.
+   Curse freezes mid-lunge—infinite information flooding every synapse,
+   consciousness drowning in eternity compressed to NOW.
+   
+   Students shield eyes from the light. Mouth agape. Terror and awe.
+   
+   You lower your hand. [Curse collapses, mind broken beyond recovery]
+   
+   'And THAT'S why I'm the strongest. Questions?'
+   
+   What's your tone—playful? Serious? Educational?"
+```
+
+**Output**: Actual gameplay with power-appropriate techniques applied
+
+---
+
+### Integration Points in AIDM Modules
+
+**Module 01 (Cognitive Engine)** - Power Tier Consistency Validation:
+- Uses THIS document to validate energy/speed claims during coherence checks
+- Prevents narrative incoherence (Tier 6 struggling with Tier 10 without context)
+- References: "Is character below tier threshold? Check vsbw energy values."
+
+**Module 06 (Session Zero)** - Character Creation:
+- Phase 0.3: Uses THIS document for anime character tier calculation
+- Phase 0.5: Uses power_tier_reference for narrative profile compatibility
+- Phase 0.6: Checks OP archetype patterns
+
+**Module 07 (Anime Integration)** - Research Protocol:
+- Loads THIS document for precise tier determination
+- Loads power_tier_reference for narrative approach
+- Presents both: "Gojo is Tier 6-C (4.3 gigatons), recommend Ensemble scale"
+
+**Module 12 (Narrative Scaling)** - Behavioral Techniques:
+- Uses THIS document to understand tier boundaries
+- Uses power_tier_reference for scale selection
+- Executes appropriate narration techniques
+
+---
+
+### Quick Reference: When to Use Which Document
+
+| Task | Use This Document | Use power_tier_reference.md |
+|------|------------------|----------------------------|
+| Calculate tier from feats | ✅ Energy values, formulas | ❌ |
+| Determine speed category | ✅ Speed tiers (m/s ranges) | ❌ |
+| Check if moon-bust = Tier 5 | ✅ 5-C = 29.6-433 Exatons | ❌ |
+| Validate power consistency | ✅ Energy/speed thresholds | ❌ |
+| Choose narrative scale | ❌ | ✅ Tier compatibility matrix |
+| Find campaign patterns | ❌ | ✅ Pattern descriptions |
+| Identify OP archetype | ❌ | ✅ Archetype catalog |
+| Apply combat techniques | ❌ | ✅ + Module 12 |
+| Design power progression | ❌ | ✅ Growth models |
+
+**Rule**: ALWAYS use BOTH documents together. Calculation without narrative = incomplete. Narrative without calculation = imprecise.
+
+---
+
+### Common Mistakes
+
+❌ **WRONG**: "Character is strong, probably Tier 6" (no calculation)  
+✅ **CORRECT**: "Feat shows 50 gigaton output → 6-C Island level (4.3-100 gigatons range)"
+
+❌ **WRONG**: "Tier 6-C character, 4.3 gigatons" (no narrative approach)  
+✅ **CORRECT**: "Tier 6-C (4.3 gigatons) → Recommended Ensemble/Faction scales, check Mentor modifier"
+
+❌ **WRONG**: Using only THIS document  
+✅ **CORRECT**: THIS document (calculate) + power_tier_reference (classify) + Module 12 (narrate)
+
+---
+
 ## Reference Links
 
-**VS Battles Wiki Pages** (see HTML files in repository root):
+**VS Battles Wiki Pages** (source HTML files in repository root):
 - Attack Potency: `/Attack Potency.html`
 - Speed: `/Speed.html`
 - Durability: `/Durability.html`
@@ -1000,11 +1190,11 @@ MODULE 12 guides:
 - Common Feats Reference: https://vsbattles.fandom.com/wiki/References_for_Common_Feats
 - Explosion Radius Reference: https://vsbattles.fandom.com/wiki/User_blog:Antoniofer/Explosion_Radius/Area
 
-**AIDM Integration**:
-- power_tier_reference.md: Narrative guidance for tiers
-- Module 12 (12_narrative_scaling.md): Full behavioral system
-- Module 13 (13_op_detection.md): OP protagonist archetype detection
+**AIDM Power System Documentation**:
+- power_tier_reference.md: Narrative guidance, campaign patterns, OP archetypes
+- Module 12 (12_narrative_scaling.md): Behavioral techniques for all power tiers
+- Module 13 (13_narrative_calibration.md): Anime Storytelling DNA integration
 
 ---
 
-**Summary**: This reference provides the MATHEMATICAL and SCIENTIFIC foundation for VS Battles Wiki tiering. Use it to CALCULATE tiers accurately, then apply narrative techniques from power_tier_reference.md and Module 12. The three documents work together: CALCULATE (this doc) → CLASSIFY (power_tier_reference) → NARRATE (Module 12).
+**Summary**: This document provides MATHEMATICAL and SCIENTIFIC foundation for VS Battles Wiki power scaling. Use it to CALCULATE tiers with precision, then integrate with power_tier_reference.md for NARRATIVE GUIDANCE and Module 12 for EXECUTION. Complete power system = Calculation + Classification + Narration.
