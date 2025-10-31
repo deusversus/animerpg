@@ -1,7 +1,7 @@
 ﻿# VS Battles Wiki Reference
 
 **Purpose**: VS Battles Wiki stat methodology for anime power scaling.
-**Sources**: vsbattles.fandom.com (Tiering System, Attack Potency, Speed, Durability, Lifting Strength, Striking Strength, Range, Intelligence, Stamina)
+**Sources**: `/Attack Potency.html`, `/Speed.html`, `/Durability.html`, `/Lifting Strength.html`, `/Striking Strength.html`, `/Range.html`, `/Intelligence.html`, `/Stamina.html`
 **Integration**: CALCULATION FOUNDATION. See `power_tier_reference.md` for NARRATIVE GUIDANCE.
 
 ---
@@ -195,7 +195,7 @@ MODULE 12: Ensemble when mentoring, Mythic when demonstrating, Strategic if seal
 
 ## References
 
-**VS Battles Wiki**: vsbattles.fandom.com (Tiering System, Attack Potency, Speed, Durability, Lifting Strength, Striking Strength, Range, Intelligence, Stamina, Black Hole Feats, Mountain/Island Requirements, Celestial Body Feats)
+**VS Battles**: `/Attack Potency.html`, `/Speed.html`, `/Durability.html`, `/Lifting Strength.html`, `/Striking Strength.html`, `/Range.html`, `/Intelligence.html`, `/Stamina.html` + vsbattles.fandom.com (Tiering System, Black Hole Feats, Mountain/Island Requirements, Celestial Body Feats)
 
 **AIDM**: power_tier_reference.md, Module 12 (12_narrative_scaling.md), Module 13 (13_narrative_calibration.md)
 

@@ -1,4 +1,4 @@
-# Narrative Profile Library - Master Index | v2.0 | 2025-10-13 | 20 Profiles (12 CORE+8 Extended) | →`aidm/libraries/narrative_profiles/`
+# Narrative Profile Library - Master Index | v2.0 | 2025-10-13 | 20 Profiles | →`aidm/libraries/narrative_profiles/`
 
 ---
 
@@ -11,67 +11,67 @@
 ## Profile Library by Genre
 
 ### Battle Shonen
-**HxH** (`narrative_hxh`) [C]: Tactical 10/10, Nen costs, strategic | **JJK** (`narrative_jjk`) [C]: Dark, deaths, Domains, horror | **Demon Slayer** (`narrative_demon_slayer`) [C]: Sakuga, Breathing, empathy | **Naruto** (`narrative_naruto`) [E]: Ninja, underdog→hokage, jutsu | **MHA** (`narrative_mha`) [E]: Hero academy, Quirks | **One Piece** (`narrative_one_piece`) [E]: Pirates, Devil Fruits, crew
+**HxH** (`narrative_hxh`): Tactical 10/10, Nen costs, strategic | **JJK** (`narrative_jjk`): Dark, deaths, Domains, horror | **Demon Slayer** (`narrative_demon_slayer`): Sakuga, Breathing, empathy | **Naruto** (`narrative_naruto`): Ninja, underdog→hokage, jutsu | **MHA** (`narrative_mha`): Hero academy, Quirks | **One Piece** (`narrative_one_piece`): Pirates, Devil Fruits, crew
 *Common*: Power systems, training, escalation
 
 ---
 
 ### Dark Fantasy / Military
-**AoT** (`narrative_aot`) [C]: Grim military, titan horror, politics, pyrrhic
+**AoT** (`narrative_aot`): Grim military, titan horror, politics, pyrrhic
 *Common*: War, existential, politics, casualties
 
 ---
 
 ### Comedy / Parody
-**Konosuba** (`narrative_konosuba`) [C]: Anti-power, incompetent, rent>Demon King, backfire | **OPM** (`narrative_opm`) [E]: OP boredom, satire, anticlimax
+**Konosuba** (`narrative_konosuba`): Anti-power, incompetent, rent>Demon King, backfire | **OPM** (`narrative_opm`): OP boredom, satire, anticlimax
 *Common*: Parody, slapstick, financial struggle
 
 ---
 
 ### Psychological / Mystery
-**Death Note** (`narrative_death_note`) [C]: Cat-and-mouse, dual inner, plans | **Code Geass** (`narrative_code_geass`) [C]: Mecha politics, Geass costs, tonal whiplash | **Steins;Gate** (`narrative_steins_gate`) [E]: Time paradox, otaku→tragedy
+**Death Note** (`narrative_death_note`): Cat-and-mouse, dual inner, plans | **Code Geass** (`narrative_code_geass`): Mecha politics, Geass costs, tonal whiplash | **Steins;Gate** (`narrative_steins_gate`): Time paradox, otaku→tragedy
 *Common*: Strategy>strength, inner mono, grey
 
 ---
 
 ### Isekai
-**Konosuba** (`narrative_konosuba`) [C]: Comedy parody | **Re:Zero** (`narrative_rezero`) [C]: Loop horror, Return by Death, PTSD, 3-7 loops
+**Konosuba** (`narrative_konosuba`): Comedy parody | **Re:Zero** (`narrative_rezero`): Loop horror, Return by Death, PTSD, 3-7 loops
 *Common*: Trope aware, OP+costs
 
 ---
 
 ### Atmospheric
-**Mushishi** (`narrative_mushishi`) [C]: Episodic, no combat, mushi=nature, slow, contemplation
+**Mushishi** (`narrative_mushishi`): Episodic, no combat, mushi=nature, slow, contemplation
 *Common*: Slice-of-life, acceptance, melancholy
 
 ---
 
 ### Seinen
-**Vinland** (`narrative_vinland_saga`) [C]: Historical, ugly violence, revenge→pacifism, Viking, \"no enemies\" | **Bebop** (`narrative_cowboy_bebop`) [E]: Space western, jazz noir, found family
+**Vinland** (`narrative_vinland_saga`): Historical, ugly violence, revenge→pacifism, Viking, \"no enemies\" | **Bebop** (`narrative_cowboy_bebop`): Space western, jazz noir, found family
 *Common*: Moral complexity, violence=cost
 
 ---
 
 ### Sports
-**Haikyuu** (`narrative_haikyuu`) [C]: Volleyball teamwork, underdog, practice, chibi, \"One More!\"
+**Haikyuu** (`narrative_haikyuu`): Volleyball teamwork, underdog, practice, chibi, \"One More!\"
 *Common*: Teamwork, training, rivals
 
 ---
 
 ### Supernatural Romance
-**DanDaDan** (`narrative_dandadan`) [C]: Occult+aliens, rapid shifts, body-swap, Gen Z
+**DanDaDan** (`narrative_dandadan`): Occult+aliens, rapid shifts, body-swap, Gen Z
 *Common*: Romance, tonal whiplash
 
 ---
 
 ### Mecha / Sci-Fi
-**Code Geass** [C]: See Psych | **NGE** (`narrative_nge`) [E]: Psych horror, Eva, Hedgehog, existential | **Bebop** [E]: See Seinen
+**Code Geass**: See Psych | **NGE** (`narrative_nge`): Psych horror, Eva, Hedgehog, existential | **Bebop**: See Seinen
 *Common*: Pilot-machine, existential
 
 ---
 
 ### Adventure
-**One Piece** [E]: See Shonen | **FMAB** (`narrative_fmab`) [E]: Alchemy, conspiracy, chimera, sacrifice
+**One Piece**: See Shonen | **FMAB** (`narrative_fmab`): Alchemy, conspiracy, chimera, sacrifice
 *Common*: Exploration, bonds---
 
 ## Cross-Reference Matrix
@@ -236,11 +236,10 @@
 
 ```
 aidm/libraries/narrative_profiles/
-├─ CORE (12): aot, code_geass, dandadan, death_note, demon_slayer, haikyuu, hxh, jjk, konosuba, mushishi, rezero, vinland
-├─ EXT (8): bebop, fmab, mha, naruto, nge, one_piece, opm, steins_gate
+├─ PROFILES (20): aot, bebop, code_geass, dandadan, death_note, demon_slayer, fmab, haikyuu, hxh, jjk, konosuba, mha, mushishi, naruto, nge, one_piece, opm, rezero, steins_gate, vinland
 └─ DOCS: PROFILE_INDEX.md, EXPANSION_ROADMAP.md
 ```
 
-**Total**: 20 (12 CORE+8 EXT) | **Tokens**: ~180-200K total | ~10K/profile (CORE), ~7.5K (EXT) | **Scale 11**: 1/10-11/10 full spectrum
+**Total**: 20 profiles | **Tokens**: ~180-200K total | **Scale 11**: 1/10-11/10 full spectrum
 
 **End** | Open `.md` files for content
