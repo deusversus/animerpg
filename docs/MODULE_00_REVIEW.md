@@ -36,25 +36,36 @@ Module 00 provides a clear, comprehensive bootstrap sequence with proper validat
 
 ## Minor Issues (Polish)
 
-### 1. Token Budget Assertion Unverified
+### 1. Human-Centric Instructional Language
+- **Location**: Throughout module (core principles, step descriptions, error handling)
+- **Issue**: Uses human-centric instructional tone ("DON'T load all modules", "VALIDATE FIRST, EXECUTE SECOND", "Never start with broken components") rather than AI-directive operational language
+- **Examples**: 
+  - "**CRITICAL**: DON'T load all modules (token overflow)"
+  - "VALIDATE FIRST, EXECUTE SECOND. Never start with broken components."
+  - "Error: If schema missing/invalid → HALT"
+- **Pattern**: This language style appears throughout entire AIDM system (all 16 files: Modules 00-13 + CORE). Originally identified at Module 07, but present from Module 00 onward
+- **Impact**: Architectural clarity - AI executor would benefit from procedural protocols (e.g., `validate_schemas()` function with explicit steps) vs imperative guidelines
+- **Recommendation**: Address in system-wide language audit after all modules reviewed (affects all 16 AIDM files)
+
+### 2. Token Budget Assertion Unverified
 - **Location**: "TIER 1 - ALWAYS LOADED (~8,000 tokens)"
 - **Issue**: Token count is asserted but not measured/verified
 - **Impact**: May drift over time as modules are updated
 - **Recommendation**: Add measurement verification in testing framework
 
-### 2. Step 5 Title Formatting Inconsistency
+### 3. Step 5 Title Formatting Inconsistency
 - **Location**: Step 5 heading shows "[4/5] Setting session context... ✓" artifact
 - **Issue**: Copy-paste error or formatting artifact from progress indicator
 - **Impact**: Minor visual inconsistency
 - **Recommendation**: Remove or clarify if intentional progress indicator
 
-### 3. Module Unloading Criteria
+### 4. Module Unloading Criteria
 - **Location**: "If token >80% → unload unused Tier 2 modules"
 - **Issue**: 80% threshold is arbitrary and may not align with actual context window limits
 - **Impact**: Premature or late unloading
 - **Recommendation**: Specify "80% of [X token] context window" or reference configurable threshold
 
-### 4. Incomplete Error Recovery Integration
+### 5. Incomplete Error Recovery Integration
 - **Location**: "Integration" section mentions Error Recovery (10) for health checks
 - **Issue**: Doesn't specify HOW Module 10 integrates (what gets logged, what triggers recovery)
 - **Impact**: Integration unclear

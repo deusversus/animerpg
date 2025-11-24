@@ -69,37 +69,49 @@ Module 01 is the most critical module in AIDM v2, serving as the decision-making
 
 ## Minor Issues (Polish)
 
-### 1. Rule Numbering Inconsistency
+### 1. Human-Centric Instructional Language
+- **Location**: Throughout module (Rules 1, 2.1, coherence validation extensively)
+- **Issue**: Uses heavy human-centric instructional tone ("**NEVER assume**", "**ALWAYS** Read 100%", "FORBIDDEN", "MANDATORY HARD STOP", "❌ WRONG", "✅ CORRECT") rather than AI-directive operational language
+- **Examples**:
+  - Rule 1: "**NEVER**: Skim | Stop at first intent | Assume | Ignore corrections"
+  - Rule 1: "**ALWAYS**: Read 100% | Find ALL intents | Verify vs memory"
+  - Rule 2.1: "**VIOLATIONS** (FORBIDDEN):" [12 violation examples with ❌/✅]
+  - Rule 2.1: "MANDATORY HARD STOP"
+- **Pattern**: This language style appears throughout entire AIDM system (all 16 files). Module 01 has particularly heavy usage given Rules 1, 2.1, coherence validation sections
+- **Impact**: Instructional framing vs operational specification. AI executor would benefit from procedural protocols (e.g., `validate_comprehension()` function, `detect_decision_point()` function with explicit halt protocol)
+- **Recommendation**: Address in system-wide language audit. Higher priority than Module 00 due to volume of imperatives
+
+### 2. Rule Numbering Inconsistency
 - **Location**: Rules 1, 2, 2.1, 3, 4 (no Rule 5+)
 - **Issue**: Rule 2.1 is sub-rule but equally critical to Rule 1; creates ambiguity about hierarchy
 - **Impact**: Minor - doesn't affect functionality but could confuse priority
 - **Recommendation**: Either make all top-level (Rule 1-5) or clarify that 2.1 is THE most critical rule (rename to "Rule 2: The Sacred Rule" with 2.1 as implementation)
 
-### 2. "Response Layer Separation" Formatting
+### 3. "Response Layer Separation" Formatting
 - **Location**: Rule 4 has "(CRITICAL)" and "**HIGHEST PRIORITY**" markers
 - **Issue**: Rule 2.1 is marked "Sacred Rule" but Rule 4 claims "HIGHEST PRIORITY" - contradictory emphasis
 - **Impact**: Confusion about relative priority
 - **Recommendation**: Clarify hierarchy: "Rule 2.1 (player agency) > Rule 4 (immersion) > Rule 1 (comprehension) > Rules 3 (context)"
 
-### 3. Intent Taxonomy Inconsistent Examples
+### 4. Intent Taxonomy Inconsistent Examples
 - **Location**: Intent types 1-7 examples
 - **Issue**: Some intents have 1 example, others have 3-4; CREATIVE has 5 sub-examples
 - **Impact**: Uneven depth makes some intents feel less important
 - **Recommendation**: Standardize to 2 examples per intent type (1 explicit, 1 embedded if applicable)
 
-### 4. Multi-Intent Priority Logic Unexplained
+### 5. Multi-Intent Priority Logic Unexplained
 - **Location**: "Multi-Intent Handling" shows priority order but no justification
 - **Issue**: "META > COMBAT > SOCIAL > MECHANICAL > NARRATIVE > EXPLORATION > CREATIVE" - why this order?
 - **Impact**: LLM may not understand reasoning, harder to handle edge cases
 - **Recommendation**: Add brief justification: "META (system overrides gameplay) > COMBAT (immediate danger) > SOCIAL (NPC state changes) > MECHANICAL (explicit systems) > NARRATIVE (story default) > EXPLORATION (passive info) > CREATIVE (background integration)"
 
-### 5. Structured Response Protocol Reference Incomplete
+### 6. Structured Response Protocol Reference Incomplete
 - **Location**: "Response Generation" mentions JSON format from CORE Rule 1.5
 - **Issue**: Doesn't show what the format looks like, requires looking up CORE file
 - **Impact**: Minor inconvenience, breaks flow
 - **Recommendation**: Add compact example or link: "See CORE_AIDM_INSTRUCTIONS.md Rule 1.5 for full JSON schema. Brief format: {validation, calculation, state_updates, narrative_output}"
 
-### 6. Coherence Validation Location
+### 7. Coherence Validation Location
 - **Location**: "Narrative Coherence Validation" appears AFTER Rule 2.1
 - **Issue**: Logically belongs in Rule 2 workflow ("Intent Classification Process") not as separate major section
 - **Impact**: Breaks flow, coherence check feels disconnected from intent classification

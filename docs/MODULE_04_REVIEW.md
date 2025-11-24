@@ -66,31 +66,42 @@ Module 04 is a **high-quality, well-structured module** that successfully create
 
 ## Minor Issues (Polish)
 
-### 1. "Behavior Generation" Section Cut Off Mid-Sentence
+### 1. Human-Centric Instructional Language
+- **Location**: Section 1.4 (Misconceptions/Guidelines), schema usage notes
+- **Issue**: Uses human-centric instructional tone ("NPCs are PEOPLE, not quest dispensers", "✅" checkmarks) rather than AI-directive operational language
+- **Examples**:
+  - "**NPCs are PEOPLE, not quest dispensers**. They have:"
+  - Schema compliance guidelines show "✅" checkmarks (17 checkmarks total)
+  - "If not here, it's NOT enforced" (procedural note using instructional framing)
+- **Pattern**: This language style appears throughout entire AIDM system (all 16 files). Module 04 has light usage—primarily in guidelines section
+- **Impact**: Instructional framing vs operational specification. Would benefit from protocol definitions for NPC instantiation
+- **Recommendation**: Address in system-wide language audit. Low priority given light usage
+
+### 2. "Behavior Generation" Section Cut Off Mid-Sentence
 - **Location**: Step 4 ends with "Threat to player (high affinity)→AGGRESSIVE (defend), to self→DEFIANT (stands ground), to kids→AGGRESSIVE (immediate"
 - **Issue**: Text appears truncated (no closing parenthesis, sentence incomplete)
 - **Impact**: Minor confusion, but context from surrounding examples makes intent clear
 - **Recommendation**: Complete sentence or add "...)" to indicate intentional truncation
 
-### 2. Ensemble Archetype Assignment Timing Ambiguous
+### 3. Ensemble Archetype Assignment Timing Ambiguous
 - **Location**: "When to Assign" says "After 2-3 significant interactions"
 - **Issue**: What counts as "significant"? (Help quest = 1? Casual conversation = 0?)
 - **Impact**: Implementation inconsistency
 - **Recommendation**: Define: "Significant = interaction creating RELATIONSHIP memory with heat ≥ 50"
 
-### 3. Growth Stage Scene Count Overlap
+### 4. Growth Stage Scene Count Overlap
 - **Location**: Growth Stage Progression shows overlapping ranges (Bonding 3-5, Challenge 6-8)
 - **Issue**: What triggers progression from Bonding to Challenge? Scene 6? Or "Scene 6 + meaningful moment"?
 - **Impact**: Minor ambiguity
 - **Recommendation**: Clarify: "Advance stage when: scene_count reaches min threshold AND meaningful character moment occurs (affinity change ≥ 10 OR personal goal addressed)"
 
-### 4. Disposition Formula Precision Loss Warning Missing
+### 5. Disposition Formula Precision Loss Warning Missing
 - **Location**: Disposition Formula calculates to 1 decimal (e.g., -65)
 - **Issue**: No guidance on rounding (always round? truncate? keep decimal?)
 - **Impact**: Trivial implementation detail
 - **Recommendation**: Add: "Round disposition to nearest integer for threshold checks"
 
-### 5. Knowledge Boundaries Geographic Limitation Unclear
+### 6. Knowledge Boundaries Geographic Limitation Unclear
 - **Location**: "BOUNDARIES" lists "geographic" but no examples of geographic knowledge limits
 - **Issue**: How does geographic knowledge boundary work? (NPC from Village A doesn't know Village B geography?)
 - **Impact**: Minor—concept is clear from context

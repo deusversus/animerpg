@@ -108,13 +108,27 @@ Module 03 is the most complex and token-heavy module in AIDM v2, serving as the 
 
 ## Minor Issues (Polish)
 
-### 1. State Architecture Component Mismatch
+### 1. Human-Centric Instructional Language
+- **Location**: Throughout module (state architecture, validation protocols, change log operations)
+- **Issue**: Uses human-centric instructional tone ("MUST sync", "NEVER approximate", "ALWAYS validate", "FORBIDDEN", "MANDATORY") rather than AI-directive operational language
+- **Examples**:
+  - "State changes MUST sync across all active references"
+  - "NEVER approximate. ALWAYS validate against schema"
+  - "ALWAYS use validation hooks BEFORE committing"
+  - "FORBIDDEN: Direct mutation | Skipping validation"
+  - "MANDATORY: Atomic updates | Full audit trails"
+  - Validation protocol: "MUST HAVE" consistency checks, "NEVER bypass"
+- **Pattern**: This language style appears throughout entire AIDM system (all 16 files). Module 03 has CRITICAL usage—state manager requires absolute precision
+- **Impact**: Instructional framing vs operational specification. Would significantly benefit from formal protocol definitions (e.g., `state_update_protocol()`, `validation_gate()`, `consistency_check()`)
+- **Recommendation**: Address in system-wide language audit. **HIGHEST PRIORITY** given critical nature of state management and heavy imperative usage
+
+### 2. State Architecture Component Mismatch
 - **Location**: "5 Components" lists NARRATIVE_PROFILE as component 5
 - **Issue**: Earlier text says narrative_profile is stored in CHARACTER component (character_schema.narrative_profile), so it's not a separate 5th component
 - **Impact**: Minor confusion about state structure
 - **Recommendation**: Clarify: "5 Components: CHARACTER (includes narrative_profile), WORLD, NPCS, MEMORY, [5th component if exists or remove from count]"
 
-### 2. Inconsistent Field Path Notation
+### 3. Inconsistent Field Path Notation
 - **Location**: Throughout module (change log examples, validation examples)
 - **Issue**: Mixes `resources.mp.current` (dot notation) with `inventory.items[3]` (array index) without consistent rules for array targeting
 - **Impact**: Ambiguous which notation to use when
@@ -123,12 +137,12 @@ Module 03 is the most complex and token-heavy module in AIDM v2, serving as the 
   - Array index for position: `inventory.items[3]` (fragile)
   - Selector for ID-based: `inventory.items` + `selector: {id: "potion"}` (safe)
 
-### 3. Validation Hook Steps Numbered Inconsistently
+### 4. Validation Hook Steps Numbered Inconsistently
 - **Location**: "Validation Hook Protocol" shows 6 steps, but substeps (2.1-2.6 under step 2) suggest 11 total checks
 - **Impact**: Unclear how many validation checks are required
 - **Recommendation**: Flatten to top-level steps or clearly nest substeps with indentation
 
-### 4. Rollback Example Complexity
+### 5. Rollback Example Complexity
 - **Location**: "Example 3: Cascade Failure Rollback" shows 6-change rollback
 - **Issue**: Extremely complex multi-schema rollback (npc_schema, character_schema, world_state) may not be realistically executable by LLM
 - **Impact**: Implementation uncertainty

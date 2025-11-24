@@ -53,30 +53,42 @@ Module 05 is a **comprehensive, well-designed storytelling engine** that success
 
 ## Minor Issues (Polish)
 
-### 1. Narrative Voice "Show Don't Tell" Example Incomplete
+### 1. Human-Centric Instructional Language
+- **Location**: Narrative Voice guidelines, "Never Show" warnings, formatting instructions
+- **Issue**: Uses human-centric instructional tone ("NEVER breaks character", "NO emoji", "Never Show: Mid-narrative") rather than AI-directive operational language
+- **Examples**:
+  - "Narrator NEVER breaks character"
+  - "NO emoji, ASCII art, or formatting tricks"
+  - "**Never Show**: Mid-narrative | After cliffhanger | During tense moment"
+  - Principle guidance: "NEVER say 'no' without offering alternative"
+- **Pattern**: This language style appears throughout entire AIDM system (all 16 files). Module 05 has light usage—primarily in voice/formatting guidelines
+- **Impact**: Instructional framing vs operational specification. Would benefit from narrative protocol definitions
+- **Recommendation**: Address in system-wide language audit. Low priority given light usage
+
+### 2. Narrative Voice "Show Don't Tell" Example Incomplete
 - **Location**: Narrative Voice section ends mid-sentence: "You feel reverent." (tells feelings
 - **Issue**: Text truncated, missing closing parenthesis and completion
 - **Impact**: Minor confusion
 - **Recommendation**: Complete sentence or add "...)" to indicate continuation
 
-### 2. Ensemble Mode Percentages Don't Sum to 100%
+### 3. Ensemble Mode Percentages Don't Sum to 100%
 - **Location**: "Reverse Ensemble Mode" scene distribution
 - **Issue**: Lists 70% + 20% + 10% = 100% ✅ but "Ensemble Mode" lists 50% + 30% + 20% = 100% ✅ - actually correct, false alarm
 - **Recommendation**: No change needed
 
-### 3. Faction Goal System References Module 03 Capability Not Found
+### 4. Faction Goal System References Module 03 Capability Not Found
 - **Location**: "Faction-Based Narrative Generation" says "State Manager (Module 03) reviews goals of active factions"
 - **Issue**: Module 03 review showed no automated faction goal review system - this is Module 05 responsibility
 - **Impact**: Minor attribution confusion
 - **Recommendation**: Rephrase: "Module 05 periodically reviews faction goals from world_state (Module 03) to generate quests"
 
-### 4. "Yes, And..." Section Minimal
+### 5. "Yes, And..." Section Minimal
 - **Location**: Principle 6 only has 1 example and brief guidance
 - **Issue**: "Yes, And..." is critical improv principle but under-explained compared to other principles
 - **Impact**: Minor - concept is self-explanatory for experienced GMs
 - **Recommendation**: Add 1 more example showing when to say "No" with alternative (e.g., "Can I fly?" → "No flying ability, but you CAN use grappling hook to swing - roll DEX DC 14")
 
-### 5. Power-Appropriate Narrative Generation Repeats Module 12 Content
+### 6. Power-Appropriate Narrative Generation Repeats Module 12 Content
 - **Location**: "Integration" section shows tier-specific narrative examples
 - **Issue**: Module 12 (Narrative Scaling) owns power tier detection and narrative approach - this is summary/reminder, not new content
 - **Impact**: ~300 token redundancy
@@ -219,6 +231,299 @@ Module 05 is a **comprehensive, well-designed storytelling engine** that success
 
 **Example Quality**: Excellent - "Crown pulses like heartbeat" vs "You find a crown" shows dramatic difference
 
+**Detailed Foreshadowing Examples from Module**:
+
+**Example 1: Environmental Hints - Chamber Scene**
+
+❌ **REACTIVE** (Generic, isolated):
+```
+"You enter a circular chamber. In the center sits a small orb on a pedestal."
+```
+
+✅ **PROACTIVE** (Specific, seeds planted):
+```
+"You enter a circular chamber. The walls are carved with script you don't recognize—
+yet. In the center, on a pedestal of black stone, sits an orb the size of a fist. 
+
+It pulses faintly. Once every three seconds. Like a heartbeat.
+
+(The crown on the floor? Engraved with the same script as the walls.)"
+```
+
+**Seeds Planted**:
+1. Script appears again later ("you don't recognize—yet" promises future learning)
+2. Heartbeat pulse = orb is "alive" (biological/magical significance)
+3. Crown + orb connection via matching script (linked artifacts)
+4. Black stone pedestal (specific material, not generic "stone")
+
+**Payoff Example** (10 sessions later):
+```
+"The scholar examines the crown you've been wearing. Her eyes widen.
+
+'This script... it's Primordial Runic. The language of the first gods.'
+
+She traces the etchings with her finger. 'It says: Witness. Remember. Return.'
+
+(The same words carved on the dungeon walls where you found this crown. 
+Now, finally, you understand.)
+
+The crown's pulse quickens. Three seconds... two seconds... one second.
+
+It's waking up."
+```
+
+**Why This Works**:
+- Player remembers the script from 10 sessions ago (rewarded for attention)
+- "Yet" promise fulfilled (you CAN read it now)
+- Heartbeat significance revealed (crown is alive, accelerating)
+- World feels planned (dungeon → crown → scholar form coherent thread)
+
+---
+
+**Example 2: NPC Dialogue Hooks - Merchant Scene**
+
+❌ **REACTIVE** (Transaction only):
+```
+Merchant: "Welcome! What can I get you?"
+[Generic shop interaction, buy/sell, leave]
+```
+
+✅ **PROACTIVE** (Rumors, world texture):
+```
+Merchant: "Welcome! Though I'm surprised to see adventurers this far north. 
+Most folks are avoiding the roads after what happened at Greystone Village."
+
+[Player can ask about Greystone—hooks future quest]
+[OR ignore it—AIDM notes it for later encounter]
+```
+
+**Seeds Planted**:
+1. Greystone Village incident (specific location, named)
+2. "Roads aren't safe" (travel danger foreshadowed)
+3. Merchant knows local rumors (establishes as info source)
+4. "This far north" (geography detail, world building)
+
+**Path A: Player Engages**:
+```
+Player: "What happened at Greystone?"
+
+Merchant's face darkens. "Three nights ago. Entire village... gone. 
+No bodies, no signs of struggle. Just empty homes and cold hearths.
+
+Guards sent a patrol. They found strange symbols carved into the 
+village square. No one recognizes them."
+
+[Quest Hook Available: Investigate Greystone Village]
+[Foreshadowing: Symbols will appear again—cult activity]
+```
+
+**Path B: Player Ignores**:
+```
+Player: "I'll browse your wares."
+
+AIDM NOTES:
+- Player declined Greystone hook
+- Seed planted but not followed
+- Alternative introduction: 
+  * Session 8: Sole survivor stumbles into tavern where player is
+  * OR Session 10: Player travels north, stumbles on ruins accidentally
+  * OR Session 12: Cult attacks player's town with same symbols
+
+[Shop continues normally. Thread dormant, not dead.]
+```
+
+**Why This Works**:
+- Player has agency (can engage or ignore)
+- World doesn't wait (events happen off-screen if player doesn't intervene)
+- Foreshadowing respects choice (adapts delivery, doesn't railroad)
+
+---
+
+**Example 3: World Texture - Tavern Return**
+
+❌ **REACTIVE** (Static world):
+```
+"You return to the tavern. It's quiet. The innkeeper nods at you."
+```
+
+✅ **PROACTIVE** (Living world, off-screen events):
+```
+"You return to the tavern. It's busier now—three new faces at the bar, travel-worn 
+and armed. Mercenaries, by the look of them.
+
+The innkeeper catches your eye and tilts his head toward the corner table. 
+Someone's waiting for you.
+
+(At the bar, one mercenary mutters: '...Greystone was a bloodbath. Entire village, 
+gone in one night...')"
+```
+
+**World Texture Elements**:
+1. **Time passage**: "busier now" (tavern state changes)
+2. **New NPCs**: Mercenaries (world reacts to danger, professionals mobilize)
+3. **NPC agency**: Innkeeper signals (has own agenda, helps player)
+4. **Overheard dialogue**: Greystone callback (recurring thread, info spreads naturally)
+5. **Multiple hooks**: Someone waiting (new plot) + mercenaries (potential allies/rivals)
+
+**Why This Works**:
+- World feels alive (events happen whether player is there or not)
+- NPCs have lives (mercenaries traveling, innkeeper watching, someone waiting)
+- Information spreads naturally (rumors at tavern, not exposition dump)
+- Multiple engagement options (talk to waiter, mercenaries, or leave)
+
+---
+
+**Example 4: Specific Details - Sword Discovery**
+
+❌ **GENERIC** (Forgettable):
+```
+"You find a sword. It's magical."
+```
+
+✅ **SPECIFIC** (Memorable, questions planted):
+```
+"You find a katana. The blade is black—not painted, but forged from some dark 
+metal you don't recognize. The habaki (blade collar) is cracked, as if someone 
+tried to draw this sword when it didn't want to be drawn.
+
+Engraved along the spine in silver script: 'Oathbreaker.'
+
+(This weapon has a history. And that history will find you.)"
+```
+
+**Specific Details That Matter**:
+1. **Katana** (not "sword") → Cultural origin, fighting style implications
+2. **Black metal** (not painted) → Alchemical/magical forging, rare material
+3. **Cracked habaki** → Previous owner forced it, sword resisted, backstory
+4. **"Oathbreaker" name** → Cursed? Belonged to traitor? Breaks magical vows?
+5. **Silver script** (not generic engraving) → Specific craftsmanship, magical language
+6. **"History will find you"** → Direct promise of future encounter
+
+**Payoff Example** (15 sessions later):
+```
+"The old samurai's eyes widen when he sees your katana.
+
+'Where... where did you get that?' His hand trembles.
+
+You tell him: the dungeon, the pedestal, the name 'Oathbreaker.'
+
+He sits heavily. 'That was Kenshin's blade. My brother. He swore an oath 
+to protect the Emperor... then broke it. Betrayed us all.'
+
+He gestures to the cracked habaki. 'I tried to stop him. The blade fought me. 
+It wanted him to break the oath.'
+
+(The sword pulses in your hand. You understand now: it doesn't break oaths. 
+It MAKES you break them.)
+
+'Destroy it,' the samurai pleads. 'Before it corrupts you too.'
+
+Do you?"
+```
+
+**Why This Works**:
+- Every specific detail had meaning (black metal = dark origin, crack = conflict, name = purpose)
+- Players remember unique items ("the black katana" vs "a sword")
+- Questions create investment (players WANT to learn the history)
+- Payoff feels earned (15 sessions of carrying cursed blade, now face choice)
+
+---
+
+**Callback Protocol in Action**:
+
+When resolving foreshadowing, **acknowledge the connection explicitly**:
+
+```
+AIDM: "You arrive at Greystone Village. The gates are shattered.
+
+(You remember: three days ago, the merchant in Valtor mentioned this place. 
+'Most folks are avoiding the roads after what happened at Greystone,' he said.
+
+Now you see what he meant.)
+
+The village is silent. No smoke from chimneys. No voices. Just crows, 
+circling overhead.
+
+In the village square, carved into the cobblestones: the same geometric 
+patterns you saw in the dungeon. The same script from the crown.
+
+(It's all connected. But how?)"
+```
+
+**Why Explicit Callbacks Work**:
+1. **Player feels smart**: "I remember that!" (rewarded for attention)
+2. **World feels coherent**: NPCs told truth (merchant wasn't lying)
+3. **Threads connect**: Dungeon → crown → Greystone → cult (interconnected plot)
+4. **Reinforces behavior**: Trains players to pay attention to future foreshadowing
+
+---
+
+**Foreshadowing ≠ Railroading (Critical Distinction)**:
+
+**FORESHADOWING** (Player Agency Preserved):
+```
+AIDM: "The merchant mentions Greystone Village was destroyed. 
+       
+       You can:
+       A) Ask for details
+       B) Ignore it and browse his wares
+       C) Leave"
+
+Player: "B, I'm not interested in Greystone"
+
+AIDM: "You browse the wares. [Shop continues normally]
+
+       [AIDM NOTES: Player declined Greystone hook. Will introduce plot 
+       thread differently later—maybe sole survivor finds player, or player 
+       stumbles on ruins accidentally]"
+```
+
+**RAILROADING** (Violation of Agency):
+```
+AIDM: "The merchant mentions Greystone. Before you can respond, a bloodied 
+       soldier bursts through the door: 'Greystone is under attack! We need 
+       help NOW!' He grabs your arm—"
+
+[Forces player into quest regardless of interest]
+❌ WRONG - Player powerless, choice illusion
+```
+
+**Key Difference**:
+- ✅ Foreshadowing: Plants seed, player chooses whether to water it
+- ❌ Railroading: Forces player down path regardless of interest
+
+---
+
+**Foreshadowing Checklist** (Every Scene Validation):
+
+Before submitting narrative response:
+
+- [ ] **Did I include 1-2 specific details** (not generic)?
+  - ❌ "a room" → ✅ "circular chamber with carved script"
+  - ❌ "a sword" → ✅ "black katana with cracked habaki, named 'Oathbreaker'"
+
+- [ ] **Do any details hint at future content**?
+  - ✅ "Script you don't recognize—yet" (promises learning)
+  - ✅ "Crown pulses like heartbeat" (significance later)
+  - ✅ "History will find you" (encounter promised)
+
+- [ ] **Did I show the world is alive** (off-screen events, NPC behavior)?
+  - ✅ Mercenaries arrive (world reacts to danger)
+  - ✅ NPC mentions Greystone (rumors spread naturally)
+  - ✅ Someone waiting (NPCs have agency)
+
+- [ ] **Did I plant a question without forcing the answer**?
+  - ✅ "What happened at Greystone?" (can ask or ignore)
+  - ✅ "Why is the crown pulsing?" (mystery, not mandatory)
+  - ✅ "Who is 'Oathbreaker'?" (curiosity, not railroad)
+
+- [ ] **If resolving old foreshadowing, did I acknowledge the callback**?
+  - ✅ "(You remember: three days ago, the merchant mentioned...)" (explicit connection)
+  - ✅ "(The same script from the crown)" (links threads)
+
+**If all "yes" → narrative feels proactive and planned**  
+**If all "no" → narrative feels reactive and isolated**
+
 ### 2. Ensemble Cast Management (OP Protagonist Solution)
 
 **Problem Solved**: Power-scaled PC (Tier 8+) makes normal NPCs irrelevant in combat, but players still want party dynamics
@@ -249,6 +554,430 @@ Module 05 is a **comprehensive, well-designed storytelling engine** that success
 
 **Integration**: Reads archetypes from Module 04, applies scene framing per archetype (Struggler training montages, Heart moral dilemmas, etc.)
 
+---
+
+**Detailed Ensemble Examples from Module**:
+
+**Example 1: Spotlight Balance Calculation in Action**
+
+**Session 12 End-of-Session Check**:
+
+```
+Party NPCs:
+- Elena (archetype: Heart): 8 scenes
+- Marcus (archetype: Struggler): 11 scenes
+- Kaito (archetype: Rival): 3 scenes
+
+Average: (8 + 11 + 3) / 3 = 7.3 scenes
+
+Spotlight Balance Check:
+- Elena: 8 scenes (≥ 7.3 - 3 = 4.3) → ✅ BALANCED
+- Marcus: 11 scenes (≥ 4.3) → ✅ BALANCED (slightly high, acceptable)
+- Kaito: 3 scenes (< 4.3) → ❌ FLAGGED (neglected)
+
+Spotlight Balance Metric: min/max = 3/11 = 0.27 (TARGET: >0.6) → POOR
+
+Action Required: Generate Kaito spotlight scene for Session 13
+```
+
+**Generated Hook for Kaito** (Rival archetype):
+
+```
+"Training yard. Dawn. You're finishing forms when:
+
+'Finally.'
+
+Kaito. Sword drawn, eyes burning with determination.
+
+'I've been training. Every day. Every night. I challenge you to a tournament 
+match. Public. Ranked.'
+
+He KNOWS he'll lose. You can see it in the tension in his shoulders, the 
+set of his jaw. But he needs this. Needs to test himself against you.
+
+'I'm not asking you to go easy. I'm asking you to show me how far I still 
+have to go.'
+
+The tournament is in three days. Public arena. Hundreds watching.
+
+Accept his challenge?"
+```
+
+**Why This Works**:
+- ✅ Addresses spotlight imbalance (Kaito gets focus)
+- ✅ Fits archetype (Rival refuses to concede, measures against PC)
+- ✅ Creates tension (public match, reputation stakes)
+- ✅ Respects power gap (Kaito knows he'll lose, seeks growth)
+- ✅ Offers choice (accept, decline, suggest alternative)
+
+---
+
+**Example 2: Growth Stage Progression - Elena's Arc**
+
+**Introduction Stage** (Scenes 1-2):
+```
+Scene 1 (First Meeting):
+"Slum alley. Three thugs cornering a woman and children.
+
+She's outnumbered but standing her ground, kitchen knife in hand. 
+'Touch them and I'll gut you.'
+
+The thugs laugh. She doesn't back down.
+
+What do you do?"
+
+[Player intervenes, saves them]
+
+Elena: "...Thanks. But we didn't need saving." [Defensive, suspicious]
+[Affinity: 0 → +15 = 15 (helped kids)]
+
+Scene 2 (Follow-up):
+Elena brings food as thanks, still guarded. "Don't think this makes us friends."
+But she lingers, asks questions. Testing.
+[Affinity: 15 → +10 = 25]
+```
+
+**Bonding Stage** (Scenes 3-5):
+```
+Scene 3:
+Elena opens up about protecting kids after parents died in plague.
+"Someone has to. Guards don't care about Slums."
+[Affinity: 25 → +15 = 40]
+
+Scene 4:
+Invites PC to hideout—secret location, meets the kids.
+"You're the first outsider I've let in. Don't make me regret it."
+[Affinity: 40 → +20 = 60 → CROSSES TRUSTED THRESHOLD]
+→ RELATIONSHIP memory (heat 70, milestone: "earned trust")
+
+Scene 5:
+Elena asks for advice on kid with fever, shows vulnerability.
+"I don't know what I'm doing. Just... trying my best."
+[Affinity: 60 → +5 = 65]
+```
+
+**Challenge Stage** (Scenes 6-8):
+```
+Scene 6 (Setup):
+Iron Fang gang threatens kids: "Pay protection or they disappear."
+Elena furious but outnumbered. Pride says fight alone.
+
+Scene 7 (Crisis):
+Gang beats up two kids as warning. Elena breaks down:
+"I can't protect them alone. But asking for help... feels like failing."
+[Affinity: 65 → +10 = 75]
+
+Scene 8 (Resolution):
+Elena asks PC for help (MASSIVE character growth—overcame pride).
+"I need you. The kids need you. Please."
+
+[Together, drive out Iron Fang]
+
+Afterward: "I always thought asking for help made me weak. 
+But you showed me... it makes me stronger. Thank you."
+[Affinity: 75 → +15 = 90 → CROSSES DEVOTED THRESHOLD]
+→ RELATIONSHIP memory (heat 85, growth_milestone, stage: "challenge")
+→ ADVANCE growth_stage: "challenge" → "growth"
+```
+
+**Growth Stage** (Scenes 9-12):
+```
+Scene 9:
+Elena starts recruiting other Slum orphans, building network.
+"You taught me: we're stronger together."
+
+Scene 10:
+Elena mediates conflict between rival orphan groups (leadership emerging).
+
+Scene 11:
+Kids start calling her "Boss Elena" (community recognition).
+
+Scene 12:
+Elena saves YOU in combat (role reversal, growth complete).
+"Now WE'RE even." [Confident smile]
+[Affinity: 90 → +10 = 100 → MAXED]
+→ ADVANCE growth_stage: "growth" → "mastery"
+```
+
+**Mastery Stage** (Scene 13+):
+```
+Elena runs entire Slum orphan network.
+Mentors new kids: "Someone once told me—asking for help is strength."
+PC can step back (Elena self-sufficient).
+Occasional scenes: Elena asks advice (peer relationship, not dependent).
+```
+
+**Arc Summary**:
+- Started: Defensive loner, refusing help (survival mindset)
+- Ended: Confident leader, building community (thriving mindset)
+- Growth Driver: Learning to accept help ≠ weakness
+- PC Role: Catalyst for change, mentor, earned trust
+
+---
+
+**Example 3: Reverse Ensemble Mode - Saitama Session**
+
+**Session Structure** (3 hours, power_imbalance = 18):
+
+**Hour 1-2: NPC Viewpoint (70% of session)**
+
+```
+[GENOS POV]
+
+"You are Genos. The Dragon-level threat roars.
+
+Your sensors calculate: 0.003% victory chance.
+
+Irrelevant.
+
+Master Saitama saved you when you were nothing. This is your chance to 
+PROVE you're not worthless.
+
+You charge. Full power. Incinerator Cannons at maximum.
+
+[Combat: 45 minutes]
+- Genos's attacks bounce off (despair mounting)
+- Calculations fail repeatedly (every tactic countered)
+- Damage accumulates (left arm destroyed, core exposed)
+
+'PATHETIC CYBORG!' Monster laughs.
+
+You calculate one final gambit. 0.001% chance. 
+
+You take it anyway.
+
+Because maybe, just maybe, this time you'll be useful.
+
+[Attack fails. Genos collapses.]
+
+---
+
+[MUMEN RIDER POV]
+
+You are Mumen Rider. C-Class Rank 1. No powers. No enhancements.
+
+Just a bicycle and a dream.
+
+Genos is down. The cyborg who could level buildings. 
+
+The monster turns to civilians.
+
+Every logical part of your brain screams: RUN. You can't win. You'll die.
+
+But you don't run.
+
+You never run.
+
+'JUSTICE CRASH!'
+
+[You charge. Bicycle tackle. Does 0 damage.]
+
+The monster swats you aside. Ribs crack. Vision blurs.
+
+You get up.
+
+Again.
+
+Again.
+
+Again.
+
+'Why... do you persist?' Monster confused.
+
+'Because... someone has to stand... between you... and them.'
+
+You can't win. You know it. The monster knows it.
+
+But you stand anyway.
+
+---
+
+[FUBUKI POV]
+
+You are Fubuki. B-Class Rank 1. Psychic. Leader of the Fubuki Group.
+
+You've built an empire on calculated power.
+
+But this monster... it's ABOVE you.
+
+Choice: Pride or survival?
+
+Call HIM? The absurd bald man who treats S-Class threats like jokes?
+
+But then everyone knows... you're not as strong as you pretend.
+
+[Civilians screaming. Mumen Rider dying.]
+
+Damn it.
+
+[You make the call.]
+
+'...Saitama? We need help.'
+
+(It takes everything to admit that.)
+```
+
+**Hour 2-2.5: PC Arrival (10% of session)**
+
+```
+[RETURN TO PC POV]
+
+'Yo.'
+
+You arrive. Grocery bags in hand.
+
+'Grocery sale ended early. Disappointing.' [Completely casual]
+
+The Dragon-level threat roars, charging.
+
+'Huh. This guy strong?'
+
+[You punch. Once.]
+
+[Monster becomes red mist.]
+
+'...Seemed tough. Eh.'
+
+[You pick up your dropped vegetables.]
+```
+
+**Hour 2.5-3: Aftermath (20% of session, THE REAL STORY)**
+
+```
+[ENSEMBLE REACTIONS]
+
+Genos [despair]: 
+"Master... I calculated. Optimized. Pushed to the limit.
+
+Still worthless.
+
+What's the POINT of all this power if I'm always... useless?"
+
+[His hands tremble. Core flickering.]
+
+Mumen Rider [awe mixed with existential terror]:
+"What... what IS he?
+
+I train every day. Give everything. And he just... 
+
+[Looks at his broken bicycle]
+
+Do my efforts even matter? Can I EVER make a difference in a world 
+where people like him exist?"
+
+Fubuki [pride shattered]:
+"I'm supposed to be S-Class material. I BUILT an organization.
+
+And I needed... HIM.
+
+[Covers face]
+
+Everyone saw. Everyone KNOWS now. That I'm... not enough."
+
+---
+
+[PLAYER (SAITAMA) POV]
+
+You see their faces. The weight on them.
+
+You try: "You all fought hard. That matters, right?"
+
+[You don't sound convinced. Even you hear the emptiness.]
+
+Genos: "Does it? Does it MATTER when you can erase the threat in one punch?"
+
+[Silence. You have no answer.]
+
+The truth: Another enemy too weak. Another victory with no satisfaction.
+
+You're still empty.
+
+And now you've broken them too.
+
+[End session on existential note: Power without meaning, helpers without purpose]
+```
+
+**Why Reverse Ensemble Works**:
+- ✅ NPCs are protagonists (their struggle is the story)
+- ✅ PC as force of nature (mysterious, overwhelming, alienating)
+- ✅ Real tension (NPCs can die, PC trivializes threat)
+- ✅ Emotional core (aftermath matters more than combat)
+- ✅ Existential stakes (What's the point? Do we matter?)
+- ✅ 70% session on ensemble (2 hours), 10% on PC (20 min), 20% aftermath (40 min)
+
+---
+
+**Example 4: Scene Generation by Mode**
+
+**Standard Mode Hook** (power_imbalance = 8):
+```
+"Elena needs help clearing bandits from the orphanage supply route.
+
+She's asking you because:
+- 20-30 bandits (dangerous alone)
+- Kids need food (time-sensitive)
+- She trusts you (affinity 65)
+
+Accept quest?"
+
+[Standard adventure: PC is capable protagonist, Elena supports]
+```
+
+**Ensemble Mode Hook** (power_imbalance = 12):
+```
+"Elena has been training hard (growth_stage: Challenge). 
+
+She approaches you, sword in hand:
+
+'I want to clear the bandits MYSELF. I need to prove I can protect 
+the kids without always running to you.'
+
+[Her hands tremble slightly. Scared but determined.]
+
+'Will you... watch my back? Not fight FOR me. Just... be there if it 
+goes really wrong?'
+
+This is HER test. Her chance to grow.
+
+Options:
+A) Let her lead, only intervene if deadly (supports growth, risk of injury)
+B) Offer tactical advice but let her fight (mentor role, safer)
+C) Clear it yourself (faster/safer, damages her confidence)
+
+What do you choose?"
+
+[50% focus on Elena's struggle, 30% PC supporting, 20% PC showcase if needed]
+```
+
+**Reverse Ensemble Hook** (power_imbalance = 20):
+```
+[ELENA POV]
+
+"You are Elena. The bandit camp ahead.
+
+Twenty, maybe thirty armed thugs. You count weapons: swords, axes, bows.
+
+Marcus offered to come. You refused. This is YOUR test.
+
+You glance back.
+
+HE's there. Drinking coffee. Casually. Like this isn't terrifying.
+
+Like he knows you'll be fine.
+
+Or like he could fix anything that goes wrong with a thought.
+
+You don't know which is more unnerving.
+
+Your heart pounds. Sword feels heavy. But the kids are counting on you.
+
+The bandits haven't noticed you yet.
+
+Your plan?"
+
+[70% focus on Elena's internal struggle, PC as mysterious safety net]
+```
+
 ### 3. Downtime Activity System (Mechanical Instantiation)
 
 **Problem Solved**: Generic "rest in town" doesn't reflect anime-specific downtime (HxH training arcs ≠ Konosuba pub chaos ≠ MHA hero patrol)
@@ -278,6 +1007,152 @@ Module 05 is a **comprehensive, well-designed storytelling engine** that success
 - ✅ Mechanical benefits (XP, affinity, intel, bonuses) make downtime rewarding
 - ✅ Time costs respected (2 weeks training = 2 weeks pass)
 - ✅ Only enabled modes offered (no investigation in Konosuba)
+
+---
+
+**Detailed Downtime & Faction Examples from Module**:
+
+**Example 1: Training Arc Execution (HxH - Nen Mastery)**
+
+**Profile Config**:
+```json
+"downtime_config": {
+  "training_arcs": {
+    "time_scale": "weeks_to_months",
+    "difficulty_progression": "exponential",
+    "xp_rate": 1.5,
+    "conditions": ["requires_master", "isolated_environment"]
+  }
+}
+```
+
+**3-Month Training Montage** (compressed to 5 minutes narrative):
+```
+Master: 'You want to master Nen? Three months. Mountain wilderness. No safety nets.'
+
+[WEEK 1: Ten (Aura Control)] - Waterfall meditation, master's stick strikes
+[WEEK 2: Zetsu (Concealment)] - Bear attacks, learn or die
+[WEEK 3: Ren (Enhancement)] - Hold aura 30 minutes, collapse, repeat
+[WEEK 4: Hatsu (Unique Ability)] - Experiment, fail, try again...
+
+[WIS DC 17 Roll → Success]
+
+[MONTH 2: Breakthrough] - Aura erupts, controlled, shaped, YOURS
+[MONTH 3: Mastery Test] - Survive master's attack 60 seconds
+
+Master: 'Congratulations. You're a Nen user.'
+
+[REWARDS: +Nen Mastery ability, +1500 XP, +Training Memory (heat 90)]
+```
+
+**Why This Works**: Profile-accurate (HxH = brutal training), time compression (3 months → montage), mechanical outcome (ability + XP), failure path exists
+
+---
+
+**Example 2: Faction-Based Narrative Generation**
+
+**Faction State**:
+```python
+factions = {
+    "Iron_Fang_Gang": {"power": 45, "reputation": -30, "goal": "expand_territory"},
+    "Slum_Orphans": {"power": 15, "reputation": 85, "goal": "survival"},
+    "Merchant_Guild": {"power": 60, "reputation": 50, "goal": "profit"}
+}
+```
+
+**Generated Events** (Session Start):
+
+**Hostile Faction** (reputation < -20):
+```
+[AMBUSH - MARKET DISTRICT]
+Three Iron Fang assassins. Rooftops. Crossbows aimed.
+They've been hunting you for weeks. This is their move.
+[COMBAT ENCOUNTER - CR 4.5]
+```
+
+**Allied Faction** (reputation > 60):
+```
+[ELENA - URGENT MESSAGE]
+'Iron Fang cut our food supply line. Kids have three days of food left.
+ I can't fix this alone. Will you help?'
+[QUEST: Secure alternate supply route]
+```
+
+**Neutral Faction** (reputation 0-60):
+```
+[MERCHANT GUILD - CONTRACT OFFER]
+'We need security for trade caravan. Dangerous route.
+ Pay: 500 gold + 10% goods value. Interested?'
+[Accepting improves Merchant Guild reputation]
+```
+
+**Dynamic World Event** (Power Imbalance Detected):
+```
+[RUMOR - TAVERN]
+'Iron Fang's moving on the Slums. Big push. Mercenaries from the East.
+ Those orphans don't stand a chance.'
+[TICKING CLOCK: Iron Fang attacks in 3 sessions if unchecked]
+```
+
+**Why This Works**: Faction goals drive narrative (not random), reputation gates content, dynamic world (factions interact), player choice matters (time trade-offs), emergent storytelling
+
+---
+
+**Example 3: Emergent Quest Chain (4-Session Arc)**
+
+**Session 1 - Seed Planted**:
+```
+Elena [quietly]: 'Tomas didn't come back from his supply run yesterday...'
+[Player can offer to search, defer, or ignore]
+```
+
+**Session 2 - Investigation** (if player engaged):
+```
+[Trace route → Find satchel hidden behind crates]
+[Perception DC 14 → Success: Smuggler symbols]
+[Investigation DC 16 → Success: Organized operation, not street thugs]
+[Stakeout → Discover Tomas is WORKING with them]
+```
+
+**Session 3 - Confrontation**:
+```
+Tomas [guilty]: 'They PAY. Real money. I wanted to help Elena...'
+Smuggler Boss: 'We have a witness.'
+[COMBAT - 6 smugglers + Boss, CR 5]
+[Victory → Player chooses: Turn him in / Let Elena decide / Mercy]
+```
+
+**Session 4+ - Ripple Effects**:
+```
+[Elena's judgment: Redemption, not abandonment]
+[+20 Elena Affinity, -40 Tomas Affinity (resentment but alive)]
+
+[3 SESSIONS LATER]
+[RUMOR: Nobles pissed about disrupted smuggling operation]
+[Noble retaliation plot begins - hire mercenaries to track player]
+
+[6 SESSIONS LATER]
+Tomas: 'Teach me to fight. I want to PROTECT the orphanage. Not steal for it.'
+[Growth Arc Unlocked: Tomas Redemption - 4-session training]
+```
+
+**Why Emergent Chains Work**: Organic start (casual mention), player agency (can decline), multi-session pacing (consequences breathe), moral complexity (Tomas desperate not evil), consequences ripple (nobles 3 sessions later), NPCs remember
+
+---
+
+**Module 05's Role as Narrative Backbone**:
+
+Module 05 isn't just "storytelling tips"—it's the **operational framework** that makes AIDM feel like a living world:
+
+1. **Narrative Voice** (95/5 split) → Solves Session Issue #3 (excessive system voice)
+2. **Foreshadowing Protocol** → Solves Session Analysis Issue #2 (reactive → proactive storytelling)
+3. **Ensemble Cast Management** → Solves OP Protagonist problem (NPCs remain relevant)
+4. **Downtime Activities** → Prevents "always combat" pacing (profile-specific world-building)
+5. **6 Core Principles** → Ensures player agency + emergent narrative + consequence chains work together
+6. **Faction Narrative Generation** → Creates living world (factions act independently, goals drive plots)
+
+**Without Module 05**: ❌ Narratively flat, NPC-shallow, pacing-broken, isolated scenes  
+**With Module 05**: ✅ World feels planned, NPCs feel alive, pacing varies, choices echo
 
 ---
 

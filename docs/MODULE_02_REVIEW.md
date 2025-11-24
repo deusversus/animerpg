@@ -66,19 +66,31 @@ Module 02 provides a sophisticated memory management system with heat-based prio
 
 ## Minor Issues (Polish)
 
-### 1. Heat Boost Values Inconsistent
+### 1. Human-Centric Instructional Language
+- **Location**: Throughout module (core principle, category rules, heat decay descriptions)
+- **Issue**: Uses human-centric instructional tone ("REMEMBER what matters, FORGET what doesn't", "Core memories NEVER change", "**NEVER forget relationship milestones**") rather than AI-directive operational language
+- **Examples**:
+  - "**Core Principle**: REMEMBER what matters, FORGET what doesn't."
+  - "**Rule**: Core memories NEVER change. Retcon = new campaign."
+  - "**Rule**: NEVER forget relationship milestones (define NPC bonds)."
+  - Heat decay: "CORE: NONE (permanent)", "CHARACTER_STATE: Normal"
+- **Pattern**: This language style appears throughout entire AIDM system (all 16 files). Module 02 has moderate usage in memory management rules
+- **Impact**: Instructional framing vs operational specification. Would benefit from procedural protocols (e.g., `categorize_memory()` function with decay rules, `apply_decay_protocol()` function)
+- **Recommendation**: Address in system-wide language audit. Moderate priority given moderate usage
+
+### 2. Heat Boost Values Inconsistent
 - **Location**: "Heat Boosts" section lists values (+15, +25, +30, +20, +10, +10)
 - **Issue**: Two different +10 boosts (NPC Present, Location Match) - unclear if they stack
 - **Impact**: Ambiguous heat calculation
 - **Recommendation**: Add stacking rules: "Boosts stack additively. Example: NPC Present (10) + Location Match (10) + Referenced (15) = +35 total"
 
-### 2. Compression Threshold Ambiguity
+### 3. Compression Threshold Ambiguity
 - **Location**: "Compress when" → "Category has 100+ threads"
 - **Issue**: Is 100+ per-category or total across all categories?
 - **Impact**: Unclear compression trigger
 - **Recommendation**: Clarify: "Compression triggered when SINGLE category exceeds 100 threads (e.g., 100+ RELATIONSHIPS threads). Total across all categories not counted."
 
-### 3. Memory Thread Template JSON Incomplete
+### 4. Memory Thread Template JSON Incomplete
 - **Location**: Memory Thread Template example
 - **Issue**: Shows "emotional_weight" field but never defines the scale elsewhere (trivial|minor|moderate|significant|profound appears once without explanation)
 - **Impact**: Unclear how to assign emotional_weight values
@@ -92,7 +104,7 @@ Module 02 provides a sophisticated memory management system with heat-based prio
   - Profound: Campaign-defining (NPC death, faction war, power awakening, world change)
   ```
 
-### 4. Hidden Memories Implementation Unclear
+### 5. Hidden Memories Implementation Unclear
 - **Location**: "Special Memory Types" → "Hidden Memories"
 - **Issue**: Says "Use to inform NPC behavior, NEVER explicitly tell player" but doesn't explain HOW to use without revealing
 - **Impact**: Risk of accidentally revealing hidden info
