@@ -7,6 +7,54 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Yen",
+      "starting_amount": 2000,
+      "scarcity": "scarce",
+      "inflation_rate": "none",
+      "special_mechanics": ["lab_rent_struggle", "crt_tv_bargaining", "upa_cushion_sales"]
+    }
+  },
+  "crafting": {
+    "type": "experimental",
+    "parameters": {
+      "discovery_method": "research",
+      "failure_chance": "high",
+      "special_mechanics": ["future_gadget_lab", "phone_microwave_modification", "divergence_meter_calibration"]
+    }
+  },
+  "progression": {
+    "type": "milestone_based",
+    "parameters": {
+      "system_name": "World Line Divergence / Reading Steiner",
+      "milestone_triggers": ["d_mail_experiment", "time_leap_success", "world_line_shift", "steins_gate_reached"],
+      "power_grants": ["timeline_memory_retention", "butterfly_effect_awareness", "attractor_field_knowledge"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["investigation", "slice_of_life"],
+    "activity_configs": {
+      "investigation": {
+        "time_cost": "1_day",
+        "benefits": ["timeline_clues", "conspiracy_research"],
+        "special_mechanics": ["@channel_posts", "SERN_hacking", "IBN_5100_search"]
+      },
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["lab_member_bonding", "sanity_recovery"],
+        "special_mechanics": ["dr_pepper", "raiNet_battler", "round_table_conference"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 ### 1. Introspection vs Action: **8/10** (Heavily introspective)

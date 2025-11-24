@@ -7,6 +7,56 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Berry",
+      "starting_amount": 10000,
+      "scarcity": "abundant",
+      "inflation_rate": "none",
+      "special_mechanics": ["bounty_rewards", "treasure_hoards", "pirate_economy"]
+    }
+  },
+  "crafting": {
+    "type": "skill_based",
+    "parameters": {
+      "craft_focus": "crew_specialties",
+      "skill_stat": "INT",
+      "quality_tiers": ["Basic", "Master", "Legendary"],
+      "special_mechanics": ["shipwright_repairs", "usopp_inventions", "sanji_cooking"]
+    }
+  },
+  "progression": {
+    "type": "quirk_awakening",
+    "parameters": {
+      "quirk_name": "Devil Fruit / Haki",
+      "awakening_stages": ["Basic Power", "Creative Mastery", "Gear Evolution", "Awakening"],
+      "evolution_triggers": ["near_death", "emotional_breakthrough", "intense_battle"],
+      "special_mechanics": ["devil_fruit_awakening", "advanced_haki", "gear_transformations"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["travel", "slice_of_life"],
+    "activity_configs": {
+      "travel": {
+        "time_cost": "1_week",
+        "benefits": ["new_islands", "adventure_discovery"],
+        "special_mechanics": ["log_pose_navigation", "grand_line_mysteries"]
+      },
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["crew_bonding", "party_time"],
+        "special_mechanics": ["banquets", "davy_back_fight", "nakama_moments"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 ### 1. Introspection vs Action: **3/10** (Action-heavy with emotional flashbacks)

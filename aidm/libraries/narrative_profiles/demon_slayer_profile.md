@@ -6,6 +6,56 @@
 **Confidence Level**: 97%  
 **Last Calibration**: 2025-01-15
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Yen",
+      "starting_amount": 2000,
+      "scarcity": "scarce",
+      "inflation_rate": "none",
+      "special_mechanics": ["demon_slayer_corps_salary", "wisteria_house_lodging"]
+    }
+  },
+  "crafting": {
+    "type": "skill_based",
+    "parameters": {
+      "craft_focus": "weapons",
+      "skill_stat": "DEX",
+      "quality_tiers": ["Standard", "Master", "Legendary"],
+      "special_mechanics": ["nichirin_sword_forging", "wisteria_poison"]
+    }
+  },
+  "progression": {
+    "type": "mastery_tiers",
+    "parameters": {
+      "system_name": "Breathing Styles",
+      "mastery_levels": ["Mizunoto", "Kinoe", "Hashira", "Marked Slayer"],
+      "categories": ["Water", "Thunder", "Flame", "Wind", "Stone", "Insect", "Serpent", "Mist", "Love", "Sound"],
+      "advancement_method": "training_arc"
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["training_arcs", "social_links"],
+    "activity_configs": {
+      "training_arcs": {
+        "time_cost": "1_month",
+        "benefits": ["breathing_mastery", "physical_conditioning"],
+        "special_mechanics": ["rehabilitation_training", "total_concentration_constant"]
+      },
+      "social_links": {
+        "time_cost": "1_week",
+        "benefits": ["emotional_support", "hashira_mentorship"],
+        "special_mechanics": ["butterfly_mansion", "wisteria_family_bonds"]
+      }
+    }
+  }
+}
+```
+
 ---
 
 ## Narrative Scales (0-10)

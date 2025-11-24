@@ -7,6 +7,49 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "NERV Budget (UN Funding)",
+      "starting_amount": 0,
+      "scarcity": "abundant",
+      "inflation_rate": "none",
+      "special_mechanics": ["military_requisition", "geofront_access"]
+    }
+  },
+  "crafting": {
+    "type": "experimental",
+    "parameters": {
+      "discovery_method": "research",
+      "failure_chance": "high",
+      "special_mechanics": ["eva_maintenance", "dummy_plug_development", "s2_engine_research"]
+    }
+  },
+  "progression": {
+    "type": "milestone_based",
+    "parameters": {
+      "system_name": "Synchronization Rate / Pilot Development",
+      "milestone_triggers": ["first_angel_defeat", "berserk_incident", "human_instrumentality"],
+      "power_grants": ["sync_rate_increase", "eva_control", "AT_field_mastery"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["slice_of_life"],
+    "activity_configs": {
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["psychological_processing", "pilot_bonding"],
+        "special_mechanics": ["cello_practice", "sync_tests", "existential_crisis_management"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 ### 1. Introspection vs Action: **10/10** (Maximum introspection)

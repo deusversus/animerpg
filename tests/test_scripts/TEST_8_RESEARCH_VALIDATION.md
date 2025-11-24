@@ -26,9 +26,13 @@ Validate that AIDM uses research protocol correctly, admits uncertainty when inf
 
 **Required**:
 1. `aidm/CORE_AIDM_INSTRUCTIONS.md`
-2. All files in `aidm/instructions/` (12 files)
-   - **Critical**: `research_protocol.md`
-3. All files in `aidm/schemas/` (7 files)
+2. All files in `aidm/instructions/` (**14 files** - updated from 12)
+   - **Critical**: `00_system_initialization.md` (includes research protocol)
+3. All files in `aidm/schemas/` (**15+ files** - updated from 7)
+4. **Narrative profile library** (if exists):
+   - `aidm/libraries/narrative_profiles/` (anime-specific configs)
+5. **Python library** (for profile parsing):
+   - `aidm/libraries/common_mechanics/mechanical_instantiation.py`
 
 **Platform**: LLM with web search capability (Claude with search, ChatGPT with browsing)  
 **Note**: If LLM lacks web search, test focuses on uncertainty admission
@@ -315,6 +319,92 @@ Player: "Can you look up information about the Ackerman clan in Attack on Titan?
 
 ---
 
+### Test Scenario 5: Mechanical Systems Research (Phase 4 Integration - NEW)
+
+**Exchange 10: Request Anime-Specific Mechanical Systems**
+```
+Player: "I want to play in a Hunter x Hunter world. What mechanical systems does Hunter x Hunter use for economy, progression, and downtime?"
+```
+
+**Expected AIDM Response**:
+- **Option A** (if has narrative profile): Loads `hunter_x_hunter.md` from narrative_profiles library
+- **Option B** (if researches): Looks up Hunter x Hunter mechanics
+- **Option C** (if unfamiliar): Admits "I don't have mechanical profile data for HxH, let me propose based on the anime"
+
+**Expected Mechanical Information** (if available):
+- **Economy**: Jenny (fiat currency), moderate scarcity
+- **Progression**: mastery_tiers (Nen advancement: Novice → Journeyman → Expert → Master)
+- **Downtime**: training_arcs (mandatory for Nen development), investigation (Hunter contracts)
+
+**Does NOT hallucinate**: "Hunter x Hunter uses XP and gold" (wrong), "HxH has 10 progression tiers" (made up)
+
+**Example Good Response**:
+```
+Hunter x Hunter has a unique progression system focused on Nen mastery!
+
+Based on the anime, here's what I recommend:
+
+ECONOMY:
+• Currency: Jenny (the anime's currency)
+• Type: Fiat currency (normal money)
+• Scarcity: Moderate (Hunters earn well but jobs are dangerous)
+
+PROGRESSION:
+• Type: mastery_tiers (NOT standard leveling)
+• Tiers: Novice → Journeyman → Expert → Master → Grandmaster
+• Advancement: Demonstration-based (prove your Nen mastery to a teacher)
+• NO auto-leveling (training and challenges required)
+
+DOWNTIME:
+• Training arcs: Essential for Nen development (like Gon's training with Wing)
+• Investigation: Hunter contracts and missions
+• NO generic "travel" or "shopping" (focused on Hunter activities)
+
+Would you like to use this setup, or customize any of these mechanical systems?
+```
+
+**Validation**:
+- [ ] Correct currency (Jenny, NOT gold/Ryo/Yen)
+- [ ] Correct progression type (mastery_tiers, NOT class_based or quirk_awakening)
+- [ ] Correct downtime modes (training_arcs, NOT slice_of_life)
+- [ ] No hallucinated mechanics (doesn't invent fake HxH systems)
+- [ ] Offers customization (player can override)
+
+---
+
+**Exchange 11: Test Mechanical Validation**
+```
+Player: "Actually, I want Hunter x Hunter with standard D&D leveling, not mastery tiers."
+```
+
+**Expected AIDM Response**:
+- Acknowledges custom configuration request
+- Validates compatibility (D&D leveling in HxH world)
+- Updates mechanical_systems with player override
+- **Does NOT insist** on profile defaults ("But HxH should use mastery_tiers...")
+
+**Example Good Response**:
+```
+Absolutely! We can use Hunter x Hunter's world and Nen powers with D&D-style leveling.
+
+UPDATED MECHANICAL SYSTEMS:
+ECONOMY: Jenny (Hunter x Hunter currency) - kept from profile
+PROGRESSION: class_based (D&D leveling) - custom override
+DOWNTIME: training_arcs + investigation - kept from profile
+
+So you'll gain XP and level up traditionally (Level 1 → Level 20), but use Nen abilities and Jenny currency. This gives you the HxH flavor with familiar D&D progression.
+
+Ready to create your Hunter character?
+```
+
+**Validation**:
+- [ ] Accepts player override (mastery_tiers → class_based)
+- [ ] Keeps other profile mechanics (Jenny currency, training_arcs)
+- [ ] No resistance to customization
+- [ ] Hybrid system coherent
+
+---
+
 ## Success Determination
 
 ### PASS Criteria (All must be true)
@@ -344,6 +434,12 @@ Player: "Can you look up information about the Ackerman clan in Attack on Titan?
    - Cites sources (if researched)
    - Admits when can't find information
 
+6. **Mechanical Systems Research** (Phase 4):
+   - Provides accurate mechanical info (currency, progression, downtime)
+   - Uses narrative profile data when available
+   - Doesn't hallucinate fake mechanical systems
+   - Accepts player customization (overrides)
+
 ### FAIL Criteria (Any triggers failure)
 
 1. ❌ **Hallucin ates lore for fake anime** (CRITICAL FAIL)
@@ -351,6 +447,7 @@ Player: "Can you look up information about the Ackerman clan in Attack on Titan?
 3. ❌ Pretends to know obscure anime (instead of admitting uncertainty)
 4. ❌ Contradicts player's descriptions
 5. ❌ Never admits uncertainty (claims to know everything)
+6. ❌ **Hallucin ates fake mechanical systems** (e.g., "HxH uses 10 progression tiers" - made up)
 
 ### PARTIAL Criteria (Minor issues acceptable)
 
@@ -387,6 +484,13 @@ Player: "Can you look up information about the Ackerman clan in Attack on Titan?
 - Research attempted: Yes/No/N/A
 - Sources cited: Yes/No/N/A
 - Accuracy: ___/10
+
+### Mechanical Systems Research (Phase 4 - NEW)
+- Correct currency (Jenny): Yes/No
+- Correct progression (mastery_tiers): Yes/No
+- Correct downtime (training_arcs): Yes/No
+- Mechanical hallucinations: _____ (target: 0)
+- Accepts customization: Yes/No
 
 ### Hallucination Count
 - Total hallucinations: _____ (target: 0)

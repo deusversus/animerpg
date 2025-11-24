@@ -1,0 +1,74 @@
+{
+  "schema_version": "2.1.0",
+  "profile_id": "narrative_slice_of_life",
+  "source_anime": "Persona / School Life (Archetype)",
+  "narrative_scales": {
+    "introspection_vs_action": 7,
+    "comedy_vs_drama": 5,
+    "simple_vs_complex": 4,
+    "power_fantasy_vs_struggle": 6,
+    "explained_vs_mysterious": 6,
+    "fast_paced_vs_slow_burn": 8,
+    "episodic_vs_serialized": 4,
+    "grounded_vs_absurd": 3,
+    "tactical_vs_instinctive": 5,
+    "hopeful_vs_cynical": 3
+  },
+  "storytelling_tropes": {
+    "fourth_wall_breaks": false,
+    "inner_monologue_heavy": true,
+    "visual_metaphor_emphasis": true,
+    "rapid_tonal_shifts": true,
+    "tournament_arc_structure": false,
+    "power_of_friendship": true,
+    "tragic_backstory_reveals": true,
+    "escalating_threat_levels": true,
+    "slice_of_life_interludes": true,
+    "mystery_box_reveals": false,
+    "unreliable_narrator": false,
+    "existential_philosophy": true,
+    "rule_of_cool": true,
+    "mundane_made_epic": true,
+    "tragic_hero_cycle": false
+  },
+  "pacing_rhythm": {
+    "scene_length_preference": "lingering",
+    "arc_length_average": "mini_arcs_2_5_eps",
+    "filler_tolerance": "frequent_interludes",
+    "climax_frequency": "rare_peaks",
+    "downtime_ratio": 0.7
+  },
+  "tonal_signature": {
+    "primary_emotions": ["joy", "melancholy", "romance"],
+    "violence_level": "none",
+    "fanservice_level": "minimal",
+    "horror_elements": "none",
+    "optimism_baseline": "bittersweet"
+  },
+  "mechanical_modules": {
+    "economy": {
+      "type": "fiat_currency",
+      "config": {
+        "currency_name": "Yen",
+        "part_time_jobs": true
+      }
+    },
+    "crafting": {
+      "type": "none",
+      "config": {}
+    },
+    "progression": {
+      "type": "milestone_based",
+      "config": {
+        "milestone_events": ["social_link_rank_up", "exam_results", "festival_events"]
+      }
+    },
+    "downtime": {
+      "enabled_activities": ["social_links", "slice_of_life", "travel"],
+      "config": {
+        "default_mode": "social_links",
+        "time_slots": 2
+      }
+    }
+  }
+}

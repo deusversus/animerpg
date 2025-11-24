@@ -7,6 +7,56 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Yen",
+      "starting_amount": 5000,
+      "scarcity": "normal",
+      "inflation_rate": "none",
+      "special_mechanics": ["hero_salary", "merchandise_licensing", "support_company_sponsorship"]
+    }
+  },
+  "crafting": {
+    "type": "skill_based",
+    "parameters": {
+      "craft_focus": "support_items",
+      "skill_stat": "INT",
+      "quality_tiers": ["Standard", "Pro-Grade", "Legendary"],
+      "special_mechanics": ["quirk_optimization", "hatsume_collaboration"]
+    }
+  },
+  "progression": {
+    "type": "quirk_awakening",
+    "parameters": {
+      "quirk_name": "Quirk",
+      "awakening_stages": ["Manifestation", "Control", "Ultimate Move", "Quirk Awakening", "Singularity"],
+      "evolution_triggers": ["emotional_breakthrough", "life_or_death", "plus_ultra_moment"],
+      "special_mechanics": ["one_for_all_stockpile", "quirk_marriage_evolution"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["slice_of_life", "training_arcs"],
+    "activity_configs": {
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["school_life", "dorm_bonding"],
+        "special_mechanics": ["cultural_festival", "internships", "study_sessions"]
+      },
+      "training_arcs": {
+        "time_cost": "1_week",
+        "benefits": ["quirk_mastery", "hero_tactics"],
+        "special_mechanics": ["training_camps", "provisional_license_prep"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 ### 1. Introspection vs Action: **5/10** (Balanced - action with internal struggle)

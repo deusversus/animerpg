@@ -9,13 +9,15 @@
 
 ## Test Objective
 
-Validate that AIDM can create a coherent unified power system when player requests elements from multiple incompatible anime series.
+Validate that AIDM can create a coherent unified power system AND mechanical systems when player requests elements from multiple incompatible anime series.
 
 **Success Criteria**:
 1. AIDM creates coherent unified power system from 3 different anime
-2. Fusion logic explained clearly (how systems interact)
-3. No contradictions or conflicts in mechanics
-4. World is playable (character can use all power types)
+2. **Mechanical systems fusion resolved** (economy, progression, downtime)
+3. Fusion logic explained clearly (how systems interact)
+4. No contradictions or conflicts in mechanics or mechanical systems
+5. World is playable (character can use all power types)
+6. **Session Zero Phase 3 displays coherent mechanical fusion**
 
 ---
 
@@ -24,15 +26,22 @@ Validate that AIDM can create a coherent unified power system when player reques
 ### Files to Load into LLM
 
 **Required**:
+
 1. `aidm/CORE_AIDM_INSTRUCTIONS.md`
-2. All files in `aidm/instructions/` (12 files)
-3. All files in `aidm/schemas/` (7 files)
-4. **All 5 power system libraries** (critical for this test):
+2. All files in `aidm/instructions/` (**14 files** - updated from 12)
+3. All files in `aidm/schemas/` (**15+ files** - updated from 7)
+4. **4 meta-schemas** (critical for mechanical fusion):
+   - `aidm/schemas/economy_meta_schema.json`
+   - `aidm/schemas/crafting_meta_schema.json`
+   - `aidm/schemas/progression_meta_schema.json`
+   - `aidm/schemas/downtime_meta_schema.json`
+5. **All 5 power system libraries** (critical for this test):
    - `aidm/libraries/power_systems/mana_magic_systems.md`
    - `aidm/libraries/power_systems/ki_lifeforce_systems.md`
    - `aidm/libraries/power_systems/soul_spirit_systems.md`
    - `aidm/libraries/power_systems/psionic_psychic_systems.md`
    - `aidm/libraries/power_systems/power_scaling_narrative.md`
+6. **Python library**: `aidm/libraries/common_mechanics/mechanical_instantiation.py`
 
 **Optional**:
 - `aidm/libraries/genre_tropes/isekai_tropes.md` (gates = isekai trope)
@@ -128,6 +137,111 @@ Exchange 2: "That makes sense! So everyone has a Quirk, can learn jutsu, and lev
 
 ---
 
+### Exchange 3.5: MECHANICAL SYSTEMS FUSION (Phase 4 Integration - NEW)
+
+**Purpose**: Validate AIDM resolves mechanical conflicts during Session Zero Phase 3
+
+**Expected AIDM Behavior**:
+After power system fusion explanation, AIDM should proceed to **Session Zero Phase 3: MECHANICAL BUILD**, where mechanical conflicts must be resolved:
+
+**Mechanical Conflicts to Resolve**:
+
+1. **Currency Conflict**:
+   - Naruto profile: **Ryo** (fiat currency)
+   - Solo Leveling profile: **Gold** (fiat currency)
+   - My Hero Academia profile: **Yen** (fiat currency)
+   - **Conflict**: 3 different currencies, which one to use?
+
+2. **Progression Conflict**:
+   - Naruto profile: **mastery_tiers** (ninja ranks: Genin → Chunin → Jonin)
+   - Solo Leveling profile: **class_based** (E-Rank → S-Rank Hunters with levels)
+   - My Hero Academia profile: **quirk_awakening** (dual tracks: hero levels + quirk evolution)
+   - **Conflict**: 3 fundamentally different progression systems
+
+3. **Downtime Overlap** (easier to resolve):
+   - Naruto: **training_arcs** + **investigation**
+   - Solo Leveling: **training_arcs** + **travel** + **faction_building** (Hunter Guild)
+   - My Hero Academia: **training_arcs** + **slice_of_life** (school)
+   - **Conflict**: Overlapping modes, which to enable?
+
+**Expected AIDM Phase 3 Display**:
+
+```
+=== MECHANICAL SYSTEMS FUSION ===
+
+I've detected conflicts between the mechanical systems from these 3 anime:
+
+CURRENCY:
+• Naruto uses Ryo
+• Solo Leveling uses Gold  
+• My Hero Academia uses Yen
+
+PROGRESSION:
+• Naruto uses mastery_tiers (ninja ranks, demonstration-based)
+• Solo Leveling uses class_based (Hunter ranks with standard leveling)
+• My Hero Academia uses quirk_awakening (dual tracks)
+
+DOWNTIME:
+• All 3 have training_arcs (compatible!)
+• Solo Leveling adds travel, faction_building
+• My Hero Academia adds slice_of_life
+
+PROPOSED RESOLUTION:
+
+ECONOMY: Unified Currency System
+• Primary currency: **Yen** (MHA modern economy makes sense for Gates/dungeons world)
+• Exchange rates: 1 Yen = 1 Gold (Solo Leveling) = 0.1 Ryo (Naruto)
+• Quest rewards use Yen
+• Loot drops from Gates use Yen
+
+PROGRESSION: Hybrid System
+• Base: **class_based** leveling (Solo Leveling E→S Ranks)
+• Ninja techniques: Require **rank demonstrations** (Naruto mastery_tiers rules)
+  - Example: To learn Jonin-level jutsu, must demonstrate skill (WIS DC 18)
+• Quirk evolution: **awakening_stage** tracked separately (MHA rules)
+  - Near-death triggers awaken Quirk to next stage
+• Character advances via: XP for levels (Solo Leveling) + demonstrations for jutsu (Naruto) + awakenings for Quirk (MHA)
+
+DOWNTIME: Fusion of All Modes
+• Enabled modes: training_arcs, investigation, travel, faction_building, slice_of_life
+• All 3 anime activity types available
+
+Would you like to customize any of these mechanical systems?
+```
+
+**Player Response**:
+```
+That works! Let's use that fusion setup.
+```
+
+**Validation Checks** (Phase 3 Mechanical Fusion):
+- [ ] AIDM detects currency conflict (Ryo vs Gold vs Yen)
+- [ ] AIDM proposes coherent currency resolution (pick one or unified system)
+- [ ] AIDM detects progression conflict (mastery_tiers vs class_based vs quirk_awakening)
+- [ ] AIDM proposes coherent progression resolution (pick one or hybrid)
+- [ ] AIDM detects downtime overlap
+- [ ] AIDM proposes downtime fusion (enable all or subset)
+- [ ] Resolution is internally consistent (no contradictions)
+- [ ] Player offered customization (can override proposal)
+- [ ] Mechanical systems stored in session_state.mechanical_systems
+
+**Critical Validation**:
+- **Economy**: ONE primary currency chosen (Yen in example), not "Ryo for ninja stuff, Gold for Gates, Yen for MHA"
+- **Progression**: Coherent advancement rules defined (not "sometimes levels, sometimes demonstrations, randomly")
+- **Downtime**: Clear list of enabled modes
+
+**Acceptable Fusion Approaches**:
+1. **Pick Dominant Anime**: Use Solo Leveling mechanics (Gold, class_based, travel), ignore Naruto/MHA mechanical systems
+2. **True Hybrid**: Unified currency (Yen), hybrid progression (levels + demonstrations + awakenings), all downtime modes
+3. **Player Choice**: AIDM asks "Which anime's economy do you prefer?" and applies player selection
+
+**Unacceptable Approaches**:
+- ❌ No resolution proposed (ignores conflicts)
+- ❌ Incoherent resolution (use Ryo for ninja villages, Gold in Gates, Yen in cities → player confused what currency to use where)
+- ❌ Over-complex resolution (4-page explanation of multi-currency exchange rates)
+
+---
+
 ### Exchange 4-5: Character Creation with Fusion
 
 **Player Input**:
@@ -141,11 +255,12 @@ Exchange 3: "I want to create a character. My Quirk is 'Lightning Generation', I
 - Lists Quirk, jutsu, and System skills
 - Assigns appropriate level/stats for C-Rank
 
-**Example Character Sheet**:
+**Example Character Sheet** (Hybrid Mechanical Systems):
 ```
 NAME: [Player Choice]
-LEVEL: 8 (C-Rank Hunter)
-QUIRK: Lightning Generation (can generate electricity, enhances Raiton jutsu)
+LEVEL: 8 (C-Rank Hunter) | XP: 6200/7000 to Level 9
+QUIRK: Lightning Generation (Base Stage) | awakening_stage: 0/3
+NINJA RANK: Chunin (demonstration-based, not tied to Level)
 
 STATS:
 HP: 120/120
@@ -155,16 +270,17 @@ STAMINA: 100/100
 STR: 12  |  DEX: 15  |  CON: 11
 INT: 13  |  WIS: 10  |  CHA: 9
 
-JUTSU (Chakra Techniques):
-- Lightning Style: Chidori (40 Chakra, 3d10 lightning damage)
-- Lightning Style: False Darkness (20 Chakra, 2d6 lightning damage, ranged)
-- Body Flicker Technique (15 Chakra, teleport short distance)
+JUTSU (Chakra Techniques - Require Rank Demonstrations):
+- Lightning Style: Chidori (40 Chakra, 3d10 lightning damage) [Jonin-level technique, requires demonstration]
+- Lightning Style: False Darkness (20 Chakra, 2d6 lightning damage, ranged) [Chunin-level]
+- Body Flicker Technique (15 Chakra, teleport short distance) [Genin-level]
 
-QUIRK ABILITIES:
+QUIRK ABILITIES (Awakening Stage 0):
 - Passive: Lightning Generation (can create electricity without chakra, 1d6 damage)
 - Active: Overcharge (boost Quirk power, risks damage to self, once per day)
+- [LOCKED] Stage 1: Lightning Aura (requires near-death awakening trigger)
 
-SYSTEM SKILLS:
+SYSTEM SKILLS (Solo Leveling):
 - Dash (5 Stamina, double movement speed for 1 turn)
 - Analyze (10 Stamina, reveal enemy stats)
 
@@ -172,6 +288,12 @@ INVENTORY:
 - Hunter License (C-Rank)
 - Kunai x10
 - Healing Potion x3
+- **Currency: 5,000 Yen** (unified currency)
+
+PROGRESSION TRACKS:
+• Hunter Levels: Standard XP (defeat enemies, complete quests)
+• Ninja Rank: Demonstration-based (prove skill to sensei, WIS/DEX checks)
+• Quirk Awakening: Event-based (near-death triggers, emotional breakthroughs)
 ```
 
 **Validation Checks**:
@@ -180,6 +302,10 @@ INVENTORY:
 - [ ] Character has stats/level/System skills (Solo Leveling element)
 - [ ] All 3 systems integrated on one character sheet
 - [ ] No contradictions (e.g., jutsu don't conflict with Quirk)
+- [ ] **Currency: Unified currency (Yen), NOT multiple currencies**
+- [ ] **Progression: Hybrid tracks clearly defined (XP + demonstrations + awakenings)**
+- [ ] **awakening_stage field present (0/3 or similar)**
+- [ ] **Ninja rank displayed (Chunin), separate from Hunter level (8)**
 
 ---
 
@@ -250,20 +376,31 @@ Exchange 9: "Do ninja villages send people into Gates, or is that a separate Hun
    - No fundamental contradictions
    - Fusion logic is internally consistent
    
-2. **Clear Explanation**:
-   - AIDM explains how systems interact
+2. **Mechanical Systems Fusion** (Phase 4 Integration):
+   - Currency conflict resolved (Ryo vs Gold vs Yen → ONE primary currency chosen)
+   - Progression conflict resolved (mastery_tiers vs class_based vs quirk_awakening → coherent hybrid or dominant system)
+   - Downtime overlap resolved (clear list of enabled modes)
+   - Resolution is internally consistent (not "use Ryo in ninja villages, Gold in Gates, Yen in cities")
+   - Mechanical fusion displayed in Session Zero Phase 3
+   
+3. **Clear Explanation**:
+   - AIDM explains how power systems interact
+   - AIDM explains how mechanical systems resolve
    - Metaphysical foundation established
    - Rules for edge cases defined
    
-3. **Playable World**:
+4. **Playable World**:
    - Character can use all power types
    - Combat works with all 3 systems
    - World contains elements from all 3 anime
+   - **Character sheet uses unified currency (Yen), not multiple currencies**
+   - **Progression tracks clearly defined (XP + demonstrations + awakenings)**
    
-4. **No Conflicts**:
+5. **No Conflicts**:
    - Systems complement each other (not fight for dominance)
    - Stat tracking works across all systems
    - Narrative doesn't favor one anime over others
+   - **Mechanical systems don't contradict** (not "loot in Ryo, quest rewards in Gold")
 
 ### FAIL Criteria (Any triggers failure)
 
@@ -272,6 +409,9 @@ Exchange 9: "Do ninja villages send people into Gates, or is that a separate Hun
 3. ❌ One system dominates/replaces others (e.g., everything becomes Solo Leveling, Naruto ignored)
 4. ❌ Fusion is incoherent (player confused about how powers work)
 5. ❌ Systems conflict mechanically (can't use jutsu and Quirk together)
+6. ❌ **Mechanical conflicts ignored** (currency conflict not resolved, character has "5000 Ryo" and "3000 Gold" simultaneously)
+7. ❌ **Incoherent mechanical fusion** (use Ryo in ninja villages, Gold in Gates, Yen in cities → player confused)
+8. ❌ **No Session Zero Phase 3** (mechanical systems not displayed/validated)
 
 ### PARTIAL Criteria (Minor issues acceptable)
 
@@ -295,9 +435,21 @@ Exchange 9: "Do ninja villages send people into Gates, or is that a separate Hun
 - [ ] System/Gates/leveling integrated (Solo Leveling)
 - **Integration Rating**: ___/10
 
+**Mechanical Systems Fusion** (Phase 4 Integration):
+- [ ] Currency conflict detected (Ryo vs Gold vs Yen)
+- [ ] Currency resolution coherent (ONE primary currency chosen: _______)
+- [ ] Progression conflict detected (mastery_tiers vs class_based vs quirk_awakening)
+- [ ] Progression resolution coherent (system chosen: _______)
+- [ ] Downtime overlap resolved (enabled_modes: _______)
+- [ ] Session Zero Phase 3 displayed mechanical fusion
+- [ ] Character sheet uses unified currency (not "5000 Ryo + 3000 Gold")
+- [ ] Progression tracks clearly defined (XP / demonstration / awakening rules)
+- **Mechanical Fusion Rating**: ___/10
+
 **Coherence**:
 - [ ] Fusion logic explained clearly
-- [ ] No fundamental contradictions
+- [ ] No fundamental contradictions (power systems)
+- [ ] No mechanical contradictions (currency, progression, downtime)
 - [ ] Edge cases handled reasonably
 - **Coherence Rating**: ___/10
 
@@ -305,6 +457,8 @@ Exchange 9: "Do ninja villages send people into Gates, or is that a separate Hun
 - [ ] Character can use all 3 power types
 - [ ] Combat works
 - [ ] World contains all 3 anime elements
+- [ ] Unified currency works (loot, rewards, purchases all use same currency)
+- [ ] Progression tracks work (XP gain, tier advancement, awakenings all functional)
 - **Playability Rating**: ___/10
 
 ### Issues Discovered
@@ -340,6 +494,22 @@ Exchange 9: "Do ninja villages send people into Gates, or is that a separate Hun
 **Issue**: Unclear fusion logic
 - **Cause**: Session Zero skipped or rushed
 - **Fix**: Ask AIDM to explicitly explain metaphysical framework
+
+**Issue**: Mechanical conflicts not resolved (Phase 4)
+- **Cause**: Meta-schemas not loaded or Module 00 skipped Session Zero Phase 3
+- **Fix**: Verify 4 meta-schemas loaded (economy, progression, downtime, crafting), check mechanical_instantiation.py loaded
+
+**Issue**: Character has multiple currencies (5000 Ryo + 3000 Gold)
+- **Cause**: AIDM didn't resolve currency conflict
+- **Fix**: Explicitly ask "What currency does this world use?" during Session Zero Phase 3
+
+**Issue**: Progression unclear (levels AND ninja ranks, but not defined how they interact)
+- **Cause**: AIDM didn't resolve progression conflict
+- **Fix**: Ask "How does leveling work in this fusion?" and validate response includes ALL 3 anime progression elements
+
+**Issue**: Character sheet missing hybrid fields (no awakening_stage, no ninja rank)
+- **Cause**: Character schema v2.3.0 not loaded, or fusion didn't apply hybrid progression
+- **Fix**: Verify character_schema.json v2.3.0 loaded with awakening_stage and tier_xp fields
 
 ---
 

@@ -346,6 +346,17 @@
         }
       }
     },
+
+    "mechanical_systems": {
+      "type": "object",
+      "description": "Configuration and state for game mechanics",
+      "properties": {
+        "economy": { "$ref": "economy_meta_schema.json" },
+        "crafting": { "$ref": "crafting_meta_schema.json" },
+        "progression": { "$ref": "progression_meta_schema.json" },
+        "downtime": { "$ref": "downtime_meta_schema.json" }
+      }
+    },
     
     "global_flags": {
       "type": "array",

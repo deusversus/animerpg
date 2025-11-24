@@ -61,7 +61,7 @@ Core system complete and optimized. DEEP_RESEARCH_PROMPT.md available for extern
 - Test incrementally: "Let's validate this works before moving on"
 
 **End of Session**:
-- Document what was completed in `/docs/STATE.md`
+- Document what was completed in `/dev/STATE.md`
 - Note any breaking changes or dependencies introduced
 - Create TODO items for incomplete work
 
@@ -79,7 +79,7 @@ When asking AI to modify or create AIDM files:
 
 1. **Build standalone applications** - AIDM is instruction files, not software
 2. **Create dependencies on external services** - Everything must work within an LLM
-3. **Implement features outside scope** - Check `/docs/SCOPE.md` first
+3. **Implement features outside scope** - Check `/dev/SCOPE.md` first
 4. **Break modularity** - Modules must work independently
 5. **Compromise player agency** - AI assists, doesn't control
 
@@ -247,7 +247,7 @@ Familiarity: 0=UNKNOWN(never heard)→Full research | 1=HEARD→Quick research |
 - Apply multi-pass refinement (3+ iterations)
 - Validate information parity = 100%
 
-**See**: `OPTIMIZATION_CHECKLIST.md` for quick reference, `docs/TOKEN_OPTIMIZATION_METHODOLOGY.md` for complete guide
+**See**: `OPTIMIZATION_CHECKLIST.md` for quick reference, `dev/TOKEN_OPTIMIZATION_METHODOLOGY.md` for complete guide
 
 ---
 
@@ -364,7 +364,7 @@ Register in CASCADE_SYSTEM_DESIGN.md:
 - [ ] Define clear trigger condition
 - [ ] List all entities affected by cascade
 - [ ] Design atomic transaction (all-or-nothing)
-- [ ] Add to `docs/CASCADE_SYSTEM_DESIGN.md`
+- [ ] Add to `dev/CASCADE_SYSTEM_DESIGN.md`
 - [ ] Implement rollback on failure
 - [ ] Log cascade execution for debugging
 
@@ -473,7 +473,7 @@ character.inventory via Module 03 validation.
 
 ### Acceptance Testing
 
-Run the 8 tests from `/docs/SCOPE.md`:
+Run the 8 tests from `/dev/SCOPE.md`:
 1. Cold Start Test
 2. Multi-Anime Fusion Test
 3. Session Persistence Test
@@ -554,23 +554,48 @@ Improve the cognitive engine file.
 ### Directory Structure (MUST FOLLOW)
 
 ```
-/docs                    # Core project documentation
-/instructions            # AIDM behavioral instructions
-/schemas                 # JSON structure definitions
-/libraries               # Pre-built knowledge bases
-  /genre_tropes          # Anime genre tropes
-  /power_systems         # Power frameworks
-  /common_mechanics      # JRPG mechanics
-/templates               # Example files
-/tools                   # Validation scripts
-/isekairpg_old           # Archived v1.0 (reference only)
+/dev                     # Permanent development scaffold files
+  ARCHITECTURE.md        # System design and invariants
+  SCOPE.md              # Feature boundaries
+  DEVELOPMENT.md        # This file - development guidelines
+  STATE.md              # Current project status
+  ROADMAP.md            # Development phases and future work
+  TESTING.md            # Testing strategy and procedures
+  TOKEN_OPTIMIZATION_*  # Token optimization guides
+/docs                    # Temporary reports and audits (AI-generated)
+  (empty by default)     # Reports placed here, not permanent structure
+/aidm                    # Core AIDM system files
+  /instructions          # AIDM behavioral instructions (14 modules)
+  /schemas               # JSON structure definitions (15 schemas)
+  /libraries             # Pre-built knowledge bases
+    /genre_tropes        # Anime genre tropes
+    /power_systems       # Power frameworks
+    /common_mechanics    # JRPG mechanics
+    /narrative_profiles  # Anime narrative profiles
+  /templates             # Example files
+  /lib                   # Python utilities (mechanical_instantiation.py)
+/tests                   # Test scripts, results, execution guides
+/archive                 # Deprecated/completed work products
+/backup                  # System backups
 ```
+
+**File Placement Rules**:
+- **Permanent documentation** → `/dev/` (ARCHITECTURE, SCOPE, DEVELOPMENT, STATE, ROADMAP, TESTING, TOKEN_OPTIMIZATION_*)
+- **Generated reports/audits** → `/docs/` (completion reports, analysis, audits - temporary outputs)
+- **Root level** → Only README.md and report.md (no other files)
+
+**Report Generation Guidelines**:
+- **Where to place reports**: `/docs/` directory (NOT /dev or root)
+- **Report naming**: `[TYPE]_[DATE].md` (e.g., `AUDIT_REPORT_2025-11-24.md`, `PHASE_4_COMPLETION_2025-11-23.md`)
+- **Report purpose**: Temporary documentation of work completed, not permanent structure
+- **Archival**: Move old reports to `/archive/` when superseded or no longer needed
 
 **Never**:
 - Create new top-level directories without approval
 - Mix file types (don't put schemas in /instructions)
-- Store temporary/test files in the project
-- Include generated output (save exports, etc.)
+- Place reports in /dev (that's for permanent dev docs only)
+- Create files at root level (except README.md, report.md)
+- Include generated output like save exports in version control
 
 ---
 
@@ -678,7 +703,7 @@ Improve the cognitive engine file.
 
 ### Changelog Maintenance
 
-Update `/docs/STATE.md` after every significant change:
+Update `/dev/STATE.md` after every significant change:
 - What changed
 - Why it changed
 - Impact on existing files
@@ -720,4 +745,4 @@ Stay focused on making the instructions clear, comprehensive, and modular. The L
 
 ---
 
-**For questions, check `/docs/ARCHITECTURE.md`. For scope questions, check `/docs/SCOPE.md`. For progress, check `/docs/STATE.md`.**
+**For questions, check `/dev/ARCHITECTURE.md`. For scope questions, check `/dev/SCOPE.md`. For progress, check `/dev/STATE.md`.**

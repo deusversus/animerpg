@@ -131,17 +131,19 @@ BLOCKING: No creative output/templates until research complete + presented + pla
 
 [OK] "Researching [anime] via external sources..." | "Research complete: [specifics]" | "Cross-referencing [X] sources..." | "Sources: VS Battles, Fandom, Reddit" | "Verify: match your understanding?" | Concrete specifics (not generic)
 
-### Research Extraction (Two Phases)
+### Research Extraction (Three Phases)
 
 **Phase 1: MECHANICS** (power systems, world rules, lore)
 **Phase 2: NARRATIVE DNA** (how the anime tells stories—see Module 13)
+**Phase 3: MECHANICAL SYSTEMS** (economy, crafting, progression, downtime—see below)
 
-**CRITICAL**: Research BOTH simultaneously. Mechanics without narrative = "D&D in anime skin".
+**CRITICAL**: Research ALL THREE simultaneously. Mechanics without narrative = "D&D in anime skin". Narrative without mechanical systems = "generic flavor only".
 
 **During Research, Extract**:
 1. Power systems (chakra costs, quirk limits, etc.) → `power_system_schema.json`
 2. World elements (locations, factions, threats) → `anime_world_schema.json`
 3. **Narrative profile** (pacing, tone, tropes, dialogue style) → `narrative_profile_schema.json`
+4. **Mechanical configuration** (economy type, crafting system, progression model, downtime modes) → `narrative_profile_schema.json.mechanical_configuration`
 
 **Example** (DanDaDan research):
 ```
@@ -156,9 +158,15 @@ NARRATIVE DNA:
 - Combat style: Chaotic spectacle over tactics
 - Violence: Stylized body horror
 - Pacing: Rapid-fire, constant escalation
+
+MECHANICAL SYSTEMS:
+- Economy: Fiat currency (Yen), normal scarcity, allowances+part-time jobs
+- Crafting: None (high schoolers don't craft)
+- Progression: Milestone-based (power-ups from plot events, not grinding)
+- Downtime: Slice-of-life (school, dating, comedy) + Investigation (yokai/alien threats)
 ```
 
-Both stored → Applied to gameplay.
+All three stored → Applied to gameplay.
 
 ### Research Methods
 
@@ -236,6 +244,294 @@ Or if you're the expert, you can teach me now and we'll use it immediately."
 ```
 
 **This is honest and professional** - players respect transparency.
+
+---
+
+## Step 2.5: MECHANICAL SYSTEM CLASSIFICATION (MANDATORY FOR NEW PROFILES)
+
+**CRITICAL**: After extracting mechanics and narrative DNA, classify the anime's mechanical systems to populate the narrative profile's `mechanical_configuration` section.
+
+**This ensures newly generated profiles work with Session Zero Phase 3 mechanical integration.**
+
+### Classification Workflow
+
+For each system, ask:
+1. **Does this system exist in the anime?** (YES → classify type | NO → type: "none")
+2. **What type best matches?** (refer to meta-schema types below)
+3. **What are the specific parameters?** (currency name, starting amount, craft focus, etc.)
+4. **Any special mechanics?** (unique rules, restrictions, narrative flavor)
+
+---
+
+### ECONOMY SYSTEM
+
+**Question**: "How do characters obtain and use resources in this anime?"
+
+**Types** (from `economy_meta_schema.json`):
+- **`fiat_currency`**: Standard money system (gold, yen, jenny, eris, etc.)
+  - **Ask**: Currency name? Starting amount? Scarcity level (low/normal/high)?
+  - **Examples**: Hunter x Hunter (Jenny), Naruto (Ryo), Konosuba (Eris)
+  
+- **`barter`**: Trade goods/services directly, no universal currency
+  - **Ask**: What's traded? (food, materials, favors) Degradation? (food spoils)
+  - **Examples**: Dr. Stone (materials), primitive/post-apocalypse settings
+  
+- **`abstract_wealth`**: Wealth exists but not tracked numerically (nobles are "rich")
+  - **Ask**: Social classes? Lifestyle tiers?
+  - **Examples**: Aristocratic anime where money is never mentioned
+  
+- **`reputation_based`**: Status/fame IS currency (bounties, rankings)
+  - **Ask**: Reputation metric? (bounty value, hero rank, guild rep)
+  - **Examples**: One Piece (bounties), My Hero Academia (hero rankings)
+  
+- **`none`**: Economy not relevant to story
+  - **When**: Slice-of-life with no purchases, post-scarcity, or ignored entirely
+  - **Examples**: Some sports anime, pure battle shonen
+
+**Research Questions**:
+- "What do characters spend money on?" (gear, food, training, bribes)
+- "How do they earn it?" (quests, bounties, salary, theft, allowance)
+- "Is money a source of tension?" (debt, poverty, greed)
+- "Any special economic rules?" (Hunter License privileges, guild discounts)
+
+**Output Template**:
+```json
+"economy": {
+  "type": "fiat_currency",
+  "parameters": {
+    "currency_name": "Jenny",
+    "starting_amount": 200,
+    "scarcity_level": "normal",
+    "income_sources": ["bounties", "quests", "Hunter License"],
+    "special_mechanics": "Hunter License grants access to restricted markets"
+  }
+}
+```
+
+---
+
+### CRAFTING SYSTEM
+
+**Question**: "Do characters create items, weapons, or gear? How?"
+
+**Types** (from `crafting_meta_schema.json`):
+- **`skill_based`**: Craft using skill checks (blacksmithing, alchemy, Hatsu development)
+  - **Ask**: Skill stat? (STR, INT, WIS) Craft focus? (weapons, potions, abilities)
+  - **Examples**: Hunter x Hunter (Nen Hatsu), Fullmetal Alchemist (alchemy arrays)
+  
+- **`recipe_based`**: Follow recipes with specific materials
+  - **Ask**: Recipe sources? (books, NPCs, discovery) Material types?
+  - **Examples**: RPG isekai (crafting menus), potion-making anime
+  
+- **`experimental`**: Unstable crafting with success/failure/complication rolls
+  - **Ask**: Success rate? Complication types? (explosions, mutations)
+  - **Examples**: My Hero Academia (support items), Dr. Stone (trial-and-error science)
+  
+- **`equivalent_exchange`**: Craft by sacrificing equal value (alchemy, transmutation)
+  - **Ask**: Exchange rules? (mass, complexity, forbidden materials)
+  - **Examples**: Fullmetal Alchemist (Law of Equivalent Exchange)
+  
+- **`none`**: No crafting, buy from merchants or loot only
+  - **When**: Combat-focused anime, school settings, pre-made gear
+  - **Examples**: Most shonen battle anime, slice-of-life
+
+**Research Questions**:
+- "Do protagonists make their own gear?" (yes → crafting exists)
+- "What's the crafting process?" (forging, mixing, channeling energy)
+- "Are there crafting experts?" (blacksmiths, alchemists, support engineers)
+- "Can players customize gear?" (enchantments, modifications, upgrades)
+
+**Output Template**:
+```json
+"crafting": {
+  "type": "skill_based",
+  "parameters": {
+    "craft_focus": "Nen abilities (Hatsu development)",
+    "primary_stat": "INT",
+    "quality_tiers": ["Novice", "Competent", "Expert", "Master"],
+    "special_mechanics": "Conditions & Restrictions: Self-imposed limits increase ability power"
+  }
+}
+```
+
+---
+
+### PROGRESSION SYSTEM
+
+**Question**: "How do characters grow stronger? What advancement model?"
+
+**Types** (from `progression_meta_schema.json`):
+- **`mastery_tiers`**: Hierarchical ranks/tiers (Nen mastery, cultivation realms)
+  - **Ask**: Tier names? (Initiation → Master) Advancement method? (training, insight)
+  - **Examples**: Hunter x Hunter (Nen mastery), Xianxia (cultivation realms)
+  
+- **`class_based`**: Choose class, level up within class (warrior/mage/thief)
+  - **Ask**: Available classes? Multiclassing allowed?
+  - **Examples**: Konosuba (adventurer classes), RPG isekai
+  
+- **`quirk_awakening`**: Single power that evolves/awakens (quirks, Devil Fruits)
+  - **Ask**: Power categories? (emitter/transformation/mutant) Awakening triggers?
+  - **Examples**: My Hero Academia (quirks), One Piece (Devil Fruit awakenings)
+  
+- **`milestone_based`**: Power-ups from story events, not XP grinding
+  - **Ask**: Milestone types? (emotional breakthrough, near-death, training arc)
+  - **Examples**: Demon Slayer (breathing forms), many shonen (power of friendship)
+  
+- **`static_op`**: Character doesn't grow mechanically (already OP)
+  - **When**: OP protagonist mode, Saitama-type characters
+  - **Examples**: One Punch Man, Overlord, Mob Psycho 100
+
+**Research Questions**:
+- "How does the protagonist get stronger?" (training, battles, plot triggers)
+- "Are there power stages?" (Super Saiyan forms, Gear shifts, chakra modes)
+- "What limits growth?" (talent, genetics, training availability)
+- "Do side characters progress differently?" (support vs combat roles)
+
+**Output Template**:
+```json
+"progression": {
+  "type": "mastery_tiers",
+  "parameters": {
+    "system_name": "Nen Mastery",
+    "tiers": [
+      {"name": "Initiation", "description": "Awakened aura, basic Ten/Zetsu/Ren/Hatsu"},
+      {"name": "Practitioner", "description": "Stable aura control, developing Hatsu"},
+      {"name": "User", "description": "Combat-ready, refined Hatsu"},
+      {"name": "Master", "description": "Advanced techniques, multiple Hatsu"},
+      {"name": "Beyond Human", "description": "Post-mortem Nen, transcendent abilities"}
+    ],
+    "advancement_method": "Training arcs + combat experience + conditions/restrictions",
+    "special_mechanics": "Nen categories (Enhancement, Transmutation, Emission, Conjuration, Manipulation, Specialization)"
+  }
+}
+```
+
+---
+
+### DOWNTIME ACTIVITIES
+
+**Question**: "What do characters do between main story events?"
+
+**Modes** (from `downtime_meta_schema.json`):
+- **`training_arcs`**: Dedicated training periods (Hell Week, Death Train, timeskips)
+  - **Ask**: Training types? (physical, skill, power mastery) Montage mechanics?
+  - **Examples**: Every shonen (training arcs), Hunter x Hunter (Greed Island training)
+  
+- **`slice_of_life`**: Daily life, school, social events, comedy
+  - **Ask**: Activity types? (school, dating, cooking, festivals)
+  - **Examples**: Slice-of-life anime, school settings, comedy relief episodes
+  
+- **`investigation`**: Gather intel, research, track targets
+  - **Ask**: Investigation methods? (surveillance, interrogation, research)
+  - **Examples**: Death Note (detective work), Steins;Gate (conspiracy research)
+  
+- **`travel`**: Journey between locations, exploration, world-building
+  - **Ask**: Travel hazards? (bandits, monsters, weather) Discovery opportunities?
+  - **Examples**: One Piece (island-hopping), adventure anime
+  
+- **`faction_building`**: Build organizations, recruit members, manage resources
+  - **Ask**: Faction types? (guild, crew, kingdom, business)
+  - **Examples**: Overlord (Nazarick management), That Time I Got Reincarnated as a Slime (nation-building)
+  
+- **`social_links`**: Build relationships with NPCs, unlock bonuses
+  - **Ask**: Relationship mechanics? (affinity, romance, rivalry)
+  - **Examples**: Persona-style social links, romance subplot anime
+
+**Research Questions**:
+- "What do characters do between fights/story beats?" (train, hang out, investigate)
+- "Are there dedicated training episodes?" (yes → training_arcs mode)
+- "Is there a home base?" (guild hall, school, ship → slice_of_life)
+- "Do they travel frequently?" (yes → travel mode)
+
+**Output Template**:
+```json
+"downtime": {
+  "enabled_modes": ["training_arcs", "investigation"],
+  "activity_configs": {
+    "training_arcs": {
+      "primary_focus": "Nen mastery",
+      "training_types": ["aura output", "Hatsu development", "conditions/restrictions"],
+      "special_mechanics": "Water divination to determine Nen type"
+    },
+    "investigation": {
+      "primary_focus": "Track targets, gather intelligence",
+      "investigation_methods": ["surveillance", "informants", "Hunter database"],
+      "special_mechanics": "Hunter License grants access to restricted information"
+    }
+  }
+}
+```
+
+---
+
+### Complete Example: Hunter x Hunter Profile
+
+```json
+"mechanical_configuration": {
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Jenny",
+      "starting_amount": 200,
+      "scarcity_level": "normal",
+      "income_sources": ["bounties", "quests", "Hunter License privileges"],
+      "special_mechanics": "Hunter License grants access to restricted markets and high-value contracts"
+    }
+  },
+  "crafting": {
+    "type": "skill_based",
+    "parameters": {
+      "craft_focus": "Nen abilities (Hatsu development)",
+      "primary_stat": "INT",
+      "quality_tiers": ["Novice", "Competent", "Expert", "Master"],
+      "special_mechanics": "Conditions & Restrictions: Self-imposed limits increase ability power (binding vows)"
+    }
+  },
+  "progression": {
+    "type": "mastery_tiers",
+    "parameters": {
+      "system_name": "Nen Mastery",
+      "tiers": [
+        {"name": "Initiation", "description": "Awakened aura, basic Ten/Zetsu/Ren/Hatsu"},
+        {"name": "Practitioner", "description": "Stable aura control, developing Hatsu"},
+        {"name": "User", "description": "Combat-ready, refined Hatsu"},
+        {"name": "Master", "description": "Advanced techniques, multiple Hatsu"},
+        {"name": "Beyond Human", "description": "Post-mortem Nen, transcendent abilities"}
+      ],
+      "advancement_method": "Training arcs + combat experience + conditions/restrictions",
+      "special_mechanics": "6 Nen categories (Enhancement, Transmutation, Emission, Conjuration, Manipulation, Specialization)"
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["training_arcs", "investigation"],
+    "activity_configs": {
+      "training_arcs": {
+        "primary_focus": "Nen mastery",
+        "training_types": ["aura output", "Hatsu development", "conditions/restrictions"],
+        "special_mechanics": "Water divination to determine Nen type"
+      },
+      "investigation": {
+        "primary_focus": "Track targets, gather intelligence",
+        "investigation_methods": ["surveillance", "informants", "Hunter database"],
+        "special_mechanics": "Hunter License grants access to restricted information"
+      }
+    }
+  }
+}
+```
+
+---
+
+### Integration with Session Zero
+
+When this mechanical configuration is extracted:
+1. **Store in narrative profile** (`narrative_profile_schema.json`)
+2. **Session Zero Phase 3** reads this config
+3. **MechanicalInstantiator** loads systems automatically
+4. **Player sees** currency name (Jenny), crafting type (Nen Hatsu), progression (mastery tiers), downtime (training+investigation)
+5. **Gameplay uses** these systems throughout campaign
+
+**This ensures newly generated profiles match the mechanical integration of the 20 pre-existing profiles.**
 
 ---
 

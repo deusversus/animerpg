@@ -7,6 +7,55 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Cenz",
+      "starting_amount": 2000,
+      "scarcity": "normal",
+      "inflation_rate": "none",
+      "special_mechanics": ["state_alchemist_stipend", "research_grants", "military_funding"]
+    }
+  },
+  "crafting": {
+    "type": "equivalent_exchange",
+    "parameters": {
+      "exchange_rule": "strict_equivalence",
+      "material_categories": ["metals", "earth", "biological", "souls"],
+      "special_mechanics": ["transmutation_circles", "philosopher_stone", "human_transmutation_taboo"]
+    }
+  },
+  "progression": {
+    "type": "mastery_tiers",
+    "parameters": {
+      "system_name": "Alchemy",
+      "mastery_levels": ["Apprentice", "Combat Alchemist", "State Alchemist", "Master", "Truth-Touched"],
+      "categories": ["Flame", "Iron Blood", "Ice", "Crystal", "Water", "Explosive", "Healing"],
+      "advancement_method": "breakthrough"
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["investigation", "travel"],
+    "activity_configs": {
+      "investigation": {
+        "time_cost": "1_week",
+        "benefits": ["conspiracy_clues", "alchemical_knowledge"],
+        "special_mechanics": ["library_research", "homunculus_tracking"]
+      },
+      "travel": {
+        "time_cost": "2_weeks",
+        "benefits": ["geographic_knowledge", "cultural_alchemy"],
+        "special_mechanics": ["xing_alkahestry", "ishvalan_ruins"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 ### 1. Introspection vs Action: **6/10** (Balanced, leaning thoughtful)

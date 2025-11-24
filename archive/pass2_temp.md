@@ -1,4 +1,4 @@
-﻿# VS Battles Wiki Reference
+# VS Battles Wiki Reference
 
 **Purpose**: VS Battles Wiki stat methodology for anime power scaling.
 **Sources**: `/Attack Potency.html`, `/Speed.html`, `/Durability.html`, `/Lifting Strength.html`, `/Striking Strength.html`, `/Range.html`, `/Intelligence.html`, `/Stamina.html`
@@ -71,22 +71,22 @@
 **3-C Galaxy**: 10.53 ZFoe-8.593 YFoe (816) | DBS GoD, Saitama (debated) | Must destroy SPACE
 **3-B Multi-Galaxy**: 8.593 YFoe-2.825 QeFoe (1.0410) | DBS Angels
 **3-A Universe**: 2.825 QeFoe to any finite | DBS Goku/Vegeta (debated), Anti-Spiral | Observable universe MATTER (NOT spacetime)
-**High 3-A**: Infinite 3D | Infinite mass/space | ℵ (aleph-0)
+**High 3-A**: Infinite 3D | Infinite mass/space | ? (aleph-0)
 
 ### Tier 2: Multiversal
 **CRITICAL**: Multipliers DON'T apply. 2 Low 2-C = still Low 2-C.
 
-**Low 2-C Universe+**: Uncountably infinite > High 3-A | 4D spacetime | Timeline destruction | ℵ (aleph-1)
+**Low 2-C Universe+**: Uncountably infinite > High 3-A | 4D spacetime | Timeline destruction | ? (aleph-1)
 **2-C Low Multiverse**: 2-1,000 continuums | Zeno
 **2-B Multiverse**: 1,001 to any finite | Rimuru peak
-**2-A Multiverse+**: Countably infinite continuums | Sung Jin-Woo (debated), Anos | ℵ
+**2-A Multiverse+**: Countably infinite continuums | Sung Jin-Woo (debated), Anos | ?
 
 ### Tier 1: Higher Infinity
-**Low 1-C**: R^5 (5D), ℵ | 5D beings, Umineko lower
+**Low 1-C**: R^5 (5D), ? | 5D beings, Umineko lower
 **1-C**: R^6-R^9 (6-9D) | Featherine (debated)
 **High 1-C**: R^10-R^11 (10-11D) | M-theory (rare)
 **1-B**: R^12-R^n (finite n) | 12+D (rare)
-**High 1-B**: Infinite dimensions | Akuto Sai (debated) | ℵ, uncountable ℵ+ get "+"
+**High 1-B**: Infinite dimensions | Akuto Sai (debated) | ?, uncountable ?+ get "+"
 **Low 1-A**: Von Neumann Universe | Beyond-dimensional
 **1-A**: Qualitatively superior to ALL dimensions | Featherine, Akuto peak | NOT quantitative | Can extend infinitely ("1-A+")
 **High 1-A**: Meta-qualitative superiority | Kami Tenchi (debated) | High 1-A+ = all meta-extensions

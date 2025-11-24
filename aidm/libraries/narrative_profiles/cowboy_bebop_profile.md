@@ -5,6 +5,54 @@
 **Genre**: Space Western, Neo-Noir, Episodic Jazz Drama  
 **Confidence Level**: 97% (widely analyzed, consistent tone)
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Woolong",
+      "starting_amount": 5000,
+      "scarcity": "scarce",
+      "inflation_rate": "none",
+      "special_mechanics": ["bounty_hunting", "ship_maintenance_costs", "debt_accumulation"]
+    }
+  },
+  "crafting": {
+    "type": "experimental",
+    "parameters": {
+      "discovery_method": "scavenging",
+      "failure_chance": "high",
+      "special_mechanics": ["junkyard_parts", "improvised_repairs"]
+    }
+  },
+  "progression": {
+    "type": "milestone_based",
+    "parameters": {
+      "system_name": "Bounty Hunter Rank",
+      "milestone_triggers": ["capture_bounty", "confront_past", "syndicate_encounter"],
+      "power_grants": ["combat_expertise", "piloting_mastery", "investigation_skills"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["investigation", "travel"],
+    "activity_configs": {
+      "investigation": {
+        "time_cost": "1_day",
+        "benefits": ["bounty_leads", "past_revelations"],
+        "special_mechanics": ["noir_detective_work", "hacker_info_brokers"]
+      },
+      "travel": {
+        "time_cost": "1_week",
+        "benefits": ["new_locations", "fuel_costs"],
+        "special_mechanics": ["ship_maintenance", "random_encounters"]
+      }
+    }
+  }
+}
+```
+
 ---
 
 ## Narrative Scales (0-10)

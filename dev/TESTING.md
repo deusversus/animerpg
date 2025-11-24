@@ -20,6 +20,43 @@ AIDM v2.0 is an instruction-set architecture for LLMs, not traditional software.
 
 ---
 
+## Test Execution Guides
+
+**Comprehensive Testing Resources** (Created November 2025):
+
+### COMPREHENSIVE_TEST_EXECUTION_GUIDE.md
+**Location**: `/tests/COMPREHENSIVE_TEST_EXECUTION_GUIDE.md`  
+**Purpose**: Complete guide for executing all 13 AIDM acceptance tests  
+**Contents**:
+- Detailed test procedures for all 13 tests (9 legacy + 4 Phase 4)
+- Step-by-step execution instructions with expected outputs
+- Success criteria and validation checkpoints
+- Common issues and troubleshooting guidance
+- Cross-references to test scripts in `/tests/test_scripts/`
+
+**When to use**: Primary reference for running any acceptance test. Provides full context and execution details.
+
+### TEST_SUITE_MASTER_CHECKLIST.md
+**Location**: `/tests/TEST_SUITE_MASTER_CHECKLIST.md`  
+**Purpose**: Quick reference checklist and status tracking for test suite  
+**Contents**:
+- Pre-execution setup checklist (file loading, schema verification)
+- Test execution matrix organized by priority (Critical/High/Medium)
+- Success rate calculations and overall status tracking
+- Phase 4 mechanical systems validation checklist
+- Common issues tracking table
+
+**When to use**: Quick status checks, tracking test completion, calculating success rates, identifying blockers.
+
+**Test Coverage**:
+- **Critical Path** (4 tests): TEST-1 Cold Start, TEST-4 Combat Mechanics, TEST-9 Session Zero Mechanical, TEST-3 Session Persistence
+- **High Priority** (5 tests): TEST-2 Multi-Anime Fusion, TEST-10 Economy Integration, TEST-11 Downtime Integration, TEST-12 Combat Progression, TEST-13 Leveling Mechanics
+- **Medium Priority** (4 tests): TEST-5 Memory Coherence, TEST-6 Error Recovery, TEST-7 Genre Adaptation, TEST-8 Research Validation
+
+**Test Script Locations**: All test scripts in `/tests/test_scripts/` (TEST-1 through TEST-13)
+
+---
+
 ## Testing Tiers
 
 ### Tier 1: Unit Testing (Instruction Modules)

@@ -8,6 +8,53 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "barter",
+    "parameters": {
+      "primary_goods": ["wheat", "pelts", "iron", "timber"],
+      "trade_hubs": ["village_markets", "port_towns", "viking_raids"],
+      "special_mechanics": ["danegeld_payments", "slave_trade_narrative", "viking_economics"]
+    }
+  },
+  "crafting": {
+    "type": "skill_based",
+    "parameters": {
+      "craft_focus": "survival_tools",
+      "skill_stat": "STR",
+      "quality_tiers": ["Crude", "Functional", "Masterwork"],
+      "special_mechanics": ["ulfberht_swords", "longship_repairs", "farmstead_construction"]
+    }
+  },
+  "progression": {
+    "type": "milestone_based",
+    "parameters": {
+      "system_name": "Warrior's Path / True Strength",
+      "milestone_triggers": ["first_kill", "berserker_rage", "laying_down_sword", "vinland_dream"],
+      "power_grants": ["combat_mastery", "tactical_genius", "moral_strength"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["travel", "slice_of_life"],
+    "activity_configs": {
+      "travel": {
+        "time_cost": "1_week",
+        "benefits": ["exploration", "resource_gathering"],
+        "special_mechanics": ["viking_raids", "sea_voyages", "winter_survival"]
+      },
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["community_building", "farming_progress"],
+        "special_mechanics": ["farmstead_life", "viking_feasts", "historical_customs"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 **Scale 0: Introspection vs Action** = **7/10 (HIGH Introspection, Moderate Action)**

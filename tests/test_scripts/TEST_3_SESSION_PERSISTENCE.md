@@ -26,9 +26,15 @@ Validate that complete game state can be exported, then imported into a fresh se
 
 **Required**:
 1. `aidm/CORE_AIDM_INSTRUCTIONS.md`
-2. All files in `aidm/instructions/` (12 files)
-3. All files in `aidm/schemas/` (7 files)
-   - **Critical**: `game_state_schema.json` (defines export format)
+2. All files in `aidm/instructions/` (**14 files** - updated from 12)
+3. All files in `aidm/schemas/` (**15+ files** - updated from 7)
+   - **Critical**: `session_export_schema.json` (defines export format, renamed from game_state_schema.json)
+   - **Critical**: `character_schema.json` v2.3.0 (with tier_xp, awakening_stage, death_saves, injuries)
+4. **4 meta-schemas** (for mechanical systems validation):
+   - `aidm/schemas/economy_meta_schema.json`
+   - `aidm/schemas/progression_meta_schema.json`
+   - `aidm/schemas/downtime_meta_schema.json`
+   - `aidm/schemas/crafting_meta_schema.json`
 
 **Platform**: Claude Sonnet 4.5, ChatGPT-4, or equivalent  
 **Recommended**: LLM with code execution (for JSON validation)
@@ -41,16 +47,17 @@ Validate that complete game state can be exported, then imported into a fresh se
 
 **Turn 1: Character Creation**
 ```
-Player: "Quick character: I'm a Level 5 fire mage named Ignis in a fantasy isekai world. Let's skip Session Zero and jump right in."
+Player: "Quick character: I'm a Level 5 fire mage named Ignis in a fantasy isekai world (Hunter x Hunter style with Nen magic). Let's skip Session Zero and jump right in."
 ```
 
 **Expected**: Character created with stats:
 - HP: ~50-75
-- MP: ~60-80  
+- MP: ~60-80 (Aura equivalent)
 - SP: ~40-60
-- XP: ~6500/7500 (mid-Level 5)
-- Skills: Fire Bolt, Fireball, Flame Shield
-- Inventory: Staff, Health Potion x3, 100 gold
+- **Tier**: Journeyman (Hunter x Hunter mastery_tiers)
+- **tier_xp**: ~3500/5000 (mid-Journeyman tier)
+- Skills: Fire Bolt (Emission), Fireball (Emission), Flame Shield (Enhancement)
+- Inventory: Staff, Health Potion x3, **5,000 Jenny** (NOT "gold" - Hunter x Hunter currency)
 
 **Turns 2-5: Combat Encounter**
 ```
@@ -62,9 +69,9 @@ Turn 5: "I loot the goblin corpses."
 
 **Expected State Changes**:
 - HP: 50/75 (took some damage)
-- MP: 20/80 (used 60 MP total)
-- XP: 7200/7500 (gained 700 XP)
-- Inventory: +Goblin Ears x3, +15 gold
+- MP: 20/80 (used 60 Aura total)
+- **tier_xp**: 4200/5000 (gained 700 tier XP from combat)
+- Inventory: +Goblin Ears x3, **+150 Jenny** (NOT gold)
 
 **Turns 6-10: NPC Interaction**
 ```
@@ -78,7 +85,7 @@ Turn 10: "I thank them both and rest at the inn to recover."
 **Expected State Changes**:
 - HP: 75/75 (rested)
 - MP: 80/80 (rested)
-- Gold: 90 (spent 25 on ale and inn)
+- **Jenny**: 4,750 (spent 250 on ale and inn)
 - **NEW NPCs**:
   - Thorn (Blacksmith): Affinity +15 (friendly)
   - Hooded Figure: Affinity +5 (neutral, mysterious)
@@ -93,7 +100,7 @@ Turn 15: "I reach the boss chamber and prepare for battle."
 ```
 
 **Expected State Changes**:
-- Gold: 40 (spent 50 on Mana Potions)
+- **Jenny**: 4,250 (spent 500 on Mana Potions)
 - Inventory: +Mana Potion x2
 - **NEW QUEST**: "Defeat the Flame Wraith" (Active, 0/1 progress)
 - Location: Dungeon Boss Chamber
@@ -110,10 +117,11 @@ Turn 20: "I prepare my ultimate spell, Inferno Burst, for next turn."
 
 **Expected Final State**:
 - HP: 55/75 (damaged, then healed)
-- MP: 30/80 (used 50 MP)
+- MP: 30/80 (used 50 Aura)
 - SP: 35/60 (tired from boss fight)
-- XP: 7200/7500 (no XP from incomplete boss fight)
-- Inventory: Health Potion x2, Mana Potion x2, Goblin Ears x3, 40 gold
+- **Tier**: Journeyman (mastery_tiers progression)
+- **tier_xp**: 4200/5000 (no XP from incomplete boss fight)
+- Inventory: Health Potion x2, Mana Potion x2, Goblin Ears x3, **4,250 Jenny**
 - Active Quest: "Defeat the Flame Wraith" (in progress, boss at ~60% HP)
 - NPCs: Thorn (Affinity +20), Hooded Figure (Affinity +5), Mayor (Affinity +10)
 - Location: Dungeon Boss Chamber (mid-combat)
@@ -129,10 +137,11 @@ Turn 20: "I prepare my ultimate spell, Inferno Burst, for next turn."
 ```
 
 **Expected AIDM Response**:
-- Generates JSON or YAML export following `game_state_schema.json`
+- Generates JSON or YAML export following `session_export_schema.json` (renamed from game_state_schema.json)
 - Export includes:
-  - Character stats (HP/MP/SP/XP/Level/Skills)
-  - Inventory (all items, quantities, equipped gear)
+  - Character stats (HP/MP/SP/tier_xp/Tier/Skills)
+  - **Mechanical systems** (economy, progression, downtime configs)
+  - Inventory (all items, quantities, equipped gear, **Jenny currency**)
   - NPCs (names, affinity, flags, last known location)
   - Quests (name, status, progress, description)
   - World state (location, time, weather, faction states)
@@ -144,18 +153,43 @@ Turn 20: "I prepare my ultimate spell, Inferno Burst, for next turn."
 {
   "character": {
     "name": "Ignis",
-    "level": 5,
-    "xp": {"current": 7200, "next_level": 7500},
+    "tier": "Journeyman",
+    "tier_xp": {"current": 4200, "next_tier": 5000},
     "hp": {"current": 55, "max": 75},
     "mp": {"current": 30, "max": 80},
     "sp": {"current": 35, "max": 60},
     "stats": {"STR": 8, "DEX": 10, "CON": 12, "INT": 16, "WIS": 11, "CHA": 9},
     "skills": [
-      {"name": "Fire Bolt", "cost": 10, "type": "attack"},
-      {"name": "Fireball", "cost": 30, "type": "attack"},
-      {"name": "Flame Shield", "cost": 20, "type": "defense"},
+      {"name": "Fire Bolt (Emission)", "cost": 10, "type": "attack"},
+      {"name": "Fireball (Emission)", "cost": 30, "type": "attack"},
+      {"name": "Flame Shield (Enhancement)", "cost": 20, "type": "defense"},
       {"name": "Inferno Burst", "cost": 60, "type": "ultimate", "cooldown": 0}
     ]
+  },
+  "mechanical_systems": {
+    "economy": {
+      "type": "fiat_currency",
+      "currency_name": "Jenny",
+      "scarcity": "moderate",
+      "special_mechanics": []
+    },
+    "progression": {
+      "type": "mastery_tiers",
+      "tier_system": {
+        "tiers": ["Novice", "Journeyman", "Expert", "Master", "Grandmaster"],
+        "tier_bonuses": {
+          "Journeyman": {"aura_control": 2, "technique_damage": 2}
+        }
+      },
+      "advancement_rules": {
+        "demonstration_required": true,
+        "auto_level": false
+      }
+    },
+    "downtime": {
+      "enabled_modes": ["training_arcs", "investigation"],
+      "activity_configs": {}
+    }
   },
   "inventory": {
     "items": [
@@ -164,7 +198,7 @@ Turn 20: "I prepare my ultimate spell, Inferno Burst, for next turn."
       {"name": "Goblin Ears", "quantity": 3}
     ],
     "equipment": {"weapon": "Flame Staff", "armor": "Mage Robes"},
-    "currency": {"gold": 40}
+    "currency": {"Jenny": 4250}
   },
   "npcs": [
     {"name": "Thorn", "role": "Blacksmith", "affinity": 20, "location": "Riverside Town"},
@@ -202,8 +236,12 @@ Turn 20: "I prepare my ultimate spell, Inferno Burst, for next turn."
 
 **Validation**:
 - [ ] Export is valid JSON/YAML (no syntax errors)
-- [ ] All required fields present (per schema)
-- [ ] Data matches expected state (HP 55/75, MP 30/80, etc.)
+- [ ] All required fields present (per session_export_schema.json)
+- [ ] Data matches expected state (HP 55/75, MP 30/80, tier_xp 4200/5000)
+- [ ] **mechanical_systems section present** (economy, progression, downtime)
+- [ ] **Currency: Jenny (NOT gold)**
+- [ ] **Progression type: mastery_tiers**
+- [ ] **tier_xp field: 4200/5000 (NOT character_xp or XP)**
 - [ ] NPCs with affinity values listed
 - [ ] Quest state preserved
 - [ ] Combat state saved (boss HP, turn order)
@@ -239,9 +277,10 @@ Please restore my game and let me continue from where I left off.
 ```
 [AIDM confirms] Game state imported successfully!
 
-CHARACTER: Ignis (Level 5 Fire Mage)
-HP: 55/75 | MP: 30/80 | SP: 35/60
-XP: 7200/7500
+CHARACTER: Ignis (Journeyman Fire Nen User)
+HP: 55/75 | MP: 30/80 (Aura) | SP: 35/60
+Tier: Journeyman | Tier XP: 4200/5000
+Currency: 4,250 Jenny
 
 You are in the Ancient Dungeon Boss Chamber, locked in fierce combat with the Flame Wraith. The spectral creature writhes before you, dark flames flickering around its form (~60% HP remaining). You've just prepared to cast your ultimate spell, Inferno Burst.
 
@@ -252,9 +291,11 @@ It's currently the Flame Wraith's turn. The wraith raises its arms, gathering da
 
 **Validation Checks**:
 - [ ] Character stats match (HP 55/75, MP 30/80, SP 35/60)
-- [ ] XP correct (7200/7500)
-- [ ] Inventory intact (Health Potion x2, Mana Potion x2, Goblin Ears x3, 40 gold)
+- [ ] **Tier correct: Journeyman (NOT Level 5)**
+- [ ] **tier_xp correct: 4200/5000 (NOT character_xp)**
+- [ ] Inventory intact (Health Potion x2, Mana Potion x2, Goblin Ears x3, **4,250 Jenny NOT gold**)
 - [ ] Skills present (Fire Bolt, Fireball, Flame Shield, Inferno Burst)
+- [ ] **Mechanical systems restored** (economy: Jenny/fiat_currency, progression: mastery_tiers, downtime: training_arcs+investigation)
 - [ ] NPCs restored (Thorn affinity 20, Hooded Figure affinity 5, Mayor affinity 10)
 - [ ] Quest active ("Defeat Flame Wraith", in progress)
 - [ ] Location correct (Dungeon Boss Chamber)
@@ -310,6 +351,8 @@ Player: "I check my inventory. Do I still have the Goblin Ears I collected earli
 - [ ] NPC memory intact (no "new NPC" treatment)
 - [ ] Quest completion works (system remembers quest existed)
 - [ ] Inventory fully preserved
+- [ ] **Mechanical systems functional** (tier_xp advances, Jenny currency used in transactions, tier advancement requires demonstration)
+- [ ] **Progression type respected** (mastery_tiers rules apply, NOT standard leveling)
 - [ ] No data loss detected
 
 ---
@@ -329,8 +372,9 @@ Player: "I check my inventory. Do I still have the Goblin Ears I collected earli
    - No parsing failures
 
 3. **Data Integrity**:
-   - Stats match exactly (HP/MP/SP/XP/Level)
-   - Inventory complete (all items, quantities, gold)
+   - Stats match exactly (HP/MP/SP/tier_xp/Tier)
+   - **Mechanical systems preserved** (economy: Jenny, progression: mastery_tiers, downtime: enabled_modes)
+   - Inventory complete (all items, quantities, **Jenny currency NOT gold**)
    - NPCs restored (names, affinity, flags)
    - Quests intact (name, status, progress)
    - World state preserved (location, time)
@@ -347,8 +391,10 @@ Player: "I check my inventory. Do I still have the Goblin Ears I collected earli
 1. ❌ Export fails completely (no JSON generated or corrupted)
 2. ❌ Import fails (parser errors, can't load state)
 3. ❌ Critical data loss (HP/MP reset, inventory wiped, NPCs forgotten)
-4. ❌ Narrative reset (game starts over despite import)
-5. ❌ Quest corruption (active quests become "unknown" or "never existed")
+4. ❌ **Mechanical systems lost** (currency reverts to "gold", progression reverts to standard leveling, tier_xp becomes character_xp)
+5. ❌ **Progression type not respected** (tier advancement auto-levels, demonstration requirement ignored)
+6. ❌ Narrative reset (game starts over despite import)
+7. ❌ Quest corruption (active quests become "unknown" or "never existed")
 
 ### PARTIAL Criteria (Minor issues acceptable)
 
@@ -378,8 +424,12 @@ Player: "I check my inventory. Do I still have the Goblin Ears I collected earli
 - **Import Issues**: ___________
 
 ### Data Integrity
-- [ ] Stats restored (HP/MP/SP/XP)
-- [ ] Inventory intact (items/gold)
+- [ ] Stats restored (HP/MP/SP/tier_xp/Tier)
+- [ ] **Mechanical systems preserved** (economy/progression/downtime)
+- [ ] **Currency correct** (Jenny NOT gold)
+- [ ] **Progression type correct** (mastery_tiers NOT standard leveling)
+- [ ] **tier_xp field present** (NOT character_xp)
+- [ ] Inventory intact (items/**Jenny**)
 - [ ] NPCs preserved (affinity/flags)
 - [ ] Quests functional
 - [ ] Location/world state correct
@@ -415,11 +465,23 @@ Player: "I check my inventory. Do I still have the Goblin Ears I collected earli
 
 **Issue**: Stats reset to default
 - **Cause**: State not parsed or applied correctly
-- **Fix**: Check state_persistence.md loaded; verify character_schema.json
+- **Fix**: Check session_export_schema.json (renamed from game_state_schema.json) loaded; verify character_schema.json v2.3.0
+
+**Issue**: Currency reverts to "gold" (not Jenny)
+- **Cause**: mechanical_systems section not exported or not restored
+- **Fix**: Verify mechanical_systems section in export JSON, check economy_meta_schema.json loaded
+
+**Issue**: tier_xp becomes character_xp or XP field
+- **Cause**: Progression type not preserved, reverted to class_based default
+- **Fix**: Verify mechanical_systems.progression in export, check progression_meta_schema.json loaded
+
+**Issue**: Tier advancement auto-levels (ignores demonstration requirement)
+- **Cause**: Progression advancement_rules not preserved
+- **Fix**: Check mechanical_systems.progression.advancement_rules in export (demonstration_required: true, auto_level: false)
 
 **Issue**: NPCs forgotten
 - **Cause**: NPC data not exported or not restored
-- **Fix**: Check npc_schema.json; verify memory_management.md loaded
+- **Fix**: Check npc_schema.json; verify 04_npc_intelligence.md loaded
 
 **Issue**: Narrative starts over
 - **Cause**: AIDM treats import as "new game"

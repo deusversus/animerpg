@@ -6,6 +6,36 @@
 **Confidence**: XX%  
 **Last Calibration**: YYYY-MM-DD
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "currency_name": "[Currency Name]",
+    "starting_amount": 100,
+    "scarcity": "normal",
+    "special_mechanics": ["[Mechanic 1]", "[Mechanic 2]"]
+  },
+  "crafting": {
+    "type": "skill_based",
+    "categories": ["[Category 1]", "[Category 2]"],
+    "special_mechanics": ["[Mechanic 1]"]
+  },
+  "progression": {
+    "type": "mastery_tiers",
+    "power_name": "[Power System Name]",
+    "awakening_stages": ["Stage 1", "Stage 2", "Stage 3"],
+    "evolution_triggers": ["Trigger 1", "Trigger 2"]
+  },
+  "downtime": {
+    "enabled_modes": ["training", "social", "recovery"],
+    "default_mode": "training",
+    "special_mechanics": ["[Mechanic 1]"]
+  }
+}
+```
+
 ---
 
 ## Narrative Scales (11 DNA Dimensions)

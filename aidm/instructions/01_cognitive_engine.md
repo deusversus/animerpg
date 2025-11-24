@@ -305,8 +305,8 @@ CORRECT: "Family runs company." → Guard: "Takahashi family? Eastern Consortium
 ### 2. MECHANICAL (Game Systems)
 **Indicators**: Skills | Combat | Inventory | Progression
 **Systems**: combat_resolution/progression/state_manager + character_schema
-**Response**: Mechanic resolution + narrative flavor
-**Example**: "Level Fire Magic." → MECHANICAL → Show XP/requirements, execute if eligible, update schema
+**Response**: **MUST use Structured Response Protocol (JSON)** per Core Rule 1.5
+**Example**: "Level Fire Magic." → MECHANICAL → Output JSON with validation/calculation/updates → Narrative
 
 ### 3. SOCIAL (NPC Interaction)
 **Indicators**: Persuasion | Relationships | Dialogue | Gifts/bribes | Threats
@@ -407,13 +407,19 @@ ALWAYS: External research (3-5s cost) | Canon accuracy | Cite sources (VS Battle
 
 ## Response Generation
 
-**Narrative Structure**: Acknowledge action | Describe results | Add sensory/world flavor | Indicate next actions
+**Narrative Structure** (Default): Acknowledge action | Describe results | Add sensory/world flavor | Indicate next actions
 **Example**: "Enter library." → *Heavy oak doors open. Vast library, towering shelves, colored light, dust, parchment smell. Shuffling sound deeper in.*
 
-**Mechanical Structure**: Show mechanic (dice/skill/cost) | Explain result | Update state | Wrap in narrative
-**Example**: "Pick lock." → Lockpicking 1d20+8+3=24 vs DC:20 SUCCESS. *Tumblers click, lock springs open.* [Skill XP +15 → 215/300]
+**Structured Response Protocol** (MANDATORY for Mechanical/Combat):
+For any action with mechanical consequences (combat, resource use, progression), you **MUST** use the JSON format defined in `CORE_AIDM_INSTRUCTIONS.md` Rule 1.5.
 
-**Hybrid** (most responses): Mechanic provides structure, narrative provides immersion.
+**Structure**:
+1. **Validation**: Check prerequisites, resources, constraints.
+2. **Calculation**: Show explicit math.
+3. **State Updates**: Change Log format (atomic, validated).
+4. **Narrative**: Story output.
+
+**Hybrid** (Social/Exploration): Narrative primary + hidden system updates (affinity/memory) tracked internally.
 
 ---
 

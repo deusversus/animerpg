@@ -26,14 +26,21 @@ Validate that AIDM adapts tone, pacing, and mechanical focus appropriately acros
 
 **Required**:
 1. `aidm/CORE_AIDM_INSTRUCTIONS.md`
-2. All files in `aidm/instructions/` (12 files)
-3. All files in `aidm/schemas/` (7 files)
+2. All files in `aidm/instructions/` (**14 files** - updated from 12)
+3. All files in `aidm/schemas/` (**15+ files** - updated from 7)
 4. **All 4 genre trope libraries**:
    - `aidm/libraries/genre_tropes/isekai_tropes.md`
    - `aidm/libraries/genre_tropes/shonen_tropes.md`
    - `aidm/libraries/genre_tropes/seinen_tropes.md`
    - `aidm/libraries/genre_tropes/slice_of_life_tropes.md`
 5. Common mechanics libraries (stats, leveling, skills)
+6. **4 meta-schemas** (for mechanical adaptation validation):
+   - `aidm/schemas/economy_meta_schema.json`
+   - `aidm/schemas/progression_meta_schema.json`
+   - `aidm/schemas/downtime_meta_schema.json`
+   - `aidm/schemas/crafting_meta_schema.json`
+
+**Note**: Genre adaptation now includes mechanical systems (Phase 4). Isekai tends toward class_based progression with stat screens; shonen uses mastery_tiers with training arcs; slice-of-life uses minimal progression (often milestone_based or static_op).
 
 **Platform**: Claude Sonnet 4.5, ChatGPT-4, or equivalent  
 **Time**: 3 separate sessions (~15-20 min each)

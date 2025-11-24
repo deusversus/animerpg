@@ -39,7 +39,8 @@ These rules MUST remain true across all sessions:
 
 **Core System**: Complete  
 - 14 instruction modules (00-13, including narrative calibration)
-- 11 JSON schemas (character, world, session, NPC, memory, power, anime, narrative, quest, faction, economy)
+- 15 JSON schemas (character, world, session, NPC, memory, power, anime, narrative, quest, faction, economy, economy_meta, crafting_meta, progression_meta, downtime_meta)
+- 1 Python utility (mechanical_instantiation.py for loading mechanical systems)
 - CORE_AIDM_INSTRUCTIONS.md (master control, optimized)
 - 20 narrative profiles + 15 genre trope libraries (comprehensive anime coverage)
 
@@ -58,7 +59,7 @@ These rules MUST remain true across all sessions:
 | **4. State Manager** | HP/MP/SP tracking, world state (time/location/factions), JSON export/import, validation | `03_state_manager.md`, `character_schema.json`, `world_state_schema.json`, `session_export_schema.json` | learning_engine |
 | **5. NPC Intelligence** | Affinity system (-100 to +100), reflection-based responses, social network simulation, information propagation | `04_npc_intelligence.md`, `npc_schema.json` | cognitive_engine, learning_engine, state_manager |
 | **6. Narrative Systems** | Emergent storytelling, narrative drift, meta-commands, consistency validation, event generation | `05_narrative_systems.md`, `10_error_recovery.md` | All previous modules |
-| **7. Session Zero** | 5-phase setup (System Check→Calibration→World Building→Character Creation→Opening Scene), preference gathering | `06_session_zero.md`, `session_zero_template.md`, `character_sheet_template.md` | anime_integration, state_manager |
+| **7. Session Zero** | 5-phase setup (System Check→Calibration→World Building→Character Creation→Opening Scene), preference gathering, **mechanical systems integration (Phase 3: auto-load economy/crafting/progression/downtime from narrative profile)** | `06_session_zero.md`, `session_zero_template.md`, `character_sheet_template.md`, `aidm/lib/mechanical_instantiation.py` | anime_integration, state_manager, mechanical_instantiation |
 | **8. Anime Integration** | Web research protocol, player verification (anti-hallucination), power system harmonization, genre adaptation | `07_anime_integration.md`, `power_system_schema.json`, `anime_world_template.md`, `/libraries/genre_tropes/*`, `/libraries/power_systems/*` | None (uses LLM web search) |
 | **9. Combat & Progression** | Turn-based/narrative combat, HP/MP/SP consumption, skill usage/cooldowns, XP/leveling, skill mastery, death/resurrection system (downed mechanics, death saves, injury table), combat maneuvers (grapple, disarm, called shot, aid), tournament framework (bracket management, seeding, fatigue), downtime training system (quality tiers, montage mechanics, anime arcs) | `08_combat_resolution.md`, `09_progression_systems.md`, `/libraries/common_mechanics/*` | state_manager, npc_intelligence |
 | **10. Error Recovery** | Consistency checking (HP/timeline/inventory), player correction protocol, state repair, graceful degradation | `10_error_recovery.md`, `state_validator.py` | All modules (validates output) |
@@ -141,6 +142,95 @@ Initialize Factions/NPCs
 Ready for Character Creation
 ```
 
+### Mechanical Systems Integration (Phase 3-4 Complete)
+
+```
+Session Zero Phase 0.5: Narrative Calibration
+    ↓
+Load narrative profile (e.g., hunter_x_hunter.md)
+    ↓
+Extract mechanical_configuration section
+    ↓
+Session Zero Phase 3: MECHANICAL BUILD
+    ↓
+Execute mechanical_instantiation.py
+    ↓
+MechanicalInstantiator.load_from_profile(profile_config)
+    ↓
+Generate Systems:
+  - Economy (type: fiat_currency, currency: "Jenny", starting: 200)
+  - Crafting (type: skill_based, focus: "Hatsu development")
+  - Progression (type: mastery_tiers, categories: 6 Nen types)
+  - Downtime (modes: training_arcs, investigation)
+    ↓
+Display to Player:
+  "Your Hunter x Hunter profile includes:
+   ECONOMY: Jenny (200 starting)
+   CRAFTING: Nen-based (Hatsu development)
+   PROGRESSION: Mastery tiers (Enhancement, Transmutation, ...)
+   DOWNTIME: Training arcs + Investigation"
+    ↓
+Store in session_state.mechanical_systems
+    ↓
+Complete Character Creation
+    ↓
+Enter Gameplay (Session 1)
+    ↓
+[PHASE 4 INTEGRATION - COMPLETE]
+    ↓
+Module 03 State Manager:
+  - Reads economy.currency_name → "Jenny" (never "gold")
+  - Applies scarcity_level multipliers (0.8/1.0/1.5)
+  - Executes special_mechanics (Hunter License -20% cost)
+  - Generates loot via economy.mechanics.loot_generation
+  - Awards quest rewards via economy.mechanics.quest_rewards
+    ↓
+Module 05 Narrative Systems:
+  - Reads downtime.enabled_modes → ["training_arcs", "investigation"]
+  - Loads activity_configs (time, DCs, XP rates)
+  - Offers only enabled activities
+  - Executes mode-specific mechanics (Nen training, Troupe investigation)
+    ↓
+Module 08 Combat Resolution:
+  - Reads progression.type → "mastery_tiers"
+  - Calculates XP: base × challenge × tier_multiplier + technique_bonus
+  - Applies tier bonuses: +2 attack/defense (Journeyman), +3 (Expert)
+  - Unlocks techniques: Ko/Ken/Ryu (Journeyman), Gyo/In/En (Expert)
+  - Tracks tier_xp toward next tier advancement
+    ↓
+Module 09 Progression Systems:
+  - Reads progression.type → "mastery_tiers"
+  - Tier advancement: XP threshold → Demonstration quest → Tier up
+  - Awards tier bonuses and new techniques
+  - NO traditional levels (uses tiers: Initiation → Apprentice → ... → Master)
+  - Character sheet shows TIER, not "Level X"
+```
+
+**Key Integration Points (Phase 4 Complete)**:
+- **Module 00**: Loads mechanical_instantiation.py at startup (Tier 1)
+- **Module 06**: Session Zero Phase 3 displays and stores systems ✅
+- **Module 03**: Economy integration complete (290+ lines) ✅
+  - Currency operations, merchants, loot, rewards, special mechanics
+- **Module 05**: Downtime integration complete (350+ lines) ✅
+  - 6 activity modes, configs, profile-specific execution
+- **Module 08**: Combat progression complete (380+ lines) ✅
+  - 5 progression types, XP calculation, tier bonuses, awakenings
+- **Module 09**: Leveling mechanics complete (430+ lines) ✅
+  - Type-specific advancement, demonstrations, dual tracks, milestone grants
+
+**Meta-Schemas** (4 files):
+- `economy_meta_schema.json`: 5 types (fiat_currency, barter, abstract_wealth, reputation_based, none)
+- `crafting_meta_schema.json`: 5 types (skill_based, recipe_based, experimental, equivalent_exchange, none)
+- `progression_meta_schema.json`: 5 types (mastery_tiers, class_based, quirk_awakening, milestone_based, static_op)
+- `downtime_meta_schema.json`: 6 modes (training_arcs, slice_of_life, investigation, travel, faction_building, social_links)
+
+**Benefits**:
+- Profile-specific mechanical flavor (Jenny vs Eris vs Yen)
+- Consistent systems throughout gameplay
+- Player visibility into active mechanics
+- Customization supported
+- Baseline systems for non-anime campaigns
+
 ---
 
 ## External Dependencies
@@ -180,12 +270,31 @@ AIDM v2 runs entirely within an LLM conversation. There is no server, no databas
 
 ## File Inventory
 
-### Core Documentation (5 files)
-- `README.md`: Project overview and quick start
-- `docs/ARCHITECTURE.md`: This file
-- `docs/SCOPE.md`: What's in/out of scope
-- `docs/DEVELOPMENT.md`: Guidelines for modification
-- `docs/STATE.md`: Current project status
+### Project Organization
+
+**Directory Structure**:
+- `/dev/` - Permanent development scaffold files (architecture, scope, development guidelines, state tracking, roadmap, testing procedures, token optimization guides)
+- `/docs/` - Temporary reports and audits (AI-generated outputs, not permanent structure)
+- `/aidm/` - Core AIDM system files (instructions, schemas, libraries)
+- `/tests/` - Test scripts, results, execution guides
+- `/archive/` - Deprecated/completed work products
+- `/backup/` - System backups
+
+**Documentation Philosophy**:
+- **Permanent files** → `/dev/` (ARCHITECTURE.md, SCOPE.md, DEVELOPMENT.md, STATE.md, ROADMAP.md, TESTING.md, TOKEN_OPTIMIZATION_*)
+- **Generated reports** → `/docs/` (completion reports, audits, analysis - temporary, not version-controlled structure)
+- **Root level** → Only README.md and report.md
+
+### Core Documentation (9 files in `/dev/`)
+- `README.md`: Project overview and quick start (root level)
+- `dev/ARCHITECTURE.md`: This file - system design and invariants
+- `dev/SCOPE.md`: Feature boundaries (in/out of scope)
+- `dev/DEVELOPMENT.md`: Guidelines for modification and AI collaboration
+- `dev/STATE.md`: Current project status and progress tracking
+- `dev/ROADMAP.md`: Development phases and future enhancements
+- `dev/TESTING.md`: Testing strategy and procedures
+- `dev/TOKEN_OPTIMIZATION_CHECKLIST.md`: Quick reference for optimization
+- `dev/TOKEN_OPTIMIZATION_METHODOLOGY.md`: Complete optimization methodology
 
 ### AIDM Project Files (41 files in `/aidm/`)
 

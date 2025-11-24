@@ -8,6 +8,45 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Holy Coins",
+      "starting_amount": 10,
+      "scarcity": "scarce",
+      "inflation_rate": "none",
+      "special_mechanics": ["royal_selection_funds", "appa_stands", "mayonnaise_monopoly"]
+    }
+  },
+  "crafting": {
+    "type": "none",
+    "parameters": {}
+  },
+  "progression": {
+    "type": "milestone_based",
+    "parameters": {
+      "system_name": "Return by Death / Witch Factor Authority",
+      "milestone_triggers": ["death_loop_completion", "witch_factor_absorption", "authority_awakening"],
+      "power_grants": ["checkpoint_advance", "authority_unlock", "trauma_insight"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["slice_of_life"],
+    "activity_configs": {
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["relationship_building", "mental_recovery"],
+        "special_mechanics": ["mansion_chores", "lap_pillow_therapy", "tea_party_witches"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 **Scale 0: Introspection vs Action** = **8/10 (HEAVY Introspection)**

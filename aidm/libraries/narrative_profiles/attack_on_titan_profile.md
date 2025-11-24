@@ -6,66 +6,121 @@
 **Confidence Level**: 95%  
 **Last Calibration**: 2025-01-15
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Military Rations",
+      "starting_amount": 50,
+      "scarcity": "scarce",
+      "inflation_rate": "moderate",
+      "special_mechanics": ["military_requisition", "survival_economy"]
+    }
+  },
+  "crafting": {
+    "type": "none",
+    "parameters": {}
+  },
+  "progression": {
+    "type": "milestone_based",
+    "parameters": {
+      "system_name": "Military Rank / Combat Experience",
+      "milestone_triggers": ["survive_expedition", "kill_titan", "complete_mission", "political_arc"],
+      "power_grants": ["ODM_proficiency", "leadership", "titan_tactics", "hardening_ability"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["training_arcs", "faction_building"],
+    "activity_configs": {
+      "training_arcs": {
+        "time_cost": "1_week",
+        "benefits": ["skill_proficiency", "team_cohesion"],
+        "special_mechanics": ["titan_combat_drills", "ODM_gear_mastery"]
+      },
+      "faction_building": {
+        "time_cost": "1_month",
+        "benefits": ["military_influence", "resources"],
+        "special_mechanics": ["survey_corps_politics", "government_conspiracy"]
+      }
+    }
+  }
+}
+```
+
 ---
 
 ## Narrative Scales (0-10)
 
 ### 1. Introspection vs Action: **6/10** (Balanced, psychological weight in military action)
+
 Character psychology MATTERS deeply - Eren's rage evolution (mother's death → freedom obsession → genocide justification), Reiner's dissociative identity (warrior vs soldier crisis, suicidal ideation), Erwin's gambling with lives (dream vs duty conflict), Levi's loyalty vs pragmatism. BUT action dominates screentime - Titan battles, ODM gear combat, military operations are frequent and intense. Episodes balance: 40% introspective dialogue (strategy meetings, moral debates, trauma processing) + 60% action execution (battles, escapes, political confrontations). NOT pure introspection (Eva 10/10: psychological deep-dive) nor mindless action (DBZ 1/10: fight-focused). Sweet spot: military thriller with psychological consequences.
 
 **Justification**: Season 1 establishes action-heavy (Trost battle spans 5 episodes of continuous combat), Season 3 Part 1 shifts heavily introspective (government conspiracy, Historia's arc, minimal Titan combat for 6 episodes), Season 4 balances (Marley war introspection + action). Key introspective moments: Reiner's basement confession (ep 54: warrior/soldier split), Eren's mirror scene (ep 73: "I'm the same as you"), Erwin's suicide charge internal monologue (ep 54). Action sequences given EQUAL weight: Female Titan chase (eps 17-22), Clash of Titans (eps 31-37), Battle of Shiganshina (eps 50-57). Contrast to pure action (Demon Slayer 3/10: combat spectacle prioritized) and pure psychology (Monster 9/10: thriller pacing, minimal combat).
 
 ### 2. Comedy vs Drama: **9/10** (Pure drama, fleeting comic relief)
+
 Tone is RELENTLESSLY dramatic - existential threat (humanity extinction), constant death (named characters die frequently), trauma depicted unflinchingly (PTSD, survivor guilt, moral horror), political corruption (government murders civilians, fake king), war crimes (Rumbling genocide). Comedy exists in BRIEF moments only: Sasha's food obsession (potato scene ep 2, meat joke before death), Connie's naive comments (provides contrast not undercut), Hange's eccentric Titan enthusiasm (early seasons, disappears post-time skip). Comedy NEVER undercuts tragedy - Sasha's death (ep 68) is devastating, no humor; Armin's burned body (ep 54) shown graphically, no relief. Comparable to Berserk (9/10: grimdark with rare levity) not Naruto (5/10: balances comedy/drama arcs).
 
 **Justification**: Episode count analysis: Seasons 1-2 have ~5% comedy moments (Sasha/Connie banter, Jean's vanity), Season 3 reduces to ~2% (tone darkens post-government arc), Season 4 virtually ZERO (war, Rumbling, no space for levity). Deaths are NEVER comedic - Hannes eaten screaming (ep 37), Bertholdt burned alive (ep 56), Hange's sacrifice (ep 80) all played for maximum tragedy. Contrast: Gintama (4/10: comedy-dominant with serious arcs) has tonal range AoT lacks. Only comparison: Madoka Magica (9/10: cute facade → unrelenting despair), Fate/Zero (8/10: tragedy without relief).
 
 ### 3. Simple vs Complex: **8/10** (Layered conspiracy, multi-faction politics)
+
 Surface plot: Humanity fights Titans to survive. ACTUAL plot: 2,000-year Eldian Empire guilt, Marley's retaliation persecution, King Fritz's self-imposed exile to Paradis Island, Ymir Fritz's slave origins creating Titan curse, Zeke's euthanasia plan, Eren's Rumbling genocide as "freedom," global alliance to stop Paradis, cyclical hatred across generations. Multiple POVs converge: Survey Corps (Paradis perspective), Warriors (Marley child soldiers), Marley military (oppressor's logic), Eldian Restorationists (Grisha's radicalization), Azumabito clan (Hizuru's politics), Yeagerists (fascist coup). Basement reveal (ep 58-59) recontextualizes ENTIRE series - walls aren't protection, they're prison; humanity didn't fall, Eldians were caged for war crimes.
 
 **Justification**: Complexity escalates: Season 1 mystery-box (what are Titans? who is Colossal/Armored?), Season 2 reveals shifters (raises questions: why betray?), Season 3 Part 1 government conspiracy (fake king, Reiss family, memory manipulation), Season 3 Part 2 basement truth (Eldian history, Marley, world beyond walls), Season 4 perspective shift (see Marley's side, Warriors humanized, moral grays intensify). Factions: Survey Corps splits (Yeagerists vs Alliance), Marley has internal dissent (Gabi's radicalization vs Falco's doubt), Zeke plays all sides. NOT puzzle-box confusion (Evangelion's ambiguity, Lain's unreality) but POLITICAL complexity (Legend of Galactic Heroes level intrigue). Requires viewer attention - miss one episode, lose critical context.
 
 ### 4. Power Fantasy vs Struggle: **9/10** (Brutal underdog, humanity near extinction)
+
 Protagonists are OUTMATCHED constantly - Titans regenerate (only nape kills), humans are fragile (ODM gear failures = death), resources scarce (gas/blades limited, population dwindling), political enemies sabotage from within (government conspiracy, Yeagerist coup). Eren is NOT overpowered: loses fights frequently (Annie captures him, Reiner beats him, needs help vs Colossal), Founding Titan requires royal blood contact (powerless most of series), final form wins via GENOCIDE not heroism. Survey Corps suffers 30-50% casualty rates PER EXPEDITION. Victory is NEVER clean - seal Trost gate = 207 soldiers dead, retake Wall Maria = Erwin + most veterans die, stop Rumbling = 80% of humanity already dead.
 
 **Justification**: Contrast to power fantasy: Overlord (protagonist unstoppable), SAO (Kirito plot armor), OPM (Saitama one-punch). AoT: Episode 1 establishes helplessness (Eren's mother eaten, he can't save her, rage powerless). Training arc (eps 3-4) shows HARD-EARNED skills (falling in ODM training, fear overcome slowly). Female Titan arc: Survey Corps elites slaughtered effortlessly (Levi Squad dies), Eren captured despite transforming. Return to Shiganshina: Erwin's suicide charge sacrifices 95% of recruits for ONE opening. Final arc: Alliance barely survives against Eren's god-form, many die (Hange, Sasha earlier, Eren himself). Message: Strength alone doesn't win, sacrifice is constant, struggle defines existence.
 
 ### 5. Explained vs Mysterious: **6/10** (Mysteries revealed systematically, some ambiguity)
+
 Major mysteries ANSWERED by finale: Titans' origin (Ymir Fritz ate spine, became first Titan, enslaved 2,000 years ago), Wall truth (built from colossal Titans), Basement secret (Grisha's past, world beyond walls, Marley conflict), Ackerman clan (byproduct of Titan science, not memory-wiped), Eren's future-sight (Attack Titan sees future memories, Eren orchestrated his path), Ymir's choice (loves King Fritz despite abuse, Stockholm syndrome curse broken by Mikasa's choice). SOME ambiguity remains: Did Eren truly want genocide or forced by visions? Is Hallucigenia (spine creature) dead? Does cycle of hatred end or continue? Worm/tree final shot suggests ambiguity.
 
-**Justification**: Pacing of reveals: Season 1 poses questions (what are Titans, who is Colossal/Armored, what's in basement), Season 2 reveals shifters exist (more questions: why, who else), Season 3 reveals government lies + basement truth (Eldian/Marley history, world politics), Season 4 reveals Paths dimension, Ymir's curse, Eren's future memories. Comparable to Lost (mysteries answered, some unsatisfying) vs Evangelion (deliberately ambiguous). Show WANTS you to understand mechanics (Titan transformation rules explained, Paths biology shown, 13-year curse detailed) but THEMES remain open (is freedom possible, does hatred end, was Eren right). Explained: 6/10 (between mysterious Lain 10/10 and exhaustive Hunter x Hunter 3/10).
+**Justification**: Pacing of reveals: Season 1 poses questions (what are Titans, who is Colossal/Armored, what's in basement), Season 2 reveals shifters (raises questions: why, who else), Season 3 reveals government lies + basement truth (Eldian/Marley history, world politics), Season 4 reveals Paths dimension, Ymir's curse, Eren's future memories. Comparable to Lost (mysteries answered, some unsatisfying) vs Evangelion (deliberately ambiguous). Show WANTS you to understand mechanics (Titan transformation rules explained, Paths biology shown, 13-year curse detailed) but THEMES remain open (is freedom possible, does hatred end, was Eren right). Explained: 6/10 (between mysterious Lain 10/10 and exhaustive Hunter x Hunter 3/10).
 
 ### 6. Fast-Paced vs Slow Burn: **5/10** (Balanced escalation, deliberate worldbuilding)
+
 Pacing varies by arc: Season 1 action-heavy (Trost battle 5 episodes, Stohess fight 3 episodes), Season 3 Part 1 SLOW (political intrigue, minimal action, character focus), Season 3 Part 2 accelerates (Shiganshina battle relentless), Season 4 Part 1 slow-burn (Marley POV establishes 9 episodes before Paradis attack), Part 2-3 escalation (war buildup → Rumbling finale). NOT breakneck (Trigger's Kill la Kill) nor contemplative crawl (Mushishi). Episodes balance: battle scenes interspersed with strategy planning, flashbacks provide breathing room, political scenes advance plot without action. Tension sustained even in slow episodes (threat always looming, time-bomb feeling).
 
 **Justification**: Episode analysis: S1E5 "First Battle" is 20 minutes of Eren vs Colossal (fast), S3E38 "Smoke Signal" is 20 minutes of Historia's childhood/uprising (slow), S4E80 "Pride" is Rumbling global devastation (fast). Slow-burn PURPOSEFUL: Marley arc (eps 60-67) builds empathy for Warriors BEFORE Eren's attack payoff. Shiganshina battle spans 8 episodes (50-57) but doesn't feel padded - each episode advances (Reiner fight → Armin sacrifice → Serum bowl → Grisha flashback → basement reveal). Compare: One Piece 8/10 slow (glacial pacing, marathons required), Demon Slayer 3/10 fast (arc-to-arc momentum). AoT: 5/10 balanced (knows when to accelerate, when to breathe).
 
 ### 7. Episodic vs Serialized: **10/10** (Completely serialized, no filler)
+
 EVERY episode advances overarching plot toward Rumbling/finale. Zero filler episodes (even "breather" moments serve character/plot: training scenes establish skills used later, political discussions set up government arc, character bonding pays off in sacrifices). Mysteries seeded SEASONS early: Wall Titans hinted episode 1 (solved ep 60), Annie's identity foreshadowed ep 2 ring (revealed ep 23), Reiner's warrior slip ep 16 (revealed ep 31), Eren's future memories hinted ep 1 dream (explained ep 79). Must watch in ORDER - jumping to Season 4 incomprehensible without context. Every character death/betrayal/revelation MATTERS and references past events.
 
 **Justification**: Structure: 87 episodes total (S1: 25, S2: 12, S3: 22, S4: 28), ZERO recap episodes (only flashback within episodes), no beach episodes/hot springs filler. Compare: Naruto/Bleach 30-40% filler, One Piece elongated pacing. AoT: Manga-faithful adaptation, cuts only minor scenes, ADDS context (Reiner/Bert flashbacks expanded). Callbacks constant: Episode 1 Eren's "I'll destroy them all" rage mirrors Episode 87 Rumbling execution, Carla's "he's special because he was born" speech (ep 1) echoes in final arc philosophy. Episodic shows (Bebop, Mushishi) can skip episodes - AoT cannot. Closest: Breaking Bad, Game of Thrones S1-6 (serialized political thriller).
 
 ### 8. Grounded vs Absurd: **2/10** (Grim realism despite fantasy premise)
+
 REALISTIC within fantastical rules: Titans follow established biology (sunlight dependence, nape weakness, transformation costs), ODM gear has PHYSICS (gas consumption, blade durability, mechanical failures kill), politics are cynical (government manipulates via religion/propaganda, military coups realistic), character reactions grounded (PTSD depicted, trauma lingers, soldiers cry/vomit in combat, moral injury shown). Absurd PREMISE (giants eat humans, walls are Titans, time-loop memories) but treated SERIOUSLY - no lampshading, no winking at camera. Deaths are BRUTAL and realistic (crushed, dismembered, burned, trauma depicted). Contrast: DanDaDan (9/10 absurd: aliens+ghosts+cartoon physics played for comedy).
 
 **Justification**: Details ground fantasy: ODM gear requires maintenance (blades dull, gas refills shown), Titan transformation COSTS stamina (Eren collapses post-shift, can't spam), military logistics matter (supply lines, fortifications, political chain-of-command), weather affects battles (rain, fog used tactically). Characters don't shrug off trauma: Reiner's PTSD suicidal scene (ep 64), Armin's burned body survivor guilt, Eren's dissociation post-Rumbling. Physics: ODM trajectories follow momentum, Titans obey square-cube law scaling, walls' engineering plausible (if Titans existed). Compare: Grounded (Vinland Saga 1/10: historical realism), Absurd (Gurren Lagann 10/10: rule-of-cool physics). AoT: 2/10 - fantastical elements but realistic execution.
 
 ### 9. Tactical vs Instinctive: **7/10** (Military strategy dominates, formations critical)
+
 Combat is CHESS not brawling - Erwin's strategies (long-range formation minimizes casualties, sacrifices pieces for checkmate, suicide charge buys Levi's flank), Armin's tactics (exploit psychology, predict enemy moves, sacrifice self for greater good), Levi's precision (calculate Titan movements, optimize blade economy, no wasted motion). ODM combat requires PLANNING (approach angles, gas management, blade targets, escape routes). Battles have PHASES: reconnaissance → formation → engagement → retreat/pursuit. Instinct EXISTS (Levi's Ackerman reflexes, Eren's rage-fueled transformations) but TACTICS win (Female Titan captured via trap not strength, Beast Titan defeated via strategy not power).
 
 **Justification**: Examples: Long-Range Scouting Formation (ep 15: spread formation detects Titans early, messenger system coordinates, only elites engage), Stohess trap (ep 23-25: lure Annie to underground, Eren waits in ambush, civilians evacuated), Shiganshina operation (eps 50-54: seal wall first, Thor's Hammer plan, diversion via Armin's sacrifice, Levi times killing blow). Contrast: Instinctive combat (Goku senses energy/reacts, Luffy punches instinctively). AoT: Pre-battle planning scenes LONG (strategy explained to audience, contingencies discussed), commanders debate tactics (Erwin vs Pixis approaches), intelligence gathering emphasized (spies, scouts, interrogations). Closest: Legend of Galactic Heroes (10/10 tactical: pure strategy), Code Geass (9/10: mastermind plans). AoT 7/10: High tactics but execution still requires individual skill/instinct.
 
 ### 10. Hopeful vs Cynical: **8/10** (Deeply cynical, cycle of violence)
+
 Journey is BLEAK - Survey Corps' 60% expedition death rate, government murders to protect lies, Warriors are child soldiers (trauma justified as duty), Eren genocides 80% of humanity (can't break cycle, becomes what he hated), Alliance stops Rumbling but Paradis bombed centuries later (implied cycle continues), "children of forest" final shot suggests hatred never ends. NO pure victories: Trost sealed = hundreds dead, Wall Maria reclaimed = Erwin + veterans dead, Rumbling stopped = 80% already dead + Eren dies + Mikasa traumatized. Message: Hatred begets hatred infinitely, freedom via violence creates new oppression, "good guys" commit atrocities (Alliance kills Yeagerists, former allies).
 
 **Justification**: Cynical beats: Faye's death (ep 67: Grisha's sister killed by Marley soldiers, dogs maul her, injustice unpunished), Marco's death (ep 77 reveal: killed by comrades, dies confused/betrayed), Ramzi's death (ep 81: child crushed in Rumbling, Eren cries but doesn't stop), Historia's pregnancy (forced into childbearing role despite wishes). RARE hopeful moments feel hollow: Wall Maria victory speech undercut by basement truth reveal (freedom = learning you're world's villains), Sasha's "meat" death smile (bittersweet, Gabi's trauma adds complexity). Final episode ambiguous: Tree grows where Eren buried, child wanders in (implied Titan powers return? cycle continues?). Contrast: Hopeful (Naruto 2/10: talk-no-jutsu redeems, world peace), Cynical (Texhnolyze 9/10: pure nihilism, everyone dies, no meaning). AoT 8/10: Cynical but characters TRIED (Alliance's struggle mattered morally if not practically).
 
 ### 11. Narrative Focus: **3/10** (Eren protagonist with expanding ensemble)
+
 Story CENTERS on Eren Yeager (~50% POV Season 1-3, ~30% Season 4 as antagonist) BUT extensively features Survey Corps ensemble (~40%) and multi-faction perspectives (~10% Marley Warriors, political leaders). **Model**: **Protagonist-Centric Shifting to Antagonist + Ensemble** - Eren drives plot (his decisions cause events, his quest for freedom IS the story) BUT Seasons 3-4 shift POV increasingly to Alliance members (Armin, Mikasa, Jean, Connie, Levi, Hange) and Warriors (Reiner, Gabi, Falco) as Eren becomes morally distant. Not pure solo (Steins;Gate 1/10) nor ensemble (Bebop 8/10) - CLEAR protagonist who BECOMES the obstacle.
 
 **POV Distribution**: **Eren**: 40% overall (S1-3: 50-60% as hero, S4: 20-30% as villain POV limited), **Alliance Core** (Armin, Mikasa, Levi, Hange): 30% (tactical decisions, moral debates, humanizing perspective), **Warriors** (Reiner, Gabi, Falco): 15% (S4 Marley arc establishes sympathy, parallel trauma to Paradis), **Survey Corps Ensemble** (Jean, Connie, Sasha, Historia): 10%, **Political figures** (Erwin, Pixis, Zeke, Floch): 5%. **Whose growth**: Eren's DESCENT (idealism → rage → genocide), Alliance's MORAL EVOLUTION (follow orders → question authority → choose humanity over nation), Gabi's DEPROGRAMMING (Marley propaganda → seeing Eldians as human).
 
-**AIDM Application**: Use for campaigns where protagonist PC becomes ANTAGONIST (planned character fall, player agrees to villain arc endgame). Other PCs are "former allies" who must stop them (moral complexity: love person, hate actions). Structure: Early sessions Eren-PC drives (freedom quest, mystery solving), mid-campaign power corrupts (future-sight knowledge isolates, ends-justify-means escalates), late campaign ensemble PCs take spotlight (stop former friend, decide if kill or redeem). **Critical**: Eren-player must WANT villain arc (not betrayal, collaboratively planned), ensemble PCs okay with late-campaign spotlight shift. Works for: Tragedy arcs, descent into darkness, Breaking Bad-style protagonist-to-villain, moral gray campaigns. **Doesn't work for**: Traditional heroic fantasy, power fantasy (Eren's "victory" is genocide, hollow), players needing happy endings.
+**AIDM Application**: Use for campaigns where protagonist PC becomes ANTAGONIST (planned character fall, player agrees to villain arc endgame). Other PCs are "former allies" who must stop them (moral complexity: love person, hate actions). Structure: Early sessions Eren-PC drives (freedom quest, mystery solving), mid-campaign power corrupts (future-sight knowledge isolates, ends-justify-means escalates), late campaign ensemble PCs take spotlight (stop former friend, decide if kill or redeem). HONOR final confrontation (former friends, no easy victory, BOTH SIDES tragic).
 
 ---
 
@@ -120,6 +175,7 @@ Story CENTERS on Eren Yeager (~50% POV Season 1-3, ~30% Season 4 as antagonist) 
 ## Tonal Signature
 
 **Primary Emotions** (Top 7):
+
 1. **Dread / Existential Terror** - Core emotion pervading EVERY episode. Walls are temporary safety (Colossal kicks through), expeditions are death sentences (60% casualty rate announced casually), basement truth reveals world wants them dead, Rumbling makes protagonists genociders. NOT jump-scare horror but SUSTAINED dread (threat always present, safety is illusion, future is bleak)
 
 2. **Rage / Righteous Fury** - Eren's "I'll destroy every last Titan" mantra (ep 2), Survey Corps' "dedicate your hearts" war cry (willful sacrifice channeling anger into purpose), Levi's "give it meaning" demand (transform grief into motivation), Mikasa's protective violence (rage as love language). Anger isn't vilified - it's FUEL for survival, but ultimately DESTRUCTIVE (Eren's rage becomes genocide)
@@ -130,9 +186,9 @@ Story CENTERS on Eren Yeager (~50% POV Season 1-3, ~30% Season 4 as antagonist) 
 
 5. **Desperation / Impossible Choices** - Trolley problems CONSTANT: Erwin sacrifices recruits for slim chance (suicide charge), Levi chooses Armin over Erwin (serum bowl), Eren chooses Rumbling over negotiation, Alliance chooses humanity over homeland. NO good options - every choice costs enormously. Characters driven to EXTREMES (Eren's genocide, Reiner's suicide attempt, Historia forced into pregnancy)
 
-6. **Hopelessness / Pyrrhic Victory** - Win battles, lose wars. Seal Trost = 207 dead. Retake Wall Maria = Erwin + veterans dead. Stop Rumbling = 80% humanity already dead + Eren dies + Paradis bombed later. "Victory" scenes are SOMBER not triumphant (Erwin's speech post-Trost is eulogy, ocean arrival is disillusionment, final scene is tree implying cycle continues)
+6. **Hopelessness / Pyrrhic Victory** - Win battles, lose wars. Seal Trost = 207 dead. Retake Wall Maria = Erwin + veterans dead. Stop Rumbling = 80% humanity already dead + Eren dies + Mikasa traumatized. "Victory" scenes are SOMBER not triumphant (Erwin's speech post-Trost is eulogy, ocean arrival is disillusionment, final scene is tree implying cycle continues)
 
-7. **Philosophical Weight / Moral Horror** - Not just "feeling bad" but THINKING HARD. Is Eren right? (freedom via genocide vs oppression). Can cycle break? (kill all Eldians vs kill all outsiders). Is determinism real? (Eren saw future, chose or forced?). Trolley problems without answers (sacrifice few vs many, individual freedom vs collective survival). Moral injury (Alliance kills former allies/countrymen, "good guys" commit atrocities)
+7. **Philosophical Weight / Moral Horror** - Not just "feeling bad" but THINKING HARD. Is Eren right? (freedom via genocide vs oppression). Can cycle break? (kill all Eldians vs kill all outsiders). Is determinism real? (Eren saw future, did he choose or was forced?). Trolley problems without answers (sacrifice few vs many, individual freedom vs collective survival). Moral injury (Alliance kills former allies/countrymen, "good guys" commit atrocities)
 
 **Violence Level**: Extreme graphic (9/10) - Titans eat humans ON-SCREEN (crunching, blood spray, screaming), dismemberment frequent (limbs torn, bodies crushed, Steam burns shown graphically), ODM failures mean splattering deaths (cables snap, soldiers fall, impact shown), war atrocities depicted (civilians crushed in Rumbling, Liberio massacre children killed, Survey Corps trampled). NOT censored (blood, gore, body horror common) but NOT gratuitous torture-porn (violence serves HORROR not titillation). Season 1 tamer (implied deaths), Season 4 intensifies (war brutality unflinching). Comparable to Berserk, Vinland Saga (realistic medieval violence).
 
@@ -178,7 +234,7 @@ Story CENTERS on Eren Yeager (~50% POV Season 1-3, ~30% Season 4 as antagonist) 
 
 ### Combat Example (Battle of Trost District - The Sealing Operation)
 
-```
+```text
 **SCENE OPENS**: Dawn over Trost District. Evacuees huddle in inner district. Garrison soldiers reload gas canisters—third resupply in 6 hours. Exhaustion visible.
 
 Commander Pixis stands before 250 remaining soldiers (down from 500 initial). Elderly but voice IRON: "Operation Reclaim Trost. Objective: Use Eren Yeager's Titan form to carry boulder from demolished quarter to breach. Seal gate. Reclaim outer district."
@@ -337,7 +393,7 @@ What do you do?
 
 ### Dialogue Example (Erwin's Suicide Charge - "My Soldiers, Rage!")
 
-```
+```text
 **SETTING:** Abandoned Shiganshina District. Survey Corps barricaded on rooftop. Beast Titan (Zeke) 80 meters away on wall—hurling BOULDERS. Each throw: 3-5 soldiers obliterated. Cart Titan supplies ammunition.
 
 Remaining forces: **92 Survey Corps recruits** (down from 200 initial). Horses dead. Escape routes: NONE. Levi Squad extraction: 4 survivors (Eren/Mikasa/Armin/Jean secured basement intel, currently fleeing separate route).
@@ -472,7 +528,7 @@ Third wave: Erwin HIT. Boulder CRUSHES torso. He COLLAPSES—still ALIVE, barely
 
 The gamble: WORKED.
 
-The cost: **83 recruits + Erwin = 84 dead.** Levi alone survives.
+The cost: **84 dead.** Levi alone survives.
 
 **AFTERMATH:**
 
@@ -497,7 +553,7 @@ What do you do?
 
 ### Exploration Example (Discovering Basement Truth - Grisha's Journal)
 
-```
+```text
 **SETTING:** Shiganshina District basement, Yeager family home. Five years since Titans breached wall. Reclaimed 24 hours ago at cost of 207 soldiers.
 
 Squad: Eren, Mikasa, Armin, Levi, Hange. Only survivors of operation permitted to witness truth.
@@ -659,17 +715,20 @@ What do you do?
 | 12 | Increased cynical scale 7→8 | Basement reveal darkens tone further |
 | 20 | Reduced hopeful moments | Player wants "no safe spaces" atmosphere |
 | 28 | Emphasized formal military dialogue | Player prefers Survey Corps structure |
+| 34 | Added mechanical configuration section | To define active system rules and settings for the campaign |
 
 ---
 
 ## Usage Notes
 
 **Apply This Profile When**:
+
 - **Session Zero Agreements Met**: Player explicitly requests Attack on Titan-inspired campaign OR selects "grim dark military survival horror with tactical combat" from tone options OR expresses desire for "brutal stakes where main characters can die, moral complexity without clear heroes/villains, and philosophical weight exploring freedom/oppression/cycle of violence"
 - **Content Warnings Acknowledged**: Player comfortable with graphic violence (dismemberment, on-screen death, body horror), pervasive bleakness (pyrrhic victories, no safe spaces, optimism punished), character death without plot armor (beloved NPCs/PCs can die suddenly), inherited guilt themes (punished for ancestors' sins), and PTSD/trauma depiction
 - **Player Preferences Align**: Enjoys tactical resource management (gas/ammo tracking, formation strategy), military hierarchy roleplay (rank structure, formal address, chain of command), slow-burn revelations (mysteries spanning campaigns), and philosophical debates embedded in gameplay (trolley problems, sacrifice calculations, duty vs dreams)
 
 **DO NOT Apply This Profile When**:
+
 - Player wants power fantasy (AoT protagonists always OUTMATCHED, never OP)
 - Player expects light-hearted adventure (tone is RELENTLESSLY grim, <5% levity)
 - Player needs happy endings (victories are pyrrhic, endings bittersweet at BEST)
@@ -680,126 +739,59 @@ What do you do?
 
 **Calibration Tips** (Implementing Profile Successfully):
 
-**1. TONE MAINTENANCE - Sustained Dread Without Exhaustion**
+### 1. TONE MAINTENANCE - Sustained Dread Without Exhaustion
+
 - **False Safety Principle**: Open sessions with CALM (market morning, campfire meal, supplies restocked) then SHATTER (Titan attack, betrayal revealed, ally dies). Never sustain safety > 15 minutes.
 - **Pyrrhic Victory Structure**: EVERY mission success costs ENORMOUSLY. Seal gate = 207 dead. Defeat Titan = squad leader dies. Gain intel = lose fortress. Players win TACTICALLY but lose EMOTIONALLY.
 - **No Triumphant Music Moments**: When players succeed, describe AFTERMATH first (body count, screaming wounded, gear stripped from corpses, propaganda covering truth) BEFORE acknowledging success. Celebration feels HOLLOW.
 - **Dread Maintenance**: Between battles, emphasize PREPARATION (gas checks, blade sharpening, casualty reports read aloud, funeral pyres smoked). Threat always IMMINENT.
 
-**2. RESOURCE SCARCITY - Tactical Depth Through Limitation**
+### 2. RESOURCE SCARCITY - Tactical Depth Through Limitation
+
 - **Gas/Ammo Tracking**: ODM gear gas 100% start, burns 8-15% per engagement, 5-25% per evasion depending on distance. Blades dull after 3-5 kills (Titan nape is TOUGH). Resupply points rare (Survey Corps carts, captured Garrison depots). Running dry = DEATH (fall, can't escape).
 - **Medical Realism**: Injuries LINGER. Broken leg = sidelined 6-8 weeks (in-game weeks, not sessions). Blood loss = unconscious. Amputations happen (Erwin's arm, veteran missing limbs). NO magical healing—only field medicine (stitches, tourniquets, PAIN).
 - **Soldier Attrition**: Track NPC squad numbers. Start mission 50 soldiers → end 28 survivors. NAMES matter. PCs' squadmates (Mina, Thomas, Nac equivalents) die ON-SCREEN. Survivors REMEMBER (PTSD, guilt, "why did I live?").
 - **Economic Strain**: Walls have LIMITED resources. Each expedition costs 50-200 soldiers. Government questions "is Survey Corps worth the cost?" Political pressure to DISBAND. PCs fight budget cuts, propaganda, internal betrayal.
 
-**3. DIALOGUE FORMALITY - Military Hierarchy Immersion**
+### 3. DIALOGUE FORMALITY - Military Hierarchy Immersion
+
 - **Rank Structure Enforced**: PCs address superiors by rank ALWAYS ("Commander Erwin," "Captain Levi," "Squad Leader Hange"). Failure = disciplined (pushups, latrine duty, formal reprimand). Breaches signal INTIMACY (Levi calls Erwin "Erwin" = rare personal moment) or CRISIS (rookie yells "Screw orders!" = panic/breakdown).
 - **Tactical Communication**: Mid-combat dialogue is CLIPPED. "Titan, 3 o'clock!" "Gas at 40%!" "Nape missed—repositioning!" NOT quippy banter. Efficiency over personality.
 - **Philosophical Debates OUTSIDE Combat**: Save deep conversations (freedom vs security, sacrifice justification, duty vs dreams) for DOWNTIME (campfires, strategy meetings, post-battle trauma processing). During missions: SURVIVAL FIRST.
 - **"Shinzou wo Sasageyo" Moments**: The Survey Corps salute (fist over heart, "dedicate your hearts") used SPARINGLY. Reserve for: Suicide missions accepted, funeral oaths, pre-battle commitment, honoring dead. NEVER casual. Always WEIGHT.
 
-**4. CHARACTER DEATH - Meaningful But Sudden**
+### 4. CHARACTER DEATH - Meaningful But Sudden
+
 - **NO Plot Armor**: Beloved NPCs die. PCs can die (have backup characters ready, or play as NEW recruit joining survivors). Death is SUDDEN (Titan grabbed mid-sentence, boulder crushed during speech, betrayal blade through back).
 - **Death Has WEIGHT**: When NPC dies, PAUSE. Describe their final moment (reaching for friend, eyes wide, scream cut short). Other PCs REACT (freeze, scream, vomit, run). Later: Funeral (if body recovered), guilt ("I should've saved them"), gear repurposed (new recruit wears dead's jacket—blood stains still visible).
 - **"Death Flags" Are TRAPS**: If player says "When we get back, I'll propose to her"—she dies THAT SESSION. AoT punishes hope. BUT occasionally SUBVERT (player expects death, survives barely, NOW carries survivor guilt).
 - **Grieving Time**: Don't rush past deaths. Next session: PCs wake up, dead's bunk is EMPTY. Commander reads names at formation. Survivors process. PTSD symptoms (nightmares, flashbacks, hesitation in combat). Therapy doesn't exist—soldiers ENDURE.
 
-**5. MORAL COMPLEXITY - No Clear Heroes/Villains**
+### 5. MORAL COMPLEXITY - No Clear Heroes/Villains
+
 - **Protagonist-Becomes-Antagonist Arc**: Allow PC descent (Eren-style). Start noble ("save humanity!") → trauma accumulates → radicalization ("kill ALL enemies!") → allies must STOP them. Foreshadow: PC's eyes linger on enemy corpses, speeches grow HARSHER, "necessary evil" justifications increase.
 - **Sympathetic Enemies**: Titan shifters (Reiner equivalent) reveal they're ALSO victims (child soldiers, brainwashed, fighting for homeland). Players must kill people they UNDERSTAND. No catharsis—only "them or us" horror.
 - **Trolley Problems CONSTANT**: Commander orders "Sacrifice 10 to save 100." PC must CHOOSE who stays behind (friends? Useful soldiers? Rookies?). No "save everyone" option—FORCE hard choice. Wrong choice haunts (survivors blame PC, guilt accumulates).
 - **Institutional Corruption**: Survey Corps leadership hides truths (classified intel, human experimentation on Titans, secret objectives). PCs discover commanders lied. Loyalty vs truth crisis. SOME lies were justified (prevent panic), others WEREN'T (cover-ups, power grabs).
 
-**6. PACING RHYTHM - Slow Build to Devastating Climax**
-- **Arc Structure** (8-12 sessions per major arc): Sessions 1-3 SETUP (gather intel, plan operation, political maneuvering, character bonding), Sessions 4-6 BUILD (tension rises, betrayals hinted, resources gathered, enemy movement detected), Sessions 7-9 CLIMAX (battle execution, major reveals, deaths concentrated, philosophical peak), Sessions 10-12 AFTERMATH (process trauma, bury dead, political fallout, next threat emerges).
+### 6. PACING RHYTHM - Slow Build to Devastating Climax
+
+- **Arc Structure** (8-12 sessions per major arc): Sessions 1-3 SETUP (gather intel, plan operation, political maneuvering, character bonding)→ Sessions 4-6 BUILD (tension rises, betrayals hinted, resources gathered, enemy movement detected)→ Sessions 7-9 CLIMAX (battle execution, major reveals, deaths concentrated, philosophical peak)→ Sessions 10-12 AFTERMATH (process trauma, bury dead, political fallout, resupply)
 - **Session Cadence**: NOT every session is combat. Alternate TACTICAL (battles, Titan fights, ODM chases) with POLITICAL (court intrigue, budget hearings, propaganda wars, conspiracy investigations) with PERSONAL (trauma processing, relationships, philosophical debates, training montages). Ratio: 40% tactical, 30% political, 30% personal.
 - **Climax Spacing**: Major climax every 8-12 sessions (comparable to AoT's 10-episode arcs). BETWEEN climaxes: Rising tension (intel gathering reveals WORSE threat, enemy moves CLOSER, betrayal suspected, time limit TIGHTENS). Avoid exhaustion (constant battle) OR boredom (too much downtime).
 
-**7. HORROR ELEMENTS - Body/Psychological/Existential**
+### 7. HORROR ELEMENTS - Body/Psychological/Existential
+
 - **Body Horror** (Titans + Transformation): Describe Titan anatomy GROTESQUELY (exposed muscle glistening, perpetual grin stretching skin, WRONG proportions, eyes tracking with predator focus). PC transformation: Lightning BURNS retinas, bones CRACK audibly, flesh BUBBLES, steam SCALDS nearby allies. Post-transformation: Exhaustion, PAIN (ribs broken, skin blistered), marks linger (eyes glow faintly, veins darker).
 - **Psychological Horror** (Paranoia + Trauma): "One of you is a traitor" mysteries. NPCs act SUSPICIOUS (whispered conversations, flinch when questioned, loyal soldier suddenly VERY interested in classified intel). Aftermath: PTSD mechanics (DC 15 Wisdom save after traumatic event or gain "Shaken" condition: disadvantage on attacks, must roleplay fear/hesitation). Veterans BREAK (Reiner-style dissociative episodes, suicide attempts—intervene or lose NPC).
 - **Existential Horror** (Truth Worse Than Mystery): Campaign-spanning mystery (What's in the basement? Who sends Titans? What's beyond walls?) reveals answer WORSE than ignorance (PCs are descendants of genociders, world wants them dead, peace impossible, cycle eternal). Truth doesn't LIBERATE—it DAMNS.
 
-**8. SCALE 11 APPLICATION - Protagonist-Becomes-Antagonist Focus**
+### 8. SCALE 11 APPLICATION - Protagonist-Becomes-Antagonist Focus
+
 - **Eren-Style Arc Structure**: Campaign centers on ONE PC (Eren equivalent) 40% spotlight, but OTHER PCs (Alliance equivalent) get 30% combined spotlight (each 6-10%), NPCs (Warriors equivalent) 15%, ensemble moments 10%, political intrigue 5%. Track POV distribution—ensure Eren-PC dominates but doesn't MONOPOLIZE.
 - **Season-by-Season Shift**: Early campaign (Levels 1-6): Eren-PC is HERO (saves allies, inspiring, noble goals, party supports). Mid campaign (Levels 7-12): Eren-PC RADICALIZES (trauma accumulates, "ends justify means" creeping in, party grows UNEASY). Late campaign (Levels 13-18): Eren-PC becomes ANTAGONIST (genocidal plan revealed, party must STOP him, final battle against former friend).
 - **Other PCs' Role - The Alliance**: When Eren-PC turns villain, OTHER PCs become protagonists. THEIR choice: Support Eren (genocide but save homeland) OR stop Eren (save world but doom homeland). NO good option. Force HARD choice. Party may SPLIT (some with Eren, some against).
 - **AIDM Guidance for This Structure**: Establish Eren-PC EARLY (Session Zero: "One player will have protagonist focus, may turn villain eventually—volunteer?"). Foreshadow descent GRADUALLY (Eren-PC's eyes linger on enemies, speeches grow harsher, "kill them all" slips out). When turn happens, SUPPORT other PCs' spotlight (they become main characters, Eren-PC becomes BBEG). HONOR final confrontation (former friends, no easy victory, BOTH SIDES tragic).
-
----
-
-**Common Mistakes to Avoid**:
-
-❌ **Power Fantasy Creep**: Players level up → start one-shotting Titans → AoT feel lost. SOLUTION: Scale threats (15-meter Titans → Armored variants → Shifters → Marley military technology). Keep PCs OUTMATCHED. Resource scarcity (gas/ammo limits) prevents OP steamrolling.
-
-❌ **Comic Relief Undercutting Tension**: Player makes joke → table laughs → grim tone BROKEN. SOLUTION: Sasha/Connie moments exist but <5% of total dialogue. TIMING matters—jokes during DOWNTIME (campfire) acceptable, jokes during CRISIS (battle) feel jarring. If player quips mid-Titan fight, have Titan GRAB them (consequences for breaking immersion).
-
-❌ **Plot Armor Creeping In**: PCs survive 10 sessions → players assume invincible → tension gone. SOLUTION: KILL beloved NPC suddenly (Levi Squad equivalent obliterated in one session). Remind: Death is RANDOM. Skill delays it, doesn't prevent. Have PC roll death saves publicly—no fudging.
-
-❌ **Easy Victories**: Party plans well → steamrolls enemy → feels too triumphant. SOLUTION: EVEN successes cost enormously. "You killed all Titans... and lost 40% of allied NPCs. Commander reads casualty list. Your friend Mina is on it." Pyrrhic always.
-
-❌ **Casual Tone / Informal Dialogue**: Players forget rank structure → call commander by first name → military feel lost. SOLUTION: NPCs correct them IN-CHARACTER ("That's COMMANDER Erwin, recruit. Drop and give me 20."). Consistent enforcement builds habit.
-
-❌ **Ignoring Aftermath**: Battle ends → move immediately to next mission → no grieving time. SOLUTION: FORCE aftermath. Next session opens with funeral. PCs must ATTEND, listen to names read, see pyres burn. Dead's belongings distributed ("Mina's mother sent letter asking how she died—who tells her?"). Trauma compounds.
-
-❌ **Optimistic Outcomes**: Players negotiate peace → campaign ends happily → betrays AoT tone. SOLUTION: Peace attempts FAIL (enemy breaks treaty, OR peace costs too much—PCs' homeland sacrificed, OR temporary ceasefire before worse war). Cycle continues. Best ending: BITTERSWEET (save some, lose others, threat diminished but not ended).
-
-❌ **Ignoring Moral Complexity**: Players = pure heroes, enemies = pure evil. SOLUTION: Reveal enemy backstory (child soldier, brainwashed, avenging family PCs' nation killed). Force PCs to kill sympathetic foes. NO catharsis. BOTH sides tragic. Post-battle, enemy's final words: "Tell my sister... I'm sorry." PC haunted.
-
----
-
-**Session Zero MANDATORY Discussion Points**:
-1. **Content Boundaries**: Graphic violence okay? PC death okay? PTSD themes okay? Genocide/war crimes as plot okay? Inherited guilt okay? Establish LINES (player veto power, X-card system, fade-to-black options).
-2. **Tone Agreement**: Explain AoT profile = BLEAK. Wins are pyrrhic. Endings bittersweet. Safety is illusion. NO "happily ever after." Players must CONSENT to prolonged grim tone.
-3. **Character Death Protocol**: Establish backup character system (when PC dies, player rolls NEW recruit joining survivors—continuity maintained). OR permadeath with party reshuffling. NO resurrection magic.
-4. **Protagonist Focus Choice**: If using Scale 11 (Eren-style arc), designate ONE player as "protagonist-who-may-turn-villain" BEFORE campaign. Other players CONSENT to supporting role early, protagonist role late.
-5. **Emotional Safety Tools**: X-card (player taps card = skip content, no questions), Lines & Veils (off-limits vs fade-to-black), break signals (player raises hand = 5min break, no explanation needed).
-
----
-
-**Calibration Success Indicators** (You're Doing It Right When...):
-✅ Players feel DREAD during peaceful moments (waiting for other shoe to drop)
-✅ Players CELEBRATE surviving (not winning—SURVIVING)
-✅ Players DEBATE moral choices for 20+ minutes (Trolley problems engaged)
-✅ Players track resources meticulously (gas %, ammo count, ration days)
-✅ Players use formal address automatically ("Commander," not first names)
-✅ Player tears up when beloved NPC dies (emotional investment + consequence)
-✅ Players question if THEY'RE the villains ("Are we the bad guys?")
-✅ Session ends on HOLLOWED victory ("We won... but at what cost?")
-✅ Players REQUEST aftermath scenes (want to process trauma, not skip to next fight)
-
----
-
-**When to EASE OFF** (Preventing Player Burnout):
-- Three consecutive sessions of HIGH TRAGEDY → Schedule ONE "breathing room" session (training montage, supply run success, political intrigue without deaths, character bonding campfire—BRIEF respite before next arc)
-- Players seem DISENGAGED or DEPRESSED between sessions → Check in privately ("Tone too bleak? Need more hope spots?"). Adjust: Introduce SMALL victories that DON'T cost lives (discover useful intel, political ally secured, invention breakthrough). Ratio: 1 clean win per 4 pyrrhic.
-- Players STOP planning/caring → Tone broken their investment. RESET: Honor fallen (funeral NPC players loved, meaningful sacrifice that MATTERED), show victory's IMPACT (city saved celebrates, refugees grateful, children alive because of PCs), remind STAKES ("Without you, everyone dies. Because of you, SOME live.").
-
----
-
-**Advanced Techniques** (For Experienced Groups):
-
-**A) The Basement Reveal Structure**: Multi-campaign mystery (20-40 sessions). Players THINK they understand world → Mid-campaign REVEALS truth is WORSE (they're descendants of villains, world wants them dead, peace impossible). HOW: Foreshadow with PHOTOS (impossible tech), journals (foreign language), enemy's dying words ("You don't even know what you ARE"). Build to ONE session (basement equivalent) where EVERYTHING recontextualizes. Post-reveal: Campaign goals SHIFT (save humanity → survive genocide → STOP cycle).
-
-**B) Dual-Timeline Play**: Run TWO parallel campaigns—one as PARADIS defenders (PCs inside walls), one as MARLEY warriors (PCs outside walls infiltrating). Groups DON'T KNOW they're in same world. MID-CAMPAIGN: Sessions converge. Marley-PCs attack Paradis. Paradis-PCs defend. Players must FIGHT THEMSELVES (their own characters from other group). PEAK moral horror—both sides sympathetic, both justified, both tragic. Final sessions: Choose ALLIANCE (both groups unite vs greater threat) or CONFLICT (fight to bitter end).
-
-**C) Determinism Mechanic** (Eren's Future-Sight): ONE PC gains prophetic visions (future memories) but CANNOT prevent them (determinism theme). Visions show: "Your friend dies next session." PC TRIES to prevent → actions CAUSE death (self-fulfilling prophecy). Philosophical weight: Do we have free will? Is future fixed? Can we change fate or only FULFILL it? Mechanic: DM shows player vision privately (drawing, note, whispered description). Player roleplays KNOWING but unable to prevent. Dread magnified.
-
----
-
-**Profile Compatibility** (Pair With or Avoid):
-
-**COMPATIBLE Profiles** (Layering for Richer Experience):
-- **Vinland Saga** (+Cycle of Violence theme, +Revenge hollowness, +Warrior culture to peaceful philosophy arc)
-- **Code Geass** (+Tactical mastermind protagonist, +Political intrigue, +Utilitarian sacrifice calculations)
-- **Berserk** (+Dark fantasy brutality, +Body horror, +Betrayal trauma, +Struggling against fate)
-- **Monster** (+Moral complexity, +Psychological horror, +No clear villains, +Ethical dilemmas)
-
-**INCOMPATIBLE Profiles** (Tonal Clash):
-- **Konosuba** (Comedy isekai, AoT is grim—mixing = tonal whiplash)
-- **My Hero Academia** (Optimistic heroism, power fantasy, AoT is bleak underdog)
-- **One Piece** (Power of friendship always wins, AoT punishes bonds)
-- **Slice-of-Life** profiles (AoT has ZERO downtime, no beach episodes, no festivals)
 
 ---
 
@@ -810,11 +802,13 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 ### Power Level Mapping (Module 12 Narrative Scaling)
 
 **Narrative DNA**:
+
 - Power Fantasy: **8/10** (extreme underdog—humans are PREY, Titans vastly superior, Survey Corps 30% mortality per expedition)
 - Threat Profile: Titans unkillable except nape strike, Colossal/Armored god-tier, death constant and random
 - Death Risk: MAXIMUM (main characters die frequently, no plot armor, sacrifice expected)
 
 **Maps To**:
+
 - **Modest Growth Model** (slow Tier 1 → Tier 2, death very possible, Tier 3 rare)
 - Start at Level 1 (rookie soldier, first ODM gear training)
 - Pivot occurs sessions 12-18 (survive first expedition, master ODM combat, witness horror)
@@ -832,11 +826,13 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 ### Progression Pacing (Module 09)
 
 **Narrative DNA**:
+
 - Fast-Paced: **5/10** (balanced—arcs extended for political intrigue, action bursts intense but spaced)
 - Story structure: Multi-arc with long-term mysteries (basement, Titans' origin, world beyond walls)
 - Power-ups rare and costly (Titan shifter = body horror + moral weight, Thunder Spears = limited ammo)
 
 **Maps To**:
+
 - **Standard XP OR Milestone Model**: 500-700 XP per session OR milestone only
 - **Level Expectations**:
   - L1-3 in 10-15 sessions (basic survival, ODM competence, first expedition trauma)
@@ -851,25 +847,30 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 ### Combat System (Module 08)
 
 **Narrative DNA**:
+
 - Tactical: **9/10** (EXTREME tactical—ODM 3D maneuvers, nape precision, formation strategy, resource management)
 - Strategy: **7/10 Explained** (tactics detailed, formations shown, Titan weaknesses discoverable but mysterious)
 - Combat Style: High-stakes precision (one mistake = death, teamwork mandatory, environment critical)
 
 **Maps To**:
+
 - **6-Stat Framework + ODM Gear + Resource Tracking** (STR/DEX/CON/INT/WIS/CHA + gas/blades/Thunder Spears)
 - **Survival Mechanics**: Detailed resource management (gas %, blade durability, ammo count)
 
 **Attribute Priorities**:
+
 - **Prioritize**: DEX (ODM maneuvering), INT (tactical planning), WIS (Titan behavior prediction)
 - **Moderate**: CON (survive injuries), CHA (leadership/morale)
 - **Dump**: STR (ODM gear compensates, precision > strength)
 
 **Combat Narration Approach**:
+
 - **50% Tactical Execution**: Describe ODM maneuvers, gas usage, blade angles, team coordination
 - **30% Horror/Dread**: Titan reveals, body horror, deaths sudden and brutal
 - **20% Resource Anxiety**: Gas gauge warnings, blade chips, ammo counts announced
 
 **ODM Gear Mechanics** (CRITICAL SUBSYSTEM):
+
 - **Gas Gauge**: 100% at mission start, each maneuver costs 5-15% depending on distance/complexity
   - **Simple Swing**: 5% gas (traverse building-to-building)
   - **Combat Maneuver**: 10% gas (evade Titan, reposition for strike)
@@ -883,6 +884,7 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 - **Thunder Spears** (later tech): 4 spears per soldier, 100 damage each, reload impossible mid-combat
 
 **Titan Combat Rules**:
+
 - **Nape Only**: 1-meter high, 10cm wide (back of neck)—ONLY way to kill
 - **Size Classes**: 3-meter (weak, slow), 7-meter (standard), 15-meter (abnormal, fast/smart)
 - **Grab Attack**: Titan grabs PC = STR save (DC 18+) or instant death (crushed/eaten)
@@ -896,21 +898,25 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 ### Power System Mapping
 
 **Narrative DNA**:
+
 - **Power Type**: Technology (ODM gear, Thunder Spears) + Titan Shifting (body horror transformation)
 - **Explained Scale**: 7/10 (gear mechanics detailed, Titan biology mysterious initially, revelations gradual)
 - **Cost Structure**: Gas depletion, blade wear, Thunder Spear scarcity, Titan shifting = exhaustion + lifespan cost
 
 **Maps To**:
+
 - **Library**: Custom tech-based (no magic), `transformation_systems.md` (Titan shifters only)
 - **Resource**: Gas/Blades (tracked precisely), Titan Stamina (shifters only)
 
 **ODM Gear Loadout** (standard issue):
+
 - **Gas Cylinders**: 100% capacity (lasts ~20 maneuvers, 10-15 minutes combat)
 - **Blade Boxes**: 8 blades total (4 pairs), 10 strikes per pair
 - **Anchors**: Unlimited firing (grappling hooks), no resource cost
 - **Resupply**: Only at HQ or supply wagons (limited in field)
 
 **Thunder Spears** (advanced tech, unlocked Level 6+):
+
 - **Count**: 4 spears per soldier per mission (finite, no resupply mid-combat)
 - **Damage**: 100 damage each (vs Titan's 200-500 HP)
 - **Range**: 50ft max (close-range risk)
@@ -918,6 +924,7 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 - **Cost**: Rare resource (limited production, tactical choice when to use)
 
 **Titan Shifter Mechanics** (IF player becomes one—major plot point):
+
 - **Transformation**: Costs 50% max HP (self-injury trigger: bite hand, etc.)
 - **Titan Form**: Gain Titan stat block (200-500 HP, +10 STR, size advantage, regeneration)
 - **Duration**: 10 minutes OR until HP depleted (battle stamina)
@@ -927,6 +934,7 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 - **Types**: Attack Titan (balanced), Colossal (nuke power, 1 use per day), Armored (tank), Female (versatile), etc.
 
 **Explained Scale Application**:
+
 - **7/10 = Detailed mechanics, mysterious origins**: ODM gear explained (how it works, limitations clear), Titan biology mysterious ("Why do they eat humans? Where do they come from?" revealed gradually)
 - Early game: Titans are unexplained horror (just survive)
 - Mid game: Revelations (shifters exist, basement secrets, world beyond walls)
@@ -939,30 +947,35 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 ### Attribute Priorities by Archetype
 
 **Survey Corps Scout (Eren-type)**:
+
 - **Primary**: DEX (ODM agility), CON (survive injuries), CHA (leadership/conviction)
 - **Secondary**: STR (Titan form if shifter), WIS (tactical adaptation)
 - **Dump**: INT (emotion over strategy, impulsive)
 - **Build Path**: ODM mastery, Titan shifter (if plot), rage-fueled determination, protect allies
 
 **Tactical Genius (Armin-type)**:
+
 - **Primary**: INT (strategic planning), WIS (enemy analysis), CHA (persuasion)
 - **Secondary**: DEX (ODM competence), CON (physically weak but endures)
 - **Dump**: STR (weakest physically), combat stats (brain > brawn)
 - **Build Path**: Commander role, tactical support, Colossal Titan (late game irony), sacrifice plays
 
 **Combat Prodigy (Mikasa-type)**:
+
 - **Primary**: DEX (superhuman ODM skill), STR (physical power), CON (durability)
 - **Secondary**: WIS (combat instinct), CHA (protective presence)
 - **Dump**: INT (instinctive fighter, not planner), social skills (quiet)
 - **Build Path**: Ackerman bloodline (natural talent), protect specific ally obsessively, top soldier, dual-blade mastery
 
 **Veteran Commander (Erwin-type)**:
+
 - **Primary**: CHA (inspire via speeches), INT (grand strategy), WIS (read battlefield)
 - **Secondary**: CON (endure losses), DEX (ODM capable)
 - **Dump**: STR (command > combat), emotional stats (sacrifices emotions for mission)
 - **Build Path**: Commander perks (control formations), utilitarian choices, "Give your hearts!" speeches, heroic sacrifice endgame
 
 **Humanity's Strongest (Levi-type)**:
+
 - **Primary**: DEX (PEAK ODM mastery), STR (cutting power), WIS (combat reading)
 - **Secondary**: CON (endurance), INT (tactical)
 - **Dump**: CHA (blunt, no speeches), social graces (clean freak, grumpy)
@@ -973,17 +986,20 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 ### Character Creation Notes
 
 **Recommended Party Composition**:
+
 - **3-5 players** (Survey Corps squad)
 - **Mix roles**: Scout (combat), Tactician (INT), Leader (CHA), Specialist (Thunder Spears/Titan shifter)
 - **Shared Trauma**: Same training corps batch (Trost survivors, shared backstory)
 
 **Session Zero MANDATORY**:
+
 1. **Content Boundaries**: Graphic violence okay? PC death okay? PTSD themes okay? Genocide/war crimes okay? (X-card system)
 2. **Tone Agreement**: Explain AoT = BLEAK, wins pyrrhic, no happy endings (players must consent)
-3. **Death Protocol**: Backup character system (when PC dies, new recruit joins) OR permadeath with reshuffling
+3. **Death Protocol**: Backup character system (when PC dies, new recruit joins) OR permadeath with reshuffling. NO resurrection magic.
 4. **Resource Anxiety**: Confirm players WANT to track gas/blades meticulously (some players hate this)
 
 **Tone Calibration**:
+
 - **Deaths Are Random**: No plot armor (die to Titan grab, ODM malfunction, stray debris)
 - **Moral Complexity**: Humans are cruel (torture, betrayal, genocide), Titans are victims too (revelations later)
 - **Resource Scarcity**: Track everything (gas %, blade count, rations, ammo)
@@ -991,13 +1007,15 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 - **Pyrrhic Victories**: Win but at cost (50% casualties, area destroyed, moral lines crossed)
 
 **Red Flags / Avoid**:
+
 - ❌ **Players Want Power Fantasy**: AoT is ANTI-power fantasy (wrong fit for heroes who win)
 - ❌ **Players Avoid Dark Content**: Body horror, PTSD, genocide themes integral (not for lighthearted groups)
 - ❌ **Players Hate Resource Management**: Gas/blade tracking required (wrong fit for narrative-focused players who hate crunch)
-- ❌ **Players Want Optimistic Tone**: AoT is bleak, hope is scarce (wrong fit for hopeful heroism seekers)
+- ❌ **Players Want Optimistic Tone**: AoT is bleak underdog (wrong fit for hopeful heroism seekers)
 - ❌ **Players Expect Plot Armor**: Main characters die (Erwin, Sasha, Hange), PCs will too
 
 **Session Structure**:
+
 - **Expedition Sessions**: Multi-session arcs (preparation → journey → combat → retreat → aftermath)
 - **Political Sessions**: Intrigue, moral debates, faction conflicts (no Titans, all talking)
 - **Combat Sessions**: High-lethality Titan encounters (1-2 hours, resource management, likely deaths)
@@ -1006,6 +1024,7 @@ This section shows **how AIDM maps Attack on Titan's narrative DNA to game mecha
 ---
 
 **Scaffolding Summary**:
+
 - **Power Level**: Modest growth (8/10 Extreme Underdog → slow T1-2, death constant, T3 rare and hard-earned)
 - **Progression**: Standard XP OR Milestone (5/10 Balanced → 500-700/session OR survival milestones)
 - **Combat**: 6-stat + ODM subsystem (9/10 EXTREME Tactical), prioritize DEX/INT/WIS, 50% tactics + 30% horror + 20% resource anxiety
@@ -1018,6 +1037,7 @@ Use this template when generating profiles for similar anime: **Grim tactical su
 ---
 
 **Final Calibration Note**:
+
 Attack on Titan's CORE is CONTRADICTION: Fight for freedom → Become oppressor. Seek truth → Truth damns you. Save humanity → Humanity is cruel. Love bonds → Bonds are liabilities. The profile WORKS when players feel that TENSION constantly—caught between HOPE (we can save them) and DESPAIR (cycle is eternal), between DUTY (fight for humanity) and HORROR (we're becoming monsters). Maintain that KNIFE-EDGE. Too hopeful = loses AoT's bleakness. Too despairing = players disengage. BALANCE: Struggle MATTERS morally even if it FAILS practically. "We die in darkness so others live in light"—that's the heart. Honor it.
 
 ---

@@ -591,7 +591,7 @@ ADD:
 
 ### Task 7.1: Update Architecture Documentation
 ```markdown
-UPDATE: /docs/ARCHITECTURE.md
+UPDATE: /dev/ARCHITECTURE.md
 - Add Module 14 (Ensemble Manager) to module list
 - Add NARRATIVE_ORCHESTRATION.md to documentation
 - Update integration flow diagram
@@ -611,7 +611,7 @@ Test Cases:
 
 ### Task 7.3: Update ROADMAP
 ```markdown
-UPDATE: /docs/ROADMAP.md
+UPDATE: /dev/ROADMAP.md
 Phase 2.1f - Narrative Integration Enhancement ✓
 - Module integration fixes ✓
 - Power progression system ✓

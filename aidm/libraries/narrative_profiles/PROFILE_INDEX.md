@@ -213,6 +213,40 @@
 
 ---
 
+## Mechanical Systems Reference
+
+All 20 profiles include **Mechanical Configuration** sections mapping to AIDM's meta-schemas (economy, crafting, progression, downtime).
+
+### Economy Systems
+**Fiat Currency**: Attack on Titan, Cowboy Bebop, Code Geass, DanDaDan, Demon Slayer, FMAB, Haikyuu, Hunter x Hunter, JJK, Konosuba, MHA, Naruto, NGE, One Piece, OPM, Re:Zero, Steins;Gate  
+**Barter**: Mushishi, Vinland Saga  
+**None**: Death Note
+
+### Crafting Systems
+**Skill-Based**: Demon Slayer, FMAB, Hunter x Hunter, JJK, MHA, Mushishi, Naruto, One Piece, Vinland Saga  
+**Experimental**: Cowboy Bebop, Code Geass, DanDaDan, NGE, OPM, Steins;Gate  
+**Equivalent Exchange**: FMAB (alchemy-specific)  
+**None**: Attack on Titan, Death Note, Haikyuu, Konosuba, Re:Zero
+
+### Progression Systems
+**Mastery Tiers**: Demon Slayer, FMAB, Hunter x Hunter, JJK, Naruto  
+**Class-Based**: Haikyuu, Konosuba  
+**Quirk Awakening**: Code Geass, DanDaDan, MHA, One Piece  
+**Milestone-Based**: Attack on Titan, Cowboy Bebop, Death Note, Mushishi, NGE, OPM, Re:Zero, Steins;Gate, Vinland Saga  
+**Static OP**: (None in current profiles, but available for Overlord-style campaigns)
+
+### Downtime Activity Modes
+**Training Arcs**: Attack on Titan, Demon Slayer, Haikyuu, Hunter x Hunter, JJK, MHA, Naruto  
+**Slice of Life**: Code Geass, DanDaDan, Konosuba, MHA, NGE, OPM, Re:Zero, Steins;Gate, Vinland Saga  
+**Investigation**: Cowboy Bebop, Death Note, FMAB, Steins;Gate  
+**Travel**: Cowboy Bebop, Mushishi, One Piece, Vinland Saga  
+**Faction Building**: Attack on Titan, Code Geass  
+**Social Links**: Death Note, Hunter x Hunter, Re:Zero
+
+**Usage**: Mechanical configs provide instant scaffolding when using a profile. See individual `.md` files for complete configurations.
+
+---
+
 ## Workflows
 
 **1. Player Knows**: "HxH!"→Open profile→Copy DNA→`profile_sources=["narrative_hxh"]`

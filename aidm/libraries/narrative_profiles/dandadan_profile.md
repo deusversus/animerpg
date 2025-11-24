@@ -8,6 +8,55 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Yen",
+      "starting_amount": 5000,
+      "scarcity": "abundant",
+      "inflation_rate": "none",
+      "special_mechanics": ["part_time_jobs", "student_allowance"]
+    }
+  },
+  "crafting": {
+    "type": "experimental",
+    "parameters": {
+      "discovery_method": "random",
+      "failure_chance": "moderate",
+      "special_mechanics": ["occult_talismans", "alien_tech_salvage"]
+    }
+  },
+  "progression": {
+    "type": "quirk_awakening",
+    "parameters": {
+      "quirk_name": "Supernatural Powers",
+      "awakening_stages": ["Awakening", "Control", "Fusion", "Mastery"],
+      "evolution_triggers": ["emotional_crisis", "spirit_pact", "near_death"],
+      "special_mechanics": ["turbo_granny_possession", "psychic_powers", "body_transformation"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["slice_of_life", "investigation"],
+    "activity_configs": {
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["relationship_development", "school_life"],
+        "special_mechanics": ["romantic_comedy", "gen_z_banter"]
+      },
+      "investigation": {
+        "time_cost": "1_week",
+        "benefits": ["supernatural_knowledge", "alien_intel"],
+        "special_mechanics": ["occult_research", "haunted_locations"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 **Scale 0: Introspection vs Action** = **3/10 (ACTION-LEANING with Emotional Beats)**

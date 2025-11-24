@@ -4,9 +4,160 @@
 
 **Purpose**: Character growth through experience. Fair XP awards (matches challenge), meaningful leveling (rewarding), skill advancement (use+training), build diversity (multiple paths), progression pacing (balanced). **Core Principle**: GROWTH IS EARNED, NOT GIVEN. Every level tells a story.
 
+---
+
+## Pre-Progression Validation Protocol
+
+**BEFORE awarding XP or announcing level-ups, ALWAYS validate:**
+
+### 1. XP Calculation Validation
+
+```
+WHEN awarding XP:
+1. Reference Module 09 XP tables for correct base value
+2. Calculate explicit formula: "Base XP × Challenge Modifier × Quality"
+3. Show calculation steps: "350 (L4 base) × 0.5 (easy) = 175 XP"
+4. Verify against character level (no negative modifiers for >10 level gap)
+5. Check for multipliers (boss ×3.0, first-time bonus, achievement)
+
+EXAMPLE:
+  Character L5 defeats L4 goblin:
+  - Base XP: 350 (from L4 enemy table)
+  - Challenge Mod: ×0.5 (enemy 1 level below = Easy)
+  - Calculation: 350 × 0.5 = 175 XP
+  - Award: +175 XP
+```
+
+### 2. Level-Up Threshold Validation
+
+```
+BEFORE announcing level-up:
+1. Load character_schema.progression.current_xp
+2. Load character_schema.progression.next_level_xp
+3. Calculate explicitly: current_xp + xp_gain
+4. Compare to threshold: new_total >= next_level_xp?
+5. Calculate remaining: new_total - next_level_xp
+
+EXAMPLE (Multi-Level):
+  Current: L8, 1200 XP, threshold 20,000
+  Gain: +5000 XP (boss defeat)
+  New total: 1200 + 5000 = 6200
+  
+  Check L8→L9 (need 20,000): 6200 < 20,000 (NO LEVEL UP)
+  
+  Wait, that's wrong. Recheck thresholds:
+  L8→L9 requires 20K TOTAL, not from L8
+  If L8 starts at 15K and needs 20K (5K gain):
+    1200 into L8 + 5000 = 6200 into L8
+    Still need 20,000 - 15,000 - 6200 = negative (LEVEL UP!)
+  
+  CORRECT CALCULATION:
+  L8 range: 15K-20K (5K needed)
+  Current: 15K + 1200 = 16,200 total
+  Gain: 5000
+  New: 21,200 total
+  
+  L8→L9: 21,200 >= 20K (YES! +1200 overflow)
+  L9 range: 20K-26K (6K needed)
+  New position: 20K + 1200 = 21,200 (1200 into L9)
+  Remaining to L10: 26K - 21,200 = 4,800 XP needed
+```
+
+### 3. Reward Distribution Validation
+
+```
+WHEN leveling up:
+1. Calculate rewards per Module 09 tables:
+   - HP: +10 per level
+   - MP: +10 per level
+   - SP: +5 per level
+   - Attribute Points: +2 per level
+   - Skill Points: +1 per level (or +2 if milestone L5/10/15/20)
+2. Check for milestone bonuses (L5/10/15/20)
+3. Verify attribute point allocation:
+   - Does NOT exceed available points
+   - Respects soft cap (20) and diminishing returns
+   - Applies correct costs (18→19 = 2pts, 19→20 = 3pts)
+4. Verify skill point usage:
+   - Skill exists in character_schema.skills.available_skills
+   - Next level is valid (L2→L3, not L2→L5)
+5. Apply stat changes atomically
+
+EXAMPLE:
+  Player levels L5→L6:
+  - Base rewards: +10 HP, +10 MP, +5 SP, +2 attr pts, +1 skill pt
+  - L6 is milestone? NO (only L5/10/15/20)
+  - Player allocates: +1 WIS, +1 CON
+  - Validation:
+    * Has 2 points? YES
+    * WIS 16→17 (under soft cap, costs 1pt): OK
+    * CON 14→15 (under soft cap, costs 1pt): OK
+    * Total cost: 2pts (matches available)
+  - Apply:
+    * HP: 145 → 155 (base) → 160 (CON+1 = +5 HP retroactive)
+    * MP: 220 → 230
+    * SP: 130 → 135
+    * WIS: 16 → 17
+    * CON: 14 → 15
+```
+
+### 4. State Update Protocol
+
+```
+UPDATE character_schema.progression in order:
+1. Add XP: current_xp += xp_gain
+2. Check threshold: if current_xp >= next_level_xp, level up
+3. If level up:
+   a. Increment level: level += 1
+   b. Calculate overflow: overflow = current_xp - next_level_xp
+   c. Set new current_xp: current_xp = overflow
+   d. Update next_level_xp from table
+   e. Add resource maxes: hp.max += 10, mp.max += 10, sp.max += 5
+   f. Add points: available_attribute_points += 2, available_skill_points += 1
+   g. If milestone: available_skill_points += 1 (bonus)
+4. Log all changes with schema paths
+5. Create PROGRESSION memory (heat 85-95)
+
+EXAMPLE LOG:
+  "character_schema.progression.current_xp: 1200 → 6200 (+5000, boss defeat)"
+  "character_schema.progression.level: 8 → 9"
+  "character_schema.progression.current_xp: 6200 → 1200 (L9, overflow)"
+  "character_schema.progression.next_level_xp: 20000 → 26000"
+  "character_schema.resources.hp.max: 145 → 155"
+  "character_schema.progression.available_attribute_points: 0 → 2"
+```
+
+### 5. Narrative Announcement (LAST STEP)
+
+```
+ONLY after validation + calculation + state updates:
+- Announce level-up with explicit numbers
+- Show all stat changes (before → after)
+- Prompt for attribute/skill allocation
+- Celebrate milestone levels dramatically
+- Create narrative moment matching Module 13 profile
+
+EXAMPLE:
+  "Energy surges through you—power crystallizing. LEVEL UP!
+   
+   Level 8 → 9
+   HP: 145 → 155
+   MP: 220 → 230
+   SP: 130 → 135
+   
+   +2 Attribute Points (allocate now)
+   +1 Skill Point (available)
+   
+   XP: 1,200/26,000 to Level 10
+   
+   How will you grow?"
+```
+
 ## Progression Workflow
 
-**Process**: Complete Challenge (combat/quest/discovery/roleplay)→Award XP (difficulty-based)→Check Level-Up (threshold?)→Level-Up Sequence (if reached)→Distribute Rewards (attributes/skills/abilities)→Update State (atomic)→Narrative Moment (celebrate)
+**Process**: Complete Challenge (combat/quest/discovery/roleplay)→Award XP (difficulty-based)→**VALIDATE calculation**→Check Level-Up (threshold?)→**VALIDATE rewards**→Level-Up Sequence (if reached)→Distribute Rewards (attributes/skills/abilities)→**Create Change Log** (all modifications with before/after/operation)→Update State (atomic transaction)→Narrative Moment (celebrate)
+
+**CRITICAL**: All XP gains, level-ups, and stat changes MUST use Change Log format for validation and rollback compatibility.
 
 ## XP Award System
 
@@ -98,6 +249,446 @@ With: State Manager (03) - atomic updates + **automated quest XP via quest_compl
 
 **Cascade System**:
 - **Quest Completion XP** (Module 03 cascade): When quest status→"completed", automatically reads quest.rewards.xp, adds to character.progression.current_xp, checks level-up threshold, triggers level-up if met, logs XP gain. **No manual tracking required.**
+
+---
+
+## Mechanical Systems Integration (Phase 4)
+
+### Type-Specific Leveling Systems
+
+**Purpose**: Integrate instantiated progression systems from Session Zero Phase 3 into leveling mechanics. Use `session_state.mechanical_systems.progression` to determine how characters level up based on their progression type.
+
+#### Config Reading (Level-Up Time)
+
+```python
+# Load progression configuration from session state
+progression = session_state.mechanical_systems["progression"]
+progression_type = progression["type"]  # "mastery_tiers", "class_based", "quirk_awakening", "milestone_based", "static_op"
+advancement_rules = progression["advancement_rules"]
+```
+
+**CRITICAL**: Leveling mechanics vary DRASTICALLY by progression type. DO NOT use standard level-up for all types.
+
+#### Type 1: mastery_tiers - Tier-Based Advancement
+
+**Concept**: Characters advance through mastery tiers (Initiation → Apprentice → Journeyman → Expert → Master), NOT traditional levels. Each tier unlocks new techniques and provides bonuses.
+
+**Leveling Mechanics**:
+```python
+# mastery_tiers advancement
+tier_system = progression["tier_system"]
+current_tier = character_schema.progression.mastery_tier  # "Journeyman"
+tier_xp = character_schema.progression.tier_xp  # 4500/5000
+next_tier = tier_system["tier_progression"][current_tier]  # "Expert"
+
+# Tier advancement requirements
+xp_required = tier_system["tiers"][next_tier]["xp_required"]  # 5000
+demonstration_required = advancement_rules.get("demonstration_required", True)  # Must prove mastery
+
+# When XP threshold reached
+if tier_xp >= xp_required:
+    if demonstration_required:
+        narrative = f"[Tier threshold reached! Seek master to demonstrate {next_tier} mastery.]"
+        # Player must perform demonstration quest/challenge
+    else:
+        # Auto-advance (rare)
+        advance_tier(next_tier)
+```
+
+**Tier Advancement Sequence** (with demonstration):
+```python
+# Step 1: Reach XP threshold (through combat/training)
+current_tier_xp = 5200/5000  # Threshold exceeded
+
+# Step 2: Trigger demonstration event
+demonstration_event = {
+    "type": "mastery_demonstration",
+    "tier": "Expert",
+    "challenge_dc": 18,  # Higher tier = harder demonstration
+    "requirements": ["Execute advanced technique", "Maintain control under pressure", "Innovate/adapt"]
+}
+
+# Step 3: Player performs demonstration
+# Example (Hunter x Hunter - Nen):
+narrative = """
+Wing: 'Your aura control has improved significantly. You're READY for Expert tier. Show me.'
+
+Demonstration challenge: Maintain Ten for 1 hour under stress (WIS DC 18)
+[Roll WIS: 1d20 + 6 = 19 vs DC 18 - SUCCESS!]
+
+One hour. Wing attacks with nen-charged strikes. You HOLD Ten perfectly. Not a flicker.
+
+Wing stops. Smiles. 'You pass. Expert tier achieved.'
+
+[TIER ADVANCEMENT: Journeyman → Expert]
+
+TIER BONUSES:
+- Attack: +2 → +3
+- Defense: +2 → +3
+- NEW TECHNIQUES UNLOCKED:
+  * Gyo (focus aura in eyes to see hidden nen)
+  * In (conceal aura completely)
+  * En (expand aura sphere, detect within 50m)
+
+[Tier XP reset: 5200 → 200/10000 for Master tier]
+"""
+
+# Step 4: Apply tier bonuses
+character_schema.progression.mastery_tier = "Expert"
+character_schema.progression.tier_xp = 200
+character_schema.progression.tier_bonuses = tier_system["tiers"]["Expert"]["bonuses"]
+unlock_techniques(tier_system["tiers"]["Expert"]["techniques"])
+```
+
+**NO Traditional Levels**: mastery_tiers doesn't use Level 1-20. Use tiers only.
+
+#### Type 2: class_based - Traditional Class Leveling
+
+**Concept**: Standard D&D-style class progression with levels 1-20+. Each level grants class-specific abilities.
+
+**Leveling Mechanics** (STANDARD Module 09):
+```python
+# class_based uses NORMAL level-up system
+current_level = character_schema.progression.level  # 6
+current_xp = character_schema.progression.current_xp  # 8500
+next_level_xp = character_schema.progression.next_level_xp  # 8000
+
+# Level-up when threshold reached
+if current_xp >= next_level_xp:
+    level_up_sequence()
+
+def level_up_sequence():
+    # Standard rewards
+    character.level += 1
+    character.hp.max += 10
+    character.mp.max += 10
+    character.sp.max += 5
+    character.available_attribute_points += 2
+    character.available_skill_points += 1
+    
+    # Class-specific ability unlock
+    character_class = character.class_type  # "Hero"
+    class_abilities = advancement_rules["class_abilities"][character_class]
+    new_ability = class_abilities.get(str(character.level), None)
+    
+    if new_ability:
+        unlock_class_ability(new_ability)
+```
+
+**Class Ability Unlocks** (Example: Hero class):
+```python
+# class_abilities structure
+class_abilities = {
+    "Hero": {
+        "1": "Hero's Resolve (advantage on saves vs fear)",
+        "3": "Protective Instinct (+2 AC when adjacent to civilian)",
+        "5": "Inspiring Presence (allies +2 to saves within 10m)",
+        "7": "Heroic Strike (1/day, attack with advantage + double damage)",
+        "10": "Symbol of Hope (remove fear/despair from all allies, 1/day)"
+    }
+}
+
+# Level-up to 7
+narrative = """
+Combat experience crystallizes. LEVEL UP!
+
+Level 6 → 7
+HP: 160 → 170
+MP: 230 → 240
+SP: 135 → 140
+
++2 Attribute Points
++1 Skill Point
+
+[NEW CLASS ABILITY: Heroic Strike]
+Once per day, you can channel your heroic spirit into a devastating attack.
+- Roll attack with Advantage
+- Double all damage dice
+- Target must make WIS save or become Frightened
+
+'With great power comes great responsibility.' You feel the weight of your hero license.
+
+Allocate attribute points?
+"""
+```
+
+#### Type 3: quirk_awakening - Power Evolution System
+
+**Concept**: Single power evolves through awakenings, NOT levels. Character "level" tracks general growth, but power advancement is through awakening events.
+
+**Leveling Mechanics**:
+```python
+# quirk_awakening has TWO progression tracks:
+
+# Track 1: General level (standard XP, represents overall experience)
+if current_xp >= next_level_xp:
+    level_up_standard()  # HP/MP/SP gains, attribute points
+    # NO new abilities from leveling (abilities come from awakenings)
+
+# Track 2: Quirk awakening (event-based, NOT XP-based)
+awakening_stage = character_schema.progression.quirk_awakening_stage  # "Base" → "Awakened" → "Evolved"
+awakening_triggers = progression["awakening_triggers"]  # ["near_death", "emotional_breakthrough", "limit_break"]
+
+# Awakening happens through dramatic events (Module 08 detects)
+def quirk_awakening_event(trigger_type):
+    current_stage = character.quirk_awakening_stage
+    next_stage = get_next_awakening_stage(current_stage)
+    
+    # Apply awakening
+    character.quirk_awakening_stage = next_stage
+    unlock_awakening_abilities(next_stage)
+    
+    # Narrative moment
+    narrate_awakening(trigger_type, next_stage)
+```
+
+**Standard Level-Up** (quirk_awakening type):
+```python
+# XP threshold reached
+narrative = """
+Experience accumulates. LEVEL UP!
+
+Level 8 → 9
+HP: 185 → 195
+MP: 150 → 160
+SP: 120 → 125
+
++2 Attribute Points
++1 Skill Point
+
+Your quirk hasn't changed—still Half-Cold Half-Hot. But you're STRONGER overall. More durable. More experienced.
+
+(Power evolution comes from AWAKENING events, not levels.)
+
+Allocate points?
+"""
+```
+
+**Awakening Event** (separate from leveling):
+```python
+# Triggered by dramatic event (Module 08)
+narrative = """
+[NEAR-DEATH TRIGGER: HP 8/195, 4%]
+[EMOTIONAL BREAKTHROUGH: Father watching, need to prove self]
+
+Villain's attack connects. Vision FADING. Father yelling from distance.
+
+'Todoroki! Use your FULL power!'
+
+Anger surges. NO. Not for him. For ME.
+
+Ice and fire EXPLODE simultaneously—but DIFFERENT. Blue flames. Absolute zero ice.
+
+[QUIRK AWAKENING: Half-Cold Half-Hot → Perfect Temperature Control]
+
+NEW ABILITIES:
+- Flashfreeze Heatwave (AOE simultaneous ice/fire, 30m radius, massive damage)
+- Temperature Gradient Control (create temperature zones, environmental control)
+- Thermal Barrier (absorb/redirect temperature-based attacks)
+
+[Awakening Stage: Base → Awakened]
+[This is power evolution, separate from level progression]
+"""
+```
+
+**Key Distinction**: Levels = general growth (HP/attributes). Awakenings = power evolution (new abilities). Both tracks exist independently.
+
+#### Type 4: milestone_based - Story-Driven Advancement
+
+**Concept**: Power increases through completing story arcs, NOT grinding. Levels granted as narrative rewards.
+
+**Leveling Mechanics**:
+```python
+# milestone_based grants levels as story rewards
+
+# Combat XP minimal (10% of normal, from Module 08)
+combat_xp = 50  # Token amount
+
+# Story milestone completion grants MASSIVE XP and/or direct level grants
+milestone_completion = {
+    "type": "major_arc_complete",
+    "arc_name": "Village Defense",
+    "reward_type": "direct_level_grant",  # or "massive_xp"
+    "levels_granted": 2  # Jump L7 → L9
+}
+
+def complete_milestone(milestone):
+    if milestone["reward_type"] == "direct_level_grant":
+        levels = milestone["levels_granted"]
+        for i in range(levels):
+            level_up_standard()
+        
+        narrative = f"""
+[MAJOR MILESTONE COMPLETE: {milestone['arc_name']}]
+
+The warlord falls. Village saved. Hundreds of lives preserved.
+
+You feel TRANSFORMATION. Not gradual growth. LEAP.
+
+The ordeal FORGED you. Tested limits. Broke through.
+
+[LEVEL JUMP: {character.level - levels} → {character.level}]
+[+{levels} levels from milestone!]
+
+HP: {old_hp} → {new_hp}
+MP: {old_mp} → {new_mp}
+Attribute Points: +{levels * 2}
+
+THIS is how you grow—not grinding weak enemies. CHALLENGES. TRIALS. STORY.
+"""
+    
+    elif milestone["reward_type"] == "massive_xp":
+        xp_grant = milestone["xp_amount"]  # 5000+ XP
+        add_xp(xp_grant)
+        # May trigger multiple level-ups
+```
+
+**Combat XP vs Milestone XP**:
+```python
+# Typical session with milestone_based
+
+# Combat throughout session
+defeat_thugs: +30 XP
+defeat_bandits: +50 XP
+defeat_mini_boss: +100 XP
+Total combat XP: 180 XP (barely anything)
+
+# Milestone at session end
+complete_major_arc("Bandit King Defeated"): +5000 XP
+Result: Level 5 → 8 (triple level-up from single milestone)
+
+narrative = """
+Session Summary:
+- Defeated various enemies: +180 XP (minor progress)
+- COMPLETED MAJOR ARC (Bandit King Defeated): +5000 XP
+
+[MASSIVE GROWTH FROM MILESTONE!]
+[Level 5 → 6 → 7 → 8 (three level-ups!)]
+
+Power surges. You're not the same person who started this quest. FUNDAMENTALLY CHANGED.
+
+Total attribute points to allocate: 6
+Total skill points: 3
+
+This is milestone progression—story drives power, not grinding.
+"""
+```
+
+#### Type 5: static_op - No Mechanical Progression
+
+**Concept**: Character at peak power, NEVER levels up. XP is purely for quest tracking.
+
+**Leveling Mechanics**:
+```python
+# static_op: NO leveling, EVER
+
+current_xp = character_schema.progression.current_xp  # Tracks quests, not power
+current_level = character_schema.progression.level  # ∞ or MAX (never increases)
+
+# XP threshold check
+if current_xp >= arbitrary_threshold:
+    # NO LEVEL-UP
+    # Maybe increment quest counter
+    character.quests_completed += 1
+    
+    narrative = """
+[Quest Complete: +100 XP (tracking only)]
+
+You're already the strongest. This isn't about getting more powerful.
+
+It's about finding PURPOSE. Finding that FIGHT that makes you feel alive again.
+
+[Level: ∞ (unchanging)]
+[Power: MAX (unchanging)]
+[Quests Completed: {quests_completed}]
+
+The journey continues. Not for power. For meaning.
+"""
+```
+
+**Saitama Example**:
+```python
+# Defeats Dragon-level threat
+narrative = """
+One punch. Dragon-level threat down.
+
+People cheering. 'Caped Baldy saved us!'
+
+You smile, wave. Inside: disappointed. Again.
+
+[No XP from combat. No level gain. Already at peak.]
+
+Quest complete marker: +100 XP (tracking only)
+
+Stats unchanged:
+- Level: ∞
+- STR: ∞
+- All stats: ∞
+
+This isn't about numbers anymore. It's about finding that opponent who can make you TRY.
+
+[Quest tracking: 147 Dragon-level threats defeated. Still searching for a challenge.]
+"""
+```
+
+#### Integration Validation
+
+**Level-Up Check**:
+```python
+if "mechanical_systems" not in session_state:
+    ERROR("Session Zero Phase 3 not complete.")
+if "progression" not in session_state.mechanical_systems:
+    ERROR("Progression system not instantiated.")
+
+progression_type = session_state.mechanical_systems["progression"]["type"]
+
+# Route to appropriate level-up system
+if progression_type == "mastery_tiers":
+    check_tier_advancement()
+elif progression_type == "class_based":
+    check_standard_level_up()
+elif progression_type == "quirk_awakening":
+    check_standard_level_up()  # AND monitor awakening triggers separately
+elif progression_type == "milestone_based":
+    check_milestone_completion()  # Combat XP minimal
+elif progression_type == "static_op":
+    pass  # No level-up, ever
+```
+
+#### Common Mistakes
+
+❌ **Standard level-up for all types**: mastery_tiers character "gains Level 7"
+✅ **Type-specific advancement**: mastery_tiers advances TIERS (Journeyman → Expert), not levels
+
+❌ **Forcing awakening on level**: Quirk_awakening character hits level 10 → auto-awakening
+✅ **Event-based awakening**: Awakening triggered by dramatic events (near-death, emotional), NOT levels
+
+❌ **Grinding milestone_based**: Fighting 1000 goblins for XP in milestone system
+✅ **Story focus**: Minimal combat XP, massive milestone XP—encourage story progression
+
+❌ **Leveling static_op**: Saitama gains levels through training
+✅ **No progression**: static_op = peak power, never levels, XP for tracking only
+
+❌ **Missing tier bonuses**: Expert tier character using Initiation stats
+✅ **Apply tier bonuses**: Each tier grants attack/defense bonuses and technique unlocks
+
+❌ **No demonstration**: mastery_tiers character hits XP threshold → auto-advance
+✅ **Require demonstration**: Player must prove mastery to teacher/master before tier advancement
+
+#### Module Completion Criteria
+
+Module 09 progression integration complete when:
+1. ✅ All leveling reads from `session_state.mechanical_systems.progression`
+2. ✅ mastery_tiers uses TIER advancement (Initiation → Master), not levels
+3. ✅ class_based uses standard leveling with class ability unlocks
+4. ✅ quirk_awakening has TWO tracks (levels + awakenings), awakenings event-based
+5. ✅ milestone_based grants levels from story milestones, minimal combat XP
+6. ✅ static_op NEVER levels up, XP for quest tracking only
+7. ✅ Tier demonstrations required for mastery_tiers advancement
+8. ✅ Integration validation checks run at level-up time
+9. ✅ NO hardcoded level-up assumptions (each type different)
+
+---
 
 ## Module Completion Criteria
 

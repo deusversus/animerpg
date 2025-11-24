@@ -8,6 +8,51 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Yen",
+      "starting_amount": 3000,
+      "scarcity": "abundant",
+      "inflation_rate": "none",
+      "special_mechanics": ["student_allowance", "part_time_work"]
+    }
+  },
+  "crafting": {
+    "type": "none",
+    "parameters": {}
+  },
+  "progression": {
+    "type": "class_based",
+    "parameters": {
+      "system_name": "Volleyball Positions",
+      "classes": ["Middle Blocker", "Wing Spiker", "Setter", "Libero", "Ace", "Pinch Server"],
+      "multiclass_rules": "allowed",
+      "special_mechanics": ["team_synergy", "quick_attack_combos"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["training_arcs", "slice_of_life"],
+    "activity_configs": {
+      "training_arcs": {
+        "time_cost": "1_week",
+        "benefits": ["skill_proficiency", "team_synchronization"],
+        "special_mechanics": ["training_camps", "practice_matches"]
+      },
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["morale_boost", "team_bonds"],
+        "special_mechanics": ["meat_buns", "karaoke", "study_sessions"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 ### 1. Introspection vs Action: **5/10** (Balanced Internal/External)

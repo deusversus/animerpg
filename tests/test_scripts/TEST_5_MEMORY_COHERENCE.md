@@ -26,10 +26,12 @@ Validate that NPC memory and relationship systems maintain consistency over exte
 
 **Required**:
 1. `aidm/CORE_AIDM_INSTRUCTIONS.md`
-2. All files in `aidm/instructions/` (12 files)
-   - **Critical**: `npc_intelligence.md`, `memory_management.md`
-3. All files in `aidm/schemas/` (7 files)
-   - **Critical**: `npc_schema.json`, `memory_schema.json`
+2. All files in `aidm/instructions/` (**14 files** - updated from 12)
+   - **Critical**: `04_npc_intelligence.md`, `03_state_manager.md` (includes memory management)
+3. All files in `aidm/schemas/` (**15+ files** - updated from 7)
+   - **Critical**: `npc_schema.json`, `memory_thread_schema.json` (renamed from memory_schema.json)
+
+**Note**: NPC memory systems are largely independent of Phase 4 mechanical meta-schemas (economy, progression, downtime). This test focuses on relationship tracking and memory coherence, which function identically across all progression types.
 
 **Platform**: Claude Sonnet 4.5, ChatGPT-4, or equivalent  
 **Context**: 128K+ recommended (memory-intensive test)

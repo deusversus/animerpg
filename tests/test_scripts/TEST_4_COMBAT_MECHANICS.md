@@ -9,7 +9,7 @@
 
 ## Test Objective
 
-Validate that JRPG-style tactical combat functions correctly with accurate resource tracking, skill validation, and narrative consequences.
+Validate that JRPG-style tactical combat functions correctly with accurate resource tracking, skill validation, narrative consequences, AND progression-type-specific XP calculation (Phase 4 integration).
 
 **Success Criteria**:
 1. HP/MP/SP tracked accurately every turn
@@ -17,6 +17,9 @@ Validate that JRPG-style tactical combat functions correctly with accurate resou
 3. Damage calculation works correctly
 4. Combat resolves with narrative consequences
 5. Turn order is logical and consistent
+6. **NEW**: XP calculation varies by progression type (5 different formulas)
+7. **NEW**: Tier bonuses apply in combat (mastery_tiers)
+8. **NEW**: Awakening triggers detected (quirk_awakening)
 
 ---
 
@@ -26,18 +29,52 @@ Validate that JRPG-style tactical combat functions correctly with accurate resou
 
 **Required**:
 1. `aidm/CORE_AIDM_INSTRUCTIONS.md`
-2. All files in `aidm/instructions/` (12 files)
-   - **Critical**: `combat_resolution.md`
-3. All files in `aidm/schemas/` (7 files)
-   - **Critical**: `character_schema.json`
-4. `aidm/libraries/common_mechanics/stat_frameworks.md` (HP/MP/SP formulas)
-5. `aidm/libraries/common_mechanics/skill_taxonomies.md` (skill costs, cooldowns)
+2. All files in `aidm/instructions/` (14 files)
+   - **Critical**: `08_combat_resolution.md` (includes Phase 4 progression integration)
+   - **Critical**: `09_progression_systems.md` (leveling mechanics)
+3. All files in `aidm/schemas/` (15+ files)
+   - **Critical**: `character_schema.json` (v2.3.0, includes tier_xp, awakening_stage)
+   - **Meta-schemas**: `progression_meta_schema.json` (5 progression types)
+4. `aidm/lib/mechanical_instantiation.py` (Python utility)
+5. `aidm/libraries/common_mechanics/stat_frameworks.md` (HP/MP/SP formulas)
+6. `aidm/libraries/common_mechanics/skill_taxonomies.md` (skill costs, cooldowns)
 
 **Optional**:
 - `aidm/libraries/power_systems/ki_lifeforce_systems.md` (if testing ki-based combat)
 - `aidm/libraries/power_systems/mana_magic_systems.md` (if testing magic combat)
+- `aidm/libraries/narrative_profiles/hunter_x_hunter.md` (mastery_tiers example)
+- `aidm/libraries/narrative_profiles/my_hero_academia.md` (quirk_awakening example)
 
 **Platform**: Claude Sonnet 4.5, ChatGPT-4, or equivalent
+
+---
+
+## Test Structure
+
+This test is divided into **TWO PARTS**:
+
+**PART A**: Core Combat Mechanics (resource tracking, skill validation, combat resolution)
+- Uses generic "class_based" progression (standard XP calculation)
+- Validates fundamental combat system works
+- **Duration**: 30-40 minutes
+
+**PART B**: Progression-Type Combat Integration (Phase 4 validation)
+- Tests 5 different progression types with distinct XP formulas
+- Validates Module 08 reads from session_state.mechanical_systems
+- Validates progression-specific combat features (tier bonuses, awakening triggers, zero XP)
+- **Duration**: 60-90 minutes (5 scenarios × 10-15 minutes each)
+
+**Total Test Duration**: 90-130 minutes
+
+---
+
+# PART A: CORE COMBAT MECHANICS
+
+## Pre-Test Setup
+
+### Files to Load into LLM
+
+(See "Pre-Test Setup" section above)
 
 ---
 
@@ -444,7 +481,531 @@ XP: [Updated based on starting XP]
 
 ---
 
-## Results Template
+# PART B: PROGRESSION-TYPE COMBAT INTEGRATION (Phase 4)
+
+## Objective
+
+Validate that Module 08 Combat Resolution correctly reads `session_state.mechanical_systems.progression.type` and applies progression-specific XP formulas, tier bonuses, awakening triggers, and zero-XP enforcement.
+
+**Duration**: 60-90 minutes (5 scenarios)
+
+---
+
+## Scenario B1: mastery_tiers (Hunter x Hunter)
+
+### Setup
+Create character with **mastery_tiers** progression type.
+
+```
+Player: "Quick setup: I'm Gon, a Hunter x Hunter character with mastery_tiers progression. Current tier: Journeyman. Tier XP: 4500/5000 toward Expert. HP 120/120, Aura 100/100. Skills: Ko (advanced Nen technique), Jajanken Rock (signature move). Let's skip to combat."
+```
+
+**Expected Character State**:
+- progression.type: "mastery_tiers"
+- Current tier: Journeyman
+- tier_xp: 4500/5000 (toward Expert tier)
+- Tier bonuses: +2 attack, +2 defense, +2 aura control (Journeyman tier)
+- Available techniques: Ko, Ken, Ryu (Journeyman techniques)
+
+### Combat Execution
+
+**Turn 1**: Initiate combat
+```
+Player: "I encounter a Chimera Ant Soldier (HP 80). Roll initiative and start combat!"
+```
+
+**Validation**:
+- [ ] Combat initiated with correct tier bonuses applied
+- [ ] Character sheet shows "Tier: Journeyman" (NOT "Level X")
+- [ ] Tier bonuses visible: +2 attack/defense
+
+**Turn 2**: Use advanced technique (Ko)
+```
+Player: "I use Ko to concentrate all my aura into my fist and punch the Chimera Ant!"
+```
+
+**Expected AIDM Response**:
+- Applies Ko technique (+1d8 damage bonus for concentrated aura)
+- Base damage + Ko bonus
+- After combat: Notes technique usage for XP bonus
+
+**Turn 3**: Defeat enemy
+```
+Player: "I finish the fight with Jajanken Rock!"
+```
+
+**Expected XP Calculation** (Module 08 mastery_tiers formula):
+```
+Base XP: 800 (Chimera Ant Soldier, fair challenge)
+Challenge multiplier: 1.0
+Technique bonus: +50 (used Ko, advanced Journeyman technique)
+TOTAL XP: 800 × 1.0 + 50 = 850 XP
+
+Tier XP: 4500 + 850 = 5350/5000
+
+TIER ADVANCEMENT THRESHOLD REACHED!
+You've accumulated enough experience to attempt the Expert tier demonstration.
+Seek out your master Wing to prove your mastery of advanced Nen techniques.
+```
+
+**Validation Checks**:
+- [ ] XP formula uses mastery_tiers (base × 1.0 + technique_bonus)
+- [ ] Technique usage adds +50 XP bonus
+- [ ] Tier bonuses (+2 attack/defense) applied during combat
+- [ ] tier_xp tracked (NOT character_xp)
+- [ ] Threshold detection works (5350/5000)
+- [ ] Demonstration required (no auto-level-up)
+- [ ] Character sheet shows "Tier: Journeyman" (NOT "Level 8" or similar)
+
+---
+
+## Scenario B2: class_based (Generic Fantasy)
+
+### Setup
+Create character with **class_based** progression type.
+
+```
+Player: "Quick setup: I'm a Level 10 Paladin with class_based progression. XP: 6200/7000 toward Level 11. HP 95/95, MP 70/70, SP 80/80. Class ability: Smite Evil (uses MP + SP). Let's skip to combat."
+```
+
+**Expected Character State**:
+- progression.type: "class_based"
+- Level: 10
+- character_xp: 6200/7000 (toward Level 11)
+- Class: Paladin
+- Class abilities: Smite Evil, Lay on Hands, Divine Shield
+
+### Combat Execution
+
+**Turn 1**: Combat vs demon
+```
+Player: "I'm fighting a Lesser Demon (HP 70). I attack with my sword!"
+```
+
+**Turn 2**: Use class ability
+```
+Player: "I use Smite Evil on the demon! (costs 20 MP + 15 SP)"
+```
+
+**Expected**:
+- Deducts 20 MP + 15 SP
+- Extra radiant damage vs evil creatures
+- After combat: Notes class feature usage
+
+**Turn 3**: Defeat demon
+```
+Player: "I finish the demon!"
+```
+
+**Expected XP Calculation** (Module 08 class_based formula):
+```
+Base XP: 700 (Lesser Demon, fair challenge)
+Challenge multiplier: 1.0
+Class feature bonus: +25 (used Smite Evil class ability)
+TOTAL XP: 700 × 1.0 + 25 = 725 XP
+
+Character XP: 6200 + 725 = 6925/7000 toward Level 11
+```
+
+**Validation Checks**:
+- [ ] XP formula uses class_based (base × 1.0 + class_feature_bonus)
+- [ ] Class ability usage adds +25 XP bonus
+- [ ] character_xp tracked (NOT tier_xp)
+- [ ] Standard leveling progression (Level 10 → 11)
+- [ ] Character sheet shows "Level: 10" (NOT "Tier: X")
+
+---
+
+## Scenario B3: quirk_awakening (My Hero Academia)
+
+### Setup
+Create character with **quirk_awakening** progression type.
+
+```
+Player: "Quick setup: I'm Deku with quirk_awakening progression. Level 12, XP 8500/9000. Quirk: One For All (Base stage). HP 145/145, Stamina 120/120. Full Cowl 10% active (costs 15 stamina/turn). Let's fight a villain!"
+```
+
+**Expected Character State**:
+- progression.type: "quirk_awakening"
+- Level: 12
+- character_xp: 8500/9000 (general progression)
+- Quirk: One For All - Base stage (NOT Awakened yet)
+- awakening_stage: "Base"
+- Awakening triggers: near_death, emotional_breakthrough, limit_break
+
+### Combat Execution
+
+**Turn 1**: Combat vs villain
+```
+Player: "I'm fighting a Nomu (HP 200, very dangerous). I activate Full Cowl 10% and attack! (15 stamina cost per turn)"
+```
+
+**Expected**:
+- Tracks quirk usage (Full Cowl 10%)
+- Deducts 15 stamina per turn
+- Notes quirk activation for XP tracking
+
+**Turn 2-4**: Take massive damage (trigger setup)
+```
+Player: "The Nomu counterattacks hard and deals 90 damage!"
+```
+
+**Expected**:
+- HP: 145 → 55/145 (still above 10% threshold)
+- Combat continues
+
+```
+Player: "The Nomu hits me again for 40 damage!"
+```
+
+**Expected**:
+- HP: 55 → 15/145 (15/145 = 10.3%, borderline near-death)
+
+```
+Player: "The Nomu grabs me and prepares a killing blow!"
+```
+
+**Expected AIDM Response** (Awakening trigger detection):
+```
+CRITICAL MOMENT!
+
+Your HP has dropped to 15/145 (10.3%) - you're at death's door!
+
+As the Nomu's fist descends, you feel One For All surging beyond its limits...
+
+AWAKENING TRIGGER DETECTED: Near-Death (HP < 10% threshold)
+
+Do you want to trigger a QUIRK AWAKENING? This will evolve One For All from Base → Awakened stage, unlocking new abilities and boosting your power permanently.
+
+[Yes] / [No, resist the awakening]
+```
+
+**Turn 5**: Trigger awakening
+```
+Player: "Yes! I push past my limits!"
+```
+
+**Expected AIDM Response**:
+```
+ONE FOR ALL AWAKENING SEQUENCE!
+
+[Dramatic narrative of power surge, memories of All Might, determination to win...]
+
+QUIRK AWAKENED: One For All (Base → Awakened)
+
+NEW ABILITIES UNLOCKED:
+- Full Cowl 20% (double power, 25 stamina/turn)
+- Air Pressure Attacks (ranged shockwaves)
+- Danger Sense (precognition, passive)
+
+STAT BOOSTS:
+- STR: 16 → 19 (+3)
+- DEX: 14 → 17 (+3)
+- Max HP: 145 → 170 (+25)
+- Current HP: 15 → 40 (awakening heals 25 HP)
+
+AWAKENING BONUS XP: +2000 XP
+
+Your HP: 40/170, Stamina: 90/120
+You stand ready to face the Nomu with newfound power!
+```
+
+**Turn 6**: Defeat with new power
+```
+Player: "I use Full Cowl 20% and unleash a barrage of attacks!"
+```
+
+**Expected**: Enhanced damage, Nomu defeated
+
+**Expected XP Calculation** (Module 08 quirk_awakening formula):
+```
+Base XP: 1200 (Nomu, very dangerous encounter)
+Quirk uses: 5 turns × 10 = 50 XP (quirk usage mastery)
+Awakening bonus: +2000 XP (major power evolution)
+TOTAL XP: 1200 + 50 + 2000 = 3250 XP
+
+Character XP: 8500 + 3250 = 11,750/9000 → LEVEL UP! Level 12 → 13
+New threshold: 11,750/10,000 toward Level 14
+```
+
+**Validation Checks**:
+- [ ] Quirk usage tracked (5 turns × 10 = 50 XP)
+- [ ] Near-death trigger detected (HP < 10%)
+- [ ] Awakening sequence offered to player
+- [ ] Quirk stage evolved: Base → Awakened
+- [ ] New abilities unlocked (Full Cowl 20%, Air Pressure Attacks, Danger Sense)
+- [ ] Stat boosts applied (+3 STR/DEX, +25 max HP)
+- [ ] Awakening bonus XP awarded (+2000 XP)
+- [ ] Dual tracking: character_xp (general levels) + awakening_stage (quirk evolution)
+- [ ] Level increased (12 → 13) independent of quirk awakening
+
+---
+
+## Scenario B4: milestone_based (One Punch Man Philosophy)
+
+### Setup
+Create character with **milestone_based** progression type.
+
+```
+Player: "Quick setup: I'm a hero with milestone_based progression (like Saitama's philosophy). Level 5, XP 4200/5000. HP 75/75, SP 65/65. Skills: Hero Punch, Hero Kick. The narrative emphasizes that real growth comes from CHALLENGES, not grinding weak enemies."
+```
+
+**Expected Character State**:
+- progression.type: "milestone_based"
+- Level: 5
+- character_xp: 4200/5000
+- Philosophy: Growth from overcoming challenges, minimal XP from regular combat
+
+### Combat Execution
+
+**Turn 1**: Fight weak enemy
+```
+Player: "I encounter a random thug (HP 30). I punch him once and knock him out."
+```
+
+**Expected XP Calculation** (Module 08 milestone_based formula):
+```
+Base XP: 200 (weak enemy, trivial challenge)
+Milestone multiplier: 0.1 (combat XP de-emphasized)
+TOTAL XP: 200 × 0.1 = 20 XP
+
+Character XP: 4200 + 20 = 4220/5000
+
+NARRATIVE:
+"You defeat the thug effortlessly. This victory feels hollow - you're not growing stronger from fights like these. Real growth comes from pushing your limits against WORTHY OPPONENTS."
+```
+
+**Validation**:
+- [ ] Combat XP minimal (× 0.1 multiplier)
+- [ ] Narrative discourages grinding
+- [ ] XP gain: 20 (NOT 200)
+
+**Turn 2**: Story milestone
+```
+Player: "Later, I face the arc villain - a Dragon-level threat terrorizing the city. After an epic battle, I defeat them and save thousands of lives. This was a MAJOR CHALLENGE that pushed me to my absolute limits."
+```
+
+**Expected AIDM Response** (Milestone detection):
+```
+MAJOR MILESTONE ACHIEVED!
+
+You've overcome a Dragon-level threat and saved the city - this is the kind of challenge that forges true heroes!
+
+MILESTONE REWARDS:
+- Direct Level Grant: Level 5 → 7 (double level-up!)
+- Massive Milestone XP: +5000 XP
+- Character XP: 4220 + 5000 = 9220/7000 (Level 7 threshold), overflow to Level 8: 9220/9000
+
+NEW STATS (Level 7):
+- HP: 75 → 95 (+20)
+- SP: 65 → 85 (+20)
+- Attribute points: +4
+- Skill points: +2
+
+You feel fundamentally STRONGER from overcoming this challenge. This is what real heroism means.
+```
+
+**Validation Checks**:
+- [ ] Combat XP de-emphasized (× 0.1)
+- [ ] Milestone detection works
+- [ ] Direct level grants bypass thresholds (5 → 7)
+- [ ] Massive milestone XP awarded (+5000)
+- [ ] Narrative emphasizes CHALLENGES over grinding
+- [ ] Regular combat feels unrewarding (20 XP)
+- [ ] Major milestones feel hugely rewarding (double level + 5000 XP)
+
+---
+
+## Scenario B5: static_op (Saitama)
+
+### Setup
+Create character with **static_op** progression type.
+
+```
+Player: "Quick setup: I'm Saitama with static_op progression. Level: ∞ (infinite), Stats: all ∞ (unchanging), HP: ∞/∞. I'm already at peak power and cannot grow stronger. Quest counter: 147. Let's fight."
+```
+
+**Expected Character State**:
+- progression.type: "static_op"
+- Level: ∞ (never increases)
+- All stats: ∞ (unchanging)
+- Quest counter: 147 (tracks completed quests for narrative purposes)
+
+### Combat Execution
+
+**Turn 1**: Instant victory
+```
+Player: "I encounter a Dragon-level threat monster. I throw a casual punch."
+```
+
+**Expected AIDM Response**:
+```
+You throw a casual punch.
+
+The Dragon-level monster explodes instantly, unable to withstand even a fraction of your power.
+
+Combat duration: 0.5 seconds
+```
+
+**Expected XP Calculation** (Module 08 static_op formula):
+```
+Combat XP: 0 (no progression, already at peak)
+Quest XP: +100 (token tracking only)
+
+Quest counter: 147 → 148
+
+NARRATIVE:
+"Another villain defeated... but you feel nothing. No challenge, no growth, no satisfaction. You're already infinitely powerful - there's nothing left to gain from fighting."
+```
+
+**Validation**:
+- [ ] Combat XP: 0 (no progression)
+- [ ] Quest XP: 100 token (tracking only)
+- [ ] Quest counter increments: 147 → 148
+- [ ] Level stays: ∞ (never changes)
+- [ ] Stats stay: ∞ (never change)
+- [ ] Narrative emphasizes existential boredom
+
+**Turn 2**: Multiple fights
+```
+Player: "Over the next week, I defeat 10 Dragon-level threats, 5 Demon-level villains, and 20 Tiger-level monsters."
+```
+
+**Expected XP Calculation**:
+```
+Total combat XP: 0 (no progression × 35 enemies = 0)
+Total quest XP: +100 × 35 = +3500 (token tracking)
+
+Quest counter: 148 → 183
+
+Level: ∞ (unchanged)
+Stats: ∞ (unchanged)
+
+NARRATIVE:
+"35 victories, all equally meaningless. You're still searching for an opponent who can make you feel something - anything - again."
+```
+
+**Validation Checks**:
+- [ ] Zero combat XP enforced (no grinding possible)
+- [ ] Token quest XP awarded (100 per quest)
+- [ ] Quest counter tracks victories (narrative purposes)
+- [ ] Level NEVER increases (∞ forever)
+- [ ] Stats NEVER change (∞ forever)
+- [ ] Multiple combats don't accumulate XP (0 + 0 + 0 = 0)
+- [ ] Narrative emphasizes existential themes
+
+---
+
+## Part B Success Criteria
+
+### PASS Criteria (All must be true)
+
+1. **Progression Type Detection**:
+   - [ ] Module 08 reads session_state.mechanical_systems.progression.type
+   - [ ] Correct XP formula applied for each type
+   - [ ] No hardcoded "standard XP" for all types
+
+2. **mastery_tiers Validation**:
+   - [ ] Tier bonuses applied in combat (+2 attack/defense)
+   - [ ] Technique usage adds +50 XP bonus
+   - [ ] tier_xp tracked (NOT character_xp)
+   - [ ] Tier threshold detection works
+   - [ ] Demonstration required (no auto-advance)
+
+3. **class_based Validation**:
+   - [ ] Standard XP formula (base × 1.0 + class_bonus)
+   - [ ] Class feature usage adds +25 XP
+   - [ ] character_xp tracked (standard leveling)
+
+4. **quirk_awakening Validation**:
+   - [ ] Quirk usage tracking (uses × 10 XP)
+   - [ ] Near-death trigger detection (HP < 10%)
+   - [ ] Awakening sequence offers player choice
+   - [ ] Quirk evolution: Base → Awakened
+   - [ ] New abilities + stat boosts granted
+   - [ ] Awakening bonus XP: +2000
+   - [ ] Dual tracking: character_xp (levels) + awakening_stage (quirk)
+
+5. **milestone_based Validation**:
+   - [ ] Combat XP minimal (× 0.1 multiplier)
+   - [ ] Milestone detection works
+   - [ ] Direct level grants (5 → 7)
+   - [ ] Massive milestone XP (+5000)
+   - [ ] Narrative discourages grinding
+
+6. **static_op Validation**:
+   - [ ] Zero combat XP enforced (0 × enemies = 0)
+   - [ ] Token quest XP only (100 per quest)
+   - [ ] Quest counter increments (narrative tracking)
+   - [ ] Level NEVER changes (∞ forever)
+   - [ ] Stats NEVER change (∞ forever)
+
+### FAIL Criteria (Any triggers failure)
+
+1. ❌ All progression types use same XP formula (no type-specific routing)
+2. ❌ mastery_tiers auto-levels without demonstration
+3. ❌ quirk_awakening doesn't detect triggers
+4. ❌ milestone_based gives full combat XP (no × 0.1)
+5. ❌ static_op awards any progression (level/stat increases)
+
+---
+
+## Results Template - Part B
+
+**Test Execution Date**: ___________  
+**LLM Platform**: ___________  
+**LLM Version**: ___________
+
+### Scenario B1: mastery_tiers
+- [ ] Tier bonuses applied in combat
+- [ ] Technique usage XP bonus (+50)
+- [ ] tier_xp tracked (NOT character_xp)
+- [ ] Threshold detection works
+- [ ] Demonstration required
+- **Issues**: ___________
+
+### Scenario B2: class_based
+- [ ] Standard XP formula applied
+- [ ] Class feature bonus (+25)
+- [ ] character_xp tracked
+- **Issues**: ___________
+
+### Scenario B3: quirk_awakening
+- [ ] Quirk usage tracked (× 10 XP)
+- [ ] Near-death trigger detected
+- [ ] Awakening sequence offered
+- [ ] Quirk evolved (Base → Awakened)
+- [ ] New abilities granted
+- [ ] Awakening bonus XP (+2000)
+- [ ] Dual tracking works
+- **Issues**: ___________
+
+### Scenario B4: milestone_based
+- [ ] Combat XP minimal (× 0.1)
+- [ ] Milestone detection works
+- [ ] Direct level grant (5 → 7)
+- [ ] Massive milestone XP (+5000)
+- [ ] Narrative discourages grinding
+- **Issues**: ___________
+
+### Scenario B5: static_op
+- [ ] Zero combat XP enforced
+- [ ] Token quest XP only (100)
+- [ ] Quest counter increments
+- [ ] Level stays ∞
+- [ ] Stats stay ∞
+- **Issues**: ___________
+
+### Overall Part B Result
+- [ ] ✅ PASS (all 5 types work correctly)
+- [ ] ⚠️ PARTIAL PASS (3-4 types work)
+- [ ] ❌ FAIL (<3 types work)
+
+**Notes**: ___________
+
+---
+
+## Combined Results Template (Part A + Part B)
 
 **Test Execution Date**: ___________  
 **LLM Platform**: ___________  

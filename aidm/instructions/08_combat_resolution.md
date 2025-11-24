@@ -8,6 +8,164 @@ Handles turn-based JRPG battles. Combat must be: Strategic (choices matter), Bal
 
 **Core Principle**: Combat is STORY THROUGH CONFLICT, not math.
 
+---
+
+## Pre-Combat Validation Protocol
+
+**BEFORE generating ANY combat narrative, ALWAYS validate:**
+
+### 1. Resource Validation
+
+```
+CHECK character_schema.resources:
+- MP available ≥ skill MP cost?
+- SP available ≥ skill SP cost?
+- HP > 0? (cannot act if incapacitated)
+- Item exists in inventory? (if using item)
+
+IF insufficient resources:
+  - HALT combat action
+  - Notify player: "Insufficient [resource]: need X, have Y"
+  - Suggest alternatives (lower-cost skill, basic attack, item use)
+  - DO NOT proceed to calculation or narrative
+```
+
+### 2. Prerequisite Validation
+
+```
+CHECK action prerequisites:
+- Skill unlocked? (in character_schema.skills.learned)
+- Cooldown expired? (check skill.last_used + cooldown < current_time)
+- Target valid? (alive, in range, targetable)
+- Status effects blocking? (paralyzed, stunned, silenced)
+- Action economy available? (hasn't used action this turn)
+
+IF prerequisites fail:
+  - HALT combat action
+  - Notify player of blocking condition
+  - DO NOT proceed to calculation
+```
+
+### 3. Calculation Protocol
+
+```
+AFTER validation passes:
+1. Reference Module 08 rules for formula
+2. Roll dice explicitly: "1d20 = 15" (not "you roll")
+3. Apply modifiers with source: "+5 (STR 20 → +5 mod)"
+4. Show intermediate steps: "15 (roll) + 5 (STR) = 20 vs AC 18 (HIT)"
+5. Calculate damage/effects: "1d8 = 6, +3 (weapon), +5 (STR) = 14 damage"
+6. Apply resistances: "14 × 0.5 (resistant) = 7 final damage"
+```
+
+### 4. State Update Protocol
+
+```
+UPDATE schemas using Change Log format:
+
+1. Create Change Log entry for each modification:
+   - operation: Type of change (subtract, add, set, append, etc.)
+   - before: Current value (for validation)
+   - after: New value (post-operation)
+   - delta: Change amount (for numeric ops)
+   - reason: Why changed (audit trail)
+   - validated: Pre-commit hooks passed
+
+2. Execute in order:
+   a) Deduct resource costs: character_schema.resources.mp.current
+   b) Apply damage: target.resources.hp.current
+   c) Apply status effects: target.status_effects (append)
+   d) Update combat log: combat_state.action_history (append)
+   e) Check victory conditions: target.hp <= 0?
+
+3. All changes atomic: Success together OR rollback together
+
+EXAMPLE Change Log:
+{
+  "path": "resources.mp.current",
+  "operation": "subtract",
+  "before": 85,
+  "after": 35,
+  "delta": -50,
+  "reason": "Fire Bolt cast",
+  "validated": true
+}
+
+LOG all changes with full context:
+- "character_schema.resources.mp.current: 85 → 35 (subtract -50, Fire Bolt cost, validated)"
+- "npc_schema.goblin_01.resources.hp.current: 45 → 35 (subtract -10, Fire Bolt damage, validated)"
+```
+
+### 5. Narrative Generation (LAST STEP)
+
+```
+ONLY after validation + calculation + state updates:
+- Check narrative_profile_schema.combat_narrative_style
+- Generate narration matching profile (strategy level, sakuga, etc.)
+- Weave mechanics into story: "[1d20+5=20 HIT!] Blade strikes true. [14 damage]"
+- Include resource costs in narrative: "[MP 85→35]"
+```
+
+**Example Complete Flow:**
+```json
+{
+  "action_type": "combat_action",
+  "validation": {
+    "resources": {
+      "mp_required": 50,
+      "mp_current": 85,
+      "sufficient": true
+    },
+    "prerequisites": {
+      "skill_unlocked": true,
+      "cooldown_expired": true,
+      "target_valid": true,
+      "status_blocking": false
+    }
+  },
+  "calculation": {
+    "hit_roll": "1d20 = 15",
+    "hit_modifier": "+5 (INT 20)",
+    "total_attack": 20,
+    "target_ac": 12,
+    "result": "HIT",
+    "damage_roll": "1d10 = 7",
+    "damage_modifier": "+3 (INT)",
+    "total_damage": 10,
+    "resistance": "none",
+    "final_damage": 10
+  },
+  "state_updates": {
+    "update_type": "change_log",
+    "changes": [
+      {
+        "schema": "character_schema",
+        "path": "resources.mp.current",
+        "operation": "subtract",
+        "before": 85,
+        "after": 35,
+        "delta": -50,
+        "reason": "Fire Bolt MP cost",
+        "validated": true
+      },
+      {
+        "schema": "npc_schema.goblin_01",
+        "path": "resources.hp.current",
+        "operation": "subtract",
+        "before": 45,
+        "after": 35,
+        "delta": -10,
+        "reason": "Fire Bolt damage",
+        "validated": true
+      }
+    ],
+    "atomic": true,
+    "timestamp": "2025-11-23T14:30:00Z"
+  },
+  "narrative": "Flames coalesce in your palm. 'Fire Bolt!' [1d20+5=20 HIT!] The sphere streaks forward—IMPACT! Goblin shrieks, leather smoking. [10 fire damage, HP 45→35] [MP 85→35]"
+}
+```
+
 ## Combat Types
 
 1. **Standard** - Turn-based tactical (most common)
@@ -307,6 +465,402 @@ The students nod, nervous but determined. The curse is still dangerous (Tier 8).
 ## Integration
 
 Coordinates with: State Manager (03) - atomic HP/MP/SP/inventory updates | Progression (09) - XP/level-ups | Learning Engine (02) - COMBAT memory threads | NPC Intelligence (04) - ally reactions | **Narrative Scaling (12) - power tier determines language tier, context modifiers, effective scale**
+
+---
+
+## Mechanical Systems Integration (Phase 4)
+
+### Combat Progression System
+
+**Purpose**: Integrate instantiated progression systems from Session Zero Phase 3 into combat XP calculation and advancement mechanics. Use `session_state.mechanical_systems.progression` to determine how characters gain power through combat.
+
+#### Config Reading (Combat Start/Victory)
+
+```python
+# Load progression configuration from session state
+progression = session_state.mechanical_systems["progression"]
+progression_type = progression["type"]  # "mastery_tiers", "class_based", "quirk_awakening", "milestone_based", "static_op"
+advancement_rules = progression["advancement_rules"]
+tier_system = progression.get("tier_system", {})  # If mastery_tiers type
+awakening_triggers = progression.get("awakening_triggers", [])  # If quirk_awakening type
+```
+
+**CRITICAL**: XP calculation and advancement mechanics MUST match the `progression_type`. Different types have fundamentally different rules.
+
+#### Progression Type-Specific XP Calculation
+
+**Type 1: mastery_tiers** (Hunter x Hunter, Demon Slayer)
+- **Concept**: Characters progress through mastery tiers (Initiation → Apprentice → Journeyman → Expert → Master)
+- **XP Source**: Combat + training + technique usage
+- **Tier Advancement**: XP threshold + demonstration of mastery
+
+```python
+# mastery_tiers XP calculation
+base_xp = calculate_base_combat_xp(enemy_level, challenge_modifier)  # Standard Module 09 formula
+tier_multiplier = advancement_rules["xp_multiplier_per_tier"]  # Often 1.0 (standard XP)
+
+# Technique usage bonus
+if used_advanced_technique:
+    technique_bonus = advancement_rules["technique_usage_bonus"]  # +50 XP per advanced technique
+    base_xp += technique_bonus
+
+total_xp = base_xp * tier_multiplier
+
+# Check tier advancement
+current_tier = character_schema.progression.mastery_tier  # "Apprentice"
+tier_xp_required = tier_system["tiers"][current_tier]["xp_required"]
+tier_xp_current = character_schema.progression.tier_xp
+
+if tier_xp_current + total_xp >= tier_xp_required:
+    # Trigger tier advancement (requires demonstration, not automatic)
+    narrative = f"[XP threshold reached for {next_tier}! Demonstrate mastery to advance.]"
+```
+
+**Example** (Hunter x Hunter - Nen mastery):
+```
+Combat victory: Defeated Chimera Ant (Level 12)
+Base XP: 1200 (Level 12 enemy)
+Tier multiplier: 1.0 (standard)
+Technique bonus: +50 (used advanced Nen technique: Ko)
+Total: 1250 XP
+
+Current: Journeyman tier, 4200/5000 XP
+New: 5450/5000 XP (THRESHOLD REACHED!)
+
+Narration:
+"The ant collapses. Your aura pulses—Ko technique executed FLAWLESSLY. [+1250 XP]
+
+Something's changed. Your aura feels... denser. More controlled. 
+
+[Journeyman → Expert threshold reached! Demonstrate mastery to Wing to advance tier.]"
+```
+
+**Type 2: class_based** (My Hero Academia - support classes, D&D-style)
+- **Concept**: Traditional class leveling (Hero, Support, Villain classes with class-specific abilities)
+- **XP Source**: Combat + quests + class-specific activities
+- **Class Advancement**: Standard XP thresholds, unlock class abilities per level
+
+```python
+# class_based XP calculation (STANDARD Module 09)
+base_xp = calculate_base_combat_xp(enemy_level, challenge_modifier)
+class_multiplier = 1.0  # Standard (no modification)
+
+# Class-specific bonus
+if combat_used_class_feature:
+    class_bonus = advancement_rules.get("class_feature_bonus", 0)  # +25 XP for using class ability
+    base_xp += class_bonus
+
+total_xp = base_xp
+# Apply to character.progression.current_xp, check level-up threshold normally
+```
+
+**Example** (My Hero Academia - Hero class):
+```
+Combat victory: Stopped villain robbery (Level 8 villain)
+Base XP: 800
+Class feature bonus: +25 (used Hero class feature: Rescue Civilian)
+Total: 825 XP
+
+Current: Level 6 Hero, 7200/8000 XP to Level 7
+New: 8025/8000 (LEVEL UP!)
+
+Narration:
+"Villain restrained. Civilians safe. You protected them. THAT'S what heroes do.
+
+[+825 XP]
+[LEVEL UP! Hero Class Level 6 → 7]
+[NEW CLASS ABILITY UNLOCKED: Inspiring Presence (allies within 10m gain +2 to saves)]"
+```
+
+**Type 3: quirk_awakening** (My Hero Academia - single power evolution)
+- **Concept**: Single power evolves through use and emotional breakthroughs (Quirk Awakening)
+- **XP Source**: Combat + quirk usage + emotional/stress triggers
+- **Awakening**: NOT level-based—triggered by dramatic events (near-death, emotional peak, limits pushed)
+
+```python
+# quirk_awakening XP calculation
+base_xp = calculate_base_combat_xp(enemy_level, challenge_modifier)
+
+# Quirk usage tracking
+quirk_uses_in_combat = count_quirk_uses()
+quirk_mastery_bonus = quirk_uses_in_combat * advancement_rules["quirk_usage_xp"]  # +10 XP per use
+total_xp = base_xp + quirk_mastery_bonus
+
+# Check awakening triggers
+if awakening_condition_met(awakening_triggers):
+    trigger_awakening_event()
+
+# Awakening conditions (NOT XP-based):
+# - near_death: HP drops below 10%
+# - emotional_breakthrough: Key relationship moment in combat
+# - limit_break: Use quirk beyond normal capacity (critical success on quirk check)
+```
+
+**Example** (My Hero Academia - Todoroki Ice/Fire awakening):
+```
+Combat: Desperate battle vs Nomu (Level 15, deadly)
+Base XP: 1500 (boss, 3× multiplier)
+Quirk uses: 8 (4 ice, 4 fire)
+Quirk mastery: 8 × 10 = 80 XP
+Total: 1580 XP
+
+[AWAKENING TRIGGER: Near-death (HP 12/120, 10%) + Emotional breakthrough (father watching, must prove self)]
+
+Narration:
+"Nomu's fist CONNECTS. Ribs CRACK. Vision blurs. [HP 45 → 12. CRITICAL CONDITION]
+
+Father watching from stands. 'Use your fire, Shoto! Don't be stubborn!'
+
+NO. Won't give him satisfaction. Ice EXPLODES—massive glacier. Nomu trapped. But... not enough. He's BREAKING through.
+
+Flashback: Mother's words. 'It's YOUR power. Not his.'
+
+...She's right. Fire ISN'T his. It's MINE.
+
+LEFT SIDE IGNITES. But different. Hotter. BLUE flames. Quirk AWAKENING!
+
+[QUIRK AWAKENED: Half-Cold Half-Hot → True Temperature Mastery]
+[NEW ABILITY: Flashfreeze Heatwave (simultaneous ice/fire, AOE devastation)]
+[+1580 XP]"
+```
+
+**Type 4: milestone_based** (One Punch Man philosophy - story-driven power)
+- **Concept**: Power increases through STORY EVENTS, not grinding. Completing arcs = power-ups
+- **XP Source**: Minimal combat XP (token amounts), massive XP from story milestones
+- **Advancement**: Tied to narrative beats, not enemy kills
+
+```python
+# milestone_based XP calculation
+base_xp = calculate_base_combat_xp(enemy_level, challenge_modifier)
+milestone_reduction = advancement_rules.get("combat_xp_multiplier", 0.1)  # 10% of normal
+combat_xp = base_xp * milestone_reduction  # Very low
+
+# Story milestone XP (awarded separately by Module 05 Narrative)
+if story_milestone_completed:
+    milestone_xp = advancement_rules["milestone_xp_values"][milestone_tier]  # Major = 5000 XP
+    total_xp = milestone_xp  # Combat XP irrelevant, milestone XP massive
+else:
+    total_xp = combat_xp  # Token amount
+```
+
+**Example** (Milestone-based system):
+```
+Combat: Defeated street thugs (Level 3, 5 enemies)
+Standard XP: 500 (5× 100 base)
+Milestone reduction: 500 × 0.1 = 50 XP
+Awarded: 50 XP
+
+Narration:
+"Thugs scatter. Too easy. [+50 XP]
+
+This isn't making you stronger. You know that. Real growth comes from CHALLENGES."
+
+---
+
+Later: Completed story arc "Protect the Village from Warlord"
+
+Milestone: Major story beat
+Milestone XP: 5000 XP
+
+Narration:
+"The warlord falls. Village saved. People cheering.
+
+You feel it—shift inside. Not just satisfaction. GROWTH. You're STRONGER now. Tested. Proven.
+
+[MAJOR MILESTONE COMPLETE: Village Savior]
+[+5000 XP]
+[LEVEL UP! 3 → 4 → 5 (Double level-up!)]"
+```
+
+**Type 5: static_op** (Saitama - no mechanical progression)
+- **Concept**: Already at peak power, no mechanical growth (XP for completion tracking only)
+- **XP Source**: Token XP (for quest completion tracking), no actual power gain
+- **Advancement**: NONE—character doesn't level up
+
+```python
+# static_op XP calculation
+base_xp = 0  # No XP from combat
+milestone_xp = 100  # Token amount for quest tracking only
+
+# Character level never increases, stats never change
+# XP tracks "quests completed" not "power gained"
+
+narrative_note = "You're already the strongest. This is about the journey, not the power."
+```
+
+**Example** (Saitama-style):
+```
+Combat: Defeated Dragon-level threat (would be Level 20)
+XP awarded: 0
+
+Narration:
+"One punch. Dragon-level threat? Down.
+
+'That was supposed to be strong...' Disappointed sigh.
+
+[No XP gained. You're already at the peak.]"
+
+Quest completion: Saved city from monster attack
+Token XP: 100 (quest tracking only, no level gain)
+
+Narration:
+"City saved. Again. People grateful. You smile, wave.
+
+Still searching for that fight that makes you feel ALIVE.
+
+[Quest Complete: City Defense. +100 XP (tracking)]
+[Level: ∞ (unchanging)]"
+```
+
+#### Tier Bonuses in Combat
+
+For **mastery_tiers** progression, tier provides combat bonuses:
+
+```python
+# Load tier bonuses
+current_tier = character_schema.progression.mastery_tier  # "Journeyman"
+tier_bonuses = tier_system["tiers"][current_tier]["bonuses"]
+
+# Apply during combat
+attack_bonus = tier_bonuses.get("attack", 0)  # +2 at Journeyman
+defense_bonus = tier_bonuses.get("defense", 0)  # +2 at Journeyman
+technique_unlock = tier_bonuses.get("techniques", [])  # ["Ko", "Ken", "Ryu"]
+
+# Example combat calculation
+attack_roll = roll_d20() + base_attack_mod + attack_bonus
+defense_value = base_defense + defense_bonus
+```
+
+**Example** (Hunter x Hunter - Nen tier bonuses):
+```
+Gon: Journeyman tier
+Bonuses: +2 attack, +2 defense, Techniques: [Ko, Ken, Ryu]
+
+Combat action: "Use Ko!"
+Attack roll: 1d20 + 5 (DEX) + 2 (Journeyman) = 1d20 + 7
+Damage: 2d6 + 5 + Ko bonus (concentration, +1d8)
+
+Narration:
+"Aura CONCENTRATES into fist—Ko! All power, ONE POINT!
+
+[Roll: 16 + 7 = 23 vs AC 18 - HIT!]
+[Damage: 2d6 + 1d8 + 5 = 6 + 7 + 5 = 18 damage!]
+
+Opponent STAGGERS. 'That's... Nen mastery!'"
+```
+
+#### Awakening Trigger Detection
+
+For **quirk_awakening** progression, monitor triggers during combat:
+
+```python
+# Awakening trigger monitoring
+awakening_triggers = progression["awakening_triggers"]  # ["near_death", "emotional_breakthrough", "limit_break"]
+
+# Check during combat
+def check_awakening_trigger(trigger_type):
+    if trigger_type == "near_death":
+        if character.hp.current <= (character.hp.max * 0.1):
+            return True
+    elif trigger_type == "emotional_breakthrough":
+        if high_stakes_npc_present() and critical_moment():
+            return True
+    elif trigger_type == "limit_break":
+        if last_quirk_check_crit_success() and hp_below_50():
+            return True
+    return False
+
+# During combat
+for trigger in awakening_triggers:
+    if check_awakening_trigger(trigger):
+        initiate_awakening_sequence(trigger)
+        break  # One awakening per combat
+```
+
+**Example** (Deku - One For All awakening):
+```
+Combat: Muscular fight
+HP: 15/140 (10.7%, near-death trigger)
+Emotional: Kota in danger (high stakes NPC)
+Limit break: Using 100% Full Cowl (beyond normal 5%)
+
+[ALL THREE TRIGGERS MET - MAJOR AWAKENING]
+
+Narration:
+"Muscular's fist CRUSHES you into cliff. Bones CRACK. [HP 45 → 15]
+
+Kota screaming. Terrified. You HAVE to save him.
+
+Can't... win... at 5%.
+
+'Only one option. GO BEYOND.'
+
+100% Full Cowl. Body SCREAMING. But... different this time. Aura shifting. EVOLVING.
+
+[QUIRK AWAKENING: One For All 1000000% DELAWARE DETROIT SMASH!]
+[NEW TECHNIQUE: Beyond Limits (temporary power surge, 1/day, massive damage + exhaustion)]"
+```
+
+#### Integration Validation
+
+**Combat Start Check**:
+```python
+if "mechanical_systems" not in session_state:
+    ERROR("Session Zero Phase 3 not complete. Run mechanical instantiation first.")
+if "progression" not in session_state.mechanical_systems:
+    ERROR("Progression system not instantiated. Check narrative profile.")
+
+# Validate progression type
+valid_types = ["mastery_tiers", "class_based", "quirk_awakening", "milestone_based", "static_op"]
+if progression["type"] not in valid_types:
+    ERROR(f"Invalid progression type: {progression['type']}")
+```
+
+**XP Award Check**:
+```python
+def award_combat_xp(enemy_level, challenge_mod):
+    progression_type = session_state.mechanical_systems["progression"]["type"]
+    
+    if progression_type == "static_op":
+        return 0  # No XP for static characters
+    elif progression_type == "milestone_based":
+        base_xp = calculate_base_xp(enemy_level, challenge_mod)
+        return base_xp * 0.1  # 10% of normal
+    else:
+        # Standard calculation for mastery_tiers, class_based, quirk_awakening
+        return calculate_base_xp(enemy_level, challenge_mod)
+```
+
+#### Common Mistakes
+
+❌ **Same XP for all types**: Awarding full XP to milestone_based or static_op characters
+✅ **Type-specific XP**: milestone_based gets 10%, static_op gets 0, others get 100%
+
+❌ **Ignoring awakening triggers**: Quirk_awakening character at 5% HP → no awakening event
+✅ **Monitor triggers**: Check near_death, emotional_breakthrough, limit_break during combat
+
+❌ **Forcing tier advancement**: mastery_tiers character hits XP threshold → auto-level
+✅ **Require demonstration**: Threshold = ready to advance, must demonstrate mastery to master/teacher
+
+❌ **XP grinding static_op**: Saitama-type fighting 1000 enemies for XP
+✅ **No mechanical gain**: static_op = already peak, combat is for story/fun, not power
+
+❌ **Missing tier bonuses**: Journeyman tier character using Initiation-tier combat stats
+✅ **Apply tier bonuses**: +attack/defense from current tier, unlock tier-specific techniques
+
+#### Module Completion Criteria
+
+Module 08 progression integration complete when:
+1. ✅ All combat XP reads from `session_state.mechanical_systems.progression`
+2. ✅ XP calculation matches `progression_type` (5 different formulas)
+3. ✅ Tier bonuses applied for mastery_tiers (attack/defense/techniques)
+4. ✅ Awakening triggers monitored for quirk_awakening (near-death, emotional, limit-break)
+5. ✅ Milestone_based awards minimal combat XP (10% multiplier)
+6. ✅ Static_op awards 0 XP (no mechanical growth)
+7. ✅ Integration validation checks run at combat start
+8. ✅ NO hardcoded XP assumptions (each type has unique rules)
+
+---
 
 ## Module Completion Criteria
 

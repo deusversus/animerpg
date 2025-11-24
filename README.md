@@ -25,7 +25,7 @@ AIDM v2 is a comprehensive instruction set designed for high-quality LLMs (Large
 ### For Players
 
 1. **Choose Your LLM**: Upload these files to ChatGPT, Claude, Gemini, or another high-quality LLM
-2. **Load Core Instructions**: Start by uploading `/docs/CORE_AIDM_INSTRUCTIONS.md`
+2. **Load Core Instructions**: Start by uploading `/dev/CORE_AIDM_INSTRUCTIONS.md`
 3. **Add Essential Schemas**: Upload `/schemas/character_schema.json` and `/schemas/world_state_schema.json`
 4. **Start Session Zero**: Say "I want to begin Session Zero" and follow the AIDM's guided character creation
 5. **Play**: Interact naturally - the AIDM handles everything else
@@ -37,9 +37,9 @@ AIDM v2 is a comprehensive instruction set designed for high-quality LLMs (Large
 
 ### For Developers/Tinkerers
 
-1. **Read Architecture**: See `/docs/ARCHITECTURE.md` for system design
-2. **Check Scope**: See `/docs/SCOPE.md` for what's included/excluded
-3. **Review Guidelines**: See `/docs/DEVELOPMENT.md` for modification guidelines
+1. **Read Architecture**: See `/dev/ARCHITECTURE.md` for system design
+2. **Check Scope**: See `/dev/SCOPE.md` for what's included/excluded
+3. **Review Guidelines**: See `/dev/DEVELOPMENT.md` for modification guidelines
 
 ---
 
@@ -174,7 +174,7 @@ AIDM v2 is built on a modular architecture with 6 core systems:
 5. **Narrative Systems**: Emergent storytelling, drift, and consistency
 6. **Anime Integration**: Research, fusion, and genre adaptation
 
-See `/docs/ARCHITECTURE.md` for detailed system design.
+See `/dev/ARCHITECTURE.md` for detailed system design.
 
 ---
 
@@ -197,7 +197,7 @@ Simple, well-designed systems interact to create unpredictable, engaging experie
 
 **Current Version**: 2.0 (October 2025)  
 **Status**: Production-ready MVP  
-**Last Updated**: See `/docs/STATE.md`
+**Last Updated**: See `/dev/STATE.md`
 
 ### Completed Features
 ✅ Complete AIDM architecture from v1  
@@ -226,7 +226,7 @@ This project is designed to be extended and customized:
 - **Create Templates**: Build example characters, worlds, or scenarios
 - **Improve Instructions**: Refine AIDM behavior based on play experience
 
-See `/docs/DEVELOPMENT.md` for contribution guidelines.
+See `/dev/DEVELOPMENT.md` for contribution guidelines.
 
 ---
 
@@ -248,17 +248,17 @@ See `/docs/DEVELOPMENT.md` for contribution guidelines.
 
 - **Bug Reports**: Create an issue describing the problem
 - **Feature Requests**: Suggest improvements in discussions
-- **Questions**: Check `/docs/DEVELOPMENT.md` for common answers
+- **Questions**: Check `/dev/DEVELOPMENT.md` for common answers
 
 ---
 
 ## Quick Links
 
-- [System Architecture](docs/ARCHITECTURE.md)
-- [Project Scope](docs/SCOPE.md)
-- [Development Guide](docs/DEVELOPMENT.md)
-- [Project Status](docs/STATE.md)
-- [Core AIDM Instructions](docs/CORE_AIDM_INSTRUCTIONS.md)
+- [System Architecture](dev/ARCHITECTURE.md)
+- [Project Scope](dev/SCOPE.md)
+- [Development Guide](dev/DEVELOPMENT.md)
+- [Project Status](dev/STATE.md)
+- [Core AIDM Instructions](dev/CORE_AIDM_INSTRUCTIONS.md)
 
 ---
 

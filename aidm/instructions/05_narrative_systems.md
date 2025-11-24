@@ -820,5 +820,315 @@ CORRECT: "Accept?" → "No." → "Disappointed. 'Understand.'" [Affinity -5] [Go
 WRONG: Session 5 burn building → Session 6 repaired. (world fake, actions meaningless)
 CORRECT: S5 burn → S6 charred ruin, NPC discuss, Guard investigates → S10 new building (months later). (world alive, actions have weight)
 
+---
+
+## Mechanical Systems Integration (Phase 4)
+
+### Downtime Activity System
+
+**Purpose**: Integrate instantiated downtime systems from Session Zero Phase 3 into narrative gameplay. Use `session_state.mechanical_systems.downtime` to determine available activities, mode-specific mechanics, and success criteria.
+
+#### Config Reading (Session Start)
+
+```python
+# Load downtime configuration from session state
+downtime = session_state.mechanical_systems["downtime"]
+enabled_modes = downtime["enabled_modes"]  # Array: ["training_arcs", "slice_of_life", etc.]
+activity_configs = downtime["activity_configs"]  # Dict: {mode_name: {time_requirements, success_criteria, etc.}}
+special_mechanics = downtime.get("special_mechanics", {})  # Profile-specific rules
+```
+
+**CRITICAL**: ONLY offer downtime modes present in `enabled_modes`. Do NOT offer activities for disabled modes.
+
+#### Enabled Modes (6 Types)
+
+**1. training_arcs**
+- **Purpose**: Focused skill/power improvement through dedicated training
+- **Config Fields**: `time_requirements` (hours/days per session), `success_criteria` (DC/roll type), `skill_progression_rate` (XP multiplier), `special_conditions` (masters, facilities)
+- **Example** (Hunter x Hunter): Training Nen with Wing → `time_requirements: "2 weeks intensive"`, `success_criteria: "WIS DC 16"`, `skill_progression_rate: 1.5`, `special_conditions: "Nen master required"`
+
+**2. slice_of_life**
+- **Purpose**: Social bonding, world exploration, low-stakes activities
+- **Config Fields**: `available_activities` (array of activity types), `relationship_impact` (affinity gain multiplier), `narrative_style` (comedic/dramatic/balanced)
+- **Example** (Konosuba): Guild pub drinking → `available_activities: ["guild_quests", "pub_drinking", "shopping", "festivals"]`, `relationship_impact: 1.5`, `narrative_style: "comedic"`
+
+**3. investigation**
+- **Purpose**: Gathering information, solving mysteries, tracking targets
+- **Config Fields**: `investigation_types` (physical_clues, witness_interviews, research, etc.), `skill_checks` (Perception/Investigation/Insight DCs), `information_depth` (superficial/moderate/deep)
+- **Example** (Hunter x Hunter): Tracking bounty target → `investigation_types: ["physical_clues", "witness_interviews"]`, `skill_checks: "Perception DC 14"`, `information_depth: "deep"`
+
+**4. travel**
+- **Purpose**: Moving between locations with encounters/discoveries
+- **Config Fields**: `encounter_frequency` (low/normal/high), `travel_pace` (fast/normal/slow), `discovery_rate` (chance for random discoveries)
+- **Example** (My Hero Academia): City patrol → `encounter_frequency: "high"`, `travel_pace: "normal"`, `discovery_rate: 0.3`
+
+**5. faction_building**
+- **Purpose**: Managing/growing player-created factions or advancing in existing ones
+- **Config Fields**: `management_scope` (personal/organizational/political), `resource_requirements` (gold, influence, members), `growth_mechanics` (recruitment, territory, reputation)
+- **Example** (Naruto): Building shinobi squad → `management_scope: "organizational"`, `resource_requirements: {"influence": 50}`, `growth_mechanics: "recruitment"`
+
+**6. social_links**
+- **Purpose**: Deep relationship development with specific NPCs (Persona-style)
+- **Config Fields**: `link_progression` (tiers/ranks), `activity_types` (conversations, shared activities, gifts), `unlock_bonuses` (mechanical benefits per tier)
+- **Example** (My Hero Academia): Mentor-student bond → `link_progression: "tiers"`, `activity_types: ["training_together", "conversations"]`, `unlock_bonuses: "+5% skill XP at Tier 3"`
+
+#### Offering Downtime Activities
+
+**Protocol**: When player has downtime (no active quest, safe location, time available):
+
+1. **Check Enabled Modes**: `for mode in enabled_modes:`
+2. **Load Mode Config**: `config = activity_configs[mode]`
+3. **Present Options**: Offer mode-specific activities with time requirements and benefits
+4. **Player Chooses**: Player selects activity
+5. **Execute Activity**: Follow mode-specific mechanics
+
+**Example Presentation** (Hunter x Hunter profile):
+```
+"Yorknew City. Quest complete. What now?
+
+DOWNTIME ACTIVITIES AVAILABLE:
+
+1. TRAINING (training_arcs):
+   - Nen mastery with Wing (2 weeks, WIS DC 16, +1.5× skill XP)
+   - Solo aura control practice (1 week, WIS DC 14, +1.0× skill XP)
+
+2. INVESTIGATION (investigation):
+   - Track Phantom Troupe rumors (3 days, Perception DC 16, info gathering)
+   - Research auction security (1 day, Investigation DC 12, intel)
+
+3. SLICE OF LIFE (slice_of_life):
+   - Explore city markets (1 day, relationship +affinity, discoveries)
+   - Meet with Leorio (4 hours, friendship +10, conversation)
+
+Choose activity or continue main quest?"
+```
+
+#### Mode-Specific Execution
+
+**Training Arcs** (Module 09 integration):
+```python
+# Player chooses: "Nen mastery with Wing (2 weeks)"
+config = activity_configs["training_arcs"]
+time_cost = config["time_requirements"]  # "2 weeks intensive"
+dc = config["success_criteria"]  # "WIS DC 16"
+xp_rate = config["skill_progression_rate"]  # 1.5
+
+# Execute
+roll_wis_check(dc=16)
+if success:
+    skill_xp = base_skill_xp * xp_rate  # 200 * 1.5 = 300 XP
+    narrative = "Wing nods. 'Your Ten is stable. Now, Zetsu.' Two weeks of meditation, aura control, exhaustion. [+300 Nen XP]"
+else:
+    skill_xp = base_skill_xp * 0.5  # Partial progress
+    narrative = "Struggling. Aura flickers, unstable. Wing: 'You're forcing it. Relax.' Progress slower than hoped. [+100 Nen XP]"
+```
+
+**Slice of Life** (Narrative System):
+```python
+# Player chooses: "Guild pub drinking (Konosuba)"
+config = activity_configs["slice_of_life"]
+activities = config["available_activities"]  # ["guild_quests", "pub_drinking", ...]
+relationship_mult = config["relationship_impact"]  # 1.5
+style = config["narrative_style"]  # "comedic"
+
+# Execute
+base_affinity = 10
+total_affinity = base_affinity * relationship_mult  # 10 * 1.5 = 15
+
+narrative = """
+Axel Guild. Evening. Aqua SLAMS mug. 'Another round!'
+
+Kazuma sighs. 'We're broke BECAUSE of you...'
+
+Momo: 'I'll... drink water.'
+
+Darkness: 'The ale here is EXQUISITE suffering!' [She's enjoying it way too much]
+
+[Hours blur. Laughter. Aqua crying about debt. Kazuma calculating expenses. Darkness blushing at 'insults.']
+
+[Aqua affinity +15, Kazuma affinity +15, Darkness affinity +15]
+[Comedy beats: 3 | Relationship development: Strong]
+"""
+```
+
+**Investigation** (Skill Check System):
+```python
+# Player chooses: "Track Phantom Troupe (HxH)"
+config = activity_configs["investigation"]
+check_type = config["skill_checks"]  # "Perception DC 16"
+info_depth = config["information_depth"]  # "deep"
+
+# Execute
+roll_perception_check(dc=16)
+if success:
+    reveal_info = "deep"  # Full intel
+    narrative = "Three days. Slum informants. Auction rumors. [Perception 18 vs DC 16 - SUCCESS] Pattern emerges: Phantom Troupe targeting Sept 1st Underground Auction. Kurapika's intel confirmed. Locations, timing, member sightings. You're READY."
+else:
+    reveal_info = "superficial"  # Limited intel
+    narrative = "Three days. Dead ends. Informants scared. [Perception 12 vs DC 16 - PARTIAL] Rumors only: 'Spiders coming.' No specifics. Need better sources or more time."
+```
+
+**Travel** (Encounter Generation):
+```python
+# Player chooses: "Patrol city (MHA)"
+config = activity_configs["travel"]
+encounter_freq = config["encounter_frequency"]  # "high"
+pace = config["travel_pace"]  # "normal"
+discovery_rate = config["discovery_rate"]  # 0.3
+
+# Execute
+generate_encounters(frequency=encounter_freq)  # High = 2-3 encounters per session
+roll_discovery_chance(rate=discovery_rate)  # 30% chance
+
+narrative = """
+Hosu City patrol. Noon. Citizens wave. 'It's [Hero Name]!'
+
+[Encounter 1 - Villain] Purse snatcher. DEX DC 12 to catch. [Success] Tackle, restrain. 'Thanks, hero!' [+5 reputation]
+
+[Encounter 2 - Civilian] Lost child. CHA DC 10 to calm. [Success] Reunite with parents. Mother cries gratefully. [+10 affinity: Civilian Trust]
+
+[Discovery Roll: 85/100 - SUCCESS!] Alley graffiti: villain symbol you don't recognize. Investigation hook unlocked.
+
+[4 hours patrol complete. Reputation +5, Civilian Trust +10, New Quest Hook: Mysterious Symbol]
+"""
+```
+
+**Faction Building** (State Manager Integration):
+```python
+# Player chooses: "Recruit new members (custom faction)"
+config = activity_configs["faction_building"]
+scope = config["management_scope"]  # "organizational"
+resources = config["resource_requirements"]  # {"influence": 50, "gold": 200}
+mechanics = config["growth_mechanics"]  # "recruitment"
+
+# Execute
+check_resources(influence >= 50, gold >= 200)
+if sufficient:
+    roll_charisma_check(dc=14)
+    if success:
+        narrative = "Two weeks recruitment. Tavern postings, word-of-mouth. [CHA 16 vs DC 14 - SUCCESS] Five volunteers: 2 fighters, 1 healer, 2 scouts. Your faction grows. [Members: 8 → 13] [-50 influence, -200 gold]"
+        update_faction_members(+5)
+    else:
+        narrative = "Recruitment attempts. Few interested. [CHA 11 vs DC 14 - FAIL] One volunteer (scout). Disappointing. [Members: 8 → 9] [-50 influence, -200 gold spent]"
+else:
+    narrative = "Insufficient resources. Need 50 influence and 200 gold to recruit. Current: [influence], [gold]."
+```
+
+**Social Links** (Persona-Style Progression):
+```python
+# Player chooses: "Hang out with Todoroki (MHA)"
+config = activity_configs["social_links"]
+progression = config["link_progression"]  # "tiers"
+activity_types = config["activity_types"]  # ["training_together", "conversations"]
+bonuses = config["unlock_bonuses"]  # "+5% skill XP at Tier 3"
+
+# Load current link tier
+todoroki_link = character_schema.social_links["todoroki"]  # {tier: 2, progress: 60/100}
+
+# Execute
+activity_choice = "conversation"  # Player picks
+roll_insight_check(dc=12)  # Understanding Todoroki's complex emotions
+if success:
+    progress = 60 + 25  # 85/100
+    narrative = """
+School rooftop. Todoroki stares at horizon.
+
+You: 'Your father?'
+
+Long silence. 'I hate him. But... I'm becoming like him. Cold. Obsessed.' Voice cracks. 'Is that... inevitable?'
+
+[Insight 15 vs DC 12 - SUCCESS] You see it: fear, not hatred. Fear of losing himself.
+
+You: 'You're not him. You choose warmth. Every day, you choose.'
+
+He looks at you. Nods slowly. 'Thanks.'
+
+[Social Link: Todoroki - Tier 2, 85/100]
+[Relationship deepened]
+"""
+    if progress >= 100:
+        narrative += "\n\n[TIER 3 REACHED! Todoroki Social Link: CLOSE FRIEND] [BONUS UNLOCKED: +5% skill XP when training together]"
+        todoroki_link["tier"] = 3
+        unlock_bonus("+5% skill XP")
+else:
+    progress = 60 + 10  # Partial
+    narrative = "Conversation stilted. Todoroki not ready to open up. [Insight 8 vs DC 12 - PARTIAL] [Social Link: Todoroki - Tier 2, 70/100]"
+```
+
+#### Special Mechanics Integration
+
+Some profiles have unique downtime mechanics in `special_mechanics`:
+
+**Hunter x Hunter**: 
+- `hunter_license_access`: Training facilities discount 20%, investigation intel +1 depth level
+- `nen_meditation`: Daily 1-hour meditation = +5 Nen XP (passive)
+
+**Konosuba**:
+- `debt_consequences`: If currency < 0, slice_of_life activities generate "debt collector" encounters
+- `party_chaos`: Slice_of_life activities have 50% chance of comedic disaster (but higher affinity gains)
+
+**My Hero Academia**:
+- `hero_license_requirements`: Must complete patrol (travel) X hours per week or license suspended
+- `quirk_training_facility`: UA gym access = training_arcs XP +25%
+
+**Example** (Hunter License access):
+```python
+# Player: "Investigate Phantom Troupe" (HxH)
+if character_schema.items.contains("Hunter_License"):
+    # Apply special mechanic
+    info_depth = "deep"  # Upgraded from "moderate"
+    narrative_bonus = "Hunter License grants access to restricted informant networks. Intel quality: DEEP."
+else:
+    info_depth = "moderate"
+```
+
+#### Integration Validation
+
+**Session Start Check**:
+```python
+if "mechanical_systems" not in session_state:
+    ERROR("Session Zero Phase 3 not complete. Run mechanical instantiation first.")
+if "downtime" not in session_state.mechanical_systems:
+    ERROR("Downtime system not instantiated. Check narrative profile.")
+```
+
+**Activity Offering Check**:
+```python
+def offer_downtime_activity(mode_name):
+    if mode_name not in session_state.mechanical_systems["downtime"]["enabled_modes"]:
+        ERROR(f"Mode '{mode_name}' not enabled for this profile. Enabled: {enabled_modes}")
+        return False
+    return True
+```
+
+#### Common Mistakes
+
+❌ **Offering disabled modes**: Konosuba profile doesn't have `investigation` → Don't offer detective work
+✅ **Offer only enabled**: Check `enabled_modes` first → Offer training_arcs and slice_of_life only
+
+❌ **Ignoring time requirements**: Config says "2 weeks" → Narrate as "2 hours"
+✅ **Respect time costs**: "2 weeks intensive training" → Fast-forward 2 weeks, apply consequences
+
+❌ **Generic activities**: All profiles get "go to tavern"
+✅ **Profile-specific**: Hunter x Hunter = Nen training + bounty tracking | Konosuba = pub chaos + guild quests | MHA = hero patrol + quirk training
+
+❌ **No mechanical benefits**: Downtime = pure roleplay, no XP/affinity/intel
+✅ **Apply configs**: Use `skill_progression_rate`, `relationship_impact`, `information_depth` from configs
+
+❌ **Forgetting special mechanics**: Player has Hunter License → No bonus applied
+✅ **Check special_mechanics**: Hunter License = -20% training cost, +1 intel depth
+
+#### Module Completion Criteria
+
+Module 05 downtime integration complete when:
+1. ✅ All downtime activities read from `session_state.mechanical_systems.downtime`
+2. ✅ Only `enabled_modes` are offered to player
+3. ✅ `activity_configs` used for time requirements, DCs, XP rates, bonuses
+4. ✅ Special mechanics applied (Hunter License, debt, hero license)
+5. ✅ Mode-specific execution matches profile (HxH training ≠ Konosuba training)
+6. ✅ Integration validation checks run at session start
+7. ✅ NO hardcoded downtime assumptions (all profiles can have different modes)
+8. ✅ Time costs, skill checks, and rewards respect config values
+
 **End of Module 05** | Next: 08_combat_resolution.md
 

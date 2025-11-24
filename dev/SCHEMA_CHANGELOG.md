@@ -114,6 +114,35 @@
 
 ---
 
+## Version 2.2.0 (2025-10-29)
+
+**Status**: Implemented (Phase 1 - Mechanical Meta-Schemas)
+
+### narrative_profile_schema.json
+
+**Modified**:
+- Added `mechanical_modules` object:
+  - Defines `economy`, `crafting`, `progression`, and `downtime` subsystems.
+  - Allows narrative profiles to select specific mechanical implementations (e.g., "fiat_currency", "mastery_tiers").
+
+**Impact**:
+- ✅ Backward compatible (new optional object).
+- 📝 Enables modular game mechanics based on anime genre.
+
+### New Meta-Schemas (Version 1.0)
+
+**Added**:
+- `economy_meta_schema.json`: Defines economy types (fiat, barter, etc.).
+- `crafting_meta_schema.json`: Defines crafting systems.
+- `progression_meta_schema.json`: Defines leveling/power curves.
+- `downtime_meta_schema.json`: Defines downtime activities.
+
+**Impact**:
+- ✅ New files, no conflict with existing data.
+- 📝 Referenced by `narrative_profile_schema.json`.
+
+---
+
 ## Version 2.4.0 (2025-01-XX)
 
 **Status**: Current (Integration Plan - Narrative Scaling & Ensemble Management)
@@ -490,7 +519,7 @@ Before incrementing any schema version:
 | Schema | Version | Last Updated | Status |
 |--------|---------|--------------|--------|
 | character_schema.json | 2.4.0 | 2025-01-XX | Modified (narrative scaling) |
-| narrative_profile_schema.json | 2.1.0 | 2025-01-XX | Modified (tension prefs) |
+| narrative_profile_schema.json | 2.2.0 | 2025-10-29 | Modified (mechanical modules) |
 | npc_schema.json | 2.3.0 | 2025-01-XX | Modified (ensemble) |
 | world_state_schema.json | 2.2.0 | 2025-10-28 | Modified (faction registry) |
 | faction_schema.json | 2.2.0 | 2025-10-28 | NEW |

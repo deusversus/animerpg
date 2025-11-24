@@ -1,0 +1,79 @@
+{
+  "schema_version": "2.1.0",
+  "profile_id": "narrative_isekai_fantasy",
+  "source_anime": "Overlord (Archetype)",
+  "narrative_scales": {
+    "introspection_vs_action": 4,
+    "comedy_vs_drama": 4,
+    "simple_vs_complex": 6,
+    "power_fantasy_vs_struggle": 1,
+    "explained_vs_mysterious": 4,
+    "fast_paced_vs_slow_burn": 6,
+    "episodic_vs_serialized": 7,
+    "grounded_vs_absurd": 6,
+    "tactical_vs_instinctive": 7,
+    "hopeful_vs_cynical": 7
+  },
+  "storytelling_tropes": {
+    "fourth_wall_breaks": false,
+    "inner_monologue_heavy": true,
+    "visual_metaphor_emphasis": false,
+    "rapid_tonal_shifts": false,
+    "tournament_arc_structure": false,
+    "power_of_friendship": false,
+    "tragic_backstory_reveals": false,
+    "escalating_threat_levels": false,
+    "slice_of_life_interludes": true,
+    "mystery_box_reveals": true,
+    "unreliable_narrator": true,
+    "existential_philosophy": false,
+    "rule_of_cool": true,
+    "mundane_made_epic": false,
+    "tragic_hero_cycle": true
+  },
+  "pacing_rhythm": {
+    "scene_length_preference": "moderate",
+    "arc_length_average": "medium_arcs_6_12_eps",
+    "filler_tolerance": "rare_breathers",
+    "climax_frequency": "rare_peaks",
+    "downtime_ratio": 0.4
+  },
+  "tonal_signature": {
+    "primary_emotions": ["hype", "comedy", "dread"],
+    "violence_level": "graphic",
+    "fanservice_level": "moderate",
+    "horror_elements": "none",
+    "optimism_baseline": "dark"
+  },
+  "mechanical_modules": {
+    "economy": {
+      "type": "fiat_currency",
+      "config": {
+        "currency_name": "Gold Coins",
+        "scarcity": "high"
+      }
+    },
+    "crafting": {
+      "type": "recipe_based",
+      "config": {
+        "crafting_stations": true,
+        "recipe_unlocks": "scrolls"
+      }
+    },
+    "progression": {
+      "type": "class_based",
+      "config": {
+        "max_level": 100,
+        "multiclass_allowed": true,
+        "stat_growth": "fixed"
+      }
+    },
+    "downtime": {
+      "enabled_activities": ["faction_building", "investigation"],
+      "config": {
+        "default_mode": "faction_building",
+        "management_focus": ["military", "economy"]
+      }
+    }
+  }
+}

@@ -6,6 +6,55 @@
 **Confidence Level**: 97%  
 **Last Calibration**: 2025-01-15
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Britannian Pound",
+      "starting_amount": 1000,
+      "scarcity": "normal",
+      "inflation_rate": "none",
+      "special_mechanics": ["corporate_sponsorship", "military_budget", "black_knights_funding"]
+    }
+  },
+  "crafting": {
+    "type": "experimental",
+    "parameters": {
+      "discovery_method": "research",
+      "failure_chance": "moderate",
+      "special_mechanics": ["knightmare_customization", "sakuradite_tech"]
+    }
+  },
+  "progression": {
+    "type": "quirk_awakening",
+    "parameters": {
+      "quirk_name": "Geass",
+      "awakening_stages": ["Contract", "Mastery", "Runaway", "Code"],
+      "evolution_triggers": ["emotional_trauma", "excessive_use", "code_contact"],
+      "special_mechanics": ["eye_activation", "cumulative_cost", "permanent_effect"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["slice_of_life", "faction_building"],
+    "activity_configs": {
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["school_cover", "relationship_building"],
+        "special_mechanics": ["student_council", "festival_events"]
+      },
+      "faction_building": {
+        "time_cost": "1_week",
+        "benefits": ["rebellion_strength", "territory_control"],
+        "special_mechanics": ["zero_persona", "strategic_planning"]
+      }
+    }
+  }
+}
+```
+
 ---
 
 ## Narrative Scales (0-10)

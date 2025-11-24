@@ -7,6 +7,49 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Yen",
+      "starting_amount": 5000,
+      "scarcity": "abundant",
+      "inflation_rate": "none",
+      "special_mechanics": ["hero_association_salary", "supermarket_sales", "threat_level_bonuses"]
+    }
+  },
+  "crafting": {
+    "type": "experimental",
+    "parameters": {
+      "discovery_method": "random",
+      "failure_chance": "low",
+      "special_mechanics": ["cyborg_upgrades_genos", "metal_knight_tech", "hero_costumes"]
+    }
+  },
+  "progression": {
+    "type": "milestone_based",
+    "parameters": {
+      "system_name": "Hero Ranking / Power Growth",
+      "milestone_triggers": ["monster_defeat", "public_recognition", "hero_exam", "threat_response"],
+      "power_grants": ["rank_promotion", "association_perks", "reputation"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["slice_of_life"],
+    "activity_configs": {
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["relaxation", "mundane_life"],
+        "special_mechanics": ["supermarket_shopping", "video_games", "hot_pot_parties"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 ### 1. Introspection vs Action: **6/10** (Action spectacle with existential undercurrent)

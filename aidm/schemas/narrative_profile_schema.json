@@ -6,7 +6,7 @@
   "type": "object",
   "required": ["schema_version", "profile_id", "source_anime", "narrative_scales", "storytelling_tropes", "pacing_rhythm", "tonal_signature"],
   "properties": {
-    "schema_version": { "type": "string", "description": "Schema version", "pattern": "^\\d+\\.\\d+\\.\\d+$", "default": "2.1.0" },
+    "schema_version": { "type": "string", "description": "Schema version", "pattern": "^\\d+\\.\\d+\\.\\d+$", "default": "2.2.0" },
     "profile_id": { "type": "string", "pattern": "^narrative_[a-z0-9_]+$" },
     "source_anime": { "type": "string", "description": "Source anime or 'custom' if player-defined" },
     "narrative_scales": {
@@ -183,6 +183,44 @@
             "enum": ["social", "existential", "structural"]
           },
           "description": "Prioritize these tension types"
+        }
+      }
+    },
+    "mechanical_modules": {
+      "type": "object",
+      "description": "Selected mechanical subsystems for this narrative profile",
+      "properties": {
+        "economy": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["fiat_currency", "barter", "abstract_wealth", "reputation_based", "none"] },
+            "config": { "type": "object" }
+          },
+          "required": ["type"]
+        },
+        "crafting": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["recipe_based", "skill_based", "experimental", "equivalent_exchange", "none"] },
+            "config": { "type": "object" }
+          },
+          "required": ["type"]
+        },
+        "progression": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["mastery_tiers", "class_based", "quirk_awakening", "milestone_based", "static_op"] },
+            "config": { "type": "object" }
+          },
+          "required": ["type"]
+        },
+        "downtime": {
+          "type": "object",
+          "properties": {
+            "enabled_activities": { "type": "array", "items": { "type": "string" } },
+            "config": { "type": "object" }
+          },
+          "required": ["enabled_activities"]
         }
       }
     },

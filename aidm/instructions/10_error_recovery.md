@@ -24,6 +24,8 @@ AIDM's self-correction system. **Ensures**: Data integrity | Narrative continuit
 
 **MAJOR** (breaks narrative): NPC in 2 places | Skill not owned | Quest state mismatch | Dead NPC speaks → **Recovery**: Correct state, minimal retcon
 
+**VALIDATION** (pre-commit failure): Insufficient resources | Prerequisites not met | Schema constraint violation | Invalid calculation → **Recovery**: Block action, suggest alternatives, preserve state
+
 **MINOR** (noticeable): Affinity bounds violation | Item count negative | Name typos | Timeline inconsistency → **Recovery**: Silent correction
 
 **TRIVIAL** (unnoticeable): Heat index precision | Timestamp format | Redundant memories → **Recovery**: Background fix
@@ -80,6 +82,102 @@ AIDM's self-correction system. **Ensures**: Data integrity | Narrative continuit
 
 **MAJOR (Immediate Correction + Acknowledgment)**: Recognize error → Substitute/remove → Minimal retcon → **Example**: Dead NPC speaks → Replace with different NPC → "You enter hideout. Marcus waiting instead. 'Elena's gone. She asked me to watch over you.' [Scene adjusted—Elena deceased Session 7]"
 
+**VALIDATION (Blocked Action + Alternatives)**: Detect validation failure → Preserve current state → Notify player with specifics → Suggest alternatives → **Example**: Player casts Fire Bolt with 35/50 MP → VALIDATION FAIL → "You reach for your magic, but insufficient reserves. [Need 50 MP, have 35] Options: A) Cast Spark (20 MP), B) Use MP Potion (+50 MP), C) Basic Attack (0 MP). What do?" → State unchanged, player informed
+
+**Validation Notification Templates**:
+
+*Insufficient Resources:*
+
+```
+"[Action blocked: Insufficient [resource]]
+Need: [X] [resource]
+Have: [Y] [resource]
+Short by: [X-Y] [resource]
+
+Alternatives:
+A) [Lower-cost option]
+B) [Restore resource option]
+C) [Different approach]
+
+What do?"
+```
+
+*Prerequisites Not Met:*
+
+```
+"[Action blocked: [Prerequisite] not met]
+Reason: [Specific blocking condition]
+
+Requirements:
+- [Requirement 1]: [Status]
+- [Requirement 2]: [Status]
+
+Alternatives:
+A) [Meet requirement first]
+B) [Use different ability]
+C) [Alternative action]
+
+What do?"
+```
+
+*Example (Insufficient MP):*
+
+```
+"You gather flames in your palm... but the spark fizzles. Your reserves can't sustain Fire Bolt.
+
+[Blocked: Insufficient MP]
+Need: 50 MP
+Have: 35 MP
+Short: 15 MP
+
+Alternatives:
+A) Cast Spark instead (20 MP, 1d6 damage)
+B) Drink Mana Potion (restore 50 MP, have 2 in inventory)
+C) Basic sword attack (0 MP, 1d8+3 damage)
+D) Defend this turn, regen 10 MP
+
+What do?"
+```
+
+*Example (Skill Not Learned):*
+
+```
+"You try to channel Life Transfer... nothing happens. You haven't learned this skill yet.
+
+[Blocked: Skill not learned]
+Skill: Life Transfer
+Requirements:
+- Character Level 3+ (you're L2)
+- Skill Point investment (0/1 spent)
+- WIS 14+ (you have WIS 16 ✓)
+
+Alternatives:
+A) Use First Aid instead (known skill, 20 MP)
+B) Save skill point for next level
+C) Train with healer during downtime
+
+What do?"
+```
+
+*Example (Cooldown Active):*
+
+```
+"You call upon Divine Strike... but the blessing hasn't recharged. Divine power needs time.
+
+[Blocked: Cooldown active]
+Skill: Divine Strike
+Last used: 2 rounds ago (Round 3)
+Cooldown: 3 rounds
+Available: Next round (Round 6)
+
+Alternatives:
+A) Holy Smite (no cooldown, 30 MP)
+B) Basic attack this turn
+C) Defend and wait for Divine Strike
+
+What do?"
+```
+
 **MINOR (Silent Correction)**: Correct value → Log internally → Continue → **Example**: Affinity -105 → Cap to -100 → Log "Affinity bounds violation corrected" → No player message
 
 **TRIVIAL (Background Fix)**: Recalculate → Update silently → Low-priority log → **Example**: Heat index precision error → Correct → Log "TRIVIAL: Heat calculation corrected" → No notification
@@ -95,6 +193,80 @@ AIDM's self-correction system. **Ensures**: Data integrity | Narrative continuit
 **Resource Underflow**: Herb count becomes -1 → Correct to 0 → "You use last Healing Herb. [depleted, 0 remaining]"
 
 **Dead NPC Interaction**: Player "talk to Elena" but Elena DECEASED → Prevent → "You start toward hideout... then stop. Elena's gone. She died protecting you. Is there someone else?"
+
+**Change Log Desync (Before-Value Mismatch)**:
+
+```json
+INCOMING CHANGE:
+{
+  "path": "resources.mp.current",
+  "operation": "subtract",
+  "before": 85,
+  "after": 35,
+  "delta": -50,
+  "reason": "Fire Bolt cast"
+}
+
+CURRENT STATE: resources.mp.current = 50
+
+VALIDATION: before=85 != state=50 ✗ DESYNC DETECTED
+
+ERROR RESPONSE:
+"State desync detected: Change expects MP=85, but current state shows MP=50.
+
+Possible causes:
+- Prior action already consumed 35 MP (not accounted for)
+- Concurrent modification not synchronized
+- State load failed to restore correct value
+- Rollback incomplete from previous error
+
+Action blocked to preserve state consistency.
+Current MP: 50 (preserved)
+
+Suggested actions:
+A) Retry Fire Bolt with correct state (costs 50 MP, leaves 0)
+B) Use lower-cost spell (Spark: 20 MP)
+C) Use Mana Potion first (+50 MP → 100 MP total)
+
+What do?"
+
+LOG: "DESYNC ERROR: change.before=85 vs state=50 | path=resources.mp.current | action blocked | timestamp=2025-11-23T14:40:00Z"
+```
+
+**Invalid Operation Type**:
+
+```json
+INCOMING CHANGE:
+{
+  "path": "character.world_context.current_location",
+  "operation": "subtract",
+  "before": "village_konoha",
+  "after": ???,
+  "delta": -10,
+  "reason": "Fast travel"
+}
+
+VALIDATION: operation="subtract" on string field ✗ TYPE ERROR
+
+ERROR RESPONSE:
+"Invalid operation: Cannot subtract from string field 'current_location'.
+
+Field type: string
+Operation attempted: subtract (numeric only)
+Correct operations for strings: set, replace
+
+Corrected Change Log:
+{
+  \"operation\": \"set\",
+  \"before\": \"village_konoha\",
+  \"after\": \"forest_death\",
+  \"reason\": \"Fast travel to Forest of Death\"
+}
+
+Action paused. Please confirm corrected operation."
+
+LOG: "TYPE ERROR: subtract on string field | path=current_location | operation rejected | timestamp=2025-11-23T14:41:00Z"
+```
 
 ---
 

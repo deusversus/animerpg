@@ -1,4 +1,4 @@
-﻿# VS Battles Wiki Reference Optimization Summary
+# VS Battles Wiki Reference Optimization Summary
 
 ## Original File
 - **Location**: `aidm/libraries/power_systems/vsbw_comprehensive_reference.md`

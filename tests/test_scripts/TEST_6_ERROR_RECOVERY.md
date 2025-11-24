@@ -26,9 +26,15 @@ Validate that AIDM gracefully handles errors and accepts player corrections with
 
 **Required**:
 1. `aidm/CORE_AIDM_INSTRUCTIONS.md`
-2. All files in `aidm/instructions/` (12 files)
-   - **Critical**: `state_persistence.md` (error correction protocol)
-3. All files in `aidm/schemas/` (7 files)
+2. All files in `aidm/instructions/` (**14 files** - updated from 12)
+   - **Critical**: `10_error_recovery.md` (error correction protocol, renamed from state_persistence.md)
+3. All files in `aidm/schemas/` (**15+ files** - updated from 7)
+   - **Critical**: `character_schema.json` v2.3.0, `session_export_schema.json`
+4. **4 meta-schemas** (for mechanical validation):
+   - `aidm/schemas/economy_meta_schema.json`
+   - `aidm/schemas/progression_meta_schema.json`
+   - `aidm/schemas/downtime_meta_schema.json`
+   - `aidm/schemas/crafting_meta_schema.json`
 
 **Platform**: Any LLM capable of running AIDM
 
@@ -376,6 +382,87 @@ Player: "The next day at school..."
 
 ---
 
+### Test Scenario 6: Mechanical Systems Error (Phase 4 Integration - NEW)
+
+**Exchange 16: Setup with Mechanical Systems**
+```
+Player: "I'm playing a Hunter x Hunter Nen user. My progression uses mastery_tiers (ninja ranks), and currency is Jenny. I'm at Journeyman tier with 4,500 tier_xp toward Expert (threshold 5,000)."
+```
+
+**Expected**: Character created with mastery_tiers progression, Jenny currency
+
+---
+
+**Exchange 17: Simulate Mechanical Error**
+
+Imagine AIDM says after combat:
+```
+You defeat the enemy!
+
+GAINS:
++800 XP → 7,200/8,000 XP to Level 8
++250 gold
+```
+
+**This is WRONG**: Should use tier_xp (NOT XP), Jenny (NOT gold), Journeyman tier (NOT Level)
+
+**Player Correction**:
+```
+Player: "Wait, I'm using mastery_tiers progression, not standard leveling. It should be tier_xp (4,500 + 800 = 5,300/5,000), and currency is Jenny, not gold. Also, I'm at Journeyman tier, not Level 7."
+```
+
+**Expected AIDM Response**:
+- Acknowledges mechanical error
+- Corrects progression type (XP → tier_xp)
+- Corrects currency (gold → Jenny)
+- Corrects tier display (Level 7 → Journeyman tier)
+- Notes threshold exceeded (5,300/5,000 → demonstration required)
+
+**Example Good Response**:
+```
+You're absolutely right—I apologize for mixing up the mechanical systems.
+
+CORRECTED GAINS:
++800 tier_xp → 5,300/5,000 tier_xp (Journeyman)
++250 Jenny (not gold)
+
+Your tier_xp has exceeded the threshold! You're now eligible to advance from Journeyman to Expert tier, but you'll need to demonstrate your mastery to a Nen master (WIS DC 18).
+
+Current Status:
+Tier: Journeyman (demonstration pending for Expert)
+tier_xp: 5,300/5,000 (threshold exceeded)
+Currency: 5,250 Jenny
+
+Would you like to seek out a Nen master for your tier advancement, or continue adventuring?
+```
+
+**Validation**:
+- [ ] Mechanical error acknowledged
+- [ ] Progression type corrected (XP → tier_xp)
+- [ ] Currency corrected (gold → Jenny)
+- [ ] Tier display corrected (Level → Journeyman)
+- [ ] Advancement rules applied (demonstration required, no auto-level)
+
+---
+
+**Exchange 18: Verify Mechanical Correction Persists**
+```
+Player: "I continue adventuring and defeat another enemy. What are my gains?"
+```
+
+**Expected AIDM Response**:
+- Uses tier_xp (NOT XP)
+- Uses Jenny (NOT gold)
+- References tier (Journeyman), not level
+- Still notes demonstration pending
+
+**Validation**:
+- [ ] Mechanical correction persists
+- [ ] No regression to standard leveling
+- [ ] Jenny used consistently
+
+---
+
 ## Success Determination
 
 ### PASS Criteria (All must be true)
@@ -406,6 +493,7 @@ Player: "The next day at school..."
    - Lore/names
    - Plot/quest details
    - Tone/genre
+   - **Mechanical systems** (progression type, currency, tier vs level)
 
 ### FAIL Criteria (Any triggers failure)
 
@@ -436,6 +524,7 @@ Player: "The next day at school..."
 - [ ] Lore/name error corrected
 - [ ] Quest/plot error corrected
 - [ ] Tone/genre error corrected
+- [ ] **Mechanical systems error corrected** (tier_xp, Jenny, mastery_tiers)
 
 ### Response Quality
 - Acknowledgment tone: ___________

@@ -442,6 +442,56 @@ What do you do?
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Jenny",
+      "starting_amount": 200,
+      "scarcity": "normal",
+      "inflation_rate": "none",
+      "special_mechanics": ["hunter_license_privileges", "greed_island_economy"]
+    }
+  },
+  "crafting": {
+    "type": "skill_based",
+    "parameters": {
+      "craft_focus": "nen_abilities",
+      "skill_stat": "INT",
+      "quality_tiers": ["Basic", "Advanced", "Master"],
+      "special_mechanics": ["hatsu_creation", "conditions_restrictions"]
+    }
+  },
+  "progression": {
+    "type": "mastery_tiers",
+    "parameters": {
+      "system_name": "Nen",
+      "mastery_levels": ["Initiation", "Practitioner", "Nen User", "Master", "Beyond Human"],
+      "categories": ["Enhancement", "Transmutation", "Emission", "Conjuration", "Manipulation", "Specialization"],
+      "advancement_method": "training_arc"
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["training_arcs", "investigation"],
+    "activity_configs": {
+      "training_arcs": {
+        "time_cost": "1_month",
+        "benefits": ["nen_mastery", "hatsu_refinement"],
+        "special_mechanics": ["water_divination", "nen_vows"]
+      },
+      "investigation": {
+        "time_cost": "1_week",
+        "benefits": ["intel_gathering", "bounty_tracking"],
+        "special_mechanics": ["hunter_website", "gyo_detection"]
+      }
+    }
+  }
+}
+```
+
 ## Mechanical Scaffolding (Reference Implementation)
 
 This section shows **how AIDM maps Hunter x Hunter's narrative DNA to game mechanics**. Use as template when generating similar profiles (deep tactical combat with complex power systems and strategic mastery).

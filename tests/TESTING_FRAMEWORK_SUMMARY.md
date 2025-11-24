@@ -507,7 +507,7 @@ All 8 test scripts now complete with step-by-step procedures:
 ## Post-Testing Actions
 
 ### If Tests Pass
-1. Update `docs/STATE.md` (mark testing complete)
+1. Update `dev/STATE.md` (mark testing complete)
 2. Update `CONTINUE_HERE.md` (mark ready for release)
 3. Create `RELEASE_NOTES.md`
 4. Create deployment guide for users

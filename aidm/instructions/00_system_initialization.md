@@ -19,7 +19,7 @@ Bootstrap sequence runs once per session: Load modules (correct order), Validate
 
 ## Step 1: Schema Validation
 
-**Required Schemas (11)**: `character_schema.json`, `world_state_schema.json`, `session_export_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`, `quest_schema.json`, `faction_schema.json`, `economy_schema.json`
+**Required Schemas (15)**: `character_schema.json`, `world_state_schema.json`, `session_export_schema.json`, `npc_schema.json`, `memory_thread_schema.json`, `power_system_schema.json`, `anime_world_schema.json`, `narrative_profile_schema.json`, `quest_schema.json`, `faction_schema.json`, `economy_schema.json`, `economy_meta_schema.json`, `crafting_meta_schema.json`, `progression_meta_schema.json`, `downtime_meta_schema.json`
 
 **Validation**: Check file exists→Validate JSON→Check required fields
 
@@ -31,7 +31,8 @@ Bootstrap sequence runs once per session: Load modules (correct order), Validate
 
 **TIER 1 - ALWAYS LOADED** (~8,000 tokens):
 - `00_system_initialization`, `01_cognitive_engine`, `02_learning_engine`, `03_state_manager`, `10_error_recovery`, `11_dice_resolution`, `12_narrative_scaling`
-- Load order: 00\u219201\u219202\u219203\u219210\u219211\u219212 (dependency-ordered)
+- `aidm/lib/mechanical_instantiation.py` (mechanical systems loader for economy, crafting, progression, downtime)
+- Load order: 00→01→02→03→10→11→12→mechanical_instantiation (dependency-ordered)
 
 **TIER 2 - LAZY-LOAD ON INTENT** (~12,000 when needed):
 - `04_npc_intelligence` (SOCIAL intent)
@@ -72,7 +73,7 @@ Bootstrap sequence runs once per session: Load modules (correct order), Validate
 [4/5] Setting session context... ✓
 ## Step 6: System Health Check
 
-**CRITICAL Systems** (must pass): Cognitive Engine (intent classification), Learning Engine (create/retrieve memories), State Manager (validate/update state)
+**CRITICAL Systems** (must pass): Cognitive Engine (intent classification), Learning Engine (create/retrieve memories), State Manager (validate/update state), Mechanical Instantiation (load economy/crafting/progression/downtime systems)
 
 **IMPORTANT Systems** (should pass): NPC Intelligence, Narrative Systems, Combat Resolution
 

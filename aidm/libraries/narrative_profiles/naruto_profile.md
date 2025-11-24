@@ -7,6 +7,56 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Ryo",
+      "starting_amount": 500,
+      "scarcity": "normal",
+      "inflation_rate": "none",
+      "special_mechanics": ["mission_rewards", "bounty_system", "ninja_tool_shops"]
+    }
+  },
+  "crafting": {
+    "type": "skill_based",
+    "parameters": {
+      "craft_focus": "ninja_tools",
+      "skill_stat": "INT",
+      "quality_tiers": ["Standard", "Advanced", "Legendary"],
+      "special_mechanics": ["chakra_infusion", "sealing_scrolls", "summoning_contracts"]
+    }
+  },
+  "progression": {
+    "type": "mastery_tiers",
+    "parameters": {
+      "system_name": "Chakra / Shinobi Rank",
+      "mastery_levels": ["Academy Student", "Genin", "Chunin", "Jonin", "Kage"],
+      "categories": ["Ninjutsu", "Taijutsu", "Genjutsu", "Kekkei Genkai", "Sage Mode"],
+      "advancement_method": "training_arc"
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["training_arcs", "social_links"],
+    "activity_configs": {
+      "training_arcs": {
+        "time_cost": "1_month",
+        "benefits": ["jutsu_mastery", "chakra_control"],
+        "special_mechanics": ["summoning_training", "sage_mode_training", "rasengan_variants"]
+      },
+      "social_links": {
+        "time_cost": "1_day",
+        "benefits": ["bonds_strengthening", "team_synergy"],
+        "special_mechanics": ["ichiraku_ramen", "hot_springs", "chunin_exam_friendships"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 ### 1. Introspection vs Action: **4/10** (Action-leaning with flashback introspection)

@@ -1,4 +1,4 @@
-﻿# VS Battles Wiki Reference
+# VS Battles Wiki Reference
 
 **Purpose**: VS Battles stat methodology for anime power scaling.
 **Sources**: `/Attack Potency.html`, `/Speed.html`, `/Durability.html`, `/Lifting Strength.html`, `/Striking Strength.html`, `/Range.html`, `/Intelligence.html`, `/Stamina.html`
@@ -38,13 +38,13 @@ Low 7-C Small Town (1-5.8 kt, 5.8) | Lower Hashira | 7-C Town (5.8-100 kt, 17.2)
 Low 4-C Small Star (7.505-136.066 Qt, 18.14) | Boros | 4-C Star (136.066-760.516 Qt, 5.59) | Sun GBE | High 4-C Large Star (760.516 Qt-29.23 Foe, 918.6) | 1 Foe = 10 J | 4-B Solar System (29.23 Foe-20.08 TFoe, 686.97B) | Super Tengen Toppa | 4-A Multi-Solar System (20.08 TFoe-10.53 ZFoe, 524.4M)
 
 **Tier 3** (Cosmic):
-3-C Galaxy (10.53 ZFoe-8.593 YFoe, 816) | Must destroy SPACE | 3-B Multi-Galaxy (8.593 YFoe-2.825 QeFoe, 1.0410) | DBS Angels | 3-A Universe (2.825 QeFoe to any finite) | Observable universe MATTER only | High 3-A (Infinite 3D, ℵ)
+3-C Galaxy (10.53 ZFoe-8.593 YFoe, 816) | Must destroy SPACE | 3-B Multi-Galaxy (8.593 YFoe-2.825 QeFoe, 1.0410) | DBS Angels | 3-A Universe (2.825 QeFoe to any finite) | Observable universe MATTER only | High 3-A (Infinite 3D, ?)
 
 **Tier 2** (Multiversal) - **MULTIPLIERS DON'T APPLY**:
-Low 2-C Universe+ (uncountably infinite > High 3-A, 4D spacetime, ℵ) | Timeline destruction | 2-C Low Multiverse (2-1,000 continuums) | Zeno | 2-B Multiverse (1,001 to any finite) | Rimuru | 2-A Multiverse+ (countably infinite, ℵ) | Anos
+Low 2-C Universe+ (uncountably infinite > High 3-A, 4D spacetime, ?) | Timeline destruction | 2-C Low Multiverse (2-1,000 continuums) | Zeno | 2-B Multiverse (1,001 to any finite) | Rimuru | 2-A Multiverse+ (countably infinite, ?) | Anos
 
 **Tier 1** (Higher Infinity):
-Low 1-C (R^5/5D, ℵ) | 1-C (R^6-R^9/6-9D) | High 1-C (R^10-R^11/10-11D) | 1-B (R^12-R^n finite) | High 1-B (infinite dimensions, ℵ/ℵ+) | Low 1-A (Von Neumann Universe) | 1-A (qualitatively superior to ALL dimensions, NOT quantitative, can extend "1-A+") | Featherine, Akuto peak | High 1-A (meta-qualitative, "High 1-A+" = all extensions) | Kami Tenchi
+Low 1-C (R^5/5D, ?) | 1-C (R^6-R^9/6-9D) | High 1-C (R^10-R^11/10-11D) | 1-B (R^12-R^n finite) | High 1-B (infinite dimensions, ?/?+) | Low 1-A (Von Neumann Universe) | 1-A (qualitatively superior to ALL dimensions, NOT quantitative, can extend "1-A+") | Featherine, Akuto peak | High 1-A (meta-qualitative, "High 1-A+" = all extensions) | Kami Tenchi
 
 **Tier 0** (Boundless): Transcends ALL hierarchies. NO anime characters truly qualify.
 

@@ -8,6 +8,52 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "barter",
+    "parameters": {
+      "trade_goods": ["medicine", "mushi_tobacco", "light_liquid", "services"],
+      "value_ratios": {"medicine": 1, "rare_herbs": 2, "mushi_solutions": 3}
+    }
+  },
+  "crafting": {
+    "type": "skill_based",
+    "parameters": {
+      "craft_focus": "medicine",
+      "skill_stat": "WIS",
+      "quality_tiers": ["Common", "Rare", "Ancient"],
+      "special_mechanics": ["mushi_tobacco_blending", "light_liquid_preparation"]
+    }
+  },
+  "progression": {
+    "type": "milestone_based",
+    "parameters": {
+      "system_name": "Mushi Knowledge",
+      "milestone_triggers": ["resolve_mushi_case", "discover_rare_mushi", "philosophical_revelation"],
+      "power_grants": ["mushi_perception", "ecological_wisdom", "acceptance_mastery"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["travel", "investigation"],
+    "activity_configs": {
+      "travel": {
+        "time_cost": "1_week",
+        "benefits": ["new_locations", "mushi_encounters"],
+        "special_mechanics": ["seasonal_migration", "wandering_lifestyle"]
+      },
+      "investigation": {
+        "time_cost": "1_day",
+        "benefits": ["mushi_identification", "treatment_discovery"],
+        "special_mechanics": ["nature_observation", "journal_documentation"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 ### Scale 0: Introspection vs Action — **9/10 (PEAK Contemplative)**

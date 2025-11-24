@@ -6,6 +6,56 @@
 **Confidence Level**: 96%  
 **Last Calibration**: 2025-01-15
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Yen",
+      "starting_amount": 50000,
+      "scarcity": "normal",
+      "inflation_rate": "none",
+      "special_mechanics": ["jujutsu_sorcerer_salary", "curse_extermination_bonuses"]
+    }
+  },
+  "crafting": {
+    "type": "skill_based",
+    "parameters": {
+      "craft_focus": "cursed_tools",
+      "skill_stat": "INT",
+      "quality_tiers": ["Standard", "Special Grade", "Legendary"],
+      "special_mechanics": ["binding_vows", "cursed_corpse_animation"]
+    }
+  },
+  "progression": {
+    "type": "mastery_tiers",
+    "parameters": {
+      "system_name": "Cursed Energy",
+      "mastery_levels": ["Grade 4", "Grade 3", "Grade 2", "Grade 1", "Special Grade"],
+      "categories": ["Cursed Technique", "Domain Expansion", "Reverse Cursed Technique", "Black Flash", "Barrier Techniques"],
+      "advancement_method": "breakthrough"
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["training_arcs", "investigation"],
+    "activity_configs": {
+      "training_arcs": {
+        "time_cost": "1_month",
+        "benefits": ["cursed_energy_control", "technique_refinement"],
+        "special_mechanics": ["black_flash_awakening", "domain_expansion_training"]
+      },
+      "investigation": {
+        "time_cost": "1_week",
+        "benefits": ["curse_intelligence", "sorcerer_history"],
+        "special_mechanics": ["curse_tracking", "barrier_analysis"]
+      }
+    }
+  }
+}
+```
+
 ---
 
 ## Narrative Scales (0-10)

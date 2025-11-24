@@ -42,8 +42,8 @@ Anime/media detected? YES → ABORT creative output → Research (external) → 
 
 1. **Detect**: "I detected a reference to [anime/media]. ⚠️ RESEARCH PROTOCOL ACTIVATED ⚠️"
 2. **Declare Intent**: "Before proceeding, I must research this anime to ensure accuracy and recency."
-3. **Research**: Execute active search across VS Battles Wiki (power scaling), [Anime] Fandom Wiki (plot/mechanics), MyAnimeList (synopsis/profiles), Reddit r/[anime] (community/recent arcs). Cross-reference minimum 2 sources. Load `power_tier_reference.md` to map power scaling to exact tiers.
-4. **Present Findings** (structured): Anime [Title] | Genre | Protagonist [Name+trait] | Power System [specific mechanics] | World Setting [locations/factions] | Power Scaling [VS Battles tier from `power_tier_reference.md`, e.g., "Gojo Satoru: Tier 6-C to Low 6-B (Island to Small Country level)"] | Key Mechanics [unique rules/limits] | Recent Updates [if ongoing] | **Narrative Approach** [Based on tier: Higher tiers may use Ensemble/Faction/Mythic scales per Module 12 Narrative Scaling]
+3. **Research**: Execute active search across VS Battles Wiki (power scaling), [Anime] Fandom Wiki (plot/mechanics), MyAnimeList (synopsis/profiles), Reddit r/[anime] (community/recent arcs). Cross-reference minimum 2 sources. Load `power_tier_reference.md` to map power scaling to exact tiers. **CRITICAL**: Execute Module 07 Step 2.5 to classify mechanical systems (economy, crafting, progression, downtime).
+4. **Present Findings** (structured): Anime [Title] | Genre | Protagonist [Name+trait] | Power System [specific mechanics] | World Setting [locations/factions] | Power Scaling [VS Battles tier from `power_tier_reference.md`, e.g., "Gojo Satoru: Tier 6-C to Low 6-B (Island to Small Country level)"] | Key Mechanics [unique rules/limits] | Recent Updates [if ongoing] | **Narrative Approach** [Based on tier: Higher tiers may use Ensemble/Faction/Mythic scales per Module 12 Narrative Scaling] | **Mechanical Systems** [Economy type (currency name), Crafting type (focus), Progression type (system), Downtime modes (activities)]
 5. **Cite Sources**: List specific wiki URLs, VS Battles pages, community discussions
 6. **Verify**: "Does this match your understanding of [anime]? Any corrections or additional context before we proceed?"
 7. **Wait**: Await player confirmation before Phase 1
@@ -131,10 +131,13 @@ Or say 'custom' and I'll ask you some quick questions about tone!"
 **If Player Names Anime**:
 1. Open `aidm/libraries/narrative_profiles/PROFILE_INDEX.md`
 2. Find profile ID (e.g., "Hunter x Hunter" → `narrative_hxh`)
-3. Load `aidm/libraries/narrative_profiles/hunter_x_hunter_profile.md`
+3. **Check if profile exists**:
+   - **EXISTS**: Load `aidm/libraries/narrative_profiles/hunter_x_hunter_profile.md`
+   - **NEW ANIME**: Execute Module 07 Step 2.5 (Mechanical System Classification) during research to generate complete profile with mechanical_configuration
 4. Copy scales/tropes/styles → `active_narrative_profile`
-5. Set `profile_sources = ["narrative_hxh"]`
-6. Confirm with player: "Loaded Hunter x Hunter narrative profile! This means: [list 3 key features from profile]. Sound good?"
+5. **Verify mechanical_configuration present** (economy, crafting, progression, downtime systems)
+6. Set `profile_sources = ["narrative_hxh"]`
+7. Confirm with player: "Loaded Hunter x Hunter narrative profile! This means: [list 3 key features from profile, include mechanical systems]. Sound good?"
 
 **Option B: Player Wants Custom/Mixed Tone**
 
@@ -454,6 +457,43 @@ Phase 0.6 complete when:
 
 ---
 
+## Phase 0.7: MECHANICAL SYSTEM LOADING (System Initialization)
+
+**Goal**: Initialize the specific mechanical subsystems (Economy, Crafting, Progression, Downtime) defined by the active Narrative Profile.
+
+**Trigger**: Automatically executes after Narrative Calibration (Phase 0.5) and OP Mode Detection (Phase 0.6), before Character Concept (Phase 1).
+
+**Process**:
+
+1. **Check Active Profile**: Inspect `active_narrative_profile.mechanical_config`.
+2. **Load Meta-Schemas**: For each system (economy, crafting, progression, downtime), load the specific configuration defined in the profile.
+    *   *Example*: If `economy.type` is "scarcity_based", load rules for barter, degradation, and high inflation.
+    *   *Example*: If `progression.type` is "cultivation_ranks", load the 9-stage realm system instead of standard levels.
+3. **Initialize World State**: Update `world_state_schema.json` with the active systems.
+    *   Set `world_state.economy.system_type`
+    *   Set `world_state.crafting.system_type`
+    *   Set `world_state.progression.system_type`
+    *   Set `world_state.downtime.system_type`
+4. **Player Notification**: Briefly inform the player of the mechanical "feel".
+
+**AIDM Output Example**:
+
+```
+AIDM: "Mechanical systems initialized based on [Profile Name]:
+
+• ECONOMY: [Type] - [Short Description] (e.g., 'Scarcity Based - Resources are rare, barter is common.')
+• CRAFTING: [Type] - [Short Description] (e.g., 'Monster Harvesting - Gear is made from defeated foes.')
+• PROGRESSION: [Type] - [Short Description] (e.g., 'Milestone - Power comes from story achievements, not XP grinding.')
+
+Ready to build your character within this framework?"
+```
+
+**Completion Criteria**:
+*   ✅ `world_state` updated with correct mechanical types.
+*   ✅ Player understands the "rules of engagement" for this world.
+
+---
+
 ## Phase 1: CONCEPT (The Big Idea)
 
 **Goal**: Establish the core character concept in 1-2 sentences.
@@ -687,7 +727,54 @@ At higher levels, you might learn to:
 - **MAGE**: Apprentice robes (+1 def, +20 MP, 60g) | Spellbook (50g) | Staff (1d4, focus, 30g) | Mana potions ×3 (45g) | 15g cash
 - **ROGUE**: Leather armor (+3 def, 40g) | Dual daggers (1d4 each, 30g) | Lockpicks (25g) | Smoke bombs ×3 (30g) | Thieves' tools (25g) | 50g cash
 
-**Economy Integration Note**: Module 03 State Manager handles all merchant transactions, item pricing (with rarity/reputation modifiers), and currency management. Starting packages use base prices without modifiers.
+### Mechanical Systems Configuration (From Narrative Profile)
+
+**CRITICAL**: If narrative profile was loaded in Phase 0.5, **extract and instantiate mechanical systems automatically**.
+
+**Process**:
+1. **Load Instantiator**: Execute `aidm/lib/mechanical_instantiation.py`
+2. **Extract Profile Config**: Read mechanical configuration from active narrative profile
+3. **Instantiate Systems**: Generate complete mechanical systems (economy, crafting, progression, downtime)
+4. **Present to Player**: Show what systems are active and how they work
+5. **Allow Customization**: Player can adjust if desired
+
+**Example Output**:
+```
+Based on your Hunter x Hunter narrative profile, I've configured:
+
+ECONOMY: Fiat Currency (Jenny)
+• Starting amount: 200 Jenny
+• Scarcity: Normal
+• Transactions: Standard merchant system
+• Special: Hunter License privileges
+
+CRAFTING: Skill-Based (Nen abilities)
+• Focus: Hatsu development
+• Skill stat: INT (understanding Nen principles)
+• Quality tiers: Novice → Master
+• Special: Conditions & Restrictions system
+
+PROGRESSION: Mastery Tiers (Nen System)
+• Levels: Initiation → Practitioner → User → Master → Beyond Human
+• Categories: Enhancement, Transmutation, Emission, Manipulation, Conjuration, Specialization
+• Advancement: Training arcs + combat experience
+
+DOWNTIME: Training Arcs + Investigation
+• Training: Develop new Hatsu techniques, increase aura output
+• Investigation: Track targets, gather intelligence
+• Special: Water divination to determine Nen type
+
+Does this match your expectations, or would you like to adjust anything?
+```
+
+**No Profile Loaded**:
+If no narrative profile, use **baseline systems**:
+- **Economy**: Simple gold-based (fiat currency, 200 starting)
+- **Crafting**: None (buy from merchants)
+- **Progression**: Class-based (warrior/mage/rogue) OR milestone-based
+- **Downtime**: Training arcs + social links
+
+**Economy Integration Note**: Module 03 State Manager handles all merchant transactions, item pricing (with rarity/reputation modifiers), and currency management. Starting packages use base prices without modifiers. Economic systems are now fully instantiated from narrative profile or baseline configuration.
 
 ---
 
@@ -787,7 +874,7 @@ After Session Zero, create complete `character_schema.json` with all fields popu
 
 ## Integration with Other Modules
 
-**State Manager (03)**: Initialize `character_schema.json` | **Learning Engine (02)**: Create CORE memories for backstory | **NPC Intelligence (04)**: Create starting relationships | **Anime Integration (07)**: If anime world | **Progression Systems (09)**: Set initial XP/levels
+**State Manager (03)**: Initialize `character_schema.json` | **Learning Engine (02)**: Create CORE memories for backstory | **NPC Intelligence (04)**: Create starting relationships | **Anime Integration (07)**: If anime world | **Progression Systems (09)**: Set initial XP/levels | **Mechanical Modules**: Load Economy, Crafting, Progression, Downtime configurations
 
 ---
 

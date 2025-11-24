@@ -8,6 +8,46 @@
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "fiat_currency",
+    "parameters": {
+      "currency_name": "Eris",
+      "starting_amount": 0,
+      "scarcity": "scarce",
+      "inflation_rate": "none",
+      "special_mechanics": ["perpetual_debt", "quest_rewards", "construction_labor"]
+    }
+  },
+  "crafting": {
+    "type": "none",
+    "parameters": {}
+  },
+  "progression": {
+    "type": "class_based",
+    "parameters": {
+      "system_name": "Adventurer Classes",
+      "classes": ["Crusader", "Arch Wizard", "Priest", "Thief", "Adventurer"],
+      "multiclass_rules": "forbidden",
+      "special_mechanics": ["skill_points", "useless_goddess_powers", "explosion_once_per_day"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["slice_of_life"],
+    "activity_configs": {
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["comedy_moments", "party_bonding"],
+        "special_mechanics": ["tavern_shenanigans", "succubus_shop", "giant_toad_hunting", "debt_collection_evasion"]
+      }
+    }
+  }
+}
+```
+
 ## Narrative Scales (0-10)
 
 ### Scale 0: Introspection vs Action — **3/10 (Low-Moderate Introspection)**

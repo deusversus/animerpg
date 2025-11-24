@@ -1,4 +1,4 @@
-﻿# VS Battles Wiki Comprehensive Reference
+# VS Battles Wiki Comprehensive Reference
 
 **Purpose**: VS Battles Wiki stat methodology for anime character power scaling across ALL metrics.
 
@@ -99,15 +99,15 @@
 **Low 2-C: Universe+** | Uncountably infinite > High 3-A | 4D spacetime continuum | Time-traveling gods, 4D beings | Timeline destruction
 **2-C: Low Multiverse** | 2-1,000 spacetime continuums | Zeno (DBS) | Multipliers don't apply
 **2-B: Multiverse** | 1,001 to any finite continuums | Rimuru peak (Slime) | Googolplex still 2-B
-**2-A: Multiverse+** | Countably infinite continuums (ℵ) | Sung Jin-Woo (debated), Anos | Gap to Low 1-C = uncountable (ℵ)
+**2-A: Multiverse+** | Countably infinite continuums (?) | Sung Jin-Woo (debated), Anos | Gap to Low 1-C = uncountable (?)
 
 ### Tier 1: Higher Infinity
 
-**Low 1-C: Low Complex Multiverse** | R^5 (5D), uncountably infinite > Low 2-C, ℵ | 5D beings, Umineko lower
+**Low 1-C: Low Complex Multiverse** | R^5 (5D), uncountably infinite > Low 2-C, ? | 5D beings, Umineko lower
 **1-C: Complex Multiverse** | R^6 to R^9 (6-9D) | Featherine (debated)
 **High 1-C: High Complex Multiverse** | R^10 to R^11 (10-11D) | M-theory entities (rare)
 **1-B: Hyperverse** | R^12 to R^n (finite n) | 12+D beings (extremely rare)
-**High 1-B: High Hyperverse** | Infinite dimensions | Akuto Sai (debated) | Hilbert space (ℵ), uncountable (ℵ+) get "+"
+**High 1-B: High Hyperverse** | Infinite dimensions | Akuto Sai (debated) | Hilbert space (?), uncountable (?+) get "+"
 **Low 1-A: Low Outerverse** | Von Neumann Universe (all dimensional spaces) | Beyond-dimensional (rare)
 **1-A: Outerverse** | Qualitatively superior to ALL dimensional structures | Featherine (Umineko), Akuto peak | NOT quantitative | Can extend infinitely ("1-A+")
 **High 1-A: High Outerverse** | Meta-qualitative superiority | Transcends 1-A framework | Kami Tenchi (debated) | High 1-A+ = all meta-extensions

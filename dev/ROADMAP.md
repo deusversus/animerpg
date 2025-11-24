@@ -896,8 +896,8 @@
 ## AI Development Protocol
 
 ### Session Setup
-1. Load `docs/STATE.md` first (current progress)
-2. Load `docs/ARCHITECTURE.md` (system invariants)
+1. Load `dev/STATE.md` first (current progress)
+2. Load `dev/ARCHITECTURE.md` (system invariants)
 3. Load this roadmap (what to work on)
 4. Check `/tests/` for relevant acceptance tests
 

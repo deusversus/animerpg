@@ -7,7 +7,7 @@ You are assisting with **AIDM v2** (Advanced AI Dungeon Master, Version 2.0), an
 **Complete system overview**: See `README.md`
 
 **Project Structure**:
-- `/docs/*` - Development documentation (ARCHITECTURE, SCOPE, DEVELOPMENT, STATE)
+- `/dev/*` - Development documentation (ARCHITECTURE, SCOPE, DEVELOPMENT, STATE)
 - `/aidm/*` - The actual AIDM system files uploaded to LLMs
   - `/aidm/CORE_AIDM_INSTRUCTIONS.md` - Master control file
   - `/aidm/instructions/*` - Behavioral instruction modules
@@ -16,7 +16,7 @@ You are assisting with **AIDM v2** (Advanced AI Dungeon Master, Version 2.0), an
   - `/aidm/templates/*` - Example templates and starting points
 - `/tools/*` - Development utilities (state validator)
 
-**Critical Context**: Always check `/docs/STATE.md` FIRST to understand current progress, then reference `/docs/ARCHITECTURE.md` for system design and `/docs/SCOPE.md` for boundaries.
+**Critical Context**: Always check `/dev/STATE.md` FIRST to understand current progress, then reference `/dev/ARCHITECTURE.md` for system design and `/dev/SCOPE.md` for boundaries.
 
 ---
 
@@ -50,10 +50,10 @@ You are GitHub Copilot helping build the AIDM system. AIDM is the product—inst
 ### Rule 1: Check Project State Before Every Action
 
 **Before suggesting ANY change**:
-1. Read `/docs/STATE.md` to see current progress
+1. Read `/dev/STATE.md` to see current progress
 2. Check if the file you're modifying already exists
 3. Verify the change aligns with documented architecture
-4. Confirm it's within scope per `/docs/SCOPE.md`
+4. Confirm it's within scope per `/dev/SCOPE.md`
 
 **Never**:
 - Create duplicate files (e.g., `character_schema_v2.json` when `character_schema.json` exists)
@@ -64,7 +64,7 @@ You are GitHub Copilot helping build the AIDM system. AIDM is the product—inst
 ### Rule 2: Update STATE.md After Every Significant Change
 
 **After completing work on any file**:
-1. Open `/docs/STATE.md`
+1. Open `/dev/STATE.md`
 2. Update the relevant status table (✅ Complete, 🔄 In Progress, or ⏳ Pending)
 3. Add entry to "Change Log" section with date and description
 4. Update "File Inventory" counts
@@ -86,7 +86,7 @@ You are GitHub Copilot helping build the AIDM system. AIDM is the product—inst
 
 **If major refactor needed**:
 1. Move old version to `/archive/[date]_[filename]` (create `/archive` if needed)
-2. Document reason in `/docs/STATE.md` changelog
+2. Document reason in `/dev/STATE.md` changelog
 3. Update any files that referenced the old version
 
 **Example**:
@@ -104,24 +104,48 @@ Create: instructions/cognitive_engine_new.md
 
 **File Organization** (NEVER deviate):
 ```
-/docs                    # Project documentation only
-/instructions            # AIDM behavioral instructions only
-/schemas                 # JSON schemas only
-/libraries               # Pre-built knowledge only
-  /genre_tropes          # Anime genre tropes
-  /power_systems         # Power frameworks
-  /common_mechanics      # JRPG mechanics
-/templates               # Example files only
-/tools                   # Validation scripts only
-/isekairpg_old           # Archived v1.0 (READ-ONLY, reference only)
+/dev                     # Permanent development scaffold files
+  ARCHITECTURE.md        # System design and invariants
+  SCOPE.md              # Feature boundaries
+  DEVELOPMENT.md        # Development guidelines
+  STATE.md              # Current project status
+  ROADMAP.md            # Development phases
+  TESTING.md            # Testing procedures
+  TOKEN_OPTIMIZATION_*  # Token optimization guides
+/docs                    # Temporary reports and audits (AI-generated)
+  (empty by default)     # Reports placed here, NOT permanent structure
+/aidm                    # Core AIDM system files
+  /instructions          # AIDM behavioral instructions (14 modules)
+  /schemas               # JSON schemas (15 schemas)
+  /libraries             # Pre-built knowledge (selective load)
+    /genre_tropes        # Anime genre tropes
+    /power_systems       # Power frameworks
+    /common_mechanics    # JRPG mechanics
+    /narrative_profiles  # Anime narrative profiles
+  /templates             # Example files
+  /lib                   # Python utilities (mechanical_instantiation.py)
+/tests                   # Test scripts, results, guides
+/archive                 # Deprecated/completed work products
+/backup                  # System backups
 ```
+
+**File Placement Rules**:
+- **Permanent dev docs** → `/dev/` (ARCHITECTURE, SCOPE, DEVELOPMENT, STATE, ROADMAP, TESTING, TOKEN_OPTIMIZATION_*)
+- **Generated reports/audits** → `/docs/` (completion reports, audits - temporary outputs, not permanent structure)
+- **Root level** → Only README.md and report.md
+
+**Report Generation Guidelines**:
+- Place all reports in `/docs/` directory (NOT /dev or root)
+- Name reports: `[TYPE]_[DATE].md` (e.g., `AUDIT_REPORT_2025-11-24.md`)
+- Reports are temporary documentation, not permanent structure
+- Archive old reports to `/archive/` when superseded
 
 **Never**:
 - Put schemas in `/instructions`
-- Put instructions in `/docs`
+- Put reports in `/dev` (that's for permanent dev docs only)
+- Create files at root level (except README.md, report.md)
 - Create new top-level directories without explicit approval
 - Move files between directories without updating references
-- Delete or modify anything in `/isekairpg_old` (it's archived)
 
 ### Rule 5: Token Optimization is Mandatory
 
@@ -154,7 +178,7 @@ Create: instructions/cognitive_engine_new.md
 - [ ] Word count verification (use 0.75 conversion ratio for token estimation)
 - [ ] All formulas, examples, cross-references intact
 
-**Reference Guide**: See `docs/TOKEN_OPTIMIZATION_METHODOLOGY.md` for:
+**Reference Guide**: See `dev/TOKEN_OPTIMIZATION_METHODOLOGY.md` for:
 - Complete technique library (10 proven methods)
 - Multi-pass optimization process
 - Before/after examples from 74.3% reduction campaign
@@ -234,12 +258,12 @@ Create: instructions/cognitive_engine_new.md
 ### Pattern 1: Creating a New File
 
 **Process**:
-1. Check `/docs/STATE.md` - is this file planned?
-2. Check `/docs/ARCHITECTURE.md` - what should it contain?
-3. Check `/docs/SCOPE.md` - is this in scope?
+1. Check `/dev/STATE.md` - is this file planned?
+2. Check `/dev/ARCHITECTURE.md` - what should it contain?
+3. Check `/dev/SCOPE.md` - is this in scope?
 4. Create file in correct directory
 5. Follow documentation standards
-6. Update `/docs/STATE.md` status tables
+6. Update `/dev/STATE.md` status tables
 7. Add changelog entry
 
 **Template to follow**:
@@ -264,7 +288,7 @@ You:
 2. Check if changes are architectural (need approval?) or minor (proceed)
 3. Make modifications IN PLACE
 4. Validate changes don't break integration points
-5. Update `/docs/STATE.md` changelog
+5. Update `/dev/STATE.md` changelog
 6. If schema changed, check what instructions reference it
 
 **Template to follow**:
@@ -332,7 +356,7 @@ User: "Add multiplayer synchronization"
 
 You:
 "Multiplayer synchronization is explicitly OUT of scope per 
-docs/SCOPE.md (see 'Real-Time Features' section). 
+dev/SCOPE.md (see 'Real-Time Features' section). 
 
 The current design supports:
 - Single-player experiences
@@ -699,10 +723,10 @@ This may require updating ARCHITECTURE.md and SCOPE.md."
 
 ---
 
-**Current State**: Check `/docs/STATE.md`  
-**Architecture**: See `/docs/ARCHITECTURE.md`  
-**Scope**: See `/docs/SCOPE.md`  
-**Guidelines**: See `/docs/DEVELOPMENT.md`
+**Current State**: Check `/dev/STATE.md`  
+**Architecture**: See `/dev/ARCHITECTURE.md`  
+**Scope**: See `/dev/SCOPE.md`  
+**Guidelines**: See `/dev/DEVELOPMENT.md`
 
 ---
 

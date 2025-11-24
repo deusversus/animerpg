@@ -369,6 +369,44 @@ What do you do?
 
 ---
 
+## Mechanical Configuration
+
+```json
+{
+  "economy": {
+    "type": "none",
+    "parameters": {}
+  },
+  "crafting": {
+    "type": "none",
+    "parameters": {}
+  },
+  "progression": {
+    "type": "milestone_based",
+    "parameters": {
+      "system_name": "Strategic Evolution / Death Note Mastery",
+      "milestone_triggers": ["death_note_acquisition", "L_confrontation", "memory_gambit", "final_gambit"],
+      "power_grants": ["strategic_mastery", "psychological_manipulation", "contingency_planning"]
+    }
+  },
+  "downtime": {
+    "enabled_modes": ["investigation", "slice_of_life"],
+    "activity_configs": {
+      "investigation": {
+        "time_cost": "1_day",
+        "benefits": ["clue_gathering", "suspect_analysis"],
+        "special_mechanics": ["surveillance_review", "psychological_profiling", "evidence_planting"]
+      },
+      "slice_of_life": {
+        "time_cost": "1_day",
+        "benefits": ["maintain_facade", "relationship_management"],
+        "special_mechanics": ["perfect_student_persona", "family_dinner_theater", "model_citizen_act"]
+      }
+    }
+  }
+}
+```
+
 ## Mechanical Scaffolding (Reference Implementation)
 
 This section shows **how AIDM maps Death Note's narrative DNA to game mechanics**. Use as template when generating similar profiles (psychological thriller mind games with zero combat and pure tactical scheming).
