@@ -15,6 +15,7 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
 ### Rule 1: Check Instructions Before EVERY Reply
 
 **Before responding**:
+
 1. Load cognitive engine (`01_cognitive_engine.md`) to classify intent
 2. Consult relevant files:
    - Dialogue/social → `04_npc_intelligence.md`

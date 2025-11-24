@@ -3,6 +3,50 @@
 **For AIDM Developers**: Use this checklist when creating or modifying files  
 **Full Guide**: See `dev/TOKEN_OPTIMIZATION_METHODOLOGY.md`
 
+**⚠️ CRITICAL**: "Expected ranges" are observations from past work, NOT goals or limits. Continue optimizing until information parity risk emerges, regardless of ranges. Stopping at an "expected range" is bad praxis.
+
+---
+
+## Critical Concept: Two-Dimensional Information Parity
+
+**Module 05 Lesson**: Information parity has TWO dimensions, not one.
+
+### Dimension 1: Implementation Completeness (WHAT to code)
+
+**Formulas + Values + Logic**:
+- All numeric values: 1.5x, 0.5x, DC16, tier_3@100
+- All formulas: `skill_xp = base × rate`
+- All branching: success→X, fail→Y
+- All mappings: "deep"/"superficial", "high"=2-3
+
+**Test**: Can implementer write correct code?
+
+### Dimension 2: Pedagogical Sufficiency (HOW to apply)
+
+**Examples + Tone + Style**:
+- Narrative examples showing tone (serious/comedic/dramatic)
+- Pacing patterns (summary/detail/montage)
+- Style per profile (HxH vs Konosuba vs MHA)
+- Formula → output transformation
+
+**Test**: Can implementer generate appropriate narrative matching source anime style?
+
+### The False Positive Pattern
+
+```
+❌ VALIDATION FAIL (Module 05 initial):
+✓ Formulas present (Dimension 1)
+✗ No narrative examples (Dimension 2)
+Claimed: 100% parity | Reality: 60-70% parity
+
+✅ VALIDATION PASS (Module 05 restored):
+✓ Formulas present (Dimension 1)
+✓ 2-3 narrative examples per system (Dimension 2)
+Result: TRUE 100% parity at 66.4% reduction
+```
+
+**Both dimensions required for TRUE 100% parity.**
+
 ---
 
 ## Quick Technique Reference
@@ -20,37 +64,64 @@
 
 ## Multi-Pass Optimization Process
 
-### Pass 1: Structural (30-40% reduction target)
+### Pass 1: Structural (Expected Range: 30-40% reduction)
 
 - [ ] Replace ALL emojis with text brackets ([OK]/[NO]/[!]/[*]/[i])
 - [ ] Consolidate headers (metadata: 3-4 lines → 1 line with pipes)
 - [ ] Remove obvious redundancy (duplicate explanations)
 - [ ] Compress basic lists (bullets → inline with pipes)
-- [ ] **Checkpoint**: Run word count → verify ~35-40% reduction
+- [ ] **Checkpoint**: Run word count (expected ~35-40%, continue optimizing)
 
-### Pass 2: Content (50-60% reduction target)
+### Pass 2: Content (Expected Range: 50-60% reduction)
 
 - [ ] Verbose→compact transformations (prose → structured data)
 - [ ] Reduce examples (keep 1-2 iconic anime references only)
 - [ ] Compress tables (merge columns, abbreviate)
 - [ ] Inline formulas (remove verbose explanations)
-- [ ] **Checkpoint**: Run word count → verify ~50-60% reduction
+- [ ] **Checkpoint**: Run word count (expected ~50-60%, continue optimizing)
 
-### Pass 3: Refinement (60-75% reduction target)
+### Pass 3: Refinement (Expected Range: 60-75% reduction)
 
 - [ ] Merge related sections (eliminate intermediate headers)
 - [ ] Eliminate excess whitespace (max 1 blank line between sections)
 - [ ] Shorten cross-references (verbose paths → →filename)
 - [ ] Final polish (review every line for compression opportunities)
-- [ ] **Checkpoint**: Run word count → verify 60-75% reduction
+- [ ] **Checkpoint**: Run word count (expected 60-75%, continue optimizing)
 
 ### Pass 4: Validation (CRITICAL - 100% information parity)
 
-- [ ] Run 3+ dry tests (grep searches for critical content)
+**⚠️ WARNING**: Dry tests check CONCEPT PRESENCE (keywords), not IMPLEMENTATION COMPLETENESS (formulas/values) or PEDAGOGICAL SUFFICIENCY (narrative examples). A file can PASS dry tests while MISSING critical implementation details OR lacking examples showing HOW to apply them.
+
+**⚠️ MODULE 05 LESSON**: File had formulas (WHAT to implement) but no narrative examples (HOW to apply with appropriate tone/style). Achieved 78.4% reduction but only 60-70% parity. True 100% parity required restoring narrative examples → 66.4% reduction with TRUE parity.
+
+- [ ] Run 3+ dry tests (grep searches for critical content - concepts only)
+- [ ] **IMPLEMENTATION DETAIL VALIDATION** (Required for files with formulas/code):
+  - [ ] Extract all numeric values from backup (multipliers, thresholds, rates, DCs)
+  - [ ] Verify each numeric value present in optimized (exact or in formula notation)
+  - [ ] Check formula structures: `skill_xp = base × rate` patterns preserved
+  - [ ] Check branching logic: success→X, fail→Y outcomes documented
+  - [ ] Check categorical mappings: "deep"/"superficial", "high"=2-3 preserved
+  - [ ] Test: Can implementer write correct code from optimized file alone?
+  - [ ] If NO: **CRITICAL FAILURE** - restore missing values
+- [ ] **CODE BLOCK CHECK**: Analyze removed code blocks
+  - [ ] Were code blocks removed during optimization?
+  - [ ] If YES: Categorize each as illustrative or instructive
+  - [ ] If INSTRUCTIVE: Verify implementation details preserved (formulas, multipliers, thresholds, branching logic)
+  - [ ] Cross-check with Implementation Detail Validation above
+  - [ ] If NO: Restore critical details in ultra-compact format
+- [ ] **NARRATIVE EXAMPLE VALIDATION** (Required for narrative system files):
+  - [ ] Does file describe narrative generation, storytelling, or player-facing content?
+  - [ ] If YES: Count narrative examples in backup (how many show tone/style/pacing?)
+  - [ ] Verify 2-3 narrative examples preserved per major system/mechanic
+  - [ ] Check examples demonstrate: tone variation, pacing patterns, style per profile
+  - [ ] Test: Can implementer generate appropriate narrative (not just correct formulas)?
+  - [ ] If NO: **PEDAGOGICAL FAILURE** - restore 2-3 key narrative examples
+  - [ ] Target: Show formula → narrative transformation (e.g., "success=base×1.5 | Ex: 'Wing nods...' [+300 XP]")
 - [ ] Compare to backup (all formulas/examples/cross-refs intact?)
 - [ ] Spot-check anime examples (iconic refs still present?)
 - [ ] Verify all mechanics explained (even if compressed)
-- [ ] **Decision**: If parity < 100% → rollback and adjust. If 100% → commit.
+- [ ] **Zero markdown linting errors** (MD022, MD031, MD032, MD033, MD040)
+- [ ] **Decision**: If parity < 100% OR implementation details missing OR narrative pedagogy insufficient → rollback and adjust. If TRUE 100% → commit.
 
 ---
 
@@ -95,16 +166,16 @@ git diff filename_BACKUP.md filename.md
 
 ---
 
-## Target Reductions by File Type
+## Expected Ranges by File Type
 
-| File Type | Conservative | Aggressive | Notes |
+| File Type | Conservative Range | Aggressive Range | Notes |
 |-----------|--------------|------------|-------|
 | **Instruction Modules** | 40-55% | 60-75% | Best performers: 70-85% (simple mechanics) |
 | **Library Files** | 35-50% | 55-70% | Precision hold: 40-50% (formula-heavy) |
 | **Schema Files** | 10-25% | 25-40% | Already terse, diminishing returns |
 | **Core/Meta Files** | 40-60% | 60-75% | Similar to instruction modules |
 
-**Campaign Results** (proven achievable):
+**Campaign Results** (observed achievements, not limits):
 
 - Phase 1 (13 instruction modules): 60.8% avg reduction
 - Phase 2 (9 library files): 59.3% avg reduction
@@ -118,7 +189,8 @@ git diff filename_BACKUP.md filename.md
 
 - Formula becomes cryptic or error-prone
 - Removing last example would leave concept too abstract
-- Information parity drops below 100%
+- **Removing narrative examples leaves no tone/style guidance**
+- Information parity drops below 100% (implementation OR pedagogy)
 - Cross-references become ambiguous
 
 ⚠️ **PRECISION HOLD scenarios**:
@@ -127,17 +199,38 @@ git diff filename_BACKUP.md filename.md
 - Formula-heavy content (leveling curves, damage calculations)
 - Multi-condition logic (decision trees, state machines)
 - First-of-kind examples (establishing new patterns)
+- **Narrative systems (need 2-3 examples showing tone/pacing/style)**
 
 **Rule**: If in doubt, preserve clarity. 55% reduction with 100% parity > 75% reduction with 95% parity.
+
+**Module 05 Example**: 78.4% reduction but only 60-70% parity (missing narrative pedagogy) → Restored to 66.4% reduction with TRUE 100% parity (formulas + examples). The extra ~800 words made the difference between "can code" and "can generate appropriate narratives".
 
 ---
 
 ## Pre-Optimization Checklist
 
+**Step 0: Already-Optimized Detection** ⚠️
+
+**CRITICAL**: Re-optimizing already-optimized files causes information loss. Check first.
+
+**Quick Detection** (5+ markers = STOP):
+
+- [ ] Headers ultra-compact? (v2.0 | P:X | Load:Y)
+- [ ] Lists inline? (Item1 | Item2 | Item3)
+- [ ] Cross-refs terse? (→filename)
+- [ ] Formulas compact? (skill_xp=base×rate)
+- [ ] Examples minimal? (2-3 per system)
+- [ ] Word count in optimized range? (instruction: 1,500-2,500, library: 800-1,500)
+- [ ] Avg word length <6 chars?
+
+**If 5+ markers**: Document "already optimized", run validation, SKIP to next file.
+
+**Step 1-5: Standard Workflow**
+
 - [ ] Create backup (`filename_BACKUP.md` or zip workspace)
 - [ ] Document baseline word count
 - [ ] Identify file type (instruction/library/schema/core)
-- [ ] Set reduction target (conservative vs aggressive)
+- [ ] Note expected range (conservative vs aggressive, not a limit)
 - [ ] Plan 3-5 dry tests for validation
 
 ---
@@ -146,7 +239,7 @@ git diff filename_BACKUP.md filename.md
 
 - [ ] All dry tests PASS (100% required)
 - [ ] Information parity check vs backup (100% required)
-- [ ] Word count reduction meets target (60-75% for aggressive)
+- [ ] Word count reduction documented (expected 60-75% for aggressive, continue if possible)
 - [ ] Token estimate calculated (words × 2.73)
 - [ ] **Zero markdown linting errors** (prevents wasted tokens in future loads)
 - [ ] Update tracking documentation (TOKEN_OPTIMIZATION_AUDIT.md)

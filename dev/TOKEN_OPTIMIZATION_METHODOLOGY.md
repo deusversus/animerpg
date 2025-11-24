@@ -6,6 +6,8 @@
 
 **IMPORTANT**: Word-to-token ratio is **2.73** (not 0.75). Use actual LLM token counting for validation.
 
+**CRITICAL TERMINOLOGY**: This methodology uses "**expected ranges**" not "targets". Ranges are observations from past work, NOT goals or limits. Agentic AI should optimize until information parity risk emerges, regardless of whether it has reached, exceeded, or fallen short of expected ranges. Stopping at a "target" is bad praxis - it prevents discovering higher compression ratios while maintaining quality.
+
 ---
 
 ## Philosophy: Machine-Interpreter Oriented Design
@@ -417,6 +419,173 @@ More content after multiple line breaks.
 
 ---
 
+### Category 11: Code Block Preservation (CRITICAL)
+
+**Savings**: Variable - DO NOT optimize if information loss occurs
+
+**CRITICAL DISTINCTION**: Illustrative vs Instructive Code
+
+#### Illustrative Code (Can Be Compressed)
+
+**Definition**: Shows "how to use" existing functionality defined elsewhere. Demonstrates application patterns but contains no unique implementation requirements.
+
+**Characteristics**:
+
+- Repeats behavior documented in prose
+- Shows variations of same pattern
+- Uses generic/placeholder values
+- Can be reconstructed from surrounding documentation
+
+**Example** (Safe to compress):
+
+
+```python
+# Illustrative: Shows how to call existing function
+character = load_character(character_id)
+hp = character.stats["hp"]
+new_hp = apply_damage(hp, damage_amount)
+# → Can compress to: "Load character, apply damage to HP"
+```
+
+#### Instructive Code (MUST Preserve)
+
+**Definition**: Defines "what to implement" - contains unique formulas, thresholds, branching logic, or implementation requirements not documented elsewhere.
+
+**Characteristics**:
+
+- Contains specific numeric values (multipliers, thresholds, rates)
+- Defines branching logic (if success vs fail outcomes)
+- Shows exact formulas (XP = base × rate, affinity = base × mult)
+- Specifies categorical outcomes (success="deep", fail="superficial")
+- Includes function signatures with parameter requirements
+
+**Example** (MUST preserve):
+
+
+```python
+# Instructive: Defines required implementation behavior
+roll_wis_check(dc=16)
+if success:
+    skill_xp = base_skill_xp * xp_rate  # 1.5x multiplier
+    narrative = "Success outcome"
+else:
+    skill_xp = base_skill_xp * 0.5  # 0.5x partial progress
+    narrative = "Failure outcome"
+# → CANNOT remove - defines success=1.5x, fail=0.5x multipliers
+```
+
+#### Code Block Preservation Protocol
+
+**Step 1: Identify Code Type**
+
+For each code block, ask:
+1. Does this define numeric values used in implementation? (thresholds, multipliers, rates)
+2. Does this show branching logic with different outcomes? (if/else with specific results)
+3. Does this specify exact formulas? (calculations not documented in prose)
+4. Could an implementer write correct code without this block?
+
+If YES to questions 1-3 or NO to question 4 → **INSTRUCTIVE** (preserve)
+
+##### Step 2: Preservation Format
+
+For instructive code, convert to ultra-compact formula notation:
+
+
+
+```markdown
+**Execution Formulas**:
+• training_arcs: success=base_xp×rate, fail=base_xp×0.5 | DC from config
+• slice_of_life: affinity=base×relationship_mult | style→narrative
+• investigation: success=deep_info, fail=superficial | DC→depth
+• travel: encounters=2-3(high)/1-2(norm)/0-1(low) | discovery=roll≤rate
+• faction: resources→CHA_check→success(+5mem)/fail(+1mem)
+• social_links: progress +25(success)/+10(partial) | tier_3@100→bonus
+```
+
+**Key Preserved Elements**:
+- Exact multipliers: 1.5x, 0.5x, 2-3 encounters
+- Thresholds: tier_3@100, DC values
+- Branching outcomes: success vs fail deltas
+- Formula structure: base×rate calculations
+- Categorical mappings: "deep" vs "superficial"
+
+##### Step 3: Validation
+
+After compression, verify implementer can answer:
+
+- What numeric values to use? (multipliers, rates, thresholds)
+- What happens on success vs failure? (different outcomes)
+- What formulas to implement? (exact calculations)
+- What branching logic to code? (if/else patterns)
+
+If ANY answer is unclear → **RESTORE MORE DETAIL**
+
+#### Real Example: Downtime System Code Blocks
+
+**BEFORE** (10 Python blocks, ~2000 tokens):
+
+
+```python
+config = activity_configs["training_arcs"]
+dc = config["success_criteria"]  # "WIS DC 16"
+xp_rate = config["skill_progression_rate"]  # 1.5
+
+roll_wis_check(dc=16)
+if success:
+    skill_xp = base_skill_xp * xp_rate  # 200 * 1.5 = 300
+    narrative = "Success text"
+else:
+    skill_xp = base_skill_xp * 0.5  # Partial progress
+    narrative = "Failure text"
+```
+
+[+ 9 more similar blocks for other modes]
+
+**AFTER** (Ultra-compact preservation, ~150 tokens):
+
+
+```markdown
+**Downtime Execution Formulas**:
+• training_arcs: success=base_xp×config.rate(1.5x), fail=base_xp×0.5 | roll DC from config
+• slice_of_life: affinity=base×config.relationship_mult(1.5x) | apply narrative_style
+• investigation: success=deep_info, fail=superficial | skill_check→info_depth
+• travel: encounters=2-3(high)/1-2(norm)/0-1(low) per session | discovery@30% chance
+• faction_building: check_resources→CHA_DC14→success(+5 members,-costs)/fail(+1 member,-costs)
+• social_links: insight_check→success(+25 progress)/partial(+10) | tier_3@100pts→unlock_bonus
+
+**Special Mechanics**:
+• Hunter License: info_depth+1 level (moderate→deep), training_cost-20%
+• Nen Meditation: +5 XP daily passive
+• UA Gym: training_xp×1.25
+• Debt: slice_of_life generates collector encounters if currency<0
+```
+
+**Result**: 93% token reduction (2000→150) while preserving 100% implementation details
+
+#### Anti-Pattern Warning
+
+❌ **DON'T**: Remove code blocks with "concepts preserved" claim without verifying:
+
+```markdown
+❌ BAD: "training_arcs (roll DC, apply XP multiplier)"
+# Missing: What multiplier? 1.5x? 2x? 0.5x on fail? Base calculation?
+```
+
+✅ **DO**: Preserve implementation-critical values:
+
+```markdown
+✅ GOOD: "training_arcs: success=base_xp×1.5, fail=base_xp×0.5 | DC from config"
+# Clear: 1.5x success, 0.5x fail, DC is configurable
+```
+
+#### Integration with Multi-Pass Process
+
+**Pass 1-2**: PRESERVE all code blocks (mark for later analysis)
+**Pass 3**: Categorize each block (illustrative vs instructive)
+**Pass 4**: Compress illustrative blocks, ultra-compact preserve instructive blocks, validate implementation clarity
+
+---
+
 ## Multi-Pass Optimization Process
 
 ### Why Multi-Pass?
@@ -426,7 +595,7 @@ More content after multiple line breaks.
 
 ### The Iterative Approach
 
-#### Pass 1: Structural Optimization (Target: 30-40% reduction)
+#### Pass 1: Structural Optimization (Expected Range: 30-40% reduction)
 
 **Focus**: Low-hanging fruit
 
@@ -435,11 +604,11 @@ More content after multiple line breaks.
 - Obvious redundancy removal
 - Basic list compression
 
-**Checkpoint**: Run word count, validate ~35-40% reduction
+**Checkpoint**: Run word count (expected range ~35-40%, continue optimizing)
 
 ---
 
-#### Pass 2: Content Compression (Target: 50-60% reduction)
+#### Pass 2: Content Compression (Expected Range: 50-60% reduction)
 
 **Focus**: Aggressive compression without information loss
 
@@ -448,11 +617,11 @@ More content after multiple line breaks.
 - Table compression
 - Formula inlining
 
-**Checkpoint**: Run word count, validate ~50-60% reduction
+**Checkpoint**: Run word count (expected range ~50-60%, continue optimizing)
 
 ---
 
-#### Pass 3: Refinement (Target: 60-75% reduction)
+#### Pass 3: Refinement (Expected Range: 60-75% reduction)
 
 **Focus**: Precision optimization
 
@@ -461,7 +630,7 @@ More content after multiple line breaks.
 - Cross-reference shortening
 - Final polish
 
-**Checkpoint**: Run word count, validate 60-75% reduction
+**Checkpoint**: Run word count (expected range 60-75%, continue optimizing)
 
 ---
 
@@ -552,21 +721,84 @@ grep -i "power_tier_reference|stat_frameworks|skill_taxonomies" *.md
 
 **Success Criteria**: 100% of tests return expected content
 
+**CRITICAL WARNING**: Dry tests check CONCEPT PRESENCE, not IMPLEMENTATION COMPLETENESS. A file can pass dry tests while missing critical formulas/values.
+
 ---
 
-#### 2. Information Parity Check
+#### 2. Implementation Detail Validation (CRITICAL FOR CODE-HEAVY FILES)
+
+**Purpose**: Verify numeric values, formulas, and branching logic survived compression
+
+**Method**: Targeted searches for implementation specifics, not just concept keywords
+
+**Example Test Suite** (Downtime System with code blocks):
+
+```powershell
+# ❌ BAD: Only checks concept presence
+grep "training_arcs" file.md  # PASSES even if formula removed
+
+# ✅ GOOD: Checks implementation details
+grep "skill_xp.*base.*rate|base_xp.*×.*rate" file.md  # Formula structure
+grep "1\.5|×1\.5" file.md  # Success multiplier value
+grep "0\.5|×0\.5" file.md  # Failure multiplier value
+grep "success.*fail|if.*else" file.md  # Branching logic
+
+# Full validation
+$backup = Get-Content "file_BACKUP.md" -Raw
+$optimized = Get-Content "file.md" -Raw
+
+# Check for numeric values
+$backup_numbers = [regex]::Matches($backup, '\d+\.?\d*') | Select-Object -ExpandProperty Value | Sort-Object -Unique
+$missing_numbers = @()
+foreach ($num in $backup_numbers) {
+    if (-not ($optimized -match [regex]::Escape($num))) {
+        $missing_numbers += $num
+    }
+}
+if ($missing_numbers.Count -gt 0) {
+    Write-Host "[FAIL] Missing numeric values: $($missing_numbers -join ', ')" -ForegroundColor Red
+}
+
+# Check for formula operators
+$operators = @('×', '\*', '\+', '-', '÷', '/', '=')
+foreach ($op in $operators) {
+    $backup_count = ([regex]::Matches($backup, [regex]::Escape($op))).Count
+    $optimized_count = ([regex]::Matches($optimized, [regex]::Escape($op))).Count
+    if ($optimized_count -lt ($backup_count * 0.8)) {  # Allow 20% reduction for redundant examples
+        Write-Host "[WARN] Significant reduction in operator '$op': $backup_count -> $optimized_count" -ForegroundColor Yellow
+    }
+}
+```
+
+**What to Check**:
+
+- [ ] Numeric values (multipliers, thresholds, rates): 1.5, 0.5, DC16, tier_3@100
+- [ ] Formula structures: `skill_xp = base × rate`, `affinity = base × mult`
+- [ ] Branching outcomes: success→X, fail→Y patterns
+- [ ] Categorical mappings: "deep" vs "superficial", "high" = 2-3 encounters
+- [ ] Function signatures: `roll_wis_check(dc=16)`, parameter requirements
+- [ ] Variable names (if instructive): `base_skill_xp`, `xp_rate`, `info_depth`
+
+**Success Criteria**: ALL implementation-critical values present in original or ultra-compact equivalent
+
+**Failure Mode**: File passes keyword tests but implementer cannot write correct code
+
+---
+
+#### 3. Information Parity Check
 
 **Method**: Side-by-side comparison with backup
 
 **Checklist**:
 
-- [ ] All formulas present and correct
+- [ ] All formulas present and correct (verify with Implementation Detail Validation above)
 - [ ] All anime examples intact (even if abbreviated)
 - [ ] All cross-references functional
 - [ ] All mechanics explained (even if compressed)
 - [ ] All tables/data structures preserved
+- [ ] **All code block implementation details** preserved (if applicable)
 
-**Tool**: git diff or manual comparison
+**Tool**: git diff or manual comparison + Implementation Detail Validation script
 
 ---
 
@@ -586,7 +818,7 @@ $tokens = [math]::Round($words * 2.73)
 Write-Host "Estimated tokens: $tokens"
 ```
 
-**Validation**: Compare to target reduction (60-75% for aggressive, 40-60% for conservative)
+**Validation**: Compare to expected range (60-75% for aggressive, 40-60% for conservative)
 
 ---
 
@@ -606,13 +838,13 @@ Write-Host "Estimated tokens: $tokens"
 
 ---
 
-## Token Budget Targets by File Type
+## Token Budget Expected Ranges by File Type
 
 ### Instruction Modules
 
-**Conservative**: 40-55% reduction  
-**Aggressive**: 60-75% reduction  
-**Best Performers**: 70-85% (simple mechanical modules)
+**Conservative Range**: 40-55% reduction  
+**Aggressive Range**: 60-75% reduction  
+**Observed High Performers**: 70-85% (simple mechanical modules)
 
 **Examples**:
 
@@ -624,9 +856,9 @@ Write-Host "Estimated tokens: $tokens"
 
 ### Library/Reference Files
 
-**Conservative**: 35-50% reduction  
-**Aggressive**: 55-70% reduction  
-**Precision Hold**: 40-50% (formula-heavy, complex mechanics)
+**Conservative Range**: 35-50% reduction  
+**Aggressive Range**: 55-70% reduction  
+**Precision Hold Range**: 40-50% (formula-heavy, complex mechanics)
 
 **Examples**:
 
@@ -638,8 +870,8 @@ Write-Host "Estimated tokens: $tokens"
 
 ### Schema/Quick Reference Files
 
-**Conservative**: 10-25% reduction  
-**Aggressive**: 25-40% reduction  
+**Conservative Range**: 10-25% reduction  
+**Aggressive Range**: 25-40% reduction  
 **Caution**: Schemas are already terse, diminishing returns
 
 **Examples**:
@@ -651,13 +883,162 @@ Write-Host "Estimated tokens: $tokens"
 
 ### Core/Meta Files
 
-**Conservative**: 40-60% reduction  
-**Aggressive**: 60-75% reduction
+**Conservative Range**: 40-60% reduction  
+**Aggressive Range**: 60-75% reduction
 
 **Examples**:
 
 - CORE_AIDM_INSTRUCTIONS.md: 64.3% achieved
 - AIDM_LOADER.md: 52.0% achieved
+
+---
+
+## Critical Incident: False Positive Validation (January 2025)
+
+### What Happened
+
+**Incident**: Module 05 optimization claimed 100% information parity  
+**Reality**: 10 Python code blocks removed (~2000 tokens of implementation details lost)  
+**Impact**: File would have been unusable for implementation - missing all formulas, multipliers, thresholds, and branching logic
+
+### The False Positive
+
+**Validation Test Results**:
+```
+✓ grep 'Player Agency|Emergent|Consequence' -> FOUND
+✓ grep 'training_arcs|slice_of_life|investigation' -> FOUND  
+✓ grep 'Elena|Greystone' -> FOUND
+✓ grep 'P1|P2|P3|P4|P5|P6' -> FOUND
+Conclusion: PASS - 100% information parity
+```
+
+**What Was Actually Missing**:
+- Formula: `skill_xp = base_skill_xp × xp_rate`
+- Success multiplier: 1.5x
+- Failure multiplier: 0.5x
+- Affinity: `base × relationship_mult`
+- Investigation outcomes: success='deep', fail='superficial'
+- Encounter frequency: high=2-3, normal=1-2, low=0-1
+- Social links: +25 (success), +10 (partial), tier_3@100pts
+- Faction building: resources→CHA_check→success(+5mem)/fail(+1mem)
+- ~200 lines of implementation code
+
+### Root Cause
+
+**The validation tested for CONCEPT PRESENCE, not IMPLEMENTATION COMPLETENESS OR PEDAGOGICAL SUFFICIENCY**
+
+**What Was Tested (Insufficient)**:
+- ❌ Test verified keyword 'training_arcs' existed
+- ❌ Test verified section "Downtime System" present  
+- ❌ Test checked character names survived (Elena, Greystone)
+- ❌ Test confirmed formulas present in some form
+
+**What Should Have Been Tested**:
+- ✅ Verify formula `skill_xp = base × rate` exists AND multiplier values 1.5x, 0.5x present
+- ✅ Verify archetype labels exist AND Scene focus/Growth/PC role patterns documented
+- ✅ Verify downtime modes listed AND narrative examples showing tone/style/pacing
+- ✅ Verify power tier references AND comparative narratives demonstrating scaling
+- ✅ Verify foreshadowing protocol AND REACTIVE vs PROACTIVE transformation examples
+- ✅ Test: "Can implementer generate narratives matching source anime style?"
+
+### The Critical Distinction
+
+**Two Dimensions of Information Loss**:
+
+```
+1. FORMULA LOSS (WHAT to implement):
+
+CONCEPT: "training_arcs uses XP multiplier"
+└─> Implementer knows: There IS a multiplier
+    But NOT: What value? (1.5x? 2x?), What on fail? (0.5x? 0x?)
+
+FORMULA: "success = base_xp×1.5, fail = base_xp×0.5"  
+└─> Implementer can write correct code ✅
+
+2. PEDAGOGY LOSS (HOW to apply narratively):
+
+FORMULA ONLY: "training_arcs: success=base_xp×1.5, fail=base_xp×0.5 | DC from config"
+└─> Implementer knows: Apply 1.5x on success, 0.5x on fail
+    But NOT: What narrative tone? (serious/comedic?), 
+             What pacing? (quick summary/detailed scene?),
+             What style per profile? (HxH aura control vs Konosuba chaos)
+
+FORMULA + EXAMPLE: "success = base_xp×1.5 | Ex: 'Wing nods. Your Ten is stable. 
+Now, Zetsu.' Two weeks meditation, exhaustion. [+300 Nen XP]"
+└─> Implementer can: Write code ✅ AND Generate appropriate narrative ✅
+```
+
+### Why This Matters
+
+An implementer reading the over-optimized file would see:
+- "training_arcs (roll DC, apply XP multiplier)"
+
+**FORMULA LOSS** (Could not implement correctly):
+- Multiplier value: 1.5x? 2x? 1.25x?
+- Failure handling: 0.5x? Nothing? Different formula?
+- Variable names: base_skill_xp? base_xp? xp_base?
+- Calculation structure: Additive? Multiplicative? Compounding?
+
+**PEDAGOGY LOSS** (Could not generate appropriate narrative):
+- Narrative tone: Serious training? Comedic failure? Dramatic breakthrough?
+- Pacing: Quick summary? Detailed 3-paragraph scene? Montage?
+- Style per profile: HxH (aura control, Wing's guidance) vs Konosuba (chaos, debt collectors)?
+- Success/fail contrast: How to show difference beyond numbers?
+
+**This is not compression - it's information loss in two dimensions.**
+
+### Fix Implemented
+
+**1. Added Category 11: Code Block Preservation**
+- Distinguishes illustrative vs instructive code
+- Requires preservation of formulas, multipliers, thresholds
+- Provides ultra-compact notation format
+
+**2. Added Implementation Detail Validation**
+- Checks all numeric values present
+- Verifies formula structures (operators, patterns)
+- Validates branching logic documented
+- Tests: "Can implementer write correct code?"
+
+**3. Added Narrative Example Preservation Requirement**
+- Keep 2-3 narrative examples per major system
+- Examples must demonstrate: tone, pacing, style variation per profile
+- Show HOW formulas translate to actual narrative output
+- Format: Ultra-compact with key phrases showing voice
+
+**4. Updated Success Criteria**
+- Before: "Concepts preserved" ✓
+- After: "Implementation complete (code + narrative generation)" ✓
+- Test 1: "Can implementer write correct code?" ✓
+- Test 2: "Can implementer generate appropriate narrative tone/style?" ✓
+
+### Lesson Learned
+
+**Information Parity Has Two Dimensions**:
+
+**Dimension 1: Implementation Completeness (WHAT to code)**
+- VALUES (1.5x, 0.5x, DC16), not just keywords ("multiplier")
+- FORMULAS (skill_xp = base × rate), not just concepts ("XP calculation")
+- OUTCOMES (success→X, fail→Y), not just mentions ("branching logic")
+- MAPPINGS ("deep"/"superficial"), not just references ("info depth")
+
+**Dimension 2: Pedagogical Sufficiency (HOW to apply)**
+- NARRATIVE EXAMPLES showing tone (serious vs comedic)
+- PACING PATTERNS showing summary vs detail
+- STYLE VARIATION per profile (HxH vs Konosuba vs MHA)
+- APPLICATION CONTEXT showing formulas → actual output
+
+**Test Principles**:
+1. If removed content forces implementer to **guess values/logic** → Formula parity violated
+2. If removed content forces implementer to **guess tone/style** → Pedagogy parity violated
+3. TRUE 100% parity = Formulas (WHAT) + Examples (HOW)
+
+**The Module 05 Restoration**:
+- Target: 2,000-2,500 words (65-70% reduction) with TRUE 100% parity
+- Achieved: 2,210 words (66.4% reduction) with formulas + 9 narrative examples
+- Formula notation: Preserved all values (1.5x, 0.5x, DC16, tier_3@100)
+- Narrative examples: HxH Wing/Nen, Konosuba pub, power tier comparisons
+- Result: Implementer can write code ✅ AND generate appropriate narratives ✅
 
 ---
 
@@ -676,16 +1057,52 @@ Write-Host "Estimated tokens: $tokens"
 
 ---
 
-### ❌ DON'T: Remove ALL examples
+### ❌ DON'T: Remove ALL examples (ESPECIALLY NARRATIVE EXAMPLES)
 
-**Why**: Iconic examples provide essential semantic anchors
+**Why**: Examples serve two critical functions:
+1. **Semantic anchors** (iconic references like Naruto, Goku)
+2. **Pedagogical models** (showing HOW formulas translate to narrative)
 
 **Example**:
 
 ```markdown
-❌ BAD: "Use shonen training arc pattern" (too abstract)
-✅ GOOD: "Training arcs: Naruto(chakra→tree/water) | Goku(gravity×King Kai)" (concrete reference)
+❌ BAD: "Use shonen training arc pattern" (too abstract, no application model)
+✅ GOOD: "Training arcs: Naruto(chakra→tree/water) | Goku(gravity×King Kai)" (semantic anchor)
+✅ BEST: "Training arcs: Naruto(chakra→tree/water) | Ex: 'Wing nods. Your Ten is stable.' 
+Two weeks meditation. [+300 Nen XP]" (anchor + narrative pedagogy)
 ```
+
+**Critical for Narrative Systems**: Files describing narrative generation MUST include 2-3 narrative examples showing:
+- Tone variation (serious/comedic/dramatic)
+- Pacing patterns (summary/detail/montage)
+- Style per profile (HxH aura control vs Konosuba chaos)
+- Formula → output transformation
+
+**Module 05 Case Study**: Lost 6 downtime narrative examples → Could implement formulas but not generate appropriate tone. Restored 3 examples (HxH Wing/Nen, Konosuba pub, HxH Phantom Troupe) → TRUE parity achieved.
+
+---
+
+### ❌ DON'T: Remove ALL narrative examples (ESPECIALLY in narrative system files)
+
+**Why**: Examples serve two critical functions:
+1. **Semantic anchors** (iconic references like Naruto, Goku)
+2. **Pedagogical models** (showing HOW formulas translate to narrative)
+
+**Example**:
+
+```markdown
+❌ BAD: "Use shonen training arc pattern" (too abstract, no application model)
+✅ GOOD: "Training arcs: Naruto(chakra→tree/water) | Goku(gravity×King Kai)" (semantic anchor)
+✅ BEST: "Training: success=base_xp×1.5 | Ex: 'Wing nods. Your Ten is stable.' Two weeks meditation. [+300 Nen XP]" (anchor + pedagogy)
+```
+
+**Critical for Narrative Systems**: Files describing narrative generation MUST include 2-3 narrative examples showing:
+- Tone variation (serious/comedic/dramatic)
+- Pacing patterns (summary/detail/montage)  
+- Style per profile (HxH aura control vs Konosuba chaos)
+- Formula → output transformation
+
+**Module 05 Case Study**: Lost 6 downtime narrative examples → Could implement formulas but not generate appropriate tone. Restored 3 examples (HxH Wing/Nen, Konosuba pub, HxH Phantom Troupe) → TRUE parity achieved at 66.4% reduction.
 
 ---
 
@@ -725,10 +1142,39 @@ Write-Host "Estimated tokens: $tokens"
 
 ### Pre-Optimization
 
+**Step 0: Detect Already-Optimized Content** ⚠️
+
+**CRITICAL**: Before optimizing any file, check if it's already been optimized. Re-optimizing already-optimized files **WILL cause information loss**.
+
+**Optimization Indicators** (check for 5+):
+
+- [ ] **Headers**: Ultra-compact format (v2.0 | P:CRITICAL | Load:X)
+- [ ] **Lists**: Inline with pipe separators (Item1 | Item2 | Item3)
+- [ ] **Cross-refs**: Terse format (→filename not "see filename.md for details")
+- [ ] **Formulas**: Compact notation (skill_xp=base×rate not verbose equations)
+- [ ] **Examples**: 2-3 per system (not 6-10 verbose examples)
+- [ ] **Code blocks**: Ultra-compact with inline comments
+- [ ] **Word count**: Already in expected optimized range (instruction: 1,500-2,500 words, library: 800-1,500 words)
+- [ ] **Avg word length**: <6 chars (suggests heavy compression)
+
+**Decision Tree**:
+
+- **5+ markers present** → LIKELY ALREADY OPTIMIZED → **STOP**, run validation on current state, document "already optimized", move to next file
+- **3-4 markers** → POSSIBLY OPTIMIZED → Check git history for `_BACKUP` commits, proceed with caution
+- **0-2 markers** → NOT OPTIMIZED → Proceed with Step 1
+
+**If Already Optimized**:
+
+1. Document: "File shows optimization markers - preserved at current state"
+2. Run validation tests anyway (ensure 100% information parity)
+3. Skip to next file
+
+**Step 1-5: Standard Pre-Optimization Workflow**
+
 - [ ] Create backup (individual `*_BACKUP.md` or zip entire directory)
 - [ ] Document baseline token count (word count × 0.75)
 - [ ] Identify file type (instruction/library/schema/core)
-- [ ] Set reduction target based on file type
+- [ ] Note expected range based on file type (not a limit)
 - [ ] Create validation test plan (3-5 dry tests minimum)
 
 ---
@@ -786,10 +1232,10 @@ Write-Host "Estimated tokens: $tokens"
 All AIDM instruction modules and library files MUST follow token optimization 
 guidelines before integration:
 
-1. **Target Reductions**:
-   - Instruction modules: 60-75% reduction minimum
-   - Library files: 55-65% reduction minimum
-   - Schema files: 25-40% reduction minimum
+1. **Expected Ranges**:
+   - Instruction modules: 60-75% reduction (observed)
+   - Library files: 55-65% reduction (observed)
+   - Schema files: 25-40% reduction (observed)
 
 2. **Mandatory Techniques**:
    - Emoji replacement (✅→[OK])
@@ -833,7 +1279,7 @@ jobs:
           token_estimate=$((word_count * 75 / 100))
           echo "Estimated AIDM tokens: $token_estimate"
           if [ $token_estimate -gt 15000 ]; then
-            echo "::warning::Token budget exceeded! Target: 13,669 tokens"
+            echo "::warning::Token budget exceeded! Expected: ~13,669 tokens"
           fi
 ```
 
@@ -1070,7 +1516,7 @@ GAME-WORLD(VR→reality): Overlord, Log Horizon | REGRESSION(time-loop): Re:Zero
 ## Final Note
 
 This methodology represents **battle-tested learnings from a 74.3% reduction campaign
-with zero information loss**. Every technique, every target, every validation protocol
+with zero information loss**. Every technique, every expected range, every validation protocol
 has been proven in production.
 
 **Apply these principles to any LLM-context-constrained project** and achieve similar results.
