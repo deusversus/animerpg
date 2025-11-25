@@ -17,8 +17,9 @@ Consolidated, actionable project plan for implementing all findings from the com
 1. **Identity Firewall**: Agent is DEVELOPER, not AIDM. Write instructions in imperative 3rd person ("AIDM must...").
 2. **Edit In Place**: Modify existing files; do not create `_v2` duplicates.
 3. **STATE.md Updates**: Update `/dev/STATE.md` after significant changes.
-4. **Token Optimization**: All changes must maintain or improve token efficiency.
+4. **Token Optimization**: Follow `/dev/TOKEN_OPTIMIZATION_METHODOLOGY.md` guidelines. Optimize until information parity risk emerges—do NOT stop at arbitrary "targets".
 5. **Validation Required**: Changes require dry-run testing per `/tests/TEST_EXECUTION_GUIDE.md`.
+6. **Two-Dimensional Parity**: All optimization must preserve BOTH implementation completeness (formulas/values) AND pedagogical sufficiency (narrative examples showing tone/style).
 
 ### Key Constraints
 
@@ -32,21 +33,21 @@ Consolidated, actionable project plan for implementing all findings from the com
 
 | Review File | Module | Status | Key Themes |
 |-------------|--------|--------|------------|
-| `CORE_REVIEW.md` | CORE_AIDM_INSTRUCTIONS | ✅ Processed | Human-centric language, token overrun (133-183%), Rule 1.5 verbosity |
+| `CORE_REVIEW.md` | CORE_AIDM_INSTRUCTIONS | ✅ Processed | Human-centric language, Rule 1.5 verbosity, central coordinator |
 | `MODULE_00_REVIEW.md` | 00_system_initialization | ✅ Processed | Schema count discrepancy, human-centric language, strong foundation |
-| `MODULE_01_REVIEW.md` | 01_cognitive_engine | ✅ Processed | Token overrun (83%), integration extraction needed, Rule 2.1 excellence |
-| `MODULE_02_REVIEW.md` | 02_learning_engine | ✅ Processed | Category count mismatch (6→8), heat floor ambiguity, token overrun (50-66%) |
-| `MODULE_03_REVIEW.md` | 03_state_manager | ✅ Processed | CRITICAL token overrun (400-466%), needs mandatory restructuring |
+| `MODULE_01_REVIEW.md` | 01_cognitive_engine | ✅ Processed | Integration extraction opportunity, Rule 2.1 excellence |
+| `MODULE_02_REVIEW.md` | 02_learning_engine | ✅ Processed | Category count mismatch (6→8), heat floor ambiguity |
+| `MODULE_03_REVIEW.md` | 03_state_manager | ✅ Processed | Export formats extractable, verbose examples condensable |
 | `MODULE_04_REVIEW.md` | 04_npc_intelligence | ✅ Processed | Merchant-economy integration gaps, excellent disposition formula |
-| `MODULE_05_REVIEW.md` | 05_narrative_systems | ✅ Processed | High token count (283-317%) but justified, foreshadowing protocol excellence |
+| `MODULE_05_REVIEW.md` | 05_narrative_systems | ✅ Processed | Narrative core (preserve fully), foreshadowing protocol excellence |
 | `MODULE_06_REVIEW.md` | 06_session_zero | ✅ Processed | Tier misclassification (Tier 1→Tier 2), Phase 0.7 load order unclear |
-| `MODULE_07_REVIEW.md` | 07_anime_integration | ✅ Processed | Human-centric language exemplar, token overrun (240-280%) justified |
-| `MODULE_08_REVIEW.md` | 08_combat_resolution | ✅ Processed | CRITICAL token (267-317%), duplication M09/M12, architecture misalign |
-| `MODULE_09_REVIEW.md` | 09_progression_systems | ✅ Processed | CRITICAL duplication with M08, token (217-250%), authoritative source |
-| `MODULE_10_REVIEW.md` | 10_error_recovery | ✅ Processed | Token (117-150%) ACCEPTABLE for critical infra, human-centric lang |
-| `MODULE_11_REVIEW.md` | 11_dice_resolution | ✅ Processed | Token (33-50%) VERY ACCEPTABLE, critical LLM randomness fix |
-| `MODULE_12_REVIEW.md` | 12_narrative_scaling | ✅ Processed | CRITICAL token (217-267%), M08 authoritative, optimization needed |
-| `MODULE_13_REVIEW.md` | 13_narrative_calibration | ✅ Processed | WORST token (267-333%), aggressive optimization needed |
+| `MODULE_07_REVIEW.md` | 07_anime_integration | ✅ Processed | Human-centric language exemplar, research engine (preserve fully) |
+| `MODULE_08_REVIEW.md` | 08_combat_resolution | ✅ Processed | Duplication with M09/M12, architecture misalignment |
+| `MODULE_09_REVIEW.md` | 09_progression_systems | ✅ Processed | Duplication with M08, authoritative source for progression |
+| `MODULE_10_REVIEW.md` | 10_error_recovery | ✅ Processed | Critical infrastructure (preserve fully), human-centric language |
+| `MODULE_11_REVIEW.md` | 11_dice_resolution | ✅ Processed | Critical LLM randomness solution (preserve fully) |
+| `MODULE_12_REVIEW.md` | 12_narrative_scaling | ✅ Processed | M08 authoritative for tier language, examples condensable |
+| `MODULE_13_REVIEW.md` | 13_narrative_calibration | ✅ Processed | Verbose sections condensable, narrative DNA core (preserve) |
 
 ---
 
@@ -55,36 +56,34 @@ Consolidated, actionable project plan for implementing all findings from the com
 ### Phase 1: Critical Fixes (BLOCKING)
 *Issues blocking correct AIDM operation - Must complete before Phase 2*
 
-| ID | Module | Issue | Action | Token Impact | Priority |
-|----|--------|-------|--------|--------------|----------|
-| P1-01 | M03 | 400-466% token overrun | Extract export formats to EXPORT_FORMAT_GUIDE.md, condense state operations | -8,000 to -10,000 | 🔴 CRITICAL |
-| P1-02 | M08 | Duplicates M09 progression content (3K tokens) | Remove, add 200-token reference to M09 | -2,800 | 🔴 CRITICAL |
-| P1-03 | M08 | Duplicates M12 tier language (2K tokens) | Remove, add 200-token reference to M12 | -1,800 | 🔴 CRITICAL |
-| P1-04 | M08 | Stamina vs Resource contradiction | Align with M09 authoritative "Resource" terminology | 0 | 🔴 CRITICAL |
-| P1-05 | M09 | Duplicates M08 combat content (2K tokens) | Remove, add reference to M08 for combat | -1,800 | 🔴 CRITICAL |
-| P1-06 | CORE | Rule 1.5 verbosity (1,400 tokens) | Condense operational examples | -800 to -1,000 | 🟡 HIGH |
-| P1-07 | M02 | Category count mismatch (6 stated → 8 exist) | Update header to state 8 categories | 0 | 🟡 HIGH |
-| P1-08 | M00 | Schema count mismatch (13 stated → 15+ exist) | Update to actual count | 0 | 🟡 HIGH |
+| ID | Module | Issue | Action | Priority |
+|----|--------|-------|--------|----------|
+| P1-01 | M03 | Export formats inline (extractable content) | Extract to EXPORT_FORMAT_GUIDE.md, condense state operations | 🔴 CRITICAL |
+| P1-02 | M08 | Duplicates M09 progression content | Remove duplication, add cross-reference to M09 | 🔴 CRITICAL |
+| P1-03 | M08 | Duplicates M12 tier language | Remove duplication, add cross-reference to M12 | 🔴 CRITICAL |
+| P1-04 | M08 | Stamina vs Resource terminology conflict | Align with M09 authoritative "Resource" terminology | 🔴 CRITICAL |
+| P1-05 | M09 | Duplicates M08 combat content | Remove duplication, add cross-reference to M08 | 🔴 CRITICAL |
+| P1-06 | CORE | Rule 1.5 verbose operational examples | Condense per TOKEN_OPTIMIZATION_METHODOLOGY.md | 🟡 HIGH |
+| P1-07 | M02 | Category count mismatch (6 stated → 8 exist) | Update header to state 8 categories | 🟡 HIGH |
+| P1-08 | M00 | Schema count mismatch (13 stated → 15+ exist) | Update to actual count | 🟡 HIGH |
 
-**Phase 1 Total Token Savings**: ~15,200-16,400 tokens
+**Optimization Guidance**: Follow multi-pass process from `/dev/TOKEN_OPTIMIZATION_METHODOLOGY.md`. Continue until information parity risk emerges.
 
 ---
 
 ### Phase 2: Structural Improvements
 *Architecture and integration enhancements - Cross-module coordination*
 
-| ID | Module(s) | Issue | Action | Token Impact |
-|----|-----------|-------|--------|--------------|
-| P2-01 | M06 | Tier 1 misclassification | Reclassify as Tier 2 (on-demand) | 0 (load order) |
-| P2-02 | M06 | Phase 0.7 load order unclear | Add explicit ordering: world→power→profile→character | +50 |
-| P2-03 | M01 | Integration section 1,500 tokens inline | Extract to INTEGRATION_GUIDE.md | -1,200 |
-| P2-04 | M04 | Merchant-economy integration gaps | Add economy_schema.json cross-references | +100 |
-| P2-05 | M07→M13 | Research auto-triggers calibration | Document M07→M13 handoff explicitly | +50 |
-| P2-06 | M12→M08 | Tier scaling authoritative source | Add note: M12 = authoritative for tier language | +30 |
-| P2-07 | M09→M08 | Progression authoritative source | Add note: M09 = authoritative for progression types | +30 |
-| P2-08 | M13→M07 | Profile extraction depends on research | Document M13←M07 dependency | +30 |
-
-**Phase 2 Net Token Change**: -910 tokens
+| ID | Module(s) | Issue | Action |
+|----|-----------|-------|--------|
+| P2-01 | M06 | Tier 1 misclassification | Reclassify as Tier 2 (on-demand) |
+| P2-02 | M06 | Phase 0.7 load order unclear | Add explicit ordering: world→power→profile→character |
+| P2-03 | M01 | Integration section extractable | Extract to INTEGRATION_GUIDE.md |
+| P2-04 | M04 | Merchant-economy integration gaps | Add economy_schema.json cross-references |
+| P2-05 | M07→M13 | Research auto-triggers calibration | Document M07→M13 handoff explicitly |
+| P2-06 | M12→M08 | Tier scaling authoritative source | Add note: M12 = authoritative for tier language |
+| P2-07 | M09→M08 | Progression authoritative source | Add note: M09 = authoritative for progression types |
+| P2-08 | M13→M07 | Profile extraction depends on research | Document M13←M07 dependency |
 
 ---
 
@@ -101,53 +100,54 @@ Consolidated, actionable project plan for implementing all findings from the com
 | Warnings | "Common mistake:", "Don't forget" | `validation_check:` | "Don't forget heat decay" → `validate: heat_floor >= 0` |
 | Examples | "Wrong way: ... Right way: ..." | `valid_pattern:` / `invalid_pattern:` | Structural, not instructional |
 
-**Estimated Token Impact**: -500 to -1,000 (removal of verbose warning text)
+**Note**: Language audit improves LLM parsing efficiency. Actual optimization should follow multi-pass methodology until parity risk.
 
 ---
 
-### Phase 4: Token Optimization
-*Efficiency improvements without functional loss*
+### Phase 4: Content Optimization
+*Apply TOKEN_OPTIMIZATION_METHODOLOGY.md multi-pass process*
 
-#### Tier 1 Overrun Analysis (Target: ~3,000 tokens each)
+**Reference**: `/dev/TOKEN_OPTIMIZATION_METHODOLOGY.md` and `/dev/TOKEN_OPTIMIZATION_CHECKLIST.md`
 
-| Module | Current | Target | % Over | Action | Post-Opt Target |
-|--------|---------|--------|--------|--------|-----------------|
-| M03 | 15,000-17,000 | 3,000 | 400-466% | **MANDATORY restructure** | ~5,000-7,000 |
-| M13 | 11,000-13,000 | 3,000 | 267-333% | Aggressive condensation | ~8,000-8,500 |
-| M08 | 11,000-12,500 | 3,000 | 267-317% | Remove duplications | ~6,500-7,500 |
-| M12 | 9,500-11,000 | 3,000 | 217-267% | Condense scaffolding examples | ~6,500-7,500 |
-| M09 | 9,500-10,500 | 3,000 | 217-250% | Remove M08 duplication | ~7,500-8,500 |
-| M05 | 11,500-12,500 | 3,000 | 283-317% | **JUSTIFIED** (narrative core) | ~10,000-11,000 |
-| M07 | 10,200-11,400 | 3,000 | 240-280% | **JUSTIFIED** (research engine) | ~9,000-10,000 |
-| CORE | 7,000-8,500 | 3,000 | 133-183% | **ACCEPTABLE** (coordinator) | ~6,000-7,000 |
+#### Optimization Priority (by extractable/condensable content)
 
-#### Acceptable Overruns (No Action Required)
+| Priority | Module | Opportunity | Approach |
+|----------|--------|-------------|----------|
+| 1 | M03 | Large extractable sections (export formats, verbose examples) | Extract to guides, condense inline |
+| 2 | M08 | Duplication with M09/M12 | Remove duplicates, add cross-references |
+| 3 | M09 | Duplication with M08 | Remove duplicates, add cross-references |
+| 4 | M13 | Verbose Mechanical Scaffolding, Scale Adjustments, Profile Library docs | Condense per methodology, reference PROFILE_INDEX.md |
+| 5 | M12 | Verbose scaffolding examples | Condense per methodology |
+| 6 | CORE | Rule 1.5 verbose operational examples | Condense per methodology |
+| 7 | M01 | Integration section extractable | Extract to INTEGRATION_GUIDE.md |
 
-| Module | Current | % Over | Justification |
-|--------|---------|--------|---------------|
-| M10 | 4,500-5,500 | 50-83% | Critical error recovery infrastructure |
-| M11 | 4,000-4,500 | 33-50% | Critical LLM randomness solution |
-| M04 | 4,500-5,000 | 50-67% | Essential NPC intelligence |
-| M02 | 4,500-5,000 | 50-67% | Learning system foundation |
-| M01 | 5,500-6,500 | 83-117% | Cognitive core |
-| M00 | 3,500-4,000 | 17-33% | Near target |
-| M06 | 3,000-3,500 | 0-17% | On target |
+#### Modules to Preserve (Critical Infrastructure)
 
-#### Specific Optimization Actions
+These modules should receive standard optimization passes but are critical infrastructure—prioritize information parity over aggressive compression:
 
-| ID | Module | Section | Current | Target | Savings |
-|----|--------|---------|---------|--------|---------|
-| P4-01 | M03 | Export format examples | ~6,000 | 500 (reference) | -5,500 |
-| P4-02 | M03 | State operation verbose examples | ~3,000 | 1,500 | -1,500 |
-| P4-03 | M13 | Mechanical Scaffolding section | 3,500 | 1,500-2,300 | -1,200 to -2,000 |
-| P4-04 | M13 | Scale-Specific Adjustments | 2,000 | 800-1,000 | -1,000 to -1,200 |
-| P4-05 | M13 | Profile Library inline docs | 1,500 | 500 (→ PROFILE_INDEX.md) | -1,000 |
-| P4-06 | M12 | Scaffolding examples verbose | 2,500 | 1,500 | -1,000 |
-| P4-07 | M08 | After P1-02/P1-03 removals | — | — | -4,600 (from P1) |
-| P4-08 | M09 | After P1-05 removal | — | — | -1,800 (from P1) |
-| P4-09 | CORE | Rule 1.5 operational examples | 1,400 | 600 | -800 |
+- **M05** (Narrative Systems): Core storytelling engine. Preserve foreshadowing protocol, narrative examples.
+- **M07** (Anime Integration): Research engine. Preserve anime knowledge, trope mapping.
+- **M10** (Error Recovery): Critical infrastructure. Preserve all recovery protocols.
+- **M11** (Dice Resolution): Critical LLM randomness solution. Preserve RNG methodology.
 
-**Phase 4 Additional Savings**: ~11,000-13,000 tokens (beyond Phase 1)
+#### Optimization Process Per File
+
+1. **Pre-check**: Is file already optimized? (5+ markers = skip)
+2. **Pass 1**: Structural (emoji replace, header consolidate, obvious redundancy)
+3. **Pass 2**: Content (verbose→compact, example reduction, table compression)
+4. **Pass 3**: Refinement (section merging, whitespace, cross-refs)
+5. **Pass 4**: Validation (dry tests, implementation detail check, narrative example check, linting)
+
+**Critical**: Continue optimizing until information parity risk emerges. Do NOT stop at arbitrary "expected ranges."
+
+#### Two-Dimensional Parity Requirement
+
+Per Module 05 Lesson (documented in methodology):
+
+1. **Implementation Completeness**: All formulas, values, multipliers, thresholds, branching logic
+2. **Pedagogical Sufficiency**: 2-3 narrative examples per major system showing tone/style/pacing
+
+**Both dimensions required for TRUE 100% parity.**
 
 ---
 
@@ -190,42 +190,44 @@ Consolidated, actionable project plan for implementing all findings from the com
    - NPC interactions still work
    - Session export still works
 
-4. **Token Budget Verification**
-   - Post-optimization token count per module
-   - Total AIDM token budget check (target: 60-75% reduction)
+4. **Optimization Validation** (per TOKEN_OPTIMIZATION_METHODOLOGY.md)
+   - Dry tests (concept presence)
+   - Implementation detail validation (formulas, values, thresholds)
+   - Narrative example validation (tone, style, pacing examples preserved)
+   - Markdown linting (zero errors)
 
 #### Success Criteria
 
-| Metric | Current | Target | Validation |
-|--------|---------|--------|------------|
-| Total AIDM Tokens | ~87,000 | ~35,000-52,000 | 60-75% reduction |
-| Tier 1 Modules | 5 critical overruns | 0 critical | All within acceptable range |
-| Human-centric Language | 9 modules affected | 0 modules | System-wide audit complete |
-| Cross-module Duplication | ~8,000 tokens | 0 tokens | All references, no copies |
-| Test Pass Rate | — | 100% | All 80+ tests passing |
+| Metric | Validation |
+|--------|------------|
+| Information Parity | 100% (both implementation + pedagogical dimensions) |
+| Human-centric Language | Converted to AI-directive format (9 modules) |
+| Cross-module Duplication | Eliminated (references only, no copies) |
+| Test Pass Rate | 100% (all 80+ tests passing) |
+| Markdown Linting | Zero errors across all files |
 
 ---
 
 ## Execution Priority Matrix
 
 ### Immediate (Week 1)
-1. **P1-01**: M03 restructure (biggest token savings)
+1. **P1-01**: M03 restructure (extract export formats, condense verbose examples)
 2. **P1-02/P1-03**: M08 duplication removal
 3. **P1-05**: M09 duplication removal
 
 ### Short-term (Week 2)
 4. **Phase 3**: System-wide language audit
-5. **P4-03/P4-04/P4-05**: M13 optimization
-6. **P4-06**: M12 optimization
+5. **Phase 4**: M13 optimization (verbose sections)
+6. **Phase 4**: M12 optimization (scaffolding examples)
 
 ### Medium-term (Week 3)
 7. **Phase 2**: Structural improvements
 8. **Phase 5**: Content enhancements
-9. **P1-06**: CORE Rule 1.5 condensation
+9. **Phase 4**: CORE Rule 1.5 condensation
 
 ### Final (Week 4)
 10. **Phase 6**: Full validation & testing
-11. Token budget verification
+11. Information parity verification
 12. STATE.md final update
 
 ---
@@ -274,35 +276,36 @@ CORE ─────────────────────────
 
 ---
 
-## Token Budget Summary
+## Optimization Guidelines
 
-### Current State
-| Category | Tokens | % of 200K |
-|----------|--------|-----------|
-| AIDM Instructions | ~87,000 | 43.5% |
-| Schemas | ~15,000 | 7.5% |
-| Templates | ~5,000 | 2.5% |
-| **Total System** | ~107,000 | 53.5% |
-| **Available for Play** | ~93,000 | 46.5% |
+**Reference**: `/dev/TOKEN_OPTIMIZATION_METHODOLOGY.md` and `/dev/TOKEN_OPTIMIZATION_CHECKLIST.md`
 
-### Target State (Post-Optimization)
-| Category | Tokens | % of 200K |
-|----------|--------|-----------|
-| AIDM Instructions | ~35,000-52,000 | 17.5-26% |
-| Schemas | ~12,000 | 6% |
-| Templates | ~4,000 | 2% |
-| **Total System** | ~51,000-68,000 | 25.5-34% |
-| **Available for Play** | ~132,000-149,000 | 66-74.5% |
+### Core Principles
 
-### Savings Breakdown
-| Phase | Token Savings |
-|-------|---------------|
-| Phase 1 (Critical Fixes) | -15,200 to -16,400 |
-| Phase 2 (Structural) | -910 |
-| Phase 3 (Language Audit) | -500 to -1,000 |
-| Phase 4 (Optimization) | -11,000 to -13,000 |
-| Phase 5 (Enhancements) | +500 (net additions) |
-| **Total Savings** | ~27,110-30,810 tokens |
+1. **Optimize until information parity risk emerges**—do NOT stop at arbitrary "targets" or "expected ranges"
+2. **Two-dimensional parity required**: Implementation completeness (formulas/values) AND pedagogical sufficiency (narrative examples)
+3. **Multi-pass process**: Pass 1 (structural) → Pass 2 (content) → Pass 3 (refinement) → Pass 4 (validation)
+4. **Zero markdown linting errors**: Clean markdown prevents token waste on every context load
+
+### Optimization Techniques (Quick Reference)
+
+| Technique | Example |
+|-----------|---------|
+| Emoji Replace | ✅ → [OK], ❌ → [NO] |
+| Header Consolidate | Multi-line metadata → `v2.0 \| P:High \| Deps:X,Y` |
+| Verbose Compress | Prose → structured data with pipes |
+| Example Reduce | 4-6 examples → 2-3 iconic references |
+| Cross-ref Shorten | "see filename.md for details" → `→filename` |
+| Code Block Preserve | Keep instructive code (formulas, thresholds, branching) |
+
+### Critical Infrastructure (Preserve Fully)
+
+These modules are critical infrastructure—prioritize information parity over aggressive compression:
+
+- **M05** (Narrative Systems): Core storytelling engine
+- **M07** (Anime Integration): Research engine  
+- **M10** (Error Recovery): Critical infrastructure
+- **M11** (Dice Resolution): Critical LLM randomness solution
 
 ---
 
@@ -322,11 +325,11 @@ CORE ─────────────────────────
 - [ ] Phase 1 complete: All critical fixes applied
 - [ ] Phase 2 complete: Cross-module references established
 - [ ] Phase 3 complete: Language audit finished (9 modules)
-- [ ] Phase 4 complete: Token targets met
+- [ ] Phase 4 complete: Optimization validated (100% information parity)
 - [ ] Phase 5 complete: Content enhancements added
 - [ ] Phase 6 complete: All tests passing
 - [ ] STATE.md updated with v2.5 status
-- [ ] Total token budget verified (target: 35K-52K instructions)
+- [ ] Markdown linting: Zero errors across all files
 
 ---
 
@@ -337,9 +340,6 @@ CORE ─────────────────────────
 ### CORE_AIDM_INSTRUCTIONS.md
 
 **File**: `/aidm/CORE_AIDM_INSTRUCTIONS.md`  
-**Token Estimate**: ~7,000-8,500 tokens  
-**Target Budget**: ~3,000 tokens (Tier 1)  
-**Budget Status**: 🔴 133-183% OVER (acceptable for central coordinator)  
 **Approval Status**: ⚠️ APPROVED WITH MODERATE revisions required
 
 #### Critical Issues
@@ -354,17 +354,16 @@ CORE ─────────────────────────
 
 #### Moderate Issues
 
-**CORE-M1: Token Overrun** `BUDGET`
-- **Problem**: 7,000-8,500 tokens (133-183% over Tier 1 target)
-- **Justification**: Central coordinator orchestrates 15 modules + schemas + libraries; lazy-loading saves 100K+ tokens system-wide
-- **Action**: Optimize to ~6,000-7,000 tokens via:
-  1. Condense Rule 1.5 Structured Response Protocol (~1,200-1,500 → ~800 tokens) **-400 to -700**
-  2. Condense Instruction Loading Protocol (~800 → ~500 tokens, table format) **-300**
-  3. Merge Quality Standards + Startup Checklist (~500 → ~350 tokens) **-150**
-- **Total Savings**: -850 to -1,150 tokens
+**CORE-M1: Verbose Sections** `OPTIMIZATION`
+- **Opportunity**: Rule 1.5 Structured Response Protocol, Instruction Loading Protocol, Quality Standards sections have condensation potential
+- **Action**: Apply multi-pass optimization per TOKEN_OPTIMIZATION_METHODOLOGY.md
+  - Condense Rule 1.5 verbose operational examples
+  - Convert Instruction Loading Protocol to table format
+  - Merge Quality Standards + Startup Checklist where redundant
+- **Note**: Central coordinator—prioritize information parity over aggressive compression
 
-**CORE-M2: Rule 1.5 JSON Example Verbosity** `EFFICIENCY`
-- **Problem**: Full JSON example consumes ~400-500 tokens (6-7% of CORE)
+**CORE-M2: Rule 1.5 JSON Example Verbosity** `OPTIMIZATION`
+- **Opportunity**: Full JSON example may have compression potential
 - **Action**: Compress (flatten nesting, shorten values), reference Module 08 for complete examples
 
 #### Minor Issues
@@ -404,9 +403,6 @@ CORE ─────────────────────────
 ### 00_system_initialization.md
 
 **File**: `/aidm/instructions/00_system_initialization.md`  
-**Token Estimate**: ~2,000 tokens  
-**Target Budget**: ~2,000 tokens (Tier 1)  
-**Budget Status**: ✅ WITHIN BUDGET  
 **Approval Status**: ✅ APPROVED WITH MINOR RECOMMENDATIONS
 
 #### Critical Issues
@@ -431,8 +427,8 @@ CORE ─────────────────────────
 - **Problem**: Uses instructional tone ("DON'T load all modules", "VALIDATE FIRST, EXECUTE SECOND") vs AI-directive protocols
 - **Note**: Same pattern in all 16 AIDM files - address in system-wide language audit
 
-**M00-N2: Token Budget Assertion Unverified**
-- **Action**: Add measurement verification in testing framework
+**M00-N2: System Assertions Unverified**
+- **Action**: Add verification in testing framework
 
 **M00-N3: Step 5 Formatting Artifact**
 - **Problem**: "[4/5] Setting session context... ✓" copy-paste error
@@ -471,9 +467,6 @@ CORE ─────────────────────────
 ### 01_cognitive_engine.md
 
 **File**: `/aidm/instructions/01_cognitive_engine.md`  
-**Token Estimate**: ~5,500-6,000 tokens  
-**Target Budget**: ~2,000-3,000 tokens (Tier 1)  
-**Budget Status**: 🔴 83-100% OVER BUDGET  
 **Approval Status**: ✅ APPROVED WITH MODERATE - Most sophisticated module, token optimization required
 
 #### Critical Issues
@@ -482,19 +475,14 @@ CORE ─────────────────────────
 
 #### Moderate Issues
 
-**M01-M1: Token Overrun - Priority 1 Fix** `BUDGET`
-- **Problem**: ~5,500-6,000 tokens (83-100% over Tier 1 target)
-- **Major Consumers**:
-  - Narrative Profile Integration (Module 13): ~1,200 tokens (22%)
-  - CREATIVE Intent examples: ~800 tokens (14%)
-  - Coherence Validation: ~800 tokens (14%)
-  - Rule 2.1 examples: ~600 tokens (11%)
+**M01-M1: Integration Section Extractable** `OPTIMIZATION`
+- **Opportunity**: Narrative Profile Integration section (~1,200 tokens) can be extracted to guide
 - **Actions**:
-  1. Extract Narrative Profile Integration → `docs/MODULE_01_13_INTEGRATION_GUIDE.md` (save ~1,000 tokens)
-  2. Move 7-step Module 12 Workflow to Module 12 itself (save ~200 tokens)
-  3. Reduce CREATIVE Intent sub-examples from 5 to 2 (save ~300 tokens)
-  4. Condense Rule 2.1 examples: 4→2 violations, 4→2 correct (save ~200 tokens)
-- **Target**: ~3,800 tokens (30% reduction)
+  1. Extract Narrative Profile Integration → `docs/MODULE_01_13_INTEGRATION_GUIDE.md`
+  2. Move 7-step Module 12 Workflow to Module 12 itself
+  3. Reduce CREATIVE Intent sub-examples from 5 to 2
+  4. Condense Rule 2.1 examples: 4→2 violations, 4→2 correct
+- **Note**: Apply multi-pass optimization per TOKEN_OPTIMIZATION_METHODOLOGY.md
 
 **M01-M2: Module Dependency Ambiguity** `CLARITY`
 - **Problem**: Workflow shown but "01 MUST load before all others except 00" not explicit
@@ -515,9 +503,9 @@ CORE ─────────────────────────
   - Mid-campaign power system reference → MANDATORY
   - Mid-campaign flavor reference → OPTIONAL (ask player)
 
-**M01-M5: Narrative Profile Integration Over-Integration** `ARCHITECTURE`
-- **Problem**: ~1,200 tokens (30% of module) for Module 13 integration details
-- **Action**: Extract to separate guide, keep 200-token summary
+**M01-M5: Narrative Profile Integration Extractable** `OPTIMIZATION`
+- **Opportunity**: ~1,200 tokens of Module 13 integration details can be extracted
+- **Action**: Extract to separate guide, keep summary inline
 
 #### Minor Issues
 
@@ -568,9 +556,6 @@ CORE ─────────────────────────
 ### 02_learning_engine.md
 
 **File**: `/aidm/instructions/02_learning_engine.md`  
-**Token Estimate**: ~4,000-4,500 tokens  
-**Target Budget**: ~2,000-3,000 tokens (Tier 1)  
-**Budget Status**: 🟡 50-66% OVER BUDGET  
 **Approval Status**: ✅ APPROVED WITH MINOR RECOMMENDATIONS
 
 #### Critical Issues
@@ -655,51 +640,46 @@ CORE ─────────────────────────
 ### 03_state_manager.md
 
 **File**: `/aidm/instructions/03_state_manager.md`  
-**Token Estimate**: ~12,000-14,000 tokens  
-**Target Budget**: ~3,000 tokens (Tier 1)  
-**Budget Status**: 🔴 **CRITICAL** 400-466% OVER BUDGET  
-**Approval Status**: ⚠️ **NEEDS REVISION** - Mandatory restructuring required
+**Approval Status**: ⚠️ **NEEDS REVISION** - Restructuring recommended
 
 #### Critical Issues
 
-**M03-C1: Massive Token Budget Overrun** `CRITICAL - ARCHITECTURE BREAKING`
-- **Problem**: 12,000-14,000 tokens (400-466% over Tier 1 target)
-- **Impact**: Single module = 150-175% of entire Tier 1 budget; breaks lazy-loading architecture
-- **Token Distribution**:
-  - Mechanical Systems Integration: ~3,500 tokens (25%)
-  - Pre-Commit Validation Hooks: ~3,000 tokens (21%)
-  - Narrative Profile State Tracking: ~2,500 tokens (18%)
-  - Rollback Protocol: ~1,500 tokens (11%)
-  - Change Log Format: ~1,500 tokens (11%) - KEEP
-  - State Architecture: ~1,000 tokens (7%) - KEEP
-- **Action**: MANDATORY RESTRUCTURING (see Phase 1-3 below)
+**M03-C1: Large Extractable Sections** `OPTIMIZATION`
+- **Opportunity**: Multiple large sections can be extracted to guides
+- **Extractable Content**:
+  - Mechanical Systems Integration → Session Zero or separate guide
+  - Pre-Commit Validation Hooks → Validation guide
+  - Narrative Profile State Tracking → Module 13 or separate guide
+  - Rollback Protocol → Rollback guide
+- **Preserve**: Change Log Format, State Architecture (core functionality)
+- **Action**: RESTRUCTURING (see phases below)
 
-#### Mandatory Restructuring Plan
+#### Restructuring Plan
 
-**Phase 1: Extract to Guides** (Save ~5,800 tokens)
-1. Create `docs/STATE_NARRATIVE_PROFILE_GUIDE.md` → Extract 2,300 tokens
-2. Create `docs/STATE_VALIDATION_GUIDE.md` → Extract 2,500 tokens  
-3. Create `docs/STATE_ROLLBACK_GUIDE.md` → Extract 1,000 tokens
+**Phase 1: Extract to Guides**
+1. Create `docs/STATE_NARRATIVE_PROFILE_GUIDE.md` for profile state details
+2. Create `docs/STATE_VALIDATION_GUIDE.md` for validation hooks
+3. Create `docs/STATE_ROLLBACK_GUIDE.md` for rollback details
 
-**Phase 2: Move to Responsible Modules** (Save ~3,500 tokens)
+**Phase 2: Move to Responsible Modules**
 4. Move mechanical systems instantiation → Module 06 (Session Zero)
 5. Move economy integration examples → Module 08/09
 
-**Phase 3: Consolidate Core** (Save ~500 tokens)
+**Phase 3: Consolidate Core**
 6. Merge redundant Change Log operation examples
 7. Condense Critical State Rules
 
-**Target After Restructuring**: ~4,500 tokens (50% over, acceptable for most critical module)
+**Note**: Apply multi-pass optimization per TOKEN_OPTIMIZATION_METHODOLOGY.md after restructuring.
 
 #### Moderate Issues
 
-**M03-M1: Structural Organization Problems** `ARCHITECTURE`
+**M03-M1: Structural Organization** `ARCHITECTURE`
 - **Problem**: Mixes 6+ concerns without clear separation (state architecture, narrative profiles, validation hooks, mechanical systems, economy)
 - **Action**: Reorganize into: I. State Architecture → II. Validation Overview → III. Change Log Protocol → IV. Integration Summaries
 
 **M03-M2: Narrative Profile Section Belongs in Module 13** `RESPONSIBILITY`
-- **Problem**: 2,500 tokens (18%) defining profile structure that Module 13 owns
-- **Action**: Module 03 keeps only: "Store narrative_profile in character_schema, validate profile_type, load on restart" (~200 tokens)
+- **Problem**: Profile structure that Module 13 owns
+- **Action**: Module 03 keeps only: "Store narrative_profile in character_schema, validate profile_type, load on restart"
 
 **M03-M3: Pre-Commit Validation Overlaps Module 10** `REDUNDANCY`
 - **Problem**: Detailed validation logic duplicates Error Recovery module
@@ -761,9 +741,6 @@ CORE ─────────────────────────
 ### 04_npc_intelligence.md
 
 **File**: `/aidm/instructions/04_npc_intelligence.md`  
-**Token Estimate**: ~3,800-4,200 tokens  
-**Target Budget**: ~3,000 tokens (Tier 1)  
-**Budget Status**: 🟡 27-40% OVER (acceptable for critical module)  
 **Approval Status**: ✅ APPROVED WITH MINOR RECOMMENDATIONS
 
 #### Critical Issues
@@ -840,9 +817,6 @@ CORE ─────────────────────────
 ### 05_narrative_systems.md
 
 **File**: `/aidm/instructions/05_narrative_systems.md`  
-**Token Estimate**: ~8,500-9,500 tokens  
-**Target Budget**: ~3,000 tokens (Tier 1)  
-**Budget Status**: 🟡 283-317% OVER but JUSTIFIED (4 systems in one module)  
 **Approval Status**: ✅ APPROVED WITH MINOR RECOMMENDATIONS
 
 #### Critical Issues
@@ -851,17 +825,16 @@ CORE ─────────────────────────
 
 #### Moderate Issues
 
-**M05-M1: Token Budget High But Acceptable** `BUDGET`
-- **Problem**: ~8,500-9,500 tokens (283-317% over target)
-- **Justification**: Combines 4 major systems:
-  - Foreshadowing Protocol (~2,500 tokens) - Session Analysis fix #2
-  - Ensemble Cast Management (~2,000 tokens) - OP protagonist solution
-  - Core Principles (~2,000 tokens) - Foundation
-  - Downtime Activity System (~1,800 tokens) - Mechanical instantiation
-- **Recommendation**: ACCEPT AS-IS - All content critical for storytelling quality
+**M05-M1: Core Narrative Module** `PRESERVE`
+- **Note**: Combines 4 major systems critical for storytelling quality:
+  - Foreshadowing Protocol - Session Analysis fix #2
+  - Ensemble Cast Management - OP protagonist solution
+  - Core Principles - Foundation
+  - Downtime Activity System - Mechanical instantiation
+- **Recommendation**: Apply standard optimization but prioritize information parity—this is narrative core
 
 **M05-M2: Foreshadowing/Show Don't Tell Overlap** `ORGANIZATION`
-- **Problem**: ~500 token redundancy between Narrative Voice and Foreshadowing sections
+- **Opportunity**: ~500 token redundancy between Narrative Voice and Foreshadowing sections
 - **Action**: Consolidate - Narrative Voice keeps principle, Foreshadowing keeps examples, add cross-reference
 
 **M05-M3: Downtime Load Order Unclear** `DEPENDENCY`
@@ -920,9 +893,6 @@ CORE ─────────────────────────
 ### 06_session_zero.md
 
 **File**: `/aidm/instructions/06_session_zero.md`  
-**Token Estimate**: ~7,500-8,500 tokens  
-**Target Budget**: ~12,000 tokens (Tier 2)  
-**Budget Status**: ✅ WITHIN BUDGET for Tier 2 (62-71%)  
 **Approval Status**: ✅ APPROVED WITH MODERATE RECOMMENDATIONS
 
 #### Critical Issues
@@ -996,9 +966,6 @@ CORE ─────────────────────────
 ### 07_anime_integration.md
 
 **File**: `/aidm/instructions/07_anime_integration.md`  
-**Token Estimate**: ~11,000-12,000 tokens  
-**Target Budget**: ~4,000 tokens (Tier 1)  
-**Budget Status**: 🟡 240-280% OVER but JUSTIFIED (CRITICAL priority research protocol)  
 **Approval Status**: ✅ APPROVED WITH MODERATE RECOMMENDATIONS
 
 #### Critical Issues
@@ -1063,29 +1030,27 @@ CORE ─────────────────────────
 ### 08_combat_resolution.md
 
 **File**: `/aidm/instructions/08_combat_resolution.md`  
-**Token Estimate**: ~11,000-12,500 tokens  
-**Target Budget**: ~3,000 tokens (Tier 1)  
-**Budget Status**: ❌ 267-317% OVER (CRITICAL)  
-**Approval Status**: ❌ NEEDS REVISION
+**Approval Status**: ⚠️ NEEDS REVISION - Duplication and verbose sections
 
 #### Critical Issues
 
-**M08-C1: Token Budget Catastrophic Failure** `TOKEN-CRITICAL`
-- **Problem**: 11,000-12,500 tokens, 267-317% OVER Tier 1 budget
-- **Token Violators**:
-  - Mechanical Systems Integration: 3,000 tokens (duplicates Module 09)
-  - Tier-Appropriate Language: 2,000 tokens (duplicates Module 12)
-  - Pre-Combat Validation: 2,500 tokens (overly verbose)
+**M08-C1: Large Duplicated/Extractable Sections** `OPTIMIZATION`
+- **Opportunity**: Multiple sections duplicate other modules or can be extracted
+- **Duplicated Content**:
+  - Mechanical Systems Integration: Duplicates Module 09 progression types
+  - Tier-Appropriate Language: Duplicates Module 12 tier framework
+- **Extractable Content**:
+  - Pre-Combat Validation: Overly verbose, can be condensed
 - **Actions**:
-  1. Extract Mechanical Systems Integration → `/aidm/guides/combat_progression_integration.md` (Tier 3), leave 200-token summary
-  2. Condense Tier Language → 500 tokens (quick reference + M12 reference)
-  3. Streamline Pre-Combat Validation → 1,750 tokens (remove instructional repetition)
-- **Savings**: -5,050 tokens → Post-optimization ~6,450 tokens (115% over, acceptable)
+  1. Remove Module 09 duplication → Add cross-reference
+  2. Remove Module 12 duplication → Add cross-reference  
+  3. Condense Pre-Combat Validation (remove instructional repetition)
+- **Note**: Apply multi-pass optimization per TOKEN_OPTIMIZATION_METHODOLOGY.md
 
-**M08-C2: Massive Duplication with Module 09** `ARCHITECTURE-CRITICAL`
-- **Problem**: 3,000 tokens explaining 5 progression types (mastery_tiers, class_based, quirk_awakening, milestone_based, static_op) that Module 09 will also explain
-- **Impact**: 6,000 tokens total for same concepts, maintenance burden, inconsistency risk
-- **Action**: Module 08 APPLIES progression rules, Module 09 DEFINES them. Extract to guide or condense to reference.
+**M08-C2: Duplication with Module 09** `ARCHITECTURE`
+- **Problem**: Explains 5 progression types (mastery_tiers, class_based, quirk_awakening, milestone_based, static_op) that Module 09 also explains
+- **Impact**: Maintenance burden, inconsistency risk
+- **Action**: Module 08 APPLIES progression rules, Module 09 DEFINES them. Add cross-reference.
 
 **M08-C3: Human-Centric Language Throughout** `ARCHITECTURAL - SYSTEM-WIDE`
 - **Problem**: Instructional tone ("BEFORE generating ANY combat narrative, ALWAYS validate", "DO NOT proceed", "CHECK character_schema")
@@ -1098,13 +1063,12 @@ CORE ─────────────────────────
 #### Moderate Issues
 
 **M08-M1: Tier Language Duplication with Module 12** `DUPLICATION`
-- **Problem**: 2,000 tokens repeating Module 12's power tier verb sets (11 tiers × examples)
-- **Action**: Condense to 500-token quick reference + "See Module 12 for complete tier framework"
-- **Savings**: -1,500 tokens
+- **Problem**: Repeats Module 12's power tier verb sets (11 tiers × examples)
+- **Action**: Condense to quick reference + "See Module 12 for complete tier framework"
 
 **M08-M2: Missing Dice Resolution Integration** `INTEGRATION`
 - **Problem**: Uses dice notation throughout without referencing Module 11 standards
-- **Action**: Add explicit Module 11 reference for notation, advantage/disadvantage, criticals (+100 tokens)
+- **Action**: Add explicit Module 11 reference for notation, advantage/disadvantage, criticals
 
 #### Minor Issues
 
@@ -1141,9 +1105,6 @@ CORE ─────────────────────────
 ### 09_progression_systems.md
 
 **File**: `/aidm/instructions/09_progression_systems.md`  
-**Token Estimate**: ~9,500-10,500 tokens  
-**Target Budget**: ~3,000 tokens (Tier 1)  
-**Budget Status**: ❌ 217-250% OVER (token count acceptable as authoritative progression source)  
 **Approval Status**: ❌ NEEDS REVISION (coordination with Module 08 required)
 
 #### Critical Issues
@@ -1219,26 +1180,24 @@ CORE ─────────────────────────
 #### Cross-Module Coordination Note
 
 **Module 08 ↔ Module 09 Duplication Fix**:
-- Module 09 = AUTHORITATIVE for progression types (keep 3K tokens)
-- Module 08 = APPLIES progression rules (condense to 200-token reference)
-- Both modules need coordinated update to resolve 6K token waste
+- Module 09 = AUTHORITATIVE for progression types
+- Module 08 = APPLIES progression rules (condense to cross-reference)
+- Both modules need coordinated update to resolve duplication
 
 ---
 
 ### 10_error_recovery.md
 
 **File**: `/aidm/instructions/10_error_recovery.md`  
-**Token Estimate**: ~6,500-7,500 tokens  
-**Target Budget**: ~3,000 tokens (Tier 1)  
-**Budget Status**: 🟡 117-150% OVER but ACCEPTABLE (critical infrastructure)  
 **Approval Status**: ✅ APPROVED WITH MINOR RECOMMENDATIONS
 
-#### Why Token Overrun is Acceptable
+#### Critical Infrastructure Note
 
 - **Critical Infrastructure**: Error Recovery monitors ALL other modules, must be robust
 - **No Duplication**: Unlike Modules 08-09, no content duplicated from other modules
-- **High Value-to-Token Ratio**: Every section serves distinct error recovery function
+- **High Value Density**: Every section serves distinct error recovery function
 - **Prevents Catastrophic Failures**: Emergency rollback, state corruption detection, desync handling
+- **Optimization Note**: Apply standard multi-pass process but prioritize information parity
 
 #### Moderate Issues
 
@@ -1250,15 +1209,14 @@ CORE ─────────────────────────
 
 #### Minor Issues
 
-**M10-N1: Validation Notification Templates Verbose** `TOKEN`
-- **Problem**: 800 tokens for 4 full templates with examples
-- **Action**: Show template structure once with variations, condense to 500 tokens
-- **Savings**: -300 tokens (optional optimization)
+**M10-N1: Validation Notification Templates Verbose** `OPTIMIZATION`
+- **Opportunity**: 4 full templates with examples may have condensation potential
+- **Action**: Show template structure once with variations if redundant
+- **Note**: Apply multi-pass optimization per methodology
 
-**M10-N2: Redundancy in Validation Examples** `TOKEN`
-- **Problem**: Fire Bolt scenario repeated in Pre-Action Validation AND Recovery Protocols
+**M10-N2: Redundancy in Validation Examples** `OPTIMIZATION`
+- **Opportunity**: Fire Bolt scenario repeated in Pre-Action Validation AND Recovery Protocols
 - **Action**: Keep full version in one section, reference in other
-- **Savings**: -200 tokens (optional optimization)
 
 **M10-N3: "Recent" Rule Undefined for World Rule Contradiction**
 - **Action**: Define as "same session or last 2 sessions"
@@ -1299,9 +1257,6 @@ CORE ─────────────────────────
 ### 11_dice_resolution.md
 
 **File**: `/aidm/instructions/11_dice_resolution.md`  
-**Token Estimate**: ~4,000-4,500 tokens  
-**Target Budget**: ~3,000 tokens (Tier 1)  
-**Budget Status**: ✅ 33-50% OVER (VERY ACCEPTABLE - critical RNG system)  
 **Approval Status**: ✅ APPROVED WITH MINOR RECOMMENDATIONS
 
 #### Why This Module is Critical
@@ -1309,7 +1264,7 @@ CORE ─────────────────────────
 - **LLMs cannot generate true randomness** - will hallucinate dice results without strict protocol
 - **Player trust foundation** - transparent rolls essential for TTRPG integrity
 - **No duplication** - content unique to Module 11
-- **Minimal overrun** - 33-50% vs 200-300% for Modules 08-09
+- **Critical infrastructure** - prioritize information parity over aggressive compression
 
 #### Minor Issues
 
@@ -1319,15 +1274,14 @@ CORE ─────────────────────────
   - "NEVER simulate dice mentally" → "Mental simulation disabled. Execute dice_roll_protocol() for all random elements"
   - "DO NOT PROCEED" → "raise ProtocolViolationError()"
 
-**M11-N2: Common Roll Types Examples Verbose** `TOKEN`
-- **Problem**: 1,500 tokens for 6 roll types with full examples each
-- **Action**: Use template format + variations, condense to 1,200 tokens
-- **Savings**: -300 tokens (optional)
+**M11-N2: Common Roll Types Examples** `OPTIMIZATION`
+- **Opportunity**: 6 roll types with full examples each may have condensation potential
+- **Action**: Use template format + variations if redundant
+- **Note**: Apply multi-pass optimization per methodology
 
-**M11-N3: Redundant Attack Example** `TOKEN`
-- **Problem**: Attack example in both Dice Roll Protocol and Common Roll Types
-- **Action**: Keep detailed version in Common Roll Types, brief reference in protocol
-- **Savings**: -100 tokens (optional)
+**M11-N3: Redundant Attack Example** `OPTIMIZATION`
+- **Opportunity**: Attack example in both Dice Roll Protocol and Common Roll Types
+- **Action**: Keep detailed version in one section, brief reference in other
 
 **M11-N4: Situational Modifiers Undefined**
 - **Action**: Add quantification guidelines or reference Module 08
@@ -1372,10 +1326,7 @@ CORE ─────────────────────────
 ### 12_narrative_scaling.md
 
 **File**: `/aidm/instructions/12_narrative_scaling.md`  
-**Token Estimate**: ~9,500-11,000 tokens  
-**Target Budget**: ~3,000 tokens (Tier 1)  
-**Budget Status**: ❌ 217-267% OVER (CRITICAL - needs optimization)  
-**Approval Status**: ❌ NEEDS REVISION
+**Approval Status**: ⚠️ NEEDS REVISION - Verbose sections condensable
 
 #### Core Insight: Power Tier ≠ Narrative Scale
 
@@ -1383,19 +1334,20 @@ Module 12 solves critical TTRPG problem: **How to run OP characters (Saitama/Rim
 
 #### Critical Issues
 
-**M12-C1: Massive Token Budget Overrun** `TOKEN-CRITICAL`
-- **Problem**: 9,500-11,000 tokens (217-267% OVER)
-- **Optimization Available**: -1,700 tokens via condensation:
-  - 9 Narrative Scales: 3,500 → 2,900 (-600)
-  - OP Protagonist Archetypes: 2,500 → 1,900 (-600)
-  - Dynamic Examples: 1,500 → 1,300 (-200)
-  - Progression Section: 1,200 → 900 (-300)
-- **Post-Optimization**: ~7,800 tokens (160% over, acceptable for critical framework)
+**M12-C1: Verbose Sections Condensable** `OPTIMIZATION`
+- **Opportunity**: Multiple verbose sections can be condensed
+- **Condensable Content**:
+  - 9 Narrative Scales (verbose explanations)
+  - OP Protagonist Archetypes (verbose examples)
+  - Dynamic Examples
+  - Progression Section
+- **Preserve**: Power Imbalance Formula, Context Modifiers, Scale definitions (core functionality)
+- **Action**: Apply multi-pass optimization per TOKEN_OPTIMIZATION_METHODOLOGY.md
 
 **M12-C2: Module 08 Duplication Resolution** `ARCHITECTURE`
-- **Problem**: Module 08 has ~2,000 token "Tier-Appropriate Language" section
+- **Problem**: Module 08 has "Tier-Appropriate Language" section that duplicates this module
 - **Resolution**: Module 12 = AUTHORITATIVE SOURCE for tier-appropriate scaling
-- **Action**: Module 08 should remove duplication, add ~200-token reference to Module 12
+- **Action**: Module 08 should remove duplication, add cross-reference to Module 12
 - **Module 12 Responsibility**: NONE (content already present in 9 Narrative Scales)
 
 **M12-C3: Human-Centric Language Throughout** `ARCHITECTURAL - SYSTEM-WIDE`
@@ -1453,18 +1405,14 @@ Module 12 solves critical TTRPG problem: **How to run OP characters (Saitama/Rim
 
 **Module 08 ↔ Module 12 Duplication Fix**:
 - Module 12 = AUTHORITATIVE for tier-appropriate scaling/language
-- Module 08 should remove ~2,000 token section, add ~200-token reference
-- Saves 1,800 tokens from Module 08
+- Module 08 should remove duplicate section, add cross-reference
 
 ---
 
 ### 13_narrative_calibration.md
 
 **File**: `/aidm/instructions/13_narrative_calibration.md`  
-**Token Estimate**: ~11,000-13,000 tokens  
-**Target Budget**: ~3,000 tokens (Tier 1)  
-**Budget Status**: ❌ 267-333% OVER (WORST in AIDM - requires aggressive optimization)  
-**Approval Status**: ❌ NEEDS REVISION (CRITICAL)
+**Approval Status**: ⚠️ NEEDS REVISION - Verbose sections condensable
 
 #### Core Insight: MECHANICS ≠ NARRATIVE
 
@@ -1472,15 +1420,15 @@ Module 13 solves critical problem: **Knowing anime power systems ≠ knowing how
 
 #### Critical Issues
 
-**M13-C1: EXTREME Token Overrun** `TOKEN-CRITICAL`
-- **Problem**: 11,000-13,000 tokens (WORST overrun in AIDM)
-- **Optimization Required**: -3,400 to -4,600 tokens via:
-  - Mechanical Scaffolding: 3,500 → 1,500-2,300 (-1,200 to -2,000)
-  - Scale-Specific Adjustments: 2,000 → 800-1,000 (-1,000 to -1,200)
-  - Profile Library Docs: 1,500 → 500 (-1,000)
-  - Extraction Process: (-200)
-  - Example Deduplication: (-200)
-- **Post-Optimization**: ~7,400-9,600 tokens → target ~8,000-8,500 (167-183% over, acceptable)
+**M13-C1: Large Condensable Sections** `OPTIMIZATION`
+- **Opportunity**: Multiple verbose sections can be condensed
+- **Condensable Content**:
+  - Mechanical Scaffolding section (verbose examples)
+  - Scale-Specific Adjustments (verbose explanations)
+  - Profile Library inline docs → extract to PROFILE_INDEX.md
+  - Extraction Process examples (redundant)
+- **Preserve**: 10 DNA Scales, 15 Trope Switches, DNA→Mechanics mapping (core functionality)
+- **Action**: Apply multi-pass optimization per TOKEN_OPTIMIZATION_METHODOLOGY.md
 
 **M13-C2: Human-Centric Language Throughout** `ARCHITECTURAL - SYSTEM-WIDE`
 - **Problem**: Instructional framing ("❌ Wrong", "✅ Right", "Common Mistakes")
