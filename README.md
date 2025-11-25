@@ -10,7 +10,7 @@
 
 AIDM v2 is a comprehensive instruction set designed for high-quality LLMs (Large Language Models) to act as sophisticated AI Dungeon Masters for text-based anime RPG experiences. Unlike traditional game systems, AIDM v2:
 
-- **Researches and integrates** real anime settings, characters, and power systems (VS Battles Wiki priority)
+- **Researches and integrates** real anime settings, characters, and power systems
 - **Fuses multiple anime** into coherent, playable worlds with power harmonization
 - **Maintains persistent state** across sessions through exportable save files
 - **Adapts to any anime genre** (isekai, shonen, seinen, slice-of-life, mecha, etc.)
