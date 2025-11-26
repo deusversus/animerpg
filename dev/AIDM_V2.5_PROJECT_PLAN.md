@@ -17,9 +17,21 @@ Consolidated, actionable project plan for implementing all findings from the com
 1. **Identity Firewall**: Agent is DEVELOPER, not AIDM. Write instructions in imperative 3rd person ("AIDM must...").
 2. **Edit In Place**: Modify existing files; do not create `_v2` duplicates.
 3. **STATE.md Updates**: Update `/dev/STATE.md` after significant changes.
-4. **Token Optimization**: Follow `/dev/TOKEN_OPTIMIZATION_METHODOLOGY.md` guidelines. Optimize until information parity risk emerges—do NOT stop at arbitrary "targets".
+4. **Sustainable Token Growth**: See Token Optimization Philosophy below.
 5. **Validation Required**: Changes require dry-run testing per `/tests/TEST_EXECUTION_GUIDE.md`.
 6. **Two-Dimensional Parity**: All optimization must preserve BOTH implementation completeness (formulas/values) AND pedagogical sufficiency (narrative examples showing tone/style).
+
+### Token Optimization Philosophy
+
+**Context**: AIDM v2.0's token budgets were snapshots of an incomplete system. AIDM v2.5 is larger because it is *better*—more thorough, polished, and capable. Token "overrun" vs. old baselines was expected and earned.
+
+**The Real Mandate**: Token optimization is not about hitting obsolete v2.0 targets. It is about **sustainable growth**:
+
+1. **New content earns its tokens**: Each v2.5 addition must provide genuine capability value proportional to its token cost.
+2. **Existing content stays lean**: Apply `/dev/TOKEN_OPTIMIZATION_METHODOLOGY.md` multi-pass process. Continue until information parity risk emerges—do NOT stop at arbitrary thresholds.
+3. **Growth is expected**: AIDM will continue growing as we move toward a semi-finished project. Optimization ensures growth remains proportional to capability gains.
+
+**Practical Guidance**: "As lean as possible without sacrificing capability." When in doubt: capability wins, then optimize.
 
 ### Key Constraints
 
@@ -33,21 +45,269 @@ Consolidated, actionable project plan for implementing all findings from the com
 
 | Review File | Module | Status | Key Themes |
 |-------------|--------|--------|------------|
-| `CORE_REVIEW.md` | CORE_AIDM_INSTRUCTIONS | ✅ Processed | Human-centric language, Rule 1.5 verbosity, central coordinator |
-| `MODULE_00_REVIEW.md` | 00_system_initialization | ✅ Processed | Schema count discrepancy, human-centric language, strong foundation |
+| `CORE_REVIEW.md` | CORE_AIDM_INSTRUCTIONS | ✅ Processed | Language transformation (Phase 3), Rule 1.5 verbosity, central coordinator |
+| `MODULE_00_REVIEW.md` | 00_system_initialization | ✅ Processed | Schema count discrepancy, language transformation (Phase 3), strong foundation |
 | `MODULE_01_REVIEW.md` | 01_cognitive_engine | ✅ Processed | Integration extraction opportunity, Rule 2.1 excellence |
 | `MODULE_02_REVIEW.md` | 02_learning_engine | ✅ Processed | Category count mismatch (6→8), heat floor ambiguity |
 | `MODULE_03_REVIEW.md` | 03_state_manager | ✅ Processed | Export formats extractable, verbose examples condensable |
 | `MODULE_04_REVIEW.md` | 04_npc_intelligence | ✅ Processed | Merchant-economy integration gaps, excellent disposition formula |
 | `MODULE_05_REVIEW.md` | 05_narrative_systems | ✅ Processed | Narrative core (preserve fully), foreshadowing protocol excellence |
 | `MODULE_06_REVIEW.md` | 06_session_zero | ✅ Processed | Tier misclassification (Tier 1→Tier 2), Phase 0.7 load order unclear |
-| `MODULE_07_REVIEW.md` | 07_anime_integration | ✅ Processed | Human-centric language exemplar, research engine (preserve fully) |
+| `MODULE_07_REVIEW.md` | 07_anime_integration | ✅ Processed | Language transformation exemplar (Phase 3), research engine (preserve fully) |
 | `MODULE_08_REVIEW.md` | 08_combat_resolution | ✅ Processed | Duplication with M09/M12, architecture misalignment |
 | `MODULE_09_REVIEW.md` | 09_progression_systems | ✅ Processed | Duplication with M08, authoritative source for progression |
-| `MODULE_10_REVIEW.md` | 10_error_recovery | ✅ Processed | Critical infrastructure (preserve fully), human-centric language |
+| `MODULE_10_REVIEW.md` | 10_error_recovery | ✅ Processed | Critical infrastructure (preserve fully), language transformation (Phase 3) |
 | `MODULE_11_REVIEW.md` | 11_dice_resolution | ✅ Processed | Critical LLM randomness solution (preserve fully) |
 | `MODULE_12_REVIEW.md` | 12_narrative_scaling | ✅ Processed | M08 authoritative for tier language, examples condensable |
 | `MODULE_13_REVIEW.md` | 13_narrative_calibration | ✅ Processed | Verbose sections condensable, narrative DNA core (preserve) |
+
+---
+
+## Gestalt Analysis: Cross-Cutting Insights
+
+*Patterns and opportunities visible only when viewing AIDM as a unified system*
+
+The 15 individual module reviews were conducted in isolation. This section documents emergent insights from holistic analysis—issues, opportunities, and architectural patterns that span multiple modules and would not be apparent from any single review.
+
+### 1. The M08/M09/M12 Triangle: Duplication Epicenter
+
+**Observation**: Three modules (Combat, Progression, Scaling) each developed overlapping content independently, creating AIDM's largest source of duplication and potential desync.
+
+| Content | M08 (Combat) | M09 (Progression) | M12 (Scaling) |
+|---------|--------------|-------------------|---------------|
+| Resource costs | ✓ Stamina | ✓ Resource | - |
+| Tier language | ✓ Duplicate | - | ✓ **Authoritative** |
+| XP/progression | ✓ Duplicate | ✓ **Authoritative** | - |
+| Power formulas | ✓ In combat context | - | ✓ **Authoritative** |
+
+**Root Cause**: These modules were likely written at different times without cross-referencing, each becoming self-contained.
+
+**Systemic Fix**: 
+1. Establish **single source of truth** for each domain (already identified in Phase 2)
+2. Create **dependency manifest** in CORE listing authoritative sources
+3. Add **cross-reference validation** in module headers: "This module depends on: M09 (progression types), M12 (tier scaling)"
+
+**Impact**: Resolving this triangle alone eliminates ~2,000-3,000 tokens of duplication and prevents future desync.
+
+---
+
+### 2. The Validation Cascade: M03↔M10 Responsibility Blur
+
+**Observation**: State Manager (M03) and Error Recovery (M10) both describe validation logic with unclear boundaries.
+
+| Validation Type | M03 Claims | M10 Claims | Actual Owner |
+|-----------------|------------|------------|--------------|
+| Pre-commit structural | ✓ | - | M03 |
+| Range/constraint | ✓ | ✓ | **Unclear** |
+| Semantic validation | - | ✓ | M10 |
+| Before-value check | ✓ | ✓ | **Unclear** |
+| Recovery protocols | - | ✓ | M10 |
+
+**Root Cause**: Both modules evolved validation logic organically without coordinated boundary definition.
+
+**Systemic Fix**:
+1. **M03 = Structural validation**: Schema conformance, type checks, range limits (pre-commit)
+2. **M10 = Semantic validation**: Narrative consistency, desync detection, recovery (post-commit or on-error)
+3. Add explicit boundary statement to both modules' headers
+
+**Impact**: Clarifies which module AIDM consults for which validation scenario, prevents AI from loading both for simple checks.
+
+---
+
+### 3. The Session Zero → Research → Calibration Pipeline
+
+**Observation**: M06→M07→M13 form a critical initialization pipeline, but handoffs are implicit.
+
+```
+M06 (Session Zero)     M07 (Anime Integration)     M13 (Calibration)
+     │                         │                          │
+     │ "What anime vibe?"      │                          │
+     └────────────────────────►│ Research anime           │
+                               │ Extract mechanics        │
+                               └─────────────────────────►│ Generate profile
+                                                          │ Apply DNA scales
+                                                          │ Return to M06
+                               ◄──────────────────────────┘
+```
+
+**Problem**: No explicit triggers or return paths documented. AIDM must infer when to invoke each module.
+
+**Systemic Fix**:
+1. Document explicit triggers: "Player mentions anime title" → M07; "Research complete" → M13
+2. Document return protocol: M13 returns `narrative_profile` to M06 for character integration
+3. Add timeout/fallback: "If M07 research inconclusive after 2 attempts → offer generic profile"
+
+**Impact**: Prevents Session Zero stalls when anime research is ambiguous.
+
+---
+
+### 4. The Terminology Drift Problem
+
+**Observation**: Key terms evolved inconsistently across modules written at different times.
+
+| Concept | M08 Term | M09 Term | Resolution |
+|---------|----------|----------|------------|
+| Action resource | "Stamina" | "Resource" | **Adopt "Resource"** (M09 authoritative) |
+| Power level | "Tier" | "Tier" | ✓ Consistent |
+| Narrative style | - | - | "Narrative Scales" (M12) vs "DNA Scales" (M13) |
+| Validation | "Pre-commit" | "Pre-check" | **Adopt "Pre-commit"** (M03 term) |
+
+**Root Cause**: Organic development without terminology registry.
+
+**Systemic Fix**:
+1. Add **Terminology Registry** to CORE or M00
+2. During Phase 3 transformation, standardize terms system-wide
+3. Format: `| Term | Definition | Authoritative Module |`
+
+**Impact**: Reduces AI confusion when cross-referencing modules, improves prompt efficiency.
+
+---
+
+### 5. The Critical Infrastructure Quartet
+
+**Observation**: Four modules form AIDM's load-bearing infrastructure—aggressive optimization here risks system failure.
+
+| Module | Why Critical | Optimization Approach |
+|--------|--------------|----------------------|
+| M03 (State) | All persistent data flows through it | Optimize format, preserve all operations |
+| M05 (Narrative) | Core storytelling differentiator | Preserve pedagogical examples fully |
+| M10 (Error Recovery) | Prevents cascade failures | Preserve all recovery paths |
+| M11 (Dice) | Solves LLM randomness problem | Preserve RNG methodology fully |
+
+**Insight**: These modules share a pattern: **procedural correctness > token efficiency**. A 10% optimization that risks 1% failure rate is not worth it.
+
+**Systemic Fix**:
+1. Mark these modules with `CRITICAL_INFRASTRUCTURE` header flag
+2. Optimization pass applies lighter touch: structural cleanup only, no content reduction
+3. Add integration tests specifically for these modules' failure modes
+
+---
+
+### 6. The Two-Pipeline Architecture
+
+**Observation**: AIDM operates two distinct processing pipelines that rarely intersect.
+
+**Pipeline A: Narrative Flow** (story-focused)
+```
+M05 (Narrative) → M07 (Anime) → M13 (Calibration) → M12 (Scaling)
+```
+*Concerns*: Tone, pacing, tropes, genre authenticity
+
+**Pipeline B: Mechanical Flow** (game-focused)
+```
+M03 (State) → M08 (Combat) → M09 (Progression) → M11 (Dice)
+```
+*Concerns*: Numbers, validation, consistency, fairness
+
+**Insight**: Most modules serve one pipeline. Cross-pipeline modules (M04 NPCs, M06 Session Zero) are integration points requiring special care.
+
+**Systemic Fix**:
+1. Document pipeline membership in each module header
+2. Cross-pipeline modules get explicit "Integration Points" section
+3. Test suites should include cross-pipeline scenarios
+
+---
+
+### 7. The Pedagogical Content Pattern
+
+**Observation**: Across all modules, two types of content serve fundamentally different purposes:
+
+| Content Type | Purpose | Example | Optimize? |
+|--------------|---------|---------|-----------|
+| **Instructional** | Tell AI what to do | "ALWAYS validate before commit" | ✓ Yes (→ AI-directive) |
+| **Pedagogical** | Show AI how to sound | 3-paragraph combat narration example | ❌ Preserve |
+
+**Insight**: Phase 3 Language Transformation must distinguish these. Transforming pedagogical examples to pseudo-code would destroy their purpose—AIDM needs to *emulate* these, not *parse* them.
+
+**Already documented** in Pass 0 Exception, but this gestalt view reveals it's a **system-wide architectural principle**, not just an optimization exception.
+
+---
+
+### 8. Undocumented Module Interaction: M02 Memory Informs Everything
+
+**Observation**: M02 (Learning Engine) silently influences every other module through the memory/heat system, but this is never explicitly documented.
+
+| When AIDM does... | M02 is implicitly consulted for... |
+|-------------------|------------------------------------|
+| NPC dialogue (M04) | Relationship heat, past interactions |
+| Combat narration (M08) | Player's combat style preferences |
+| Progression pacing (M09) | Historical XP patterns |
+| Error recovery (M10) | What player has established as "true" |
+| Narrative calibration (M13) | Accumulated tone feedback |
+
+**Root Cause**: M02's "background service" nature means it's never explicitly invoked—it's always consulted.
+
+**Systemic Fix**:
+1. Add M02 to Cross-Module Dependency Map with dashed lines (implicit dependency)
+2. Document in M02: "This module provides passive context to all narrative/mechanical decisions"
+3. Consider: Should M02 heat values be included in structured response calculations?
+
+---
+
+### 9. The Count Discrepancy Pattern
+
+**Observation**: Multiple modules have stated counts that don't match actual content.
+
+| Module | Stated | Actual | Issue |
+|--------|--------|--------|-------|
+| M00 | 13 schemas | 15+ schemas | Outdated count |
+| M02 | 6 categories | 8 categories | Outdated count |
+| M03 | 5 state components | 6 with profiles | Ambiguous categorization |
+
+**Root Cause**: Documentation written at one point, content evolved, counts not updated.
+
+**Systemic Fix**:
+1. **Phase 1** already captures individual fixes
+2. **New principle**: Use "includes:" lists instead of counts where practical
+3. Where counts necessary, add validation marker: `// AUTO-COUNT: schema_dir/*.json`
+
+---
+
+### 10. Opportunity: Shared Quick Reference Format
+
+**Observation**: Two quick references exist (`combat_quick_ref.md`, `progression_quick_ref.md`), but similar condensed references could benefit other modules.
+
+**Candidates for quick references**:
+- **State operations** (M03): All 9 Change Log operations on one page
+- **Validation checklist** (M10): Error types and recovery actions
+- **Profile template** (M13): Blank DNA scales + trope switches
+
+**Systemic Fix**:
+1. Add to Files to Create: `state_quick_ref.md`, `validation_quick_ref.md`, `profile_template.md`
+2. Standard format: Tables only, no prose, maximum information density
+3. Quick refs = **extracted** content (reduces source module), not duplicated
+
+---
+
+### Summary: Gestalt-Derived Action Items
+
+| ID | Insight | New Action | Phase |
+|----|---------|------------|-------|
+| G-01 | M08/M09/M12 triangle | Add dependency manifest to CORE | Phase 2 |
+| G-02 | M03↔M10 validation blur | Add explicit boundary statements | Phase 2 |
+| G-03 | Session Zero pipeline | Document explicit M06→M07→M13 triggers | Phase 2 |
+| G-04 | Terminology drift | Create terminology registry in CORE/M00 | Phase 5 |
+| G-05 | Critical quartet | Add CRITICAL_INFRASTRUCTURE flags | Phase 2 |
+| G-06 | Two-pipeline architecture | Document pipeline membership in headers | Phase 5 |
+| G-07 | M02 implicit influence | Document M02 as passive context provider | Phase 5 |
+| G-08 | Count discrepancies | Use "includes:" lists instead of counts | Phase 1 |
+| G-09 | Quick reference opportunity | Create 3 additional quick refs | Phase 4 |
+| G-10 | Evolving relationship gap | Add cognitive evolution, biases, milestones to M04 | Phase 5 |
+
+**G-10 Analysis: Evolving Relationship Systems**
+
+M04 NPC Intelligence has robust *relationship tracking* (affinity, thresholds, ensemble archetypes, growth stages) but lacks *evolving intelligence* mechanics. Current state:
+- ✅ NPCs become friendlier/hostile over time (affinity tracking)
+- ✅ NPCs progress through arc stages (Introduction→Mastery)
+- ❌ NPCs don't become *smarter* over time (no cognitive evolution)
+- ❌ NPCs can't be *systematically wrong* (no cognitive biases)
+- ❌ No tracking of emotional "firsts" (humor, concern, sacrifice)
+- ❌ Rivals/nemeses don't grow independently (no parallel progression)
+- ❌ No dedicated system for non-humanoid companions (familiars, creatures)
+
+**Gap Impact**: Lovers, rivals, best friends, and bonded creatures feel static after initial characterization. Nemeses remain at same power level regardless of time passed. Relationships lack the organic "firsts" that make real bonds feel alive.
+
+**Resolution**: Phase 5 items P5-14 through P5-18 address this with cognitive evolution stages, bias profiles, emotional milestones, parallel nemesis tracking, and bonded entity schema.
 
 ---
 
@@ -64,8 +324,8 @@ Consolidated, actionable project plan for implementing all findings from the com
 | P1-04 | M08 | Stamina vs Resource terminology conflict | Align with M09 authoritative "Resource" terminology | 🔴 CRITICAL |
 | P1-05 | M09 | Duplicates M08 combat content | Remove duplication, add cross-reference to M08 | 🔴 CRITICAL |
 | P1-06 | CORE | Rule 1.5 verbose operational examples | Condense per TOKEN_OPTIMIZATION_METHODOLOGY.md | 🟡 HIGH |
-| P1-07 | M02 | Category count mismatch (6 stated → 8 exist) | Update header to state 8 categories | 🟡 HIGH |
-| P1-08 | M00 | Schema count mismatch (13 stated → 15+ exist) | Update to actual count | 🟡 HIGH |
+| P1-07 | M02 | Category count mismatch (6 stated → 8 exist) | Use "includes:" list instead of count (G-08) | 🟡 HIGH |
+| P1-08 | M00 | Schema count mismatch (13 stated → 15+ exist) | Use "includes:" list instead of count (G-08) | 🟡 HIGH |
 
 **Optimization Guidance**: Follow multi-pass process from `/dev/TOKEN_OPTIMIZATION_METHODOLOGY.md`. Continue until information parity risk emerges.
 
@@ -73,6 +333,8 @@ Consolidated, actionable project plan for implementing all findings from the com
 
 ### Phase 2: Structural Improvements
 *Architecture and integration enhancements - Cross-module coordination*
+
+**Original Review Items**:
 
 | ID | Module(s) | Issue | Action |
 |----|-----------|-------|--------|
@@ -85,22 +347,46 @@ Consolidated, actionable project plan for implementing all findings from the com
 | P2-07 | M09→M08 | Progression authoritative source | Add note: M09 = authoritative for progression types |
 | P2-08 | M13→M07 | Profile extraction depends on research | Document M13←M07 dependency |
 
+**Gestalt-Derived Items** (from holistic analysis):
+
+| ID | Source | Issue | Action |
+|----|--------|-------|--------|
+| P2-09 | G-01 | M08/M09/M12 no dependency manifest | Add dependency manifest to CORE listing authoritative sources per domain |
+| P2-10 | G-02 | M03↔M10 validation boundary blur | Add explicit boundary statements: M03=structural, M10=semantic |
+| P2-11 | G-03 | Session Zero pipeline implicit | Document explicit triggers: M06→M07 (anime mention), M07→M13 (research complete), M13→M06 (profile return) |
+| P2-12 | G-05 | Critical modules unmarked | Add `CRITICAL_INFRASTRUCTURE` flag to M03, M05, M10, M11 headers |
+
 ---
 
-### Phase 3: System-Wide Language Audit
+### Phase 3: Language Transformation
 *Human-centric → AI-directive operational format*
+
+**Rationale**: AIDM is consumed exclusively by high-end agentic AI (Claude/GPT-4/Gemini), never by human eyes. AI-directive pseudo-code format parses more efficiently and compresses 15-35% without information loss.
+
+**Reference**: `/dev/LANGUAGE_TRANSFORMATION_TEST.md` (empirical tests on real AIDM snippets)
 
 **Scope**: 9 of 15 modules (60% of AIDM)
 - CORE, M00, M07, M08, M09, M10, M11, M12, M13
 
-| Pattern | Current | Target | Example |
-|---------|---------|--------|---------|
-| Prohibitions | "NEVER do X", "❌ WRONG" | `if X: reject()` | "NEVER improvise" → `if no_schema_match: halt_and_query()` |
-| Requirements | "ALWAYS do Y", "✅ CORRECT" | `require: Y` | "ALWAYS show work" → `output_format: include_reasoning` |
-| Warnings | "Common mistake:", "Don't forget" | `validation_check:` | "Don't forget heat decay" → `validate: heat_floor >= 0` |
-| Examples | "Wrong way: ... Right way: ..." | `valid_pattern:` / `invalid_pattern:` | Structural, not instructional |
+#### Transformation Patterns
 
-**Note**: Language audit improves LLM parsing efficiency. Actual optimization should follow multi-pass methodology until parity risk.
+| Pattern | Human-Centric | AI-Directive | Compression |
+|---------|---------------|--------------|-------------|
+| Prohibitions | "NEVER do X", "❌ WRONG" | `if X: reject()` | ~20% |
+| Requirements | "ALWAYS do Y", "✅ CORRECT" | `require: Y` | ~15% |
+| Warnings | "Common mistake:", "Don't forget" | `validation_check:` | ~20% |
+| Examples | "Wrong way: ... Right way: ..." | `invalid_pattern:` / `valid_pattern:` | ~25% |
+| Prose blocks | Explanatory paragraphs | Structured tables/dicts | ~30-35% |
+
+#### Expected Compression by Module Type
+
+| Module Type | Example | Expected Compression |
+|-------------|---------|---------------------|
+| Prose-heavy | M07, M09, M13 | 30-35% |
+| Mixed | CORE, M00, M08 | 20-25% |
+| Already terse | M10, M11 | 15-20% |
+
+**Integration**: Language transformation is applied as Pass 0 in the per-file optimization process (Phase 4).
 
 ---
 
@@ -108,6 +394,8 @@ Consolidated, actionable project plan for implementing all findings from the com
 *Apply TOKEN_OPTIMIZATION_METHODOLOGY.md multi-pass process*
 
 **Reference**: `/dev/TOKEN_OPTIMIZATION_METHODOLOGY.md` and `/dev/TOKEN_OPTIMIZATION_CHECKLIST.md`
+
+**Philosophy**: AIDM is larger than v2.0 because it is *better*. Optimization targets "as lean as possible without sacrificing capability"—not regression to obsolete baselines. The system will continue growing; our job is ensuring growth earns its tokens.
 
 #### Optimization Priority (by extractable/condensable content)
 
@@ -123,7 +411,7 @@ Consolidated, actionable project plan for implementing all findings from the com
 
 #### Modules to Preserve (Critical Infrastructure)
 
-These modules should receive standard optimization passes but are critical infrastructure—prioritize information parity over aggressive compression:
+These modules are critical infrastructure—optimize for clarity and efficiency, but prioritize capability over aggressive compression. Growth here is acceptable if it buys genuine functionality:
 
 - **M05** (Narrative Systems): Core storytelling engine. Preserve foreshadowing protocol, narrative examples.
 - **M07** (Anime Integration): Research engine. Preserve anime knowledge, trope mapping.
@@ -132,13 +420,19 @@ These modules should receive standard optimization passes but are critical infra
 
 #### Optimization Process Per File
 
-1. **Pre-check**: Is file already optimized? (5+ markers = skip)
+0. **Pass 0**: Language Transformation (if module in Phase 3 scope)
+   - Apply transformation patterns from Phase 3
+   - Convert prose → tables/dicts where semantically equivalent
+   - Preserve narrative examples (pedagogical content) in readable form
+1. **Pre-check**: Is file already optimized? (5+ markers = skip remaining passes)
 2. **Pass 1**: Structural (emoji replace, header consolidate, obvious redundancy)
 3. **Pass 2**: Content (verbose→compact, example reduction, table compression)
 4. **Pass 3**: Refinement (section merging, whitespace, cross-refs)
 5. **Pass 4**: Validation (dry tests, implementation detail check, narrative example check, linting)
 
-**Critical**: Continue optimizing until information parity risk emerges. Do NOT stop at arbitrary "expected ranges."
+**Critical**: Optimize until information parity risk emerges. "As lean as possible without sacrificing capability." Do NOT regress to v2.0 baselines—those were incomplete.
+
+**Pass 0 Exception**: Narrative examples that demonstrate tone/style/pacing (pedagogical content) should remain in natural language for AI to emulate. Transform *instructions*, not *demonstrations*.
 
 #### Two-Dimensional Parity Requirement
 
@@ -154,6 +448,8 @@ Per Module 05 Lesson (documented in methodology):
 ### Phase 5: Content Enhancements
 *Quality, clarity, and completeness improvements*
 
+**Original Review Items**:
+
 | ID | Module | Enhancement | Action |
 |----|--------|-------------|--------|
 | P5-01 | M02 | Heat floor behavior undefined | Add: "heat_floor: 0.1 (never fully forgets)" |
@@ -166,6 +462,26 @@ Per Module 05 Lesson (documented in methodology):
 | P5-08 | M12 | M12 vs M13 terminology | Add upfront: "M12 = Power Scaling Modes, M13 = Narrative DNA Scales" |
 | P5-09 | M13 | Profile blending undefined | Add: "Average scales, union tropes, primary profile pacing" |
 | P5-10 | M13 | Confidence threshold | Add: "<70% = require validation, ≥70% = optional" |
+
+**Gestalt-Derived Items** (from holistic analysis):
+
+| ID | Source | Enhancement | Action |
+|----|--------|-------------|--------|
+| P5-11 | G-04 | Terminology drift across modules | Create terminology registry in CORE or M00 header |
+| P5-12 | G-06 | Pipeline membership undocumented | Add "Pipeline: Narrative/Mechanical" to each module header |
+| P5-13 | G-07 | M02 implicit influence undocumented | Add to M02: "Provides passive context to all narrative/mechanical decisions" |
+
+**Evolving Relationship Systems** (M04 extension for living companions/rivals/nemeses):
+
+| ID | Target | Enhancement | Description |
+|----|--------|-------------|-------------|
+| P5-14 | M04 + npc_schema | Cognitive Evolution Stages | Add `intelligence_stage`: reactive → contextual → anticipatory → autonomous. NPCs become *smarter* over time, not just friendlier. Tracks perceptiveness, initiative quality, anticipatory assistance. |
+| P5-15 | M04 + npc_schema | Cognitive Bias System | Add `bias_profile`: trauma-based, cultural, belief-driven blind spots. NPCs can be *systematically wrong* based on history/worldview. Player can eventually recognize and address biases. |
+| P5-16 | M04 + npc_schema | Emotional Milestone Tracking | Add `emotional_milestones`: first humor, first concern, first disagreement, first initiative, first sacrifice. Tracks relationship "firsts" that make bonds feel organic. Enables meaningful callbacks. |
+| P5-17 | M04 | Parallel Nemesis Progression | Add rival/antagonist off-screen tracking: independent training, accomplishment fabrication, parallel arc beats. As PC grows, nemesis grows. No static villains. |
+| P5-18 | npc_schema variant | Bonded Entity Schema | Create `bonded_entity_schema.json` for non-humanoid companions: familiars, creatures, spirits, Pikachu-tier bonds. Species-appropriate bonding behaviors, evolution tracking, non-verbal relationship expression. |
+
+**Design Philosophy**: Relationships should feel alive, growing, and evolving over time. Lovers, rivals, best friends, and bonded creatures deserve the same narrative depth as the PC's journey. Nemeses grow in parallel—no one likes a static bad guy.
 
 ---
 
@@ -201,7 +517,7 @@ Per Module 05 Lesson (documented in methodology):
 | Metric | Validation |
 |--------|------------|
 | Information Parity | 100% (both implementation + pedagogical dimensions) |
-| Human-centric Language | Converted to AI-directive format (9 modules) |
+| Language Transformation | Converted to AI-directive format (9 modules per Phase 3) |
 | Cross-module Duplication | Eliminated (references only, no copies) |
 | Test Pass Rate | 100% (all 80+ tests passing) |
 | Markdown Linting | Zero errors across all files |
@@ -216,7 +532,7 @@ Per Module 05 Lesson (documented in methodology):
 3. **P1-05**: M09 duplication removal
 
 ### Short-term (Week 2)
-4. **Phase 3**: System-wide language audit
+4. **Phase 3**: Language transformation (9 modules)
 5. **Phase 4**: M13 optimization (verbose sections)
 6. **Phase 4**: M12 optimization (scaffolding examples)
 
@@ -234,6 +550,8 @@ Per Module 05 Lesson (documented in methodology):
 
 ## Cross-Module Dependency Map
 
+### Visual Dependency Graph
+
 ```
 CORE ─────────────────────────────────────────────┐
   │                                               │
@@ -247,20 +565,43 @@ CORE ─────────────────────────
   │         │
   │         ▼
   ├─► M02 (Learning) ◄──► M03 (State)
-  │         │                  │
-  │         ▼                  ▼
+  │    ┊    │                  │
+  │    ┊    ▼                  ▼
   ├─► M04 (NPC) ◄───────► M05 (Narrative)
-  │         │                  │
-  │         ▼                  ▼
+  │    ┊    │                  │
+  │    ┊    ▼                  ▼
   ├─► M08 (Combat) ◄──┬──► M12 (Scaling)
-  │         │         │
-  │         ▼         │
+  │    ┊    │         │
+  │    ┊    ▼         │
   ├─► M09 (Progression) ◄─┘
-  │
+  │    ┊
   ├─► M10 (Error Recovery) [cross-cutting]
   │
   └─► M11 (Dice) [cross-cutting]
+
+Legend: ─► = explicit dependency, ┊ = implicit M02 memory influence (G-07)
 ```
+
+### Two-Pipeline Architecture (G-06)
+
+**Pipeline A: Narrative Flow** (story-focused)
+```
+M05 (Narrative) ─► M07 (Anime) ─► M13 (Calibration) ─► M12 (Scaling)
+```
+*Modules*: M05, M07, M12, M13
+*Concerns*: Tone, pacing, tropes, genre authenticity, power fantasy
+
+**Pipeline B: Mechanical Flow** (game-focused)
+```
+M03 (State) ─► M08 (Combat) ─► M09 (Progression) ─► M11 (Dice)
+```
+*Modules*: M03, M08, M09, M11
+*Concerns*: Numbers, validation, consistency, fairness, randomness
+
+**Cross-Pipeline Integration Points**:
+- M04 (NPC): Narrative personality + mechanical disposition
+- M06 (Session Zero): Establishes both narrative profile + mechanical character
+- M10 (Error Recovery): Validates both narrative consistency + mechanical state
 
 ### Authoritative Source Registry
 
@@ -311,6 +652,8 @@ These modules are critical infrastructure—prioritize information parity over a
 
 ## Files to Create
 
+**From Original Reviews**:
+
 | File | Purpose | Source |
 |------|---------|--------|
 | `/aidm/guides/EXPORT_FORMAT_GUIDE.md` | Extracted from M03 | Export format examples |
@@ -318,13 +661,21 @@ These modules are critical infrastructure—prioritize information parity over a
 | `/aidm/guides/PROFILE_INDEX.md` | Extracted from M13 | Pre-calibrated profile library |
 | `/aidm/quick_references/state_quick_ref.md` | Condensed from M03 | Quick state operations |
 
+**From Gestalt Analysis** (G-09):
+
+| File | Purpose | Source |
+|------|---------|--------|
+| `/aidm/quick_references/validation_quick_ref.md` | Error types and recovery actions | Condensed from M10 |
+| `/aidm/quick_references/profile_template.md` | Blank DNA scales + trope switches | Template from M13 |
+| `/aidm/quick_references/terminology_registry.md` | Authoritative term definitions | Cross-module (G-04) |
+
 ---
 
 ## Validation Checkpoints
 
 - [ ] Phase 1 complete: All critical fixes applied
 - [ ] Phase 2 complete: Cross-module references established
-- [ ] Phase 3 complete: Language audit finished (9 modules)
+- [ ] Phase 3 complete: Language transformation finished (9 modules)
 - [ ] Phase 4 complete: Optimization validated (100% information parity)
 - [ ] Phase 5 complete: Content enhancements added
 - [ ] Phase 6 complete: All tests passing
@@ -344,13 +695,14 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Critical Issues
 
-**CORE-C1: Human-Centric Instructional Language** `ARCHITECTURAL`
-- **Problem**: Uses instructional tone ("Never improvise", "Always show work", "❌ WRONG", "✅ CORRECT") instead of AI-directive operational protocols
-- **Impact**: Same issue affects 8 of 15 modules (53% of AIDM)
-- **Action**: Rephrase Rules 1-6 to procedural format with code blocks
+**CORE-C1: Language Transformation Required** `PHASE 3`
+- **Pattern**: Uses instructional tone ("Never improvise", "Always show work", "❌ WRONG", "✅ CORRECT") instead of AI-directive operational protocols
+- **Scope**: Same pattern affects 9 of 15 modules (60% of AIDM)
+- **Action**: Apply Phase 3 transformation patterns:
   - Rule 1 → `process_player_input()` operational loop
   - Rule 2 → `preserve_agency_protocol()` with dialogue/action separation
   - Rule 5 → `calculate_damage()` enforcement protocol
+- **Reference**: See Phase 3 transformation patterns and `/dev/LANGUAGE_TRANSFORMATION_TEST.md`
 
 #### Moderate Issues
 
@@ -423,9 +775,10 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Minor Issues
 
-**M00-N1: Human-Centric Instructional Language** `ARCHITECTURAL`
-- **Problem**: Uses instructional tone ("DON'T load all modules", "VALIDATE FIRST, EXECUTE SECOND") vs AI-directive protocols
-- **Note**: Same pattern in all 16 AIDM files - address in system-wide language audit
+**M00-N1: Language Transformation Required** `PHASE 3`
+- **Pattern**: Uses instructional tone ("DON'T load all modules", "VALIDATE FIRST, EXECUTE SECOND") vs AI-directive protocols
+- **Action**: Apply Phase 3 transformation patterns
+- **Reference**: See Phase 3 transformation patterns and `/dev/LANGUAGE_TRANSFORMATION_TEST.md`
 
 **M00-N2: System Assertions Unverified**
 - **Action**: Add verification in testing framework
@@ -509,8 +862,10 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Minor Issues
 
-**M01-N1: Human-Centric Language (Heavy)** `ARCHITECTURAL`
-- **Problem**: Particularly heavy usage ("NEVER assume", "MANDATORY HARD STOP", "FORBIDDEN")
+**M01-N1: Language Transformation Required (Heavy)** `PHASE 3`
+- **Pattern**: Particularly heavy usage ("NEVER assume", "MANDATORY HARD STOP", "FORBIDDEN")
+- **Action**: Apply Phase 3 transformation patterns - this module requires extensive transformation
+- **Reference**: See Phase 3 transformation patterns and `/dev/LANGUAGE_TRANSFORMATION_TEST.md`
 - **Note**: Higher priority than Module 00 due to volume - address in system-wide audit
 
 **M01-N2: Rule Numbering Inconsistency**
@@ -585,8 +940,10 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Minor Issues
 
-**M02-N1: Human-Centric Language (Moderate)** `ARCHITECTURAL`
-- **Problem**: "REMEMBER what matters, FORGET what doesn't", "Core memories NEVER change"
+**M02-N1: Language Transformation Required (Moderate)** `PHASE 3`
+- **Pattern**: "REMEMBER what matters, FORGET what doesn't", "Core memories NEVER change"
+- **Action**: Apply Phase 3 transformation patterns
+- **Reference**: See Phase 3 transformation patterns and `/dev/LANGUAGE_TRANSFORMATION_TEST.md`
 - **Note**: Moderate priority in system-wide audit
 
 **M02-N2: Heat Boost Stacking Unclear**
@@ -695,8 +1052,10 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Minor Issues
 
-**M03-N1: Human-Centric Language (HIGHEST PRIORITY)** `ARCHITECTURAL`
-- **Problem**: "MUST sync", "NEVER approximate", "FORBIDDEN", "MANDATORY" throughout
+**M03-N1: Language Transformation Required (Highest Density)** `PHASE 3`
+- **Pattern**: "MUST sync", "NEVER approximate", "FORBIDDEN", "MANDATORY" throughout
+- **Action**: Apply Phase 3 transformation patterns - this module has highest transformation density
+- **Reference**: See Phase 3 transformation patterns and `/dev/LANGUAGE_TRANSFORMATION_TEST.md`
 - **Note**: Critical module - state management requires precision; highest priority in system-wide audit
 
 **M03-N2: State Architecture Component Mismatch**
@@ -767,8 +1126,10 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Minor Issues
 
-**M04-N1: Human-Centric Language (Light)** `ARCHITECTURAL`
-- **Problem**: "NPCs are PEOPLE, not quest dispensers", ✅ checkmarks throughout
+**M04-N1: Language Transformation Required (Light)** `PHASE 3`
+- **Pattern**: "NPCs are PEOPLE, not quest dispensers", ✅ checkmarks throughout
+- **Action**: Apply Phase 3 transformation patterns - light transformation needed
+- **Reference**: See Phase 3 transformation patterns
 - **Note**: Low priority - light usage compared to other modules
 
 **M04-N2: Behavior Generation Truncated**
@@ -843,8 +1204,10 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Minor Issues
 
-**M05-N1: Human-Centric Language (Light)** `ARCHITECTURAL`
-- **Problem**: "NEVER breaks character", "NO emoji", etc.
+**M05-N1: Language Transformation Required (Light)** `PHASE 3`
+- **Pattern**: "NEVER breaks character", "NO emoji", etc.
+- **Action**: Apply Phase 3 transformation patterns - light transformation needed
+- **Note**: Preserve narrative examples (pedagogical content) per Pass 0 Exception
 - **Note**: Low priority - light usage
 
 **M05-N2: Narrative Voice Example Truncated**
@@ -921,8 +1284,10 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Minor Issues
 
-**M06-N1: Human-Centric Language (Moderate-Heavy)** `ARCHITECTURAL`
-- **Problem**: Phase 0 has "FORBIDDEN", "NO EXCEPTIONS", "VIOLATION CONSEQUENCE"; 50+ checkmarks
+**M06-N1: Language Transformation Required (Moderate-Heavy)** `PHASE 3`
+- **Pattern**: Phase 0 has "FORBIDDEN", "NO EXCEPTIONS", "VIOLATION CONSEQUENCE"; 50+ checkmarks
+- **Action**: Apply Phase 3 transformation patterns
+- **Reference**: See Phase 3 transformation patterns
 - **Note**: Moderate-high priority in system-wide audit given critical role
 
 **M06-N2: OP Archetype List Could Expand**
@@ -974,14 +1339,16 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Moderate Issues
 
-**M07-M1: Human-Centric Language (EXEMPLAR CASE)** `ARCHITECTURAL - SYSTEM-WIDE`
-- **Problem**: Uses instructional human-centric phrasing throughout:
+**M07-M1: Language Transformation Exemplar** `PHASE 3 - REFERENCE IMPLEMENTATION`
+- **Pattern**: Uses instructional human-centric phrasing throughout:
   - "Let me research...", "Think of me as a GM...", "I'm familiar with..."
-- **System Reality**: AIDM is high-end agentic AI with web search, file editing, code execution
-- **Action**: Rephrase to AI-directive operational format:
-  - "Let me research..." → "Execute research protocol: [steps]"
-  - "Think of me as a GM..." → "Execute player consultation protocol: [procedure]"
-- **CRITICAL NOTE**: This pattern exists across ALL 16 instruction modules - requires system-wide audit
+  - Self-assessment protocol in natural language
+  - Heavy use of conversational examples
+- **Action**: This module serves as the **exemplar case** for Phase 3 transformation
+  - Transform first to establish patterns for other modules
+  - Document transformation decisions in `/dev/LANGUAGE_TRANSFORMATION_TEST.md`
+  - Preserve narrative examples per Pass 0 Exception
+- **Expected Compression**: 30-35% (prose-heavy module)
 
 **M07-M2: Power Tier Mapping Unexplained** `CLARITY`
 - **Problem**: Examples reference VSBW tiers (6-C) mapping to AIDM tiers (Tier 6) without explanation
@@ -1052,8 +1419,10 @@ These modules are critical infrastructure—prioritize information parity over a
 - **Impact**: Maintenance burden, inconsistency risk
 - **Action**: Module 08 APPLIES progression rules, Module 09 DEFINES them. Add cross-reference.
 
-**M08-C3: Human-Centric Language Throughout** `ARCHITECTURAL - SYSTEM-WIDE`
-- **Problem**: Instructional tone ("BEFORE generating ANY combat narrative, ALWAYS validate", "DO NOT proceed", "CHECK character_schema")
+**M08-C3: Language Transformation Required** `PHASE 3`
+- **Pattern**: Instructional tone ("BEFORE generating ANY combat narrative, ALWAYS validate", "DO NOT proceed", "CHECK character_schema")
+- **Action**: Apply Phase 3 transformation patterns
+- **Expected Compression**: 20-25% (mixed module)
 - **System Reality**: Agentic AI executor, not human user needing education
 - **Action**: Rephrase to AI-directive operational protocols:
   - "BEFORE generating ANY..." → "Pre-combat validation protocol (mandatory): Execute steps 1-5 sequentially"
@@ -1123,8 +1492,10 @@ These modules are critical infrastructure—prioritize information parity over a
   - `milestone_based`: Story-driven, minimal combat XP
   - `static_op`: No progression ever (Saitama), XP for quest tracking only
 
-**M09-C2: Human-Centric Language Throughout** `ARCHITECTURAL - SYSTEM-WIDE`
-- **Problem**: Instructional tone ("BEFORE awarding XP, ALWAYS validate", "DO NOT announce level-up")
+**M09-C2: Language Transformation Required** `PHASE 3`
+- **Pattern**: Instructional tone ("BEFORE awarding XP, ALWAYS validate", "DO NOT announce level-up")
+- **Action**: Apply Phase 3 transformation patterns
+- **Expected Compression**: 30-35% (prose-heavy module)
 - **Action**: Rephrase to AI-directive operational protocols:
   - "BEFORE awarding XP..." → "Pre-progression validation protocol (mandatory): Execute steps 1-5 sequentially"
   - Prose checklists → Procedural code blocks with return codes
@@ -1201,8 +1572,11 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Moderate Issues
 
-**M10-M1: Human-Centric Language Throughout** `ARCHITECTURAL - SYSTEM-WIDE`
-- **Problem**: Instructional tone ("Before ANY change", "ALWAYS check memory", "Check PLAYER_ESTABLISHED_RULE")
+**M10-M1: Language Transformation Required** `PHASE 3`
+- **Pattern**: Instructional tone ("Before ANY change", "ALWAYS check memory", "Check PLAYER_ESTABLISHED_RULE")
+- **Action**: Apply Phase 3 transformation patterns
+- **Note**: Critical infrastructure - transform carefully, preserve all recovery logic
+- **Expected Compression**: 15-20% (already terse)
 - **Action**: Rephrase to AI-directive operational protocols:
   - "Before ANY change, validate legality" → "Pre-action validation protocol (mandatory): Execute validation checks before state changes"
   - Prose instructions → Procedural code blocks with return codes
@@ -1268,8 +1642,11 @@ These modules are critical infrastructure—prioritize information parity over a
 
 #### Minor Issues
 
-**M11-N1: Human-Centric Language** `ARCHITECTURAL - SYSTEM-WIDE`
-- **Problem**: Instructional warnings ("NEVER simulate dice mentally", "ALWAYS use explicit notation", "DO NOT PROCEED")
+**M11-N1: Language Transformation Required** `PHASE 3`
+- **Pattern**: Instructional warnings ("NEVER simulate dice mentally", "ALWAYS use explicit notation", "DO NOT PROCEED")
+- **Action**: Apply Phase 3 transformation patterns
+- **Note**: Critical infrastructure - transform carefully, preserve RNG methodology
+- **Expected Compression**: 15-20% (already terse)
 - **Action**: Rephrase to AI-directive protocols:
   - "NEVER simulate dice mentally" → "Mental simulation disabled. Execute dice_roll_protocol() for all random elements"
   - "DO NOT PROCEED" → "raise ProtocolViolationError()"
@@ -1350,8 +1727,10 @@ Module 12 solves critical TTRPG problem: **How to run OP characters (Saitama/Rim
 - **Action**: Module 08 should remove duplication, add cross-reference to Module 12
 - **Module 12 Responsibility**: NONE (content already present in 9 Narrative Scales)
 
-**M12-C3: Human-Centric Language Throughout** `ARCHITECTURAL - SYSTEM-WIDE`
-- **Problem**: Instructional warnings ("[NO] Conflate", "AVOID ignoring context")
+**M12-C3: Language Transformation Required** `PHASE 3`
+- **Pattern**: Instructional warnings ("[NO] Conflate", "AVOID ignoring context")
+- **Action**: Apply Phase 3 transformation patterns
+- **Expected Compression**: 20-25% (mixed module)
 - **Action**: Rephrase to AI-directive protocols (select_narrative_scale(), calculate_power_imbalance())
 
 #### Moderate Issues
@@ -1430,8 +1809,10 @@ Module 13 solves critical problem: **Knowing anime power systems ≠ knowing how
 - **Preserve**: 10 DNA Scales, 15 Trope Switches, DNA→Mechanics mapping (core functionality)
 - **Action**: Apply multi-pass optimization per TOKEN_OPTIMIZATION_METHODOLOGY.md
 
-**M13-C2: Human-Centric Language Throughout** `ARCHITECTURAL - SYSTEM-WIDE`
-- **Problem**: Instructional framing ("❌ Wrong", "✅ Right", "Common Mistakes")
+**M13-C2: Language Transformation Required** `PHASE 3`
+- **Pattern**: Instructional framing ("❌ Wrong", "✅ Right", "Common Mistakes")
+- **Action**: Apply Phase 3 transformation patterns
+- **Expected Compression**: 30-35% (prose-heavy module)
 - **Action**: Rephrase to AI-directive protocols (apply_narrative_voice(), validate_profile_match())
 
 #### Moderate Issues
@@ -1504,10 +1885,12 @@ Module 13 solves critical problem: **Knowing anime power systems ≠ knowing how
 | M13-T7 | Custom world + "Seinen" vibe → <2min setup | Spartan quick calibration |
 | M13-T8 | Combat scene + DanDaDan profile → NO D&D checklist | Prevents generic voice |
 
-#### System-Wide Pattern: Human-Centric Language
+#### System-Wide Pattern: Language Transformation (Phase 3)
 
-**Modules Affected**: 07, 08, 09, 10, 11, 12, 13 (7 consecutive modules, 46.7% of AIDM)  
-**Recommendation**: After completing all reviews, perform system-wide language audit and rephrase to AI-directive operational format.
+**Modules Affected**: CORE, M00, M07, M08, M09, M10, M11, M12, M13 (9 modules, 60% of AIDM)
+**Implementation**: Phase 3 Language Transformation workflow with Pass 0 in optimization process
+**Reference**: `/dev/LANGUAGE_TRANSFORMATION_TEST.md` for empirical compression tests
+**Expected Result**: 15-35% compression without information loss
 
 ---
 
