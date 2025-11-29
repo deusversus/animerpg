@@ -1,6 +1,6 @@
 # Module 04: NPC Intelligence - Behavior Engine
 
-**Version**: 2.0 | **Priority**: CRITICAL | **Load**: After State Manager, before Narrative
+**Version**: 2.0 | **Priority**: CRITICAL | **Load**: After State Manager, before Narrative | **Pipeline**: Both (Narrative + Mechanical)
 
 **Purpose**: Creates believable NPCs via: 1) Personality Expression (traits), 2) Affinity System (relationship evolution), 3) Knowledge Boundaries (realistic limits), 4) Dialogue Generation (natural speech), 5) Behavioral Consistency (memory). **Core Principle**: NPCs are PEOPLE, not quest dispensers - goals, fears, evolving relationships.
 
@@ -186,7 +186,11 @@ After interaction, create memory_thread for continuity: category "relationships"
 
 **Merchant NPCs** (economic interactions with personality):
 - **Full NPC Schema for Story Merchants**: Recurring merchants (blacksmiths, guild vendors, faction traders) use full npc_schema.json with merchant_id link to economy_schema
-- **Merchant Personality Affects Prices**: High affinity (60+) → better deals (reputation_modifiers.friendly = ×0.9), Low affinity (-20) → worse deals or refusal
+- **Merchant Disposition Formula**: `Merchant_Disposition = (Loyalty × 0.4) + (Faction_Reputation × 0.3) + (Personal_Relationship × 0.3)`
+  - **Loyalty**: Repeat customer status (0-100, increases with purchases/quests)
+  - **Faction_Reputation**: Player standing with merchant's faction (uses faction_schema)
+  - **Personal_Relationship**: Direct NPC affinity from interactions
+- **Merchant Personality Affects Prices**: High disposition (60+) → better deals (reputation_modifiers.friendly = ×0.9), Low disposition (-20) → worse deals or refusal
 - **Merchant Dialogue Integration**: Don't just transact—NPCs comment on purchases ("Buying that much rope? Planning something dangerous?"), share rumors during trades, offer quests for loyal customers
 - **Faction-Affiliated Merchants**: Link merchant.faction_affiliation to NPC faction_ties → player reputation affects both prices AND merchant disposition
 - **Example Workflow**:
@@ -316,3 +320,124 @@ Module 05: "Need scene, check ensemble balance"
 → Generate scene: Elena invites PC to kids' birthday party (grounds PC in normalcy)
 → After scene: Module 04 updates Elena.scene_count = 4
 → Create memory: RELATIONSHIP (heat 65, bonding moment)
+---
+
+## Evolving Relationship Systems
+
+### Cognitive Evolution Stages (P5-14)
+
+NPCs become *smarter* over time, not just friendlier. Track cognitive development:
+
+**`intelligence_stage`** (in npc_schema.json):
+- **Reactive** (default): Responds to direct stimuli, limited anticipation
+- **Contextual**: Remembers patterns, adapts to PC habits ("You always visit on Fridays")
+- **Anticipatory**: Proactively prepares ("I got extra supplies, figured you'd need them")
+- **Autonomous**: Acts independently toward shared goals, surprises PC constructively
+
+**Progression Triggers**:
+- 5+ meaningful interactions -> Reactive -> Contextual
+- Trust milestone (affinity 60+) + shared challenge -> Contextual -> Anticipatory
+- Major quest completion together + affinity 80+ -> Anticipatory -> Autonomous
+
+**Metrics**:
+- `perceptiveness`: How quickly NPC notices PC cues (0-100)
+- `initiative_quality`: Helpfulness of NPC's independent actions (0-100)
+- `anticipatory_assistance`: Frequency of proactive help (0-10 scale)
+
+### Cognitive Bias System (P5-15)
+
+NPCs can be *systematically wrong* based on history/worldview:
+
+**`bias_profile`** (in npc_schema.json):
+- **trauma_biases**: Fear responses from past events ("Never trusts mages" after magical attack)
+- **cultural_biases**: Worldview from upbringing ("Outsiders are suspicious")
+- **belief_biases**: Ideological blind spots ("The guild is always right")
+
+**Bias Effects**:
+- Influences information interpretation (same event, different conclusions)
+- Affects advice quality (blind spots lead to bad recommendations)
+- Creates roleplay opportunities (PC can address/challenge biases over time)
+
+**Bias Evolution**:
+- Player can gradually shift biases through consistent counter-evidence
+- Major events can create new biases or shatter old ones
+- Track bias_shift_history for character development arcs
+
+### Emotional Milestone Tracking (P5-16)
+
+Track relationship "firsts" that make bonds feel organic:
+
+**`emotional_milestones`** (in npc_schema.json):
+```json
+{
+  "first_humor": { "session": 3, "context": "Laughed at PC's joke about guards" },
+  "first_concern": { "session": 5, "context": "Worried about PC injury" },
+  "first_disagreement": { "session": 7, "context": "Argued about approach to bandits" },
+  "first_initiative": { "session": 9, "context": "Independently scouted ahead" },
+  "first_sacrifice": { "session": 12, "context": "Took hit meant for PC" },
+  "first_vulnerability": null,
+  "first_trust_test": null
+}
+```
+
+**Usage**:
+- Enables meaningful callbacks ("Remember when you first made me laugh?")
+- Tracks relationship depth (more milestones = deeper bond)
+- Informs NPC behavior (post-sacrifice, NPC more protective)
+
+### Parallel Nemesis Progression (P5-17)
+
+Rivals and antagonists grow independently. No static villains:
+
+**`nemesis_tracking`** (in npc_schema.json for antagonist NPCs):
+```json
+{
+  "is_nemesis": true,
+  "parallel_progression": {
+    "off_screen_training": true,
+    "power_growth_rate": "matches_pc",
+    "independent_accomplishments": ["Conquered eastern territory", "Acquired dark artifact"],
+    "parallel_arc_stage": "challenge"
+  },
+  "rivalry_intensity": 75,
+  "last_encounter_session": 8,
+  "next_encounter_escalation": "significant_power_boost"
+}
+```
+
+**Off-Screen Growth**:
+- Between encounters, nemesis trains/schemes
+- Power level tracks PC (maintains threat)
+- Independent accomplishments create world impact
+- Creates "they've been busy too" moments
+
+### Bonded Entity Framework (P5-18)
+
+For non-humanoid companions (familiars, creatures, spirits):
+
+**Schema**: `bonded_entity_schema.json` (variant of npc_schema)
+
+**Key Differences**:
+- **communication_mode**: Telepathic | Empathic | Verbal (limited) | None (behavior only)
+- **bonding_expression**: Species-appropriate affection (purring, glowing, etc.)
+- **evolution_tracking**: Physical/ability changes over time
+- **bond_strength**: Mechanical link to PC (affects abilities, range, etc.)
+
+**Example** (Wolf Companion):
+```json
+{
+  "entity_type": "bonded_creature",
+  "species": "shadow_wolf",
+  "communication_mode": "empathic",
+  "bond_strength": 72,
+  "bonding_behaviors": ["sits closer when PC stressed", "growls at perceived threats"],
+  "evolution_stage": "adolescent",
+  "special_abilities_unlocked": ["shadow_step", "pack_howl"]
+}
+```
+
+**Design Philosophy**: Relationships should feel alive, growing, and evolving over time. Lovers, rivals, best friends, and bonded creatures deserve the same narrative depth as the PC's journey.
+
+**End of Module 04**
+
+*Next: 05_narrative_systems.md (Emergent Story Generation)*

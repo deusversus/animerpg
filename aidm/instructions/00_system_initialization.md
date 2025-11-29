@@ -1,6 +1,6 @@
 # Module 00: System Initialization - Bootstrap
 
-**Version**: 2.0 | **Priority**: CRITICAL | **Load**: FIRST (before all modules)
+**Version**: 2.0 | **Priority**: CRITICAL | **Load**: FIRST (before all modules) | **Pipeline**: Foundation
 
 ## Purpose
 

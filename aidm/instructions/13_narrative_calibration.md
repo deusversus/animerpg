@@ -1,6 +1,6 @@
 # Module 13: Narrative Calibration - Learning How Anime Tells Stories
 
-**Version**: 2.0 | **Priority**: CRITICAL | **Load**: After Anime Integration (Module 07)
+**Version**: 2.0 | **Priority**: CRITICAL | **Load**: After Anime Integration (Module 07) | **Pipeline**: Narrative
 
 ## Purpose
 
@@ -114,6 +114,33 @@ Player: "Tone down horror, lighter than anime."
 AIDM: "Got it. Horror: psychological→unsettling, Violence: stylized→cartoon. 
 Profile updated!"
 ```
+
+### Profile Blending Rules
+
+When combining multiple anime profiles (e.g., "HxH tactics + DanDaDan absurdity"):
+
+**Blending Formula**:
+- **Scales**: Average the numeric values (e.g., HxH Tactical:8 + DanDaDan Tactical:5 = 6.5)
+- **Tropes**: Union (combine all ON tropes from both profiles)
+- **Pacing**: Use primary profile's pacing (first-mentioned anime)
+- **Tone**: Weighted average, player specifies weights if desired
+
+**Example Blend**:
+```
+Profile A (HxH): Tactical:8, Comedy:6, Introspection:7
+Profile B (DanDaDan): Tactical:5, Comedy:4, Introspection:3
+Blend: Tactical:6.5, Comedy:5, Introspection:5
+Tropes: HxH(power_explanation, training_arcs) + DanDaDan(rapid_shifts, absurdism) = ALL ON
+Pacing: HxH (primary)
+```
+
+### Confidence Threshold
+
+**Research-Derived Profile Confidence**:
+- **≥70%**: Profile valid, player validation optional (offer but don't require)
+- **<70%**: Require player validation before proceeding
+
+**Factors reducing confidence**: Obscure anime, conflicting sources, ongoing series with recent tone shifts, hybrid genres
 
 ---
 

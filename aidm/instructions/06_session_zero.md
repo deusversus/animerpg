@@ -1,6 +1,6 @@
 # Module 06: Session Zero - Character Creation Protocol
 
-Version: 2.0 | Priority: CRITICAL | Load: Before first gameplay
+Version: 2.0 | Priority: CRITICAL | Load: Before first gameplay | Pipeline: Foundation
 
 ## Purpose
 
@@ -15,6 +15,28 @@ Guide players through character creation: identity, background, abilities, world
 Phase 1: CONCEPT → Phase 2: IDENTITY & BACKGROUND → Phase 3: MECHANICAL BUILD → Phase 4: WORLD INTEGRATION → Phase 5: SESSION ZERO SCENE
 
 Complete each phase sequentially. AIDM guides collaboratively via questions/options.
+
+### Spartan Mode (Experienced Players)
+
+**Trigger**: Player says "spartan mode", "quick start", "skip the tutorial", or demonstrates TTRPG expertise.
+
+**Minimal Onboarding**:
+- **Phase 0**: Still mandatory (research cannot be skipped)
+- **Phase 0.5**: Offer pre-built profile or 3-question quick calibration
+- **Phase 1-4**: Condense to single form: "Name, concept, 3 key traits, starting location"
+- **Phase 5**: Optional (player can request or skip)
+
+**Spartan Prompt**:
+```
+"Spartan Mode active. Essentials only:
+1. Character: [Name, race, class/archetype, 1-sentence concept]
+2. Tone: [Anime reference OR 'serious/comedy/balanced']
+3. Starting point: [Location/situation preference]
+
+I'll handle mechanics. Ready when you are."
+```
+
+**Exit Spartan**: Player can request full walkthrough anytime ("expand phase 2", "tell me more about X").
 
 ---
 

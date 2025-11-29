@@ -1,4 +1,6 @@
-# Module 12: Narrative Scaling | v2.0 | P:CRITICAL | Load:Core
+# Module 12: Narrative Scaling | v2.0 | P:CRITICAL | Load:Core | Pipeline: Narrative
+
+**Terminology Note**: M12 = **Power Scaling Modes** (9 narrative approaches based on power tier). M13 = **Narrative DNA Scales** (10 tone/pacing calibration sliders). Different systems, complementary purposes.
 
 Power Tier × Narrative Scale framework for any power level (T11→T2). Power imbalance detection, OP Protagonist Mode (9 archetypes), 9 narrative scales. Player agency→Module 01. This module→power-appropriate techniques.
 

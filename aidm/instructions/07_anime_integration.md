@@ -1,6 +1,6 @@
 # Module 07: Anime Integration - Research & Harmonization Protocol
 
-Version: 2.0 | Priority: CRITICAL | Load: After Session Zero
+Version: 2.0 | Priority: CRITICAL | Load: After Session Zero | Pipeline: Narrative
 
 ## Purpose
 

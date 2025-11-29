@@ -1,6 +1,6 @@
 # Module 08: Combat Resolution - JRPG Combat
 
-**Version**: 2.0 | **Priority**: HIGH | **Load**: After Narrative Systems
+**Version**: 2.0 | **Priority**: HIGH | **Load**: After Narrative Systems | **Pipeline**: Mechanical
 
 ## Purpose
 

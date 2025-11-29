@@ -1,6 +1,6 @@
 # Module 10: Error Recovery - Consistency Checking & Correction
 
-**Version: 2.0 | Priority: CRITICAL | Load: Last (monitors all modules)**
+**Version: 2.0 | Priority: CRITICAL | Load: Last (monitors all modules) | Pipeline: Cross-cutting**
 
 ---
 
@@ -77,6 +77,19 @@ AIDM's self-correction system. **Ensures**: Data integrity | Narrative continuit
 ---
 
 ## Recovery Protocols by Severity
+
+### Recovery Confidence Thresholds
+
+**Auto-Recovery Decision**: Based on confidence in correct fix:
+- **Confidence ≥ 0.8**: Auto-recover silently (TRIVIAL) or with brief note (MINOR)
+- **Confidence < 0.8**: Prompt player for confirmation before applying fix
+
+**Confidence Calculation**: `confidence = (data_clarity × 0.4) + (single_solution × 0.3) + (low_risk × 0.3)`
+- `data_clarity`: How clear is the correct state? (schema has definitive value = 1.0)
+- `single_solution`: Only one valid fix? (multiple options = lower confidence)
+- `low_risk`: Minimal narrative/mechanical impact? (high stakes = lower confidence)
+
+---
 
 **CRITICAL (Emergency Rollback)**: HALT → Backup corrupted state → Load last valid save → Inform player → "⚠️ SYSTEM ERROR: Critical inconsistency detected. Restored last valid state. ROLLBACK: Session 8 (15min) → Session 7 ending. Lost ~15min. Save secure. Ready to continue?"
 

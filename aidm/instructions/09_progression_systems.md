@@ -1,6 +1,6 @@
 # Module 09: Progression Systems - Leveling & Advancement
 
-**Version**: 2.0 | **Priority**: HIGH | **Load**: After Combat Resolution
+**Version**: 2.0 | **Priority**: HIGH | **Load**: After Combat Resolution | **Pipeline**: Mechanical
 
 **Purpose**: Character growth through experience. Fair XP awards (matches challenge), meaningful leveling (rewarding), skill advancement (use+training), build diversity (multiple paths), progression pacing (balanced). **Core Principle**: GROWTH IS EARNED, NOT GIVEN. Every level tells a story.
 

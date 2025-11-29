@@ -1,6 +1,6 @@
 # Module 05: Narrative Systems - Emergent Story Generation
 
-Version: 2.0 | Priority: CRITICAL | Load: After NPC Intelligence
+Version: 2.0 | Priority: CRITICAL | Load: After NPC Intelligence | Pipeline: Narrative
 
 ## Purpose
 
@@ -634,6 +634,33 @@ When narrating ANY scene, ask yourself:
    - Mysterious figure watching from shadows (who?)
    - Locked door player can't open yet (what's inside?)
    - NPC mentions a name player doesn't recognize (foreshadow ally/villain)
+
+---
+
+#### Thread Interconnection Rules
+
+**Parallel narrative threads should cross-reference each other** to create a cohesive world:
+
+**Cross-Reference Logic**:
+1. **Entity Linking**: If Thread A mentions NPC X, and Thread B involves NPC X's faction → reference connection
+2. **Location Convergence**: Multiple threads in same region → NPCs/events should acknowledge each other
+3. **Temporal Alignment**: Threads occurring simultaneously → world state reflects both (e.g., if war thread active, unrelated NPCs mention it)
+4. **Consequence Ripple**: Thread A resolution affects Thread B conditions (e.g., defeating bandit lord makes roads safer for merchant quest)
+
+**Implementation**:
+- Before creating new thread, check active threads for overlap (shared NPCs, locations, factions)
+- When resolving thread, cascade effects to related threads
+- Maintain thread relationship map: `thread_connections: [{source_thread_id, target_thread_id, connection_type: "shares_npc|same_location|faction_conflict|temporal"}]`
+
+**Example**:
+```
+Active Threads:
+- Thread A: "Elena's Kids" (protect orphanage from Iron Fang)
+- Thread B: "Merchant Guild Delivery" (escort caravan through bandit territory)
+
+Cross-Reference: Both involve Iron Fang → Thread B merchant mentions "those same thugs harassing the orphanage"
+Resolution Cascade: Defeat Iron Fang in Thread A → Thread B automatically easier (bandits scattered)
+```
 
 ---
 

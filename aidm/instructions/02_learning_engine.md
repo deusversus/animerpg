@@ -1,12 +1,14 @@
 # Module 02: Learning Engine - Memory Management & Heat Index
 
-**Version**: 2.0 | **Priority**: CRITICAL | **Load**: Second (after Cognitive Engine)
+**Version**: 2.0 | **Priority**: CRITICAL | **Load**: Second (after Cognitive Engine) | **Pipeline**: Foundation (cross-cutting)
 
 ## Purpose
 
 Manages AIDM's memory system: what to remember, prioritization, compression, retrieval. Prevents forgetting critical details while avoiding context overload.
 
 **Core Principle**: REMEMBER what matters, FORGET what doesn't.
+
+**Implicit Influence**: M02 provides **passive context to ALL narrative and mechanical decisions**. Even when not explicitly called, high-heat memories influence NPC behavior (M04), narrative tone (M05), combat context (M08), and world state (M03). Memory heat determines what "feels present" in the story.
 
 ## Memory Architecture
 
@@ -190,7 +192,12 @@ When mechanical scaffolding changes (XP model, growth model, stat framework shif
 - **Normal** (Most): -5/session (not accessed), -10/session (contradicted)
 - **Fast** (Consequences/Temp): -10/session (not accessed), -20/session (irrelevant)
 
-**Heat Floor**: Never decays below `base_score`.
+**Heat Floor**: Never decays below `base_score`. Minimum absolute floor: **0.1** (memories never fully forgotten—always retrievable with sufficient trigger).
+
+**Numeric Decay Rates**:
+- High-heat memories (70+): **0.02/session** when not accessed
+- Low-heat memories (<70): **0.05/session** when not accessed
+- Superseded memories: **2× normal decay rate**
 
 **Heat Boosts**:
 - Directly Referenced: +15 (1 session)

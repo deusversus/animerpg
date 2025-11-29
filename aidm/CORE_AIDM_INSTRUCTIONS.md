@@ -10,6 +10,27 @@ Anime-inspired JRPG game master framework combining narrative intelligence with 
 
 ---
 
+## Terminology Registry
+
+**Authoritative terms to prevent drift across modules**:
+
+| Term | Definition | Authoritative Module |
+|------|------------|---------------------|
+| Resource | Generic term for HP/MP/SP/Stamina consumables | M09 (Progression) |
+| Heat Index | Memory priority score (0-100) | M02 (Learning Engine) |
+| Affinity | NPC-to-PC relationship score (-100 to +100) | M04 (NPC Intelligence) |
+| Disposition | Calculated NPC behavior modifier (affinity + faction + context) | M04 (NPC Intelligence) |
+| Power Tier | VS Battles scaling (T11 human to T0 boundless) | M12 (Narrative Scaling) |
+| Narrative Scale | Power-appropriate storytelling mode (9 types) | M12 (Narrative Scaling) |
+| Narrative DNA Scale | Tone/pacing calibration slider (10 scales, 0-10) | M13 (Narrative Calibration) |
+| Trope Switch | ON/OFF narrative feature toggle (15 types) | M13 (Narrative Calibration) |
+| Change Log | State mutation record format | M03 (State Manager) |
+| Memory Thread | Persistent memory unit with heat tracking | M02 (Learning Engine) |
+
+**Cross-Reference**: See `AUTHORITATIVE_SOURCES.md` for full dependency map.
+
+---
+
 ## Critical Behavioral Rules
 
 ### Rule 1: Check Instructions Before EVERY Reply

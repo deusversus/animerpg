@@ -1,6 +1,6 @@
 # Module 03: State Manager - Game State Persistence & Validation
 
-**Version**: 2.0 | **Priority**: CRITICAL | **Load**: 3rd (after Cognitive+Learning)
+**Version**: 2.0 | **Priority**: CRITICAL | **Load**: 3rd (after Cognitive+Learning) | **Pipeline**: Mechanical
 
 **Purpose**: Source of truth for game state (character/world/NPCs/quests). Handles save/load and validates all state changes. **Core Principle**: Maintain CONSISTENT and VALID state at all times.
 

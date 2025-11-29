@@ -1,6 +1,6 @@
 # Module 01: Cognitive Engine - Intent Classification & Decision-Making
 
-Version: 2.0 | Priority: CRITICAL | Load: First (after CORE)
+Version: 2.0 | Priority: CRITICAL | Load: First (after CORE) | Pipeline: Foundation
 
 ## Purpose
 

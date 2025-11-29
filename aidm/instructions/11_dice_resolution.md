@@ -1,6 +1,6 @@
 # Module 11: Dice Resolution - Transparent RNG
 
-**Version**: 2.0 | **Priority**: CRITICAL | **Load**: Early (after initialization, before mechanics)
+**Version**: 2.0 | **Priority**: CRITICAL | **Load**: Early (after initialization, before mechanics) | **Pipeline**: Mechanical
 
 **Purpose**: Explicit, transparent, verifiable random number generation. Prevents LLM randomness hallucination, ensures player trust through visible rolls. **Core Principle**: NEVER simulate dice mentally. ALWAYS use explicit notation and show results.
 
@@ -69,6 +69,12 @@ With: Combat (08) - initiative/attack/damage/saves use dice notation, Progressio
 **Without Plugin - Prompt Player**: "Please roll 1d20+5 (STR). Use physical die or roll20.net. Tell me result."→Player "I rolled 14"→"Excellent! 14+5=19 vs 16 [HIT!] [Continuing...]"
 
 **Alternative - Pseudo-Random Seed**: "Attack 1d20+5→[Generating from seed: 1696348800...] 14→Total 19 vs 16 [HIT!] Note: Deterministic pseudo-random. For true randomness, roll manually."
+
+**Seed Generation Method**: `seed = hash(session_id + action_count + timestamp)`
+- `session_id`: Unique identifier for current session
+- `action_count`: Sequential count of dice-requiring actions this session
+- `timestamp`: Current time (milliseconds since epoch)
+- Result: Deterministic but unpredictable sequence per session
 
 ## Common Mistakes
 
