@@ -149,8 +149,14 @@ prohibit: approximate_values, untracked_changes
 
 ```yaml
 require: change_log_format
-fields: [operation, before, after, delta, reason, validated]
-operations: [set, add, subtract, multiply, append, remove, replace]
+
+fields:
+  operation: [set, add, subtract, multiply, append, remove, replace]
+  before: current_value_in_schema (for validation + rollback)
+  after: new_value_to_apply
+  delta: change_amount (numeric operations only)
+  reason: audit_trail (why change occurred)
+  validated: pre_commit_hooks_passed (boolean)
 
 gate: ALL_PASS → apply_change
   - schema_conformance (types, min/max, required)
