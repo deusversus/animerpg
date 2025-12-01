@@ -464,7 +464,7 @@ The students nod, nervous but determined. The curse is still dangerous (Tier 8).
 
 ## Integration
 
-Coordinates with: State Manager (03) - atomic HP/MP/SP/inventory updates | Progression (09) - XP/level-ups | Learning Engine (02) - COMBAT memory threads | NPC Intelligence (04) - ally reactions | **Narrative Scaling (12) - power tier determines language tier, context modifiers, effective scale**
+Coordinates with: State Manager (03) - atomic HP/MP/SP/inventory updates | Progression (09) - XP/level-ups | Learning Engine (02) - COMBAT memory threads | NPC Intelligence (04) - ally reactions | **Dice Resolution (11) - all attack rolls, damage rolls, and skill checks** | **Narrative Scaling (12) - power tier determines language tier, context modifiers, effective scale**
 
 ---
 
